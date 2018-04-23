@@ -166,10 +166,21 @@ class Index extends WebLoginBase{
 		$this->display('index/history-list.php',$pageSize,$type);
 	}
 	
-	// 历史开奖HTML
+	//全部彩种开奖页面
 	public final function openList($type){
 	    $this->type=intval($type);
 	    $this->display('newindex/open-list.php',$pageSize,$type);
+	}
+	//new彩种开奖详情页面
+	public final function openListDetail($type){
+	    $this->type=intval($type);
+	    $this->display('newindex/open-list-detail.php',$type);
+	}
+	
+	// new加载历史开奖数据
+	public final function getOpenHistoryData($type){
+	    $this->type=intval($type);
+	    $this->display('index/inc_data_history.php');
 	}
 	
 	public final function getLastKjData($type){

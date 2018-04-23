@@ -28,67 +28,67 @@
             </li>
             <li>
                 <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/14/59" data-open="true">
-                    <img class="fl" src="/wjinc/default/images/index_logo2.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo14.jpg">
                     <p class="fl">幸运300秒</p>
                 </a>
             </li>
             <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/12/2" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo3.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo12.jpg">
                     <p class="fl">新疆时时彩</p>
                 </a>
             </li>
             <li>
                 <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/6/10" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo4.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo6.jpg">
                     <p class="fl">广东11选5</p>
                 </a>
             </li>
             <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/7/10" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo5.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo7.jpg">
                     <p class="fl">山东11选5</p>
                 </a>
             </li>
             <li>
                 <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/16/10" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo6.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo16.jpg">
                     <p class="fl">江西多乐彩</p>
                 </a>
             </li>
             <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/25/39" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo7.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo25.jpg">
                     <p class="fl">江苏快3</p>
                 </a>
             </li>
             <li>
                 <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/52/39" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo8.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo52.jpg">
                     <p class="fl">广西快3</p>
                 </a>
             </li>
             <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/50/39" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo9.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo50.jpg">
                     <p class="fl">湖北快3</p>
                 </a>
             </li>
             <li>
                 <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/9/16" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo10.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo9.jpg">
                     <p class="fl">福彩3D</p>
                 </a>
             </li>
             <li>
                 <a class="clearfix alink" href="javascript:void(0)" data-href="/index.php/index/game/10/16" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo11.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo10.jpg">
                     <p class="fl">体彩P3</p>
                 </a>
             </li>
             <li>
                 <a class="alink" href="javascript:void(0)" data-href="/index.php/index/game/20/26" data-open="false">
-                    <img class="fl" src="/wjinc/default/images/index_logo12.jpg">
+                    <img class="fl" src="/wjinc/default/images/index_logo20.jpg">
                     <p class="fl">北京PK10</p>
                 </a>
             </li>
