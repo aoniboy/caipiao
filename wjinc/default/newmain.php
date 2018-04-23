@@ -223,24 +223,7 @@
         </div>
         </div>
     </div>
-    <div class="footer">
-        <a class="active" href="">
-            <div class="iconfont icon-home"></div>
-            <p>首页</p>
-        </a>
-        <a href="">
-            <div class="iconfont icon-qian"></div>
-            <p>游戏</p>
-        </a>
-        <a href="">
-            <div class="iconfont icon-jiangbei"></div>
-            <p>开奖</p>
-        </a>
-        <a href="">
-            <div class="iconfont icon-icon_gerenzhongxin"></div>
-            <p>账户</p>
-        </a>
-    </div>
+	<?php $this->display('newinc_footer.php'); ?>
 </div>
 <audio class="kaijiang" loop src="/wjinc/default/sound/kaijiang.wav"></audio>
 <script src="/wjinc/default/js/game.js"></script>
