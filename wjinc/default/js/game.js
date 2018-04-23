@@ -6,96 +6,30 @@ var game = {
     allCont:{
         all_stake:0,
         all_money:0,
+        id:'',
         current_date:''
     },
-    data:[{
-        "id": "10",
-        "name": "前三复式",
-        "groupId": "2",
-        "position": ["万位", "千位", "百位"]
-    }, {
-        "id": "11",
-        "name": "前三单式",
-        "groupId": "2",
-        "position": []
-    }, {
-        "id": "12",
-        "name": "后三复式",
-        "groupId": "2",
-        "position": ["百位", "十位", "个位"]
-    }, {
-        "id": "13",
-        "name": "后三单式",
-        "groupId": "2",
-        "position": []
-    }, {
-        "id": "16",
-        "name": "前三组三",
-        "groupId": "3",
-        "position": [1]
-    }, {
-        "id": "17",
-        "name": "前三组六",
-        "groupId": "3",
-        "position": [2]
-    }, {
-        "id": "19",
-        "name": "后三组三",
-        "groupId": "3",
-        "position": [1]
-    }, {
-        "id": "20",
-        "name": "后三组六",
-        "groupId": "3",
-        "position": [2]
-    }, {
-        "id": "25",
-        "name": "前二复式",
-        "groupId": "4",
-        "position": ["万位", "千位"]
-    }, {
-        "id": "26",
-        "name": "前二单式",
-        "groupId": "4",
-        "position": []
-    }, {
-        "id": "27",
-        "name": "后二复式",
-        "groupId": "4",
-        "position": ["十位", "个位"]
-    }, {
-        "id": "28",
-        "name": "后二单式",
-        "groupId": "4",
-        "position": []
-    }, {
-        "id": "31",
-        "name": "前二组选复式",
-        "groupId": "5",
-        "position": [1]
-    }, {
-        "id": "33",
-        "name": "后二组选复式",
-        "groupId": "5",
-        "position": [1]
-    }, {
-        "id": "37",
-        "name": "五星定位胆",
-        "groupId": "6",
-        "position": ["万位", "千位", "百位", "十位", "个位"]
-    }],
+    is_textarea:false,
+    all_len:'',
+    data:[],
     bindEvent: function(){
-        var all_len = 1;
         //默认数据
-        var id = 10;
-        var narr =[]
-            console.log(game.data)
-            for(var i=0;i<game.data.length;i++){
+        $.post('index.php/index/playedType', function(res){
+            game.data = res.data;
+            var id = 10;
+            game.allCont.id = id;
+            var html ='';
+            var narr =[]
+            for(var i =0;i<res.data.length;i++){
+                html +='<li id="'+game.data[i].id+'"><div class="tover">'+game.data[i].name+'</div></li>';
                 if(game.data[i].id == id){
                     narr = game.data[i].position;
+                    game.all_len = narr.length;
+                    $(".gameo_sel").text(game.data[i].name)
                     var html =''
                     if(narr.length==0){
-                        html = '<li><textarea placeholder="输入三个号码为一注"></textarea></li>';
+                        game.is_textarea =true;
+                        html = '<li><textarea class="gameo_trea" placeholder="输入三个号码为一注" onkeyup="this.value=this.value.replace(/[^\r\n0-9\,\，]/g,'');></textarea></li>';
                     }else if(narr.length==1){
                         console.log(narr[0]);
                     }else if(narr.length>=2){
@@ -127,16 +61,6 @@ var game = {
                 }
             }
             
-        $.post('', function(res){
-            index.data = res.data;
-            for(var i=0;i<index.data.length;i++){
-                if(index.data[i].id = id){
-                    narr = index.data[i].position
-                }else{
-
-                }
-            }
-            console.log(narr)
         },'json' );
         //随机数字
         setInterval(function(){
@@ -150,6 +74,7 @@ var game = {
             var html = '';
         })
         $(".select_title li").on('touchend', function(){
+            game.allCont.id = $(this).attr('id');
             $(".select_pop").show();
             $(".gameo_sel").text($(this).find('div').text());
             $(".select_pop").hide();
@@ -346,7 +271,12 @@ var game = {
     },
     currentCount:function(){
             var lens= 1;
-            if(all_len ==1){
+            if(game.all_len ==0){
+                console.log(000);
+                if($(".gameo_trea").length()!=3){
+                    $(".dan_text").text('请输入3个数字');
+                }
+            }else if(game.all_len ==1){
                 for(var i=0;i<$(".game_stakes").length;i++){
                     var len =$(".game_stakes").eq(i).find('i.active').length;
                     lens*=len;
@@ -354,7 +284,7 @@ var game = {
                         $(".dan_text").text('请选2个或2个以上数字');
                     }
                 }
-            }else if(all_len ==2){
+            }else if(game.all_len ==2){
                 for(var i=0;i<$(".game_stakes").length;i++){
                     var len =$(".game_stakes").eq(i).find('i.active').length;
                     lens*=len;
