@@ -41,14 +41,28 @@ var type = '<?=$this->type?>'
     //     alert("滚动条到底部了");  
     //     });  
     // });  
+    var page = 10;
+    var is_false =false;
     $(window).scroll(function () {
         var scrollTop = $(this).scrollTop()
         var scrollHeight = $(document).height()
         var windowHeight = $(this).height()
-
-        console.log(`scrollTop: ${scrollTop}`)
-        console.log(`windowHeight: ${windowHeight}`)
-        console.log(`scrollHeight: ${scrollHeight}`)
+        if(windowHeight + scrollTop >= scrollHeight){
+            $.post('/index.php/index/getOpenHistoryData/'+type+'/'+page, function(res){
+                var list = res.data.result;
+                if(list.length>0){
+                    page += 10;
+                    var list = res.data.result;
+                    var html = '';
+                    for(var i=0;i<list.length;i++){
+                        html+='    <li>'
+                        html+='        <div class="clearfix"><p class="fl">第'+list.number+'期</p><span class="fr f24 col9">'+list.time+'开奖</spa></div>'
+                        html+='        <div class="lot_num">'+list.tnumber+'</div>'
+                        html+='    </li>'
+                    }
+                }
+            },'json' );
+        }
 
     })
 </script>
