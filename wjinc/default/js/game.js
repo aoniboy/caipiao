@@ -16,6 +16,7 @@ var game = {
         //默认数据
         $.post('index.php/index/playedType', function(res){
             game.data = res.data;
+            console.log(res.data,222);
             var id = 10;
             game.allCont.id = id;
             var html ='';
@@ -29,7 +30,7 @@ var game = {
                     var html =''
                     if(narr.length==0){
                         game.is_textarea =true;
-                        html = '<li><textarea class="gameo_trea" placeholder="输入三个号码为一注" onkeyup="this.value=this.value.replace(/[^\r\n0-9\,\，]/g,'');></textarea></li>';
+                        html = '<li><textarea class="gameo_trea" placeholder="输入三个号码为一注" onkeyup="this.value=this.value.replace(/[^\r\n0-9\,\，]/g,"");></textarea></li>';
                     }else if(narr.length==1){
                         console.log(narr[0]);
                     }else if(narr.length>=2){
