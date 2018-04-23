@@ -10,7 +10,7 @@ var index = {
     opengame:function(){
     	$('.alink').on('click',function(){
     		var flag = $(this).attr('data-open');
-    		if(flag === 'true') {
+    		if(flag === 'true' ||flag === '1' ) {
     			var url = $(this).attr('data-href');
     			window.location.href = url;
     		}else {

@@ -14,6 +14,10 @@ class Index extends WebLoginBase{
 		$this->getSystemSettings();	
 		$this->display('newmain.php');
 	}
+	public final function gameList(){
+	    
+	    $this->display('newindex/game-list.php');
+	}
 	
   //平台首页
 	public final function main(){
@@ -185,6 +189,15 @@ class Index extends WebLoginBase{
 	    $typename=$this->getValue("select title from ssc_type where id=?",$type);
 	    $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit {$start},10 ";
 	    $result  = $this->getRows($sql);
+	    foreach($result as $key=>$val) {
+	        $result[$key]['time'] = date("H时:i分");
+	        $data = explode(",", $val['data']);
+	        $tnumber = '';
+	        foreach($data as $k=>$v) {
+	            $tnumber .= "<span>$v</span>";
+	        }
+	        $result[$key]['tnumber'] = $tnumber;
+	    }
 	    $data = ['name'=>$typename,'result'=>$result];
 	    $data = ['code'=>0,'data'=>$data,'msg'=>'操作成功'];
 	    echo json_encode($data);

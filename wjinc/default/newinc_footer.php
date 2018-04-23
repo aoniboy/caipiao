@@ -3,7 +3,7 @@
         <div class="iconfont icon-home"></div>
         <p>首页</p>
     </a>
-    <a href="/index.php/index/game/1/2">
+    <a href="/index.php/index/gameList">
         <div class="iconfont icon-qian"></div>
         <p>游戏</p>
     </a>
