@@ -50,14 +50,15 @@ var type = '<?=$this->type?>'
         if(windowHeight + scrollTop >= scrollHeight){
             $.post('/index.php/index/getOpenHistoryData/'+type+'/'+page, function(res){
                 var list = res.data.result;
+                console.log(list);
                 if(list.length>0){
                     page += 10;
-                    var list = res.data.result;
+         
                     var html = '';
                     for(var i=0;i<list.length;i++){
                         html+='    <li>'
-                        html+='        <div class="clearfix"><p class="fl">第'+list.number+'期</p><span class="fr f24 col9">'+list.time+'开奖</spa></div>'
-                        html+='        <div class="lot_num">'+list.tnumber+'</div>'
+                        html+='        <div class="clearfix"><p class="fl">第'+list[i].number+'期</p><span class="fr f24 col9">'+list[i].time+'开奖</spa></div>'
+                        html+='        <div class="lot_num">'+list[i].tnumber+'</div>'
                         html+='    </li>'
                     }
                 }
