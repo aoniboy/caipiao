@@ -244,5 +244,8 @@
 </div>
 <audio class="kaijiang" loop src="/wjinc/default/sound/kaijiang.wav"></audio>
 <script src="/wjinc/default/js/game.js"></script>
+<script>
+var type = '<?=$this->type?>'
+</script>
 </body>
 </html>
