@@ -10,27 +10,26 @@
 </head>
 <body>
 <div class="wrap_box wrap_top">
-    <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>重庆时时彩</div>
+    <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a><?=$this->typename?></div>
     <ul class="lotter_dcont clearfix">
+    	<?php  if($this->result) foreach($this->result as $key=>$var){ 
+        $data = explode(",", $var['data']);
+        $tnumber = '';
+        foreach($data as $k=>$v) {
+            $tnumber .= "<span>$v</span>";
+        }
+    ?>
         <li>
-            <div class="clearfix"><p class="fl">第180331053期</p><span class="fr f24 col9">16时16分开奖</span></div>
-            <div class="lot_num"><span>5</span><span>3</span><span>9</span></div>
+            <div class="clearfix"><p class="fl">第<?=$var['number']?>期</p><span class="fr f24 col9"><?=date("H时:i分",$var['time'])?>开奖</span></div>
+            <div class="lot_num"><?=$tnumber?></div>
         </li>
-        <li>
-            <div class="clearfix"><p class="fl">第180331053期</p><span class="fr f24 col9">16时16分开奖</span></div>
-            <div class="lot_num"><span>5</span><span>3</span><span>9</span></div>
-        </li>
-        <li>
-            <div class="clearfix"><p class="fl">第180331053期</p><span class="fr f24 col9">16时16分开奖</span></div>
-            <div class="lot_num"><span>5</span><span>3</span><span>9</span></div>
-        </li>
+        <?php } ?>
         
     </ul>
 	<?php $this->display('newinc_footer.php'); ?>
 </div>
-
 <script>
-var type = <?php echo $type?>
+var type = '<?=$this->type?>'
 </script>
 </body>
 </html>

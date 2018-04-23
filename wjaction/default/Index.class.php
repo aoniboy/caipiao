@@ -174,13 +174,21 @@ class Index extends WebLoginBase{
 	//new彩种开奖详情页面
 	public final function openListDetail($type){
 	    $this->type=intval($type);
-	    $this->display('newindex/open-list-detail.php',$type);
+	    $this->typename=$this->getValue("select title from ssc_type where id=?",$type);
+	    $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,10 ";
+	    $this->result  = $this->getRows($sql);
+	    $this->display('newindex/open-list-detail.php');
 	}
 	
 	// new加载历史开奖数据
-	public final function getOpenHistoryData($type){
-	    $this->type=intval($type);
-	    $this->display('index/inc_data_history.php');
+	public final function getOpenHistoryData($type,$start=10){
+	    $typename=$this->getValue("select title from ssc_type where id=?",$type);
+	    $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit {$start},10 ";
+	    $result  = $this->getRows($sql);
+	    $data = ['name'=>$typename,'result'=>$result];
+	    $data = ['code'=>0,'data'=>$data,'msg'=>'操作成功'];
+	    echo json_encode($data);
+	    exit;
 	}
 	
 	public final function getLastKjData($type){

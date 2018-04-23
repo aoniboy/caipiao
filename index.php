@@ -58,6 +58,7 @@ $jms->setCacheDir($conf['cache']['dir']);
 $jms->actionTemplate=$conf['action']['template'];
 $jms->prename=$conf['db']['prename'];
 $jms->title=$conf['web']['title'];
+$jms->gameinfo = $conf['game'];
 if(method_exists($jms, 'getSystemSettings')) $jms->getSystemSettings();
 
 if($jms->settings['switchWeb']=='0'){
