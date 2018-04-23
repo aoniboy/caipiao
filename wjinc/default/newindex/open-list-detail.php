@@ -61,6 +61,7 @@ var type = '<?=$this->type?>'
                         html+='    </li>'
                     }
                 }
+                $(".lotter_dcont").append(html);
             },'json' );
         }
 
