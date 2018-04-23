@@ -14,7 +14,7 @@ var game = {
     data:[],
     bindEvent: function(){
         //默认数据
-        $.post('/index.php/index/playedType', function(res){
+        $.post('playedType', function(res){
             game.data = res.data;
             console.log(res.data,222);
             var id = 10;
