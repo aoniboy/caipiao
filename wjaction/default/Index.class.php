@@ -12,7 +12,7 @@ class Index extends WebLoginBase{
 		}
 		if($played) $this->played=intval($played);
 		$this->getSystemSettings();	
-		$this->display('main.php');
+		$this->display('newmain.php');
 	}
 	
   //平台首页
@@ -53,6 +53,78 @@ class Index extends WebLoginBase{
 		}else{
 			$this->display('index/game-played/un-open.php');
 		}
+	}
+	
+	public final function playedType($type,$playedId){
+	    header('Access-Control-Allow-Origin:*');
+	    $sql="select id from {$this->prename}played_group where type=? and enable = 1 order by sort";
+	    $data=$this->getRows($sql, $type);
+	    $result = [];
+	    foreach($data as $key=>$val) {
+	        $sql="select id,name,groupId from {$this->prename}played where  groupId= ? and enable = 1";
+	        $tmp=$this->getRows($sql, $val['id']);
+	        foreach($tmp as $k=>$v) {
+	            $result[] = $v;
+	        }
+	    }
+	    
+	    
+	    foreach ($result as $key=>$val) {
+	        switch ($val['id']) {
+	            case '10':
+	                $result[$key]['position'] = ['万位','千位','百位'];
+	                break;
+	            case '11':
+	                $result[$key]['position'] = [];
+	                break;
+	            case '12':
+                    $result[$key]['position'] = ['百位','十位','个位'];
+                    break;
+                case '13':
+                    $result[$key]['position'] = [];
+                    break;
+                case '16':
+                    $result[$key]['position'] = [1];
+                    break;
+                case '17':
+                    $result[$key]['position'] = [2];
+                    break;
+                case '19':
+                    $result[$key]['position'] = [1];
+                    break;
+                case '20':
+                    $result[$key]['position'] = [2];
+                    break;
+                case '25':
+                    $result[$key]['position'] = ['万位','千位'];
+                    break;
+                case '26':
+                    $result[$key]['position'] = [];
+                    break;
+                case '27':
+                    $result[$key]['position'] = ['十位','个位'];
+                    break;
+                case '28':
+                    $result[$key]['position'] = [];
+                    break;
+                case '31':
+                    $result[$key]['position'] = [1];
+                    break;
+                case '33':
+                    $result[$key]['position'] = [1];
+                    break;
+                case '37':
+                    $result[$key]['position'] = ['万位','千位','百位','十位','个位'];
+                    break;
+		default:
+		   break;
+	        }
+	    }
+	    
+	    $data = ['code'=>0,'data'=>$result,'msg'=>'操作成功'];
+	    echo json_encode($data);
+	    exit;
+	    
 	}
 	
 	// 加载玩法介绍信息

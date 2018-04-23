@@ -24,6 +24,7 @@ input:focus,select{outline:0;}
 .tover2{ overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;}
 .wrap_box{position:relative;overflow:hidden;margin:0 auto;width:100%;height:100%;max-width:640px;min-width:3.2rem;font-size:.28rem;line-height:1.5;}
 .pointer_events{pointer-events:none;}
+.inb{ display: inline-block; }
 .fff{ color:#fff; }
 .f20{ font-size:.20rem;}
 .f22{ font-size:.22rem;}
@@ -104,6 +105,10 @@ input:focus,select{outline:0;}
 .lot_iconr{ position: absolute;right:0; top:50%; transform: translateY(-50%); }
 .title_top .iconback{ position: absolute;left:.2rem;top:50%;transform: translateY(-50%); font-size:.34rem; color:#fff;}
 .lotter_dcont li{ border-bottom:1px solid #eeebeb; padding:.3rem .2rem;}
+.title_top { z-index: 999; }
+/*游戏*/
+.gm_lot_left{ margin-top: 0; }
+.iconright{position: absolute;right:.2rem;top:50%;transform: translateY(-50%); font-size:.34rem !important; color:#fff;}
 
 
 
