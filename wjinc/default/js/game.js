@@ -359,7 +359,7 @@ var game = {
                             var input_val =$(".gameo_int").val();
                             var html_num ='';
                             for(var i =0;i<$(".gameo_int").val().length;i++){
-                                if(i%2 ==0 && html_num){
+                                if(i%3 ==0 && html_num){
                                     html_num+=","+input_val[i];
                                 }else{
                                     html_num+=input_val[i];
