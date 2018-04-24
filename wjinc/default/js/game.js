@@ -86,7 +86,8 @@ var game = {
                     },50)
                 }else{
                     var html = ''
-                    for(var i=0;i<data.data.kjNo.length;i++){
+                    var harr = data.data.kjNo.splice(',');
+                    for(var i=0;i<harr.length;i++){
                         $(".gameo_num span").eq(i).text(game.randomNum())
                         html+='"<span>'+data.data.kjNo[i]+'</span>"';
                     } 
