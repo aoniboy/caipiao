@@ -341,7 +341,6 @@ var game = {
                 $(".gameo_cont").html(html)
             }
         }
-        $(".select_title").html(shtml)
     },
     currentCount:function(){
             var lens= 1;
