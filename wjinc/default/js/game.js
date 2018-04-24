@@ -28,12 +28,12 @@ var game = {
                 	 $(".gameo_sel").text(game.data[i].name)
                 
 	                narr = game.data[i].position;
-	                game.all_len = narr.length;
+	                game.all_len = narr;
 	               
 	                var html =''
 	                if(narr.length==0){
 	                    game.is_textarea =true;
-	                    html = '<li><input class="gameo_int" placeholder="输入三个号码为一注" type="tel" onkeyup="value=value.replace(/[^\d]/g,'')></li>';
+	                    html = '<li><input class="gameo_int" placeholder="输入三个号码为一注" type="tel"></li>';
 	                }else if(narr.length==1){
 	                    console.log(narr[0]);
 	                }else if(narr.length>=2){
@@ -273,6 +273,11 @@ var game = {
             console.log(11)
             $(".tz_pop").hide();
         })
+        //只能是数字
+        $(document).on('keyup', '.gameo_int', function(){
+            console.log(1);
+            $(this).vla().replace(/[^\d]/g,'');
+        })
 
         //倒计时
         game.randomNum();
@@ -280,12 +285,38 @@ var game = {
     },
     currentCount:function(){
             var lens= 1;
-            if(game.all_len ==0){
+            if(game.all_len.length ==0){
+                if(game.all_len[0] == 0)
                 console.log(000);
-                if($(".gameo_int").length()!=3){
+                if($(".gameo_int").length()<3){
                     $(".dan_text").text('请输入3个数字');
                 }
-            }else if(game.all_len ==1){
+
+
+                var codeLen=parseInt(this.attr('length'))*2,
+                codes=[],
+                ncode,
+                str=$('#textarea-code',this).val().replace(/[^\d]/g,'');
+                if(str.length && str.length % codeLen == 0){
+                    if(/[^\d]/.test(str)) throw('投注有错，不能有数字以外的字符。');
+                    codes=codes.concat(str.match(new RegExp('\\d{'+codeLen+'}', 'g')));
+                }else{
+                    throw('输入号码不正确');
+                }
+                codes=codes.map(function(code){
+                    code=code.split("");
+                    ncode="";
+                    code.forEach(function(v,i){
+                        if(i % 2==0 && ncode){  
+                             ncode+=","+v;
+                        }else{ 
+                             ncode+=v;
+                        }
+                    });
+                    return ncode;
+                });
+                return {actionData:codes.join('|'), actionNum:codes.length}
+            }else if(game.all_len.length ==1){
                 for(var i=0;i<$(".game_stakes").length;i++){
                     var len =$(".game_stakes").eq(i).find('i.active').length;
                     lens*=len;
@@ -293,7 +324,7 @@ var game = {
                         $(".dan_text").text('请选2个或2个以上数字');
                     }
                 }
-            }else if(game.all_len ==2){
+            }else if(game.all_len.length ==2){
                 for(var i=0;i<$(".game_stakes").length;i++){
                     var len =$(".game_stakes").eq(i).find('i.active').length;
                     lens*=len;
@@ -302,7 +333,7 @@ var game = {
                     }
                 }
             }else{
-                console.log(111);
+                // console.log(111);
                 for(var i=0;i<$(".game_stakes").length;i++){
                     var len =$(".game_stakes").eq(i).find('i.active').length;
                     lens*=len;
@@ -356,79 +387,3 @@ var game = {
 
 }
 game.init();
-// var arrs =   [{
-//         "id": "10",
-//         "name": "前三复式",
-//         "groupId": "2",
-//         "position": ["万位", "千位", "百位"]
-//     }, {
-//         "id": "11",
-//         "name": "前三单式",
-//         "groupId": "2",
-//         "position": []
-//     }, {
-//         "id": "12",
-//         "name": "后三复式",
-//         "groupId": "2",
-//         "position": ["百位", "十位", "个位"]
-//     }, {
-//         "id": "13",
-//         "name": "后三单式",
-//         "groupId": "2",
-//         "position": []
-//     }, {
-//         "id": "16",
-//         "name": "前三组三",
-//         "groupId": "3",
-//         "position": [1]
-//     }, {
-//         "id": "17",
-//         "name": "前三组六",
-//         "groupId": "3",
-//         "position": [2]
-//     }, {
-//         "id": "19",
-//         "name": "后三组三",
-//         "groupId": "3",
-//         "position": [1]
-//     }, {
-//         "id": "20",
-//         "name": "后三组六",
-//         "groupId": "3",
-//         "position": [2]
-//     }, {
-//         "id": "25",
-//         "name": "前二复式",
-//         "groupId": "4",
-//         "position": ["万位", "千位"]
-//     }, {
-//         "id": "26",
-//         "name": "前二单式",
-//         "groupId": "4",
-//         "position": []
-//     }, {
-//         "id": "27",
-//         "name": "后二复式",
-//         "groupId": "4",
-//         "position": ["十位", "个位"]
-//     }, {
-//         "id": "28",
-//         "name": "后二单式",
-//         "groupId": "4",
-//         "position": []
-//     }, {
-//         "id": "31",
-//         "name": "前二组选复式",
-//         "groupId": "5",
-//         "position": [1]
-//     }, {
-//         "id": "33",
-//         "name": "后二组选复式",
-//         "groupId": "5",
-//         "position": [1]
-//     }, {
-//         "id": "37",
-//         "name": "五星定位胆",
-//         "groupId": "6",
-//         "position": ["万位", "千位", "百位", "十位", "个位"]
-//     }]
