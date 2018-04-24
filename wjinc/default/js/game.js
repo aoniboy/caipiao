@@ -18,7 +18,7 @@ var game = {
         $.post('/index.php/index/playedType/'+cid, function(res){
             game.data = res.data;
             console.log(res.data,222);
-            var id = 10;
+            var id = 11;
             game.allCont.id = id;
             var shtml ='';
             var narr =[]
@@ -151,7 +151,7 @@ var game = {
                 num =1;
             }
             $(".gameo_numi").val(num);
-            // game.currentCount();
+            game.currentCount();
         })
         //倍数不能小于1
         $(".gameo_numi").on('keyup', function(){
