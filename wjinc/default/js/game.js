@@ -19,7 +19,6 @@ var game = {
         //默认数据
         var cid = $(".playedtype").val();
         game.allCont.type = cid;
-        alert(1);
         $.post('/index.php/index/playedType/'+cid, function(res){
             game.data = res.data;
             game.allCont.playid = game.data[0].id;
