@@ -59,9 +59,10 @@ var game = {
 	                        html+='    </li>'
 	                    }
 	                }
+	                $(".gameo_cont").html(html)
+	                gameball()
                 }
-                $(".gameo_cont").html(html)
-                
+
             }
             $(".select_title").html(shtml)
             
@@ -86,7 +87,9 @@ var game = {
         })
         //清单双大小全
         var dan_len,dan_money,dan_stake;
-        $(".game_stakes > span").on('touchend', function(){
+        var gameball = function(){
+        	alert(1)
+        	$(".game_stakes > span").on('touchend', function(){
             var id = $(this).data("id");
             var parent = $(this).parent(".game_stakes");
             var len = $(parent).find('i.active').length;
@@ -116,6 +119,7 @@ var game = {
             }
             game.currentCount();
         })
+        }
         //数字选中 
         $(".game_stakes > i").on('touchend', function(){
             if($(this).hasClass("active")){
