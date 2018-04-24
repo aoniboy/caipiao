@@ -61,6 +61,7 @@ var game = {
 	                }
 	                $(".gameo_cont").html(html)
 	                gameball()
+	                gameballother()
                 }
 
             }
@@ -87,48 +88,51 @@ var game = {
         })
         //清单双大小全
         var dan_len,dan_money,dan_stake;
-        var gameball = function(){
-        	alert(1)
+        var gameballother = function(){
         	$(".game_stakes > span").on('touchend', function(){
-            var id = $(this).data("id");
-            var parent = $(this).parent(".game_stakes");
-            var len = $(parent).find('i.active').length;
-            switch(id){
-                case 'clear':
-                    $(parent).find('i').removeClass('active');
-                    break;
-                case 'even':
-                    $(parent).find('i').removeClass('active');
-                    $(parent).find('i:even').addClass('active');
-                    break;
-                case 'odd':
-                    $(parent).find('i').removeClass('active');
-                    $(parent).find('i:odd').addClass('active');
-                    break;
-                case 'small':
-                    $(parent).find('i').removeClass('active');
-                    $(parent).find('a').prevAll().addClass('active');
-                    break;
-                case 'big':
-                    $(parent).find('i').removeClass('active');
-                    $(parent).find('a').nextAll().addClass('active');
-                    break;
-                case 'all':
-                    $(parent).find('i').addClass('active');
-                    break;
-            }
-            game.currentCount();
-        })
+	            var id = $(this).data("id");
+	            var parent = $(this).parent(".game_stakes");
+	            var len = $(parent).find('i.active').length;
+	            switch(id){
+	                case 'clear':
+	                    $(parent).find('i').removeClass('active');
+	                    break;
+	                case 'even':
+	                    $(parent).find('i').removeClass('active');
+	                    $(parent).find('i:even').addClass('active');
+	                    break;
+	                case 'odd':
+	                    $(parent).find('i').removeClass('active');
+	                    $(parent).find('i:odd').addClass('active');
+	                    break;
+	                case 'small':
+	                    $(parent).find('i').removeClass('active');
+	                    $(parent).find('a').prevAll().addClass('active');
+	                    break;
+	                case 'big':
+	                    $(parent).find('i').removeClass('active');
+	                    $(parent).find('a').nextAll().addClass('active');
+	                    break;
+	                case 'all':
+	                    $(parent).find('i').addClass('active');
+	                    break;
+	            }
+	            game.currentCount();
+        	})
         }
         //数字选中 
-        $(".game_stakes > i").on('touchend', function(){
-            if($(this).hasClass("active")){
-                $(this).removeClass("active");
-            }else{
-                $(this).addClass("active");
-            }
-            game.currentCount();
-        })
+        var gameball = function() {
+        	$(".game_stakes > i").on('touchend', function(){
+        		if($(this).hasClass("active")){
+                    $(this).removeClass("active");
+                }else{
+                    $(this).addClass("active");
+                }
+                game.currentCount();
+            })
+        	
+        }
+            
         //元
         $(".gameo_check").on('touchend', function(){
             $(".gameo_check").removeClass("active");

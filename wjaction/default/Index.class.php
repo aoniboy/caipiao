@@ -65,7 +65,6 @@ class Index extends WebLoginBase{
 	}
 	
 	public final function playedType($type,$playedId){
-	    header('Access-Control-Allow-Origin:*');
 	    $sql="select id from {$this->prename}played_group where type=? and enable = 1 order by sort";
 	    $data=$this->getRows($sql, $type);
 	    $result = [];
@@ -125,8 +124,8 @@ class Index extends WebLoginBase{
                 case '37':
                     $result[$key]['position'] = ['万位','千位','百位','十位','个位'];
                     break;
-		default:
-		   break;
+        		default:
+        		   break;
 	        }
 	    }
 	    
