@@ -309,7 +309,7 @@ var list ={};
             var lens= 1;
             if(game.all_len.length ==1){
                 //12 输入  34 选择
-                consle.log(game.all_len[0]);
+                console.log(game.all_len[0]);
                 switch(game.all_len[0]){
                     case '1':
                         if($(".gameo_int").val().length<2 || $(".gameo_int").val().length%2 !=0){
