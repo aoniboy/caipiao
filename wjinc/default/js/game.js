@@ -80,7 +80,7 @@ var game = {
             $(".select_pop").show();
             var html = '';
         })
-        $(".select_title li").on('touchend', function(){
+        $(document).on('touchend', '.select_title li', function(){
             game.allCont.id = $(this).attr('id');
             $(".gameo_sel").text($(this).find('div').text());
             $(".select_pop").hide();
