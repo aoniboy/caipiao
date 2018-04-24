@@ -14,7 +14,7 @@ var game = {
     data:[],
     bindEvent: function(){
         //默认数据
-        var cid = $(".playedtype").val()
+        var cid = $(".playedtype").val();
         $.post('/index.php/index/playedType/'+cid, function(res){
             game.data = res.data;
             console.log(res.data,222);
@@ -260,7 +260,9 @@ var game = {
             game.allCont.all_money = game.allCont.all_money - parseInt(money);
             game.allCont.all_stake = game.allCont.all_stake - parseInt(stake);
             $(".all_money").text(game.allCont.all_money.toFixed(2));
-            $(".all_stake").text(game.allCont.all_stake)
+            $(".all_stake").text(game.allCont.all_stake);
+            console.log($(this).parent('tr').index());
+
         })
         //清空号码
         $(".gameo_clearall").on('touchend', function(){
