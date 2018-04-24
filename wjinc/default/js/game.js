@@ -33,7 +33,7 @@ var game = {
 	                var html =''
 	                if(narr.length==0){
 	                    game.is_textarea =true;
-	                    html = '<li><textarea class="gameo_trea" placeholder="输入三个号码为一注" onkeyup="this.value=this.value.replace(/[^\r\n0-9\,\，]/g,"");></textarea></li>';
+	                    html = '<li><input class="gameo_int" placeholder="输入三个号码为一注" type="tel" onkeyup="value=value.replace(/[^\d]/g,'')></li>';
 	                }else if(narr.length==1){
 	                    console.log(narr[0]);
 	                }else if(narr.length>=2){
@@ -282,7 +282,7 @@ var game = {
             var lens= 1;
             if(game.all_len ==0){
                 console.log(000);
-                if($(".gameo_trea").length()!=3){
+                if($(".gameo_int").length()!=3){
                     $(".dan_text").text('请输入3个数字');
                 }
             }else if(game.all_len ==1){
