@@ -264,7 +264,29 @@ var game = {
             $(".hint_pop").hide();
             console.log(game.code)
             $.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
-                if(res.)
+                if(res.code){
+                    $.post('/index.php/game/getOrdered/'+cid,function(data){
+                        if(data.code){
+                            var list = data.data;
+                            console.list;
+                            var html = '';
+                            for(var i=0;i<list.length;i++){
+                                html+='    <tr>'
+                                html+='        <td>'+list.wjorderId+'</td>'
+                                html+='        <td>'+list.gamename+'</td>'
+                                html+='        <td>'+list.playname+'</td>'
+                                html+='        <td>'+list.actionNo+'</td>'
+                                html+='        <td>250</td>'
+                                html+='        <td id="'+list.id+'">未开奖</td>'
+                                html+='    </tr>'
+                            }
+                            $(".tz_table table tabody").append(html);
+                        }
+                    },'json' );
+                }else{
+                    $(".hint_pop .hint_cont").text(res.msg);
+                    $(".hint_pop").show();
+                }
             },'json' );
         })
         $(".tz_btn2").on('touchend', function(){
