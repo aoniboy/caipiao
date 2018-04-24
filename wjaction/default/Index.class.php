@@ -83,43 +83,43 @@ class Index extends WebLoginBase{
 	                $result[$key]['position'] = ['万位','千位','百位'];
 	                break;
 	            case '11':
-	                $result[$key]['position'] = [];
+	                $result[$key]['position'] = [2];
 	                break;
 	            case '12':
                     $result[$key]['position'] = ['百位','十位','个位'];
                     break;
                 case '13':
-                    $result[$key]['position'] = [];
+                    $result[$key]['position'] = [2];
                     break;
                 case '16':
-                    $result[$key]['position'] = [1];
+                    $result[$key]['position'] = [3];
                     break;
                 case '17':
-                    $result[$key]['position'] = [2];
+                    $result[$key]['position'] = [4];
                     break;
                 case '19':
-                    $result[$key]['position'] = [1];
+                    $result[$key]['position'] = [3];
                     break;
                 case '20':
-                    $result[$key]['position'] = [2];
+                    $result[$key]['position'] = [4];
                     break;
                 case '25':
                     $result[$key]['position'] = ['万位','千位'];
                     break;
                 case '26':
-                    $result[$key]['position'] = [];
+                    $result[$key]['position'] = [1];
                     break;
                 case '27':
                     $result[$key]['position'] = ['十位','个位'];
                     break;
                 case '28':
-                    $result[$key]['position'] = [];
+                    $result[$key]['position'] = [1];
                     break;
                 case '31':
-                    $result[$key]['position'] = [1];
+                    $result[$key]['position'] = [3];
                     break;
                 case '33':
-                    $result[$key]['position'] = [1];
+                    $result[$key]['position'] = [3];
                     break;
                 case '37':
                     $result[$key]['position'] = ['万位','千位','百位','十位','个位'];
