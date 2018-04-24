@@ -207,6 +207,7 @@ var game = {
                     }
                 }
             }
+            html_num = html_num.substring(0, html_num.length - 1);  
             var mode =$(".gameo_check.active").data('money');
             var multiple = $(".gameo_multiple").val();
             list.fanDian = 0; //不确定
