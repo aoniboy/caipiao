@@ -311,7 +311,7 @@ var list ={};
                 //12 输入  34 选择
                 console.log(game.all_len[0]);
                 switch(game.all_len[0]){
-                    case '1':
+                    case 1:
                         if($(".gameo_int").val().length<2 || $(".gameo_int").val().length%2 !=0){
                             $(".dan_text").text('至少输入1个两位数号码组成一注');
                             console.log(111)
@@ -319,7 +319,7 @@ var list ={};
                             return false;
                         }
                         break;
-                    case '2':
+                    case 2:
                         if($(".gameo_int").val().length<3 || $(".gameo_int").val().length%3 !=0){
                             $(".dan_text").text('至少输入1个三位数号码组成一注');
                             console.log(111)
@@ -327,7 +327,7 @@ var list ={};
                             return false;
                         }
                         break;
-                    case '3':
+                    case 3:
                         for(var i=0;i<$(".game_stakes").length;i++){
                             var len =$(".game_stakes").eq(i).find('i.active').length;
                             console.log(111)
