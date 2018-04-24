@@ -9,8 +9,8 @@ var game = {
         playid:'',
         groupid:'',
         actionNo:'',
-        kjTime:'1524574800'
-        type:''
+        kjTime:'1524574800',
+        type:'',
     },
     is_textarea:false,
     all_len:'',
