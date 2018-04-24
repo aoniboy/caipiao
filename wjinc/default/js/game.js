@@ -157,10 +157,10 @@ var game = {
         //添加
         // console.log($(".game_stakes").length)
         $(".game_add").on('touchend', function(){
-            if(game.currentCount()){
+            if(!game.currentCount()){
                return false; 
             }else{
-var list ={};
+            var list ={};
             var num = parseInt($(this).attr('data-num'));
             var numarr = [];
             var lens =1;
