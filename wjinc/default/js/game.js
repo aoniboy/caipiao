@@ -220,7 +220,7 @@ var game = {
             list.type = cid;
 
             // console.log(list.stake,22)
-            // list.money = (mode*lens*multiple).toFixed(2);
+            list.money = (mode*lens*multiple).toFixed(2);
             $(this).attr('data-num',num+1);
             game.code.push(list);
             $(".game_stakes").find('i').removeClass('active');
@@ -237,8 +237,8 @@ var game = {
             html+='        <tr>'
             html+='            <td>'+list.title+'</td>'
             html+='            <td>'+html_num+'</td>'
-            html+='            <td>'+list.stake+'注</td>'
-            html+='            <td>'+list.multiple+'倍</td>'
+            html+='            <td>'+list.actionNum+'注</td>'
+            html+='            <td>'+list.beiShu+'倍</td>'
             html+='            <td>'+list.money+'元</td>'
             html+='            <td>奖－返：1931.85-0.0%</td>'
             html+='            <td class="iconfont icon-icon-cross-squre gameo_delete" id='+num+' data-money='+list.money+' data-stake='+list.stake+'></td>'
