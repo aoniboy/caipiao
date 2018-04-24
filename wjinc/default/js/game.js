@@ -268,7 +268,7 @@ var game = {
                     $.post('/index.php/game/getOrdered/'+cid,function(data){
                         if(!data.code){
                             var list = data.data;
-                            console.list;
+                            console.log(list);
                             var html = '';
                             var text = '';
                             var prize_col = '';
