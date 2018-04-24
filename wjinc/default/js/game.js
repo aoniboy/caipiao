@@ -20,48 +20,51 @@ var game = {
             console.log(res.data,222);
             var id = 10;
             game.allCont.id = id;
-            var html ='';
+            var shtml ='';
             var narr =[]
             for(var i =0;i<res.data.length;i++){
-                html +='<li id="'+game.data[i].id+'"><div class="tover">'+game.data[i].name+'</div></li>';
+                shtml +='<li id="'+game.data[i].id+'"><div class="tover">'+game.data[i].name+'</div></li>';
                 if(game.data[i].id == id){
-                    narr = game.data[i].position;
-                    game.all_len = narr.length;
-                    $(".gameo_sel").text(game.data[i].name)
-                    var html =''
-                    if(narr.length==0){
-                        game.is_textarea =true;
-                        html = '<li><textarea class="gameo_trea" placeholder="输入三个号码为一注" onkeyup="this.value=this.value.replace(/[^\r\n0-9\,\，]/g,"");></textarea></li>';
-                    }else if(narr.length==1){
-                        console.log(narr[0]);
-                    }else if(narr.length>=2){
-                        for(var j =0;j<narr.length;j++){
-                            html+='    <li class="game_stakes rel" >'
-                            html+='        <i>0</i>'
-                            html+='        <i>1</i>'
-                            html+='        <i>2</i>'
-                            html+='        <i>3</i>'
-                            html+='        <i>4</i>'
-                            html+='        <a class="game_sposl">'+narr[j]+'</a>'
-                            html+='        <i>5</i>'
-                            html+='        <i>6</i>'
-                            html+='        <i>7</i><br>'
-                            html+='        <i>8</i>'
-                            html+='        <i>9</i>'
-                            html+='        <span data-id="clear">清</span>'
-                            html+='        <span data-id="even">双</span>'
-                            html+='        <span data-id="odd">单</span>'
-                            html+='        <span data-id="small">小</span>'
-                            html+='        <span data-id="big">大</span>'
-                            html+='        <span data-id="all">全</span>'
-                            html+='    </li>'
-                        }
-                    }
-                    $(".gameo_cont").html(html)
-                }else{
-
+                	 $(".gameo_sel").text(game.data[i].name)
+                
+	                narr = game.data[i].position;
+	                game.all_len = narr.length;
+	               
+	                var html =''
+	                if(narr.length==0){
+	                    game.is_textarea =true;
+	                    html = '<li><textarea class="gameo_trea" placeholder="输入三个号码为一注" onkeyup="this.value=this.value.replace(/[^\r\n0-9\,\，]/g,"");></textarea></li>';
+	                }else if(narr.length==1){
+	                    console.log(narr[0]);
+	                }else if(narr.length>=2){
+	                    for(var j =0;j<narr.length;j++){
+	                        html+='    <li class="game_stakes rel" >'
+	                        html+='        <i>0</i>'
+	                        html+='        <i>1</i>'
+	                        html+='        <i>2</i>'
+	                        html+='        <i>3</i>'
+	                        html+='        <i>4</i>'
+	                        html+='        <a class="game_sposl">'+narr[j]+'</a>'
+	                        html+='        <i>5</i>'
+	                        html+='        <i>6</i>'
+	                        html+='        <i>7</i><br>'
+	                        html+='        <i>8</i>'
+	                        html+='        <i>9</i>'
+	                        html+='        <span data-id="clear">清</span>'
+	                        html+='        <span data-id="even">双</span>'
+	                        html+='        <span data-id="odd">单</span>'
+	                        html+='        <span data-id="small">小</span>'
+	                        html+='        <span data-id="big">大</span>'
+	                        html+='        <span data-id="all">全</span>'
+	                        html+='    </li>'
+	                    }
+	                }
                 }
+                $(".gameo_cont").html(html)
+                
             }
+            $(".select_title").html(shtml)
+            
             
         },'json' );
         //随机数字
