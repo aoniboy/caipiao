@@ -244,8 +244,6 @@ var game = {
             html+='            <td class="iconfont icon-icon-cross-squre gameo_delete" id='+num+' data-money='+list.money+' data-stake='+list.stake+'></td>'
             html+='        </tr>'
             $(".game_tzlist table").append(html);
-            $(".dan_text").text('共'+list.stake+'注，金额'+list.money+'元');
-            $(".dan_stake").text(list.stake);
             game.allCont.all_money += parseInt(list.money);
             game.allCont.all_stake += parseInt(list.stake);
             game.allCont.actionNo = $(".gameo_qi").text();
