@@ -335,6 +335,17 @@ var game = {
                             console.log(111)
                             lens =0;
                             return false;
+                        }else{
+                            var input_val =$(".gameo_int").val();
+                            for(var i =0;i<$(".gameo_int").val().length;i++){
+                                if(i%2 ==0 && html_num){
+                                    html_num+=","+input_val[i];
+                                }else{
+                                    html_num+=input_val[i];
+                                }
+                                var larr  = html_num.split(",");
+                                lens = larr.length;
+                            }
                         }
                         break;
                     case 2:
@@ -343,6 +354,17 @@ var game = {
                             console.log(111)
                             lens =0;
                             return false;
+                        }else{
+                            var input_val =$(".gameo_int").val();
+                            for(var i =0;i<$(".gameo_int").val().length;i++){
+                                if(i%2 ==0 && html_num){
+                                    html_num+=","+input_val[i];
+                                }else{
+                                    html_num+=input_val[i];
+                                }
+                                var larr  = html_num.split(",");
+                                lens = larr.length;
+                            }
                         }
                         break;
                     case 3:
