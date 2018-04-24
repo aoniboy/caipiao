@@ -342,7 +342,7 @@ var game = {
                                     text ='已撤单';
                                     prize_col='';
                                 }else if(list[i].status ==2){
-                                    text ='为开奖';
+                                    text ='未开奖';
                                     prize_col='';
                                 }else if(list[i].status ==3){
                                     text ='中奖';
@@ -360,7 +360,7 @@ var game = {
                                 html+='        <td>'+list[i].playname+'</td>'
                                 html+='        <td>'+list[i].actionNo+'</td>'
                                 html+='        <td>'+list[i].money+'</td>'
-                                html+='        <td id="'+list[i].id+'" class="'+prize_col+'">未开奖</td>'
+                                html+='        <td id="'+list[i].id+'" class="'+prize_col+'">'+text+'</td>'
                                 html+='    </tr>'
                             }
                             $(".gameo_list tbody").html(html);
