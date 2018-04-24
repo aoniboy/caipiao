@@ -89,8 +89,9 @@ var game = {
                     var harr = data.data.kjNo.split(',');
                     console.log(harr)
                     for(var i=0;i<harr.length;i++){
-                        data.data.kjNo[i] =data.data.kjNo[i].replace(/^\"|\"$/g,'');
-                        html+='"<span>'+data.data.kjNo[i]+'</span>"';
+                        var d =data.data.kjNo[i].replace(/^\"|\"$/g,'');
+                        console.log(d);
+                        html+='"<span>'+d+'</span>"';
                     } 
                     $(".gameo_num").html(html);
                 }
