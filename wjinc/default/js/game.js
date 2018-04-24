@@ -560,7 +560,7 @@ var game = {
             $(".gameo_second").text(game.checkTime(second));
             $(".gameo_minute").text(game.checkTime(minute));
             if(second =='00' && minute>0){
-                second = 59;
+                second = 60;
                 minute = minute -1;
             }else if(second =='5' && minute=='0'){
                 $(".kaijiang")[0].play();
