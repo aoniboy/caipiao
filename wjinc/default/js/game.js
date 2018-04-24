@@ -266,21 +266,42 @@ var game = {
             $.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
                 if(res.code){
                     $.post('/index.php/game/getOrdered/'+cid,function(data){
-                        if(data.code){
+                        if(!data.code){
                             var list = data.data;
                             console.list;
                             var html = '';
+                            var text = '';
+                            var prize_col = '';
                             for(var i=0;i<list.length;i++){
+                                if(list[i].status =1){
+                                    text ='已撤单';
+                                    prize_col='';
+                                }else if(list[i].status =2){
+                                    text ='为开奖';
+                                    prize_col='';
+                                }else if(list[i].status =3){
+                                    text ='中奖';
+                                    prize_col='';
+                                }else if(list[i].status =4){
+                                    text ='未中奖';
+                                    prize_col='';
+                                }else if(list[i].status =5){
+                                    text ='撤单';
+                                    prize_col='prize_col';
+                                }                               
                                 html+='    <tr>'
-                                html+='        <td>'+list.wjorderId+'</td>'
-                                html+='        <td>'+list.gamename+'</td>'
-                                html+='        <td>'+list.playname+'</td>'
-                                html+='        <td>'+list.actionNo+'</td>'
-                                html+='        <td>'+money+'</td>'
-                                html+='        <td id="'+list.id+'">未开奖</td>'
+                                html+='        <td>'+list[i].wjorderId+'</td>'
+                                html+='        <td>'+list[i].gamename+'</td>'
+                                html+='        <td>'+list[i].playname+'</td>'
+                                html+='        <td>'+list[i].actionNo+'</td>'
+                                html+='        <td>'+list[i].money+'</td>'
+                                html+='        <td id="'+list[i].id+'" class="'+prize_col+'">未开奖</td>'
                                 html+='    </tr>'
                             }
-                            $(".tz_table table tabody").append(html);
+                            $(".tz_table table tabody").html(html);
+                        }else{
+                            $(".hint_pop .hint_cont").text(data.msg);
+                            $(".hint_pop").show();
                         }
                     },'json' );
                 }else{
