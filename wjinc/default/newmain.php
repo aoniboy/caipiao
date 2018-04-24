@@ -10,63 +10,7 @@
 </head>
 <body>
 <style>
-.bgf5{ background: #f5f5f5; }
-.bgfff{ background: #fff; }
-.gameo_num{ padding-bottom: .25rem; border-bottom: 1px solid #ff2525}
-.gameo_toptitle{ padding:.25rem .2rem ; }
-.gameo_stitle{ padding:.15rem 0; }
-.game_stakes{  text-align: right; margin-right: .2rem;}
-.game_stakes >i{ font-size: .32rem; width:.55rem; height:.55rem;line-height: .55rem;}
-.game_stakes >span{width:.53rem;height:.53rem;line-height: .53rem;border:.01rem solid #c3c3c3;}
-.game_stakes >i,.game_stakes >span{display: inline-block;margin-bottom:.2rem;color:#fff;  border-radius: 100px;background: linear-gradient(#e4e4e4, #9a9898); text-align: center; margin-right: 2px;}
-.game_stakes >i.active{ background: linear-gradient(#fb7b5c, #fb3b38); }
-.game_sposl{ position: absolute;left:0;top:0;border-top-left-radius: .1rem;border-bottom-right-radius: .1rem; color:#fff;background: #c5c5c5; font-size: .22rem; padding:.05rem .1rem;}
-.gameo_cont li{ margin:0 .2rem .2rem .2rem;padding:.2rem; border:1px solid #c5c5c5; border-radius: .1rem; background: #fff; }
-.game_add{ width:2.45rem; background: #fb3e3a; color:#fff; height: .6rem; border-radius: .1rem; }
-.gameo_check{ border:1px solid #999; border-radius: 100px; display: inline-block;width:.26rem ;height: .26rem; margin:2px .2rem 0 .1rem; position: relative;}
-.gameo_check.active{border:1px solid #79b5f3;}
-.gameo_check.active:after{ content: ''; background: #79b5f3; width:.13rem; height: .13rem; position: absolute;left:50%;top:50%; transform: translate(-50%,-50%); border-radius: 100px; }
-.gameo_numc{ display: inline-block; width:.28rem; height:.28rem;color:#999;border: 1px solid #999; text-align: center; line-height: .28rem; margin-right: .1rem; }
-.gameo_numi{ line-height: .28rem;height:.28rem; color:#333; background: #fff;border: 1px solid #999; margin-right: .1rem;width:.7rem;  text-align: center; font-size: .26rem; }
-.gameo_cz li{ margin:0 0 .2rem .2rem; }
-.gameo_clearall{ border-radius: 100px; padding: .1rem .4rem; background: #f4a908; color:#875408; }
-.game_ls{ background: #fff; padding:.2rem; border-top:1px solid #bfbfbf; }
-.game_ls .fl{ padding:.1rem 0 0 0 ; }
-.game_tzlist{ margin: 0 .2rem; }
-.game_tzlist table{ min-height: 1rem;width:100%;text-align: center; }
-.game_tzlist table tr{ padding:0 .2rem; }
-.flex{ display: flex; padding:0 .2rem; }
-.fx{ flex:1; } 
-.gameo_btns{ margin:.3rem  0 0 .2rem; }
-.gameo_btns >div{ width:37%; padding:.1rem 0; border-radius: .1rem; }
-.gameo_btns .gameo_btns1{background: #fb3e3a; color:#4c0301;  margin-right: 11%;}
-.gameo_btns .gameo_btns2{background: #f5c037; color:#5a3f04;  margin-right: .3rem;}
-.gameo_list{ width:100%; text-align: center; margin:.3rem 0 0 0 ; }
-.gameo_list thead tr th{ background: #fb3e3a; padding:.1rem 0; color:#fff; border:none; }
-/*.gameo_list thead tr,.gameo_list tbody tr{ display: flex; width:100% }
-.gameo_list thead th,.gameo_list tbody td{ flex:1; }*/
-.gameo_list tbody td{ font-size: .20rem; }
-.gameo_titles{ line-height: 1.2; display: inline-block;margin:.1rem 0 0 0; }
-.gameo_sel{ padding-right: .35rem; font-size: .20rem; }
-.gameo_sel:before{ position: absolute;right: 0;top:-1px; }
-.select_pop{ position: fixed;width:100%; height:100%; left:0;top:.8rem; z-index: 99 }
-.select_title{ background: #fff; }
-.select_title li{ width:33.3333%; float: left; font-size: .22rem;}
-.select_title li div { padding:.2rem 0; text-align: center; border-bottom: 1px solid #5d5c5c; border-right:1px solid #5d5c5c; }
-.gameo_mask{ position: fixed;left:0;top:0; background: rgba(0,0,0,0.7);width:100%;height: 100%; }
-.select_title li:nth-child(3n) div{ border-right:none; }
-.hint_pop{  }
-.hint_title{color:#000; padding:.3rem 0 .1rem 0;}
-.hint_cont{ padding:0 .3rem .3rem .3rem; }
-.hint_btn{color:#79b5f3; border-top:1px solid #aeaeae; padding:.2rem 0;}
-.hint_con{width:80%; position:fixed;left:50%;top:50%; transform: translate(-50%,-50%); background: #e9e9e9; border-radius: .1rem;}
-.tz_con{width:80%; position:fixed;left:50%;top:50%; transform: translate(-50%,-50%); background: #e9e9e9; border-radius: .1rem;}
-.tz_table{ padding:.2rem 0; }
-.tz_table table{ width:100%; font-size: .2rem; text-align: center; }
-.tz_btn{ display: flex }
-.tz_btn div{color:#79b5f3; border-top:1px solid #aeaeae; padding:.2rem 0; flex:1; border-right: 1px solid #aeaeae}
-.tz_btn div:nth-child(2){border-right:none; color:#333;}
-.tz_allnum{ margin:.2rem 0; }
+
 </style>
 <div class="title_top tc">
     <a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>

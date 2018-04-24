@@ -82,7 +82,6 @@ var game = {
         })
         $(".select_title li").on('touchend', function(){
             game.allCont.id = $(this).attr('id');
-            $(".select_pop").show();
             $(".gameo_sel").text($(this).find('div').text());
             $(".select_pop").hide();
         })
