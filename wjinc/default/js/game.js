@@ -273,19 +273,19 @@ var game = {
                             var text = '';
                             var prize_col = '';
                             for(var i=0;i<list.length;i++){
-                                if(list[i].status =1){
+                                if(list[i].status ==1){
                                     text ='已撤单';
                                     prize_col='';
-                                }else if(list[i].status =2){
+                                }else if(list[i].status ==2){
                                     text ='为开奖';
                                     prize_col='';
-                                }else if(list[i].status =3){
+                                }else if(list[i].status ==3){
                                     text ='中奖';
                                     prize_col='';
-                                }else if(list[i].status =4){
+                                }else if(list[i].status ==4){
                                     text ='未中奖';
                                     prize_col='';
-                                }else if(list[i].status =5){
+                                }else if(list[i].status ==5){
                                     text ='撤单';
                                     prize_col='prize_col';
                                 }                               
