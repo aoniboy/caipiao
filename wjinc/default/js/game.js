@@ -298,7 +298,7 @@ var game = {
                                 html+='        <td id="'+list[i].id+'" class="'+prize_col+'">未开奖</td>'
                                 html+='    </tr>'
                             }
-                            $(".gameo_list tabody").html(html);
+                            $(".gameo_list tbody").html(html);
                         }else{
                             $(".hint_pop .hint_cont").text(data.msg);
                             $(".hint_pop").show();
