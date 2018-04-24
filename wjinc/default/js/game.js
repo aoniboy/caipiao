@@ -86,12 +86,11 @@ var game = {
                     },50)
                 }else{
                     var html = ''
-                    var harr = data.data.kjNo.split(',');
+                    // var harr = data.data.kjNo.split(',');
+                    var harr = [2,6,5,5,3]
                     console.log(harr)
                     for(var i=0;i<harr.length;i++){
-                        var d =data.data.kjNo[i].replace(/^\"|\"$/g,'');
-                        console.log(d);
-                        html+='"<span>'+d+'</span>"';
+                        html+='"<span>'+data.data.kjNo[i]+'</span>"';
                     } 
                     $(".gameo_num").html(html);
                 }
