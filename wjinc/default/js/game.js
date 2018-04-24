@@ -262,7 +262,7 @@ var game = {
         //提交
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
-            console.log(game.code)
+            $(".tz_pop").hide();
             $.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
                 if(res.code){
                     $.post('/index.php/game/getOrdered/'+cid,function(data){
