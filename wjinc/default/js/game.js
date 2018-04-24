@@ -159,8 +159,8 @@ var game = {
         $(".game_add").on('touchend', function(){
             if(game.currentCount()){
                return false; 
-            };
-            var list ={};
+            }else{
+var list ={};
             var num = parseInt($(this).attr('data-num'));
             var numarr = [];
             var lens =1;
@@ -246,6 +246,8 @@ var game = {
             is_html+='            <td>'+mode_name+'</td>'
             is_html+='        </tr>'
             $(".tz_table table tbody").append(is_html);
+            };
+            
         })
         //删除
         $(document).on('click','.gameo_delete', function(){
@@ -295,8 +297,8 @@ var game = {
         })
         //只能是数字
         $(document).on('keyup', '.gameo_int', function(){
-            console.log(1);
             $(this).val().replace(/[^\d]/g,'');
+            game.currentCount();
         })
 
         //倒计时
