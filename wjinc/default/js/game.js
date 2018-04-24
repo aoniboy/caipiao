@@ -310,6 +310,18 @@ var game = {
                 }
             },'json' );
         })
+        //撤单
+        $(document).on('touchend', 'td.prize_col', function(){
+            var id = $(this).attr('id');
+            $.post('index.php/game/deleteCode/'+id,function(data){
+                if(!data.code){
+                    
+                }else{
+                    $(".hint_pop .hint_cont").text(data.msg);
+                    $(".hint_pop").show();
+                }
+            },'json' );
+        })
         $(".tz_btn2").on('touchend', function(){
             console.log(11)
             $(".tz_pop").hide();
