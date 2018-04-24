@@ -313,12 +313,14 @@ var list ={};
                     case '1':
                         if($(".gameo_int").val().length<2 || $(".gameo_int").val().length%2 !=0){
                             $(".dan_text").text('至少输入1个两位数号码组成一注');
+                            lens =0;
                             return false;
                         }
                         break;
                     case '2':
                         if($(".gameo_int").val().length<3 || $(".gameo_int").val().length%3 !=0){
                             $(".dan_text").text('至少输入1个三位数号码组成一注');
+                            lens =0;
                             return false;
                         }
                         break;
