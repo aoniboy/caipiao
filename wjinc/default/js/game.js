@@ -180,6 +180,7 @@ var game = {
                         html_num+=input_val[i];
                     }
                     numarr = html_num.split(",");
+                    lens = numarr.length;
                 }
             }else if(game.all_len.length ==1 && game.all_len[0] =='2'){
                 var input_val =$(".gameo_int").val();
@@ -190,6 +191,7 @@ var game = {
                         html_num+=input_val[i];
                     }
                     numarr = html_num.split(",");
+                    lens = numarr.length;
                 }
             }else{
                 for(var i=0;i<$(".game_stakes").length;i++){
