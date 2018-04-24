@@ -32,7 +32,7 @@ var game = {
 	                if(game.all_len.length==1 && game.all_len[0]=='1'){
                         html = '<li><input class="gameo_int" placeholder="输入至少1个两位位数号码组成一注" type="tel"></li>';
 	                }else if(game.all_len.length==1 && game.all_len[0]=='2'){
-                        html = '<li><input class="gameo_int" placeholder="输入至少1个两位位数号码组成一注" type="tel"></li>';
+                        html = '<li><input class="gameo_int" placeholder="输入至少1个三位位数号码组成一注" type="tel"></li>';
                     }else if(game.all_len.length>=2){
 	                    for(var j =0;j<narr.length;j++){
 	                        html+='    <li class="game_stakes rel" >'
