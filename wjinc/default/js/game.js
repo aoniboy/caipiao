@@ -22,7 +22,7 @@ var game = {
         $.post('/index.php/index/playedType/'+cid, function(res){
             game.data = res.data;
             console.log(res.data,222);
-            var id = 11;
+            var id = 10;
             game.allCont.playid = id;
             var shtml ='';
             var narr =[]
