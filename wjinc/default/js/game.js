@@ -157,7 +157,9 @@ var game = {
         //添加
         // console.log($(".game_stakes").length)
         $(".game_add").on('touchend', function(){
-            game.currentCount();
+            if(game.currentCount()){
+               return false; 
+            };
             var list ={};
             var num = parseInt($(this).attr('data-num'));
             var numarr = [];
@@ -309,13 +311,13 @@ var game = {
                     case '1':
                         if($(".gameo_int").val().length<2 || $(".gameo_int").val().length%2 !=0){
                             $(".dan_text").text('至少输入1个两位数号码组成一注');
-                            return;
+                            return false;
                         }
                         break;
                     case '2':
                         if($(".gameo_int").val().length<3 || $(".gameo_int").val().length%3 !=0){
                             $(".dan_text").text('至少输入1个三位数号码组成一注');
-                            return;
+                            return false;
                         }
                         break;
                     case '3':
@@ -324,7 +326,7 @@ var game = {
                             lens*=len;
                             if(len <2){
                                 $(".dan_text").text('请选2个或2个以上数字');
-                                return;
+                                return false;
                             }
                         }
                         break;
@@ -334,7 +336,7 @@ var game = {
                             lens*=len;
                             if(len <3){
                                 $(".dan_text").text('请选3个或3个以上数字');
-                                return;
+                                return false;
                             }
                         }
                         break;
@@ -371,7 +373,7 @@ var game = {
                     lens*=len;
                     if(len ==0){
                         $(".dan_text").text('请选3位数字');
-                        return;
+                        return false;
                     }
                 } 
             }
@@ -383,6 +385,7 @@ var game = {
                 var dan_allmoney = (dan_money*lens*dan_multiple).toFixed(2);
                 console.log(dan_money*lens*dan_multiple)
                 $(".dan_text").text('共'+dan_stake+'注，金额'+dan_allmoney+'元');
+                return true;
             }
     },
     countdown: function(m,s){ //倒计时
