@@ -286,11 +286,13 @@ var game = {
     currentCount:function(){
             var lens= 1;
             if(game.all_len.length ==0){
-                if(game.all_len[0] == 0)
-                console.log(000);
-                if($(".gameo_int").length()<3){
-                    $(".dan_text").text('请输入3个数字');
+                if(game.all_len[0] == 0){
+                    console.log(000);
+                    if($(".gameo_int").length()<3){
+                        $(".dan_text").text('请输入3个数字');
+                    }
                 }
+
 
 
                 var codeLen=parseInt(this.attr('length'))*2,
