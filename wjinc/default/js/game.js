@@ -166,22 +166,22 @@ var game = {
             var lens =1;
             var html_num =''
             if(game.all_len.length ==1 && game.all_len[0] =='1'){
-                console.log(111111111)
+                var input_val ='';
                 for(var i =0;i<$(".gameo_int").val().length;i++){
                     if(i%2 ==0 && html_num){
-                        html_num+=","+val[i];
+                        html_num+=","+input_val[i];
                     }else{
-                        html_num+=val[i];
+                        html_num+=input_val[i];
                     }
                     numarr = html_num.split(",");
                 }
             }else if(game.all_len.length ==1 && game.all_len[0] =='2'){
-                console.log(2222222)
+                ar input_val ='';
                 for(var i =0;i<$(".gameo_int").val().length;i++){
                     if(i%3 ==0 && html_num){
-                        html_num+=","+val[i];
+                        html_num+=","+input_val[i];
                     }else{
-                        html_num+=val[i];
+                        html_num+=input_val[i];
                     }
                     numarr = html_num.split(",");
                 }
