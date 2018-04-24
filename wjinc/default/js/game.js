@@ -2,30 +2,36 @@ var game = {
     init: function(){
         this.bindEvent();
     },
-    formData:[],
+    code:[],
     allCont:{
         all_stake:0,
         all_money:0,
-        id:'',
-        current_date:''
+        playid:'',
+        groupid:'',
+        actionNo:'',
+        kjTime:'1524574800'
+        type:''
     },
     is_textarea:false,
     all_len:'',
     data:[],
     bindEvent: function(){
         //默认数据
+        var 
         var cid = $(".playedtype").val();
+        game.allCont.type = cid;
         $.post('/index.php/index/playedType/'+cid, function(res){
             game.data = res.data;
             console.log(res.data,222);
             var id = 11;
-            game.allCont.id = id;
+            game.allCont.playid = id;
             var shtml ='';
             var narr =[]
             for(var i =0;i<res.data.length;i++){
-                shtml +='<li id="'+game.data[i].id+'"><div class="tover">'+game.data[i].name+'</div></li>';
+                shtml +='<li id="'+game.data[i].id+'" data-groupid="'+game.data[i].groupid+'"><div class="tover">'+game.data[i].name+'</div></li>';
                 if(game.data[i].id == id){
-                	 $(".gameo_sel").text(game.data[i].name)
+                    game.allCont.groupid = game.data[i].groupId;
+                	$(".gameo_sel").text(game.data[i].name)
 	                narr = game.data[i].position;
 	                game.all_len = narr;
 	                var html =''
@@ -75,7 +81,8 @@ var game = {
             var html = '';
         })
         $(document).on('touchend', '.select_title li', function(){
-            game.allCont.id = $(this).attr('id');
+            game.allCont.playid = $(this).attr('id');
+            game.allCont.groupid = $(this).attr('data-groupid');
             $(".gameo_sel").text($(this).find('div').text());
             $(".select_pop").hide();
         })
@@ -201,14 +208,22 @@ var game = {
             }
             var mode =$(".gameo_check.active").data('money');
             var multiple = $(".gameo_multiple").val();
-            list.numarr = numarr;
-            list.mode =mode
-            list.multiple =multiple
-            list.stake = lens;
-            console.log(list.stake,22)
-            list.money = (mode*lens*multiple).toFixed(2);
+            list.fanDian = 0; //不确定
+            list.bonusProp = game.allCont.all_money.toFixed(2);
+            list.mode =mode;
+            list.beiShu =multiple;
+            list.orderId = 0; //不确定
+            list.actionData = html_num;
+            list.actionNum = lens;
+            list.weiShu = 0; //不确定；
+            list.playedGroup = game.allCont.groupid
+            list.playedId = game.allCont.playid; //playedGroup,playedId 合并一个
+            list.type = cid;
+
+            // console.log(list.stake,22)
+            // list.money = (mode*lens*multiple).toFixed(2);
             $(this).attr('data-num',num+1);
-            game.formData.push(list);
+            game.code.push(list);
             $(".game_stakes").find('i').removeClass('active');
             //添加的html
 
@@ -234,11 +249,11 @@ var game = {
             $(".dan_stake").text(list.stake);
             game.allCont.all_money += parseInt(list.money);
             game.allCont.all_stake += parseInt(list.stake);
-            game.allCont.current_date = $(".gameo_qi").text();
+            game.allCont.actionNo = $(".gameo_qi").text();
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake)
             //确认是否投注html
-            $(".tz_title").text(game.allCont.current_date)
+            $(".tz_title").text(game.allCont.actionNo)
             var is_html = '';
             is_html+='        <tr>'
             is_html+='            <td>'+list.title+'</td>'
@@ -266,7 +281,7 @@ var game = {
         })
         //清空号码
         $(".gameo_clearall").on('touchend', function(){
-            game.formData = [];
+            game.code = [];
             game.allCont.all_stake =0;
             game.allCont.all_money =0;
             $(".game_tzlist table").html('');
@@ -290,9 +305,9 @@ var game = {
         //提交
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
-            console.log(game.formData)
-            $.post('/index.php/game/postCode', {formData:game.formData,data:game.allCont}, function(data){
-                console.log(game.formData)
+            console.log(game.code)
+            $.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(data){
+                console.log(game.code)
             },'json' );
         })
         $(".tz_btn2").on('touchend', function(){
@@ -416,7 +431,7 @@ var game = {
             }else if(second =='0' && minute=='0'){
                 clearInterval(timer);
                 $(".kaijiang")[0].pause();
-                $(".hint_pop .hint_titles").text('第'+ game.allCont.current_date+'期投注已截止!');
+                $(".hint_pop .hint_titles").text('第'+ game.allCont.actionNo+'期投注已截止!');
                 $(".hint_pop .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
                 $(".hint_pop").show();
             }
