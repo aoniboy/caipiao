@@ -257,8 +257,8 @@ var game = {
             is_html+='        <tr>'
             is_html+='            <td>'+list.title+'</td>'
             is_html+='            <td>'+html_num+'</td>'
-            is_html+='            <td>'+list.stake+'</td>'
-            is_html+='            <td>'+list.multiple+'倍</td>'
+            is_html+='            <td>'+list.actionNum+'</td>'
+            is_html+='            <td>'+list.beiShu+'倍</td>'
             is_html+='            <td>'+mode_name+'</td>'
             is_html+='        </tr>'
             $(".tz_table table tbody").append(is_html);
