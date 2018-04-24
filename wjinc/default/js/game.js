@@ -87,12 +87,12 @@ var game = {
                 }else{
                     var html = ''
                     // var harr = data.data.kjNo.split(',');
-                    var harr = [2,6,5,5,3]
-                    console.log(harr)
-                    for(var i=0;i<harr.length;i++){
-                        html+='"<span>'+harr[i]+'</span>"';
-                    } 
-                    $(".gameo_num").html(html);
+                    // var harr = [2,6,5,5,3]
+                    // console.log(harr)
+                    // for(var i=0;i<harr.length;i++){
+                    //     html+='"<span>'+harr[i]+'</span>"';
+                    // } 
+                    // $(".gameo_num").html(html);
                 }
 
             }else{
