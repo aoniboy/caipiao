@@ -307,13 +307,13 @@ var game = {
                 //12 输入  34 选择
                 switch(game.all_len[0]){
                     case '1':
-                        if($(".gameo_int").length()<2 || $(".gameo_int").length()%2 !=0){
+                        if($(".gameo_int").val().length()<2 || $(".gameo_int").val().length()%2 !=0){
                             $(".dan_text").text('至少输入1个两位数号码组成一注');
                             return;
                         }
                         break;
                     case '2':
-                        if($(".gameo_int").length()<3 || $(".gameo_int").length()%3 !=0){
+                        if($(".gameo_int").val().length()<3 || $(".gameo_int").val().length()%3 !=0){
                             $(".dan_text").text('至少输入1个三位数号码组成一注');
                             return;
                         }
