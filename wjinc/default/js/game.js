@@ -315,7 +315,8 @@ var game = {
             var id = $(this).attr('id');
             $.post('index.php/game/deleteCode/'+id,function(data){
                 if(!data.code){
-                    
+                    $(".hint_pop .hint_cont").text('撤单成功');
+                    $(".hint_pop").show();
                 }else{
                     $(".hint_pop .hint_cont").text(data.msg);
                     $(".hint_pop").show();
