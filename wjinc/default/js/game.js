@@ -245,7 +245,7 @@ var game = {
             html+='        </tr>'
             $(".game_tzlist table").append(html);
             game.allCont.all_money += parseInt(list.money);
-            game.allCont.all_stake += parseInt(list.stake);
+            game.allCont.all_stake += parseInt(list.actionNum);
             game.allCont.actionNo = $(".gameo_qi").text();
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake)
