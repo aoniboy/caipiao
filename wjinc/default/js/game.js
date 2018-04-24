@@ -26,17 +26,14 @@ var game = {
                 shtml +='<li id="'+game.data[i].id+'"><div class="tover">'+game.data[i].name+'</div></li>';
                 if(game.data[i].id == id){
                 	 $(".gameo_sel").text(game.data[i].name)
-                
 	                narr = game.data[i].position;
 	                game.all_len = narr;
-	               
 	                var html =''
-	                if(narr.length==0){
-	                    game.is_textarea =true;
-	                    html = '<li><input class="gameo_int" placeholder="输入三个号码为一注" type="tel"></li>';
-	                }else if(narr.length==1){
-	                    console.log(narr[0]);
-	                }else if(narr.length>=2){
+	                if(game.all_len.length==1 && game.all_len[0]=='1'){
+                        html = '<li><input class="gameo_int" placeholder="输入至少1个两位位数号码组成一注" type="tel"></li>';
+	                }else if(game.all_len.length==1 && game.all_len[0]=='2'){
+                        html = '<li><input class="gameo_int" placeholder="输入至少1个两位位数号码组成一注" type="tel"></li>';
+                    }else if(game.all_len.length>=2){
 	                    for(var j =0;j<narr.length;j++){
 	                        html+='    <li class="game_stakes rel" >'
 	                        html+='        <i>0</i>'
