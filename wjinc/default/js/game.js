@@ -63,11 +63,8 @@ var game = {
 	                gameball()
 	                gameballother()
                 }
-
             }
             $(".select_title").html(shtml)
-            
-            
         },'json' );
         //随机数字
         setInterval(function(){
