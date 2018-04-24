@@ -291,7 +291,7 @@ var game = {
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
             console.log(game.formData)
-            $.post('/index.php/game/postCode', {formData:game.formData,game.allCont}, function(data){
+            $.post('/index.php/game/postCode', {formData:game.formData,data:game.allCont}, function(data){
                 console.log(game.formData)
             },'json' );
         })
