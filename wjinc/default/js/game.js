@@ -166,7 +166,7 @@ var game = {
             var lens =1;
             var html_num =''
             if(game.all_len.length ==1 && game.all_len[0] =='1'){
-                var input_val ='';
+                var input_val =$(".gameo_int").val();
                 for(var i =0;i<$(".gameo_int").val().length;i++){
                     if(i%2 ==0 && html_num){
                         html_num+=","+input_val[i];
@@ -176,7 +176,7 @@ var game = {
                     numarr = html_num.split(",");
                 }
             }else if(game.all_len.length ==1 && game.all_len[0] =='2'){
-                var input_val ='';
+                var input_val =$(".gameo_int").val();
                 for(var i =0;i<$(".gameo_int").val().length;i++){
                     if(i%3 ==0 && html_num){
                         html_num+=","+input_val[i];
