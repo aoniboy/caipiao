@@ -287,7 +287,7 @@ var list ={};
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
             console.log(game.formData)
-            $.post('app/', {page:''}, function(data){
+            $.post('/index.php/game/postCode', {page:''}, function(data){
                 console.log(game.formData)
             },'json' );
         })
@@ -313,6 +313,7 @@ var list ={};
                     case '1':
                         if($(".gameo_int").val().length<2 || $(".gameo_int").val().length%2 !=0){
                             $(".dan_text").text('至少输入1个两位数号码组成一注');
+                            console.log(111)
                             lens =0;
                             return false;
                         }
@@ -320,6 +321,7 @@ var list ={};
                     case '2':
                         if($(".gameo_int").val().length<3 || $(".gameo_int").val().length%3 !=0){
                             $(".dan_text").text('至少输入1个三位数号码组成一注');
+                            console.log(111)
                             lens =0;
                             return false;
                         }
@@ -327,6 +329,7 @@ var list ={};
                     case '3':
                         for(var i=0;i<$(".game_stakes").length;i++){
                             var len =$(".game_stakes").eq(i).find('i.active').length;
+                            console.log(111)
                             lens*=len;
                             if(len <2){
                                 $(".dan_text").text('请选2个或2个以上数字');
@@ -337,6 +340,7 @@ var list ={};
                     case '4':
                         for(var i=0;i<$(".game_stakes").length;i++){
                             var len =$(".game_stakes").eq(i).find('i.active').length;
+                            console.log(111)
                             lens*=len;
                             if(len <3){
                                 $(".dan_text").text('请选3个或3个以上数字');
