@@ -21,6 +21,10 @@ class Index extends WebLoginBase{
 	
   //平台首页
 	public final function main(){
+	    $sql="select * from {$this->prename}content where enable=1 and nodeId=1";
+	    $sql.=' order by id desc';
+	    $this->noticeinfo =  $this->getRows($sql);
+	    //print_r($this->noticeinfo);
 		$this->display('newindex.php');
 	}
 	public final function more(){

@@ -15,7 +15,11 @@
     </div>
 
     <div class="marquee">
-        <div class="rel"><span>优乐客服QQ已经加人上线，请各位新客户添加客户QQ241581451</span><i class="marquee_icon"></i></div>
+        <div class="rel"><?php if($this->noticeinfo) foreach($this->noticeinfo as $key=>$var){ 
+        
+    ?><span><?=$var['title']?></span>
+    <?php } ?>
+    <i class="marquee_icon"></i></div>
     </div> 
     <div>
         <div class="title tc">热门彩票</div>
