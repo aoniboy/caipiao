@@ -212,7 +212,7 @@ var game = {
                     html_num +=numarr[i]+',';
                     console.log(lens,999999999);
                     if(len ==0){
-                        $(".hint_pop .hint_cont").text('请选3位数字111');
+                        $(".hint_pop .hint_cont").text('请选3位数字');
                         $(".hint_pop").show();
                         return;
                     }
@@ -438,7 +438,6 @@ var game = {
                     case 1:
                         if($(".gameo_int").val().length<2 || $(".gameo_int").val().length%2 !=0){
                             $(".dan_text").text('至少1个两位数号码组成一注');
-                            console.log(111)
                             lens =0;
                             return false;
                         }else{
@@ -458,7 +457,6 @@ var game = {
                     case 2:
                         if($(".gameo_int").val().length<3 || $(".gameo_int").val().length%3 !=0){
                             $(".dan_text").text('至少1个三位数号码组成一注');
-                            console.log(111)
                             lens =0;
                             return false;
                         }else{
@@ -478,7 +476,6 @@ var game = {
                     case 3:
                         for(var i=0;i<$(".game_stakes").length;i++){
                             var len =$(".game_stakes").eq(i).find('i.active').length;
-                            console.log(111)
                             lens*=len;
                             if(len <2){
                                 $(".dan_text").text('请选2个或2个以上数字');
@@ -489,7 +486,6 @@ var game = {
                     case '4':
                         for(var i=0;i<$(".game_stakes").length;i++){
                             var len =$(".game_stakes").eq(i).find('i.active').length;
-                            console.log(111)
                             lens*=len;
                             if(len <3){
                                 $(".dan_text").text('请选3个或3个以上数字');
