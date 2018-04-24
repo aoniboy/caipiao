@@ -21,51 +21,12 @@ var game = {
         game.allCont.type = cid;
         $.post('/index.php/index/playedType/'+cid, function(res){
             game.data = res.data;
-            console.log(res.data,222);
-            var id = 10;
-            game.allCont.playid = id;
+            game.allCont.playid = game.data[0].id;
             var shtml ='';
-            var narr =[]
             for(var i =0;i<res.data.length;i++){
                 shtml +='<li id="'+game.data[i].id+'" data-groupid="'+game.data[i].groupid+'"><div class="tover">'+game.data[i].name+'</div></li>';
-                if(game.data[i].id == id){
-                    game.allCont.groupid = game.data[i].groupId;
-                	$(".gameo_sel").text(game.data[i].name)
-	                narr = game.data[i].position;
-	                game.all_len = narr;
-	                var html =''
-	                if(game.all_len.length==1 && game.all_len[0]=='1'){
-                        html = '<li><input class="gameo_int" placeholder="输入至少1个两位位数号码组成一注" type="tel"></li>';
-	                }else if(game.all_len.length==1 && game.all_len[0]=='2'){
-                        html = '<li><input class="gameo_int" placeholder="输入至少1个三位位数号码组成一注" type="tel"></li>';
-                    }else if(game.all_len.length>=2){
-	                    for(var j =0;j<narr.length;j++){
-	                        html+='    <li class="game_stakes rel" >'
-	                        html+='        <i>0</i>'
-	                        html+='        <i>1</i>'
-	                        html+='        <i>2</i>'
-	                        html+='        <i>3</i>'
-	                        html+='        <i>4</i>'
-	                        html+='        <a class="game_sposl">'+narr[j]+'</a>'
-	                        html+='        <i>5</i>'
-	                        html+='        <i>6</i>'
-	                        html+='        <i>7</i><br>'
-	                        html+='        <i>8</i>'
-	                        html+='        <i>9</i>'
-	                        html+='        <span data-id="clear">清</span>'
-	                        html+='        <span data-id="even">双</span>'
-	                        html+='        <span data-id="odd">单</span>'
-	                        html+='        <span data-id="small">小</span>'
-	                        html+='        <span data-id="big">大</span>'
-	                        html+='        <span data-id="all">全</span>'
-	                        html+='    </li>'
-	                    }
-	                }
-	                $(".gameo_cont").html(html)
-	                gameball()
-	                gameballother()
-                }
             }
+            game.renderHtml(game.allCont.playid)
             $(".select_title").html(shtml)
         },'json' );
         //随机数字
@@ -84,54 +45,50 @@ var game = {
             game.allCont.groupid = $(this).attr('data-groupid');
             $(".gameo_sel").text($(this).find('div').text());
             $(".select_pop").hide();
+            game.renderHtml(game.allCont.playid);
         })
         //清单双大小全
         var dan_len,dan_money,dan_stake;
-        var gameballother = function(){
-        	$(".game_stakes > span").on('touchend', function(){
-	            var id = $(this).data("id");
-	            var parent = $(this).parent(".game_stakes");
-	            var len = $(parent).find('i.active').length;
-	            switch(id){
-	                case 'clear':
-	                    $(parent).find('i').removeClass('active');
-	                    break;
-	                case 'even':
-	                    $(parent).find('i').removeClass('active');
-	                    $(parent).find('i:even').addClass('active');
-	                    break;
-	                case 'odd':
-	                    $(parent).find('i').removeClass('active');
-	                    $(parent).find('i:odd').addClass('active');
-	                    break;
-	                case 'small':
-	                    $(parent).find('i').removeClass('active');
-	                    $(parent).find('a').prevAll().addClass('active');
-	                    break;
-	                case 'big':
-	                    $(parent).find('i').removeClass('active');
-	                    $(parent).find('a').nextAll().addClass('active');
-	                    break;
-	                case 'all':
-	                    $(parent).find('i').addClass('active');
-	                    break;
-	            }
-	            game.currentCount();
-        	})
-        }
+    	$(document).on('touchend', '.game_stakes > span', function(){
+            var id = $(this).data("id");
+            var parent = $(this).parent(".game_stakes");
+            var len = $(parent).find('i.active').length;
+            switch(id){
+                case 'clear':
+                    $(parent).find('i').removeClass('active');
+                    break;
+                case 'even':
+                    $(parent).find('i').removeClass('active');
+                    $(parent).find('i:even').addClass('active');
+                    break;
+                case 'odd':
+                    $(parent).find('i').removeClass('active');
+                    $(parent).find('i:odd').addClass('active');
+                    break;
+                case 'small':
+                    $(parent).find('i').removeClass('active');
+                    $(parent).find('a').prevAll().addClass('active');
+                    break;
+                case 'big':
+                    $(parent).find('i').removeClass('active');
+                    $(parent).find('a').nextAll().addClass('active');
+                    break;
+                case 'all':
+                    $(parent).find('i').addClass('active');
+                    break;
+            }
+            game.currentCount();
+    	})
+  
         //数字选中 
-        var gameball = function() {
-        	$(".game_stakes > i").on('touchend', function(){
-        		if($(this).hasClass("active")){
-                    $(this).removeClass("active");
-                }else{
-                    $(this).addClass("active");
-                }
-                game.currentCount();
-            })
-        	
-        }
-            
+    	$(document).on('touchend','.game_stakes > i', function(){
+    		if($(this).hasClass("active")){
+                $(this).removeClass("active");
+            }else{
+                $(this).addClass("active");
+            }
+            game.currentCount();
+        })
         //元
         $(".gameo_check").on('touchend', function(){
             $(".gameo_check").removeClass("active");
@@ -207,7 +164,7 @@ var game = {
                     }
                 }
             }
-            html_num = html_num.substring(0, html_num.length - 1);  
+            html_num = html_num.substring(0, html_num.length - 1); //去掉最后一个逗号
             var mode =$(".gameo_check.active").data('money');
             var multiple = $(".gameo_multiple").val();
             list.fanDian = 0; //不确定
@@ -306,8 +263,8 @@ var game = {
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
             console.log(game.code)
-            $.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(data){
-                console.log(game.code)
+            $.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
+                if(res.)
             },'json' );
         })
         $(".tz_btn2").on('touchend', function(){
@@ -324,6 +281,47 @@ var game = {
         game.randomNum();
         game.countdown('2','5');
     },
+    renderHtml: function(id){
+        var narr =[];
+        for(var i =0;i<game.data.length;i++){
+            if(game.data[i].id == id){
+                game.allCont.groupid = game.data[i].groupId;
+                $(".gameo_sel").text(game.data[i].name)
+                narr = game.data[i].position;
+                game.all_len = narr;
+                var html =''
+                if(game.all_len.length==1 && game.all_len[0]=='1'){
+                    html = '<li><input class="gameo_int" placeholder="输入至少1个两位位数号码组成一注" type="tel"></li>';
+                }else if(game.all_len.length==1 && game.all_len[0]=='2'){
+                    html = '<li><input class="gameo_int" placeholder="输入至少1个三位位数号码组成一注" type="tel"></li>';
+                }else if(game.all_len.length>=2){
+                    for(var j =0;j<narr.length;j++){
+                        html+='    <li class="game_stakes rel" >'
+                        html+='        <i>0</i>'
+                        html+='        <i>1</i>'
+                        html+='        <i>2</i>'
+                        html+='        <i>3</i>'
+                        html+='        <i>4</i>'
+                        html+='        <a class="game_sposl">'+narr[j]+'</a>'
+                        html+='        <i>5</i>'
+                        html+='        <i>6</i>'
+                        html+='        <i>7</i><br>'
+                        html+='        <i>8</i>'
+                        html+='        <i>9</i>'
+                        html+='        <span data-id="clear">清</span>'
+                        html+='        <span data-id="even">双</span>'
+                        html+='        <span data-id="odd">单</span>'
+                        html+='        <span data-id="small">小</span>'
+                        html+='        <span data-id="big">大</span>'
+                        html+='        <span data-id="all">全</span>'
+                        html+='    </li>'
+                    }
+                }
+                $(".gameo_cont").html(html)
+            }
+        }
+        $(".select_title").html(shtml)
+    }
     currentCount:function(){
             var lens= 1;
             if(game.all_len.length ==1){
