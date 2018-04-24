@@ -90,7 +90,7 @@ var game = {
                     var harr = [2,6,5,5,3]
                     console.log(harr)
                     for(var i=0;i<harr.length;i++){
-                        html+='"<span>'+data.data.kjNo[i]+'</span>"';
+                        html+='"<span>'+harr[i]+'</span>"';
                     } 
                     $(".gameo_num").html(html);
                 }
