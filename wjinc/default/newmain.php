@@ -22,7 +22,7 @@
 <div class="wrap_box wrap_top bgf5">
 
     <div class="bgfff">
-        <p class="gameo_toptitle f24">优游分分彩 第<span class="gameo_qi"></span>期 总共<span class="mcol gameo_qiall"></span>期</p>
+        <p class="gameo_toptitle f24"><?=$this->finalgameinfo[$this->type]['title']?> 第<span class="gameo_qi"></span>期 总共<span class="mcol gameo_qiall"></span>期</p>
         <div class="lot_num tc gameo_num">
             <span>1</span>
             <span>3</span>
