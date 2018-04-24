@@ -21,7 +21,7 @@
 	}
 	
 ?>
-<?php if($tmp) foreach($tmp as $key=>$var){ 
+<?php  if($tmp) foreach($tmp as $key=>$var){ 
         
     ?>
 
@@ -31,7 +31,7 @@
                 <div class="fl lot_left gm_lot_left">
                     <p class=""><?=$var['title']?></p>
                     <div class="f24 col6">每天<span class="mcol"><?=$var['num']?></span>期</div>
-                    <div class="f24 col6">单注最高奖金<span class="mcol">￥180,000.00</span></div>
+                    <div class="f24 col6">单注最高奖金<span class="mcol">￥<?=number_format($this->settings['betMaxZjAmount'],2)?></span></div>
                 </div>
                 
                 <i class="iconfont icon-xiangyoujiantou lot_iconr"></i>

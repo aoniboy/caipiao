@@ -3,16 +3,17 @@ class Index extends WebLoginBase{
 	public $pageSize=10;
 	
 	public final function game($type=null, $groupId=null, $played=null){
-		if($type) $this->type=intval($type);
-		if($groupId){
-			$this->groupId=intval($groupId);
-		}else{
-			// 默认进入三星玩法
-			$this->groupId=6;
-		}
-		if($played) $this->played=intval($played);
-		$this->getSystemSettings();	
-		$this->display('newmain.php');
+	    $tmp = [];
+	    foreach ($this->gameinfo as $key=>$val) {
+	        $sql = "select st.id,st.title,st.num,st.enable from ssc_type st where st.id={$val}     ";
+	        $result  = $this->getRow($sql);
+	        !empty($result)?$tmp[$val] = $result:'';
+	    }
+	    $this->finalgameinfo = $tmp;
+	    $this->type = intval($type);
+	    if(!empty($this->type)&&$this->finalgameinfo[$type]['enable']) {
+		  $this->display('newmain.php');
+	    }
 	}
 	public final function gameList(){
 	    
@@ -194,7 +195,7 @@ class Index extends WebLoginBase{
 	    $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit {$start},10 ";
 	    $result  = $this->getRows($sql);
 	    foreach($result as $key=>$val) {
-	        $result[$key]['time'] = date("H时:i分");
+	        $result[$key]['time'] = date("H时:i分",$val['time']);
 	        $data = explode(",", $val['data']);
 	        $tnumber = '';
 	        foreach($data as $k=>$v) {

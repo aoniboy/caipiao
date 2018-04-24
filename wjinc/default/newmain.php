@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>详情</title>
+    <title>游戏</title>
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
     <script src="/wjinc/default/js/jquery.min.js"></script>
@@ -71,7 +71,7 @@
 <div class="title_top tc">
     <a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>
     <span class="iconfont icon-gantanhao iconright"></span>
-    <span class="gameo_titles">优游分分彩<br>
+    <span class="gameo_titles"><?=$this->finalgameinfo[$this->type]['title']?><br>
         <span class="f20 gameo_sel iconfont icon-sanjiao1 rel">三星直选</span>
     </span>
 </div>
@@ -225,10 +225,8 @@
     </div>
 	<?php $this->display('newinc_footer.php'); ?>
 </div>
+<input type="hidden" class="playedtype" value="<?=$this->type?>"/>
 <audio class="kaijiang" loop src="/wjinc/default/sound/kaijiang.wav"></audio>
 <script src="/wjinc/default/js/game.js"></script>
-<script>
-var type = '<?=$this->type?>'
-</script>
 </body>
 </html>
