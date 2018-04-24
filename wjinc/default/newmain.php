@@ -105,14 +105,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>110X9R0H</td>
-                    <td>重庆彩</td>
-                    <td>前三复式</td>
-                    <td>20180421-062</td>
-                    <td>250</td>
-                    <td>未开奖</td>
-                </tr>
+
             </tbody>
         </table>
     </div>
