@@ -78,17 +78,28 @@ var game = {
                 // $(".gameo_second").text(data.data.actionNo.diffsecond);
                 //倒计时
                 game.countdown(data.data.actionNo.diffminute,data.data.actionNo.diffsecond);
+                if(data.data.kjNo ==false){
+                    setInterval(function(){
+                        for(var i=0;i<$(".gameo_num span").length;i++){
+                            $(".gameo_num span").eq(i).text(game.randomNum())
+                        } 
+                    },50)
+                }else{
+                    var html = ''
+                    for(var i=0;i<data.data.kjNo.length;i++){
+                        $(".gameo_num span").eq(i).text(game.randomNum())
+                        html+='"<span>'+data.data.kjNo[i]+'</span>"';
+                    } 
+                    $(".gameo_num").html(html);
+                }
+
             }else{
                 $(".hint_pop .hint_cont").text(data.msg);
                 $(".hint_pop").show();
             }
         },'json' );
         //随机数字
-        setInterval(function(){
-            for(var i=0;i<$(".gameo_num span").length;i++){
-                $(".gameo_num span").eq(i).text(game.randomNum())
-            } 
-        },50)
+
         //选择游戏
         $(".gameo_titles").on('touchend', function(){
             $(".select_pop").show();
