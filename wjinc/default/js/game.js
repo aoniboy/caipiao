@@ -276,7 +276,7 @@ var game = {
                                 html+='        <td>'+list.gamename+'</td>'
                                 html+='        <td>'+list.playname+'</td>'
                                 html+='        <td>'+list.actionNo+'</td>'
-                                html+='        <td>250</td>'
+                                html+='        <td>'+money+'</td>'
                                 html+='        <td id="'+list.id+'">未开奖</td>'
                                 html+='    </tr>'
                             }
@@ -300,7 +300,6 @@ var game = {
         })
 
         //倒计时
-        game.randomNum();
         game.countdown('2','5');
     },
     renderHtml: function(id){
@@ -343,7 +342,7 @@ var game = {
             }
         }
         $(".select_title").html(shtml)
-    }
+    },
     currentCount:function(){
             var lens= 1;
             if(game.all_len.length ==1){
