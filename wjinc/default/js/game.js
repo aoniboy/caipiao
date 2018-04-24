@@ -296,7 +296,7 @@ var game = {
         //只能是数字
         $(document).on('keyup', '.gameo_int', function(){
             console.log(1);
-            $(this).vla().replace(/[^\d]/g,'');
+            $(this).val().replace(/[^\d]/g,'');
         })
 
         //倒计时
