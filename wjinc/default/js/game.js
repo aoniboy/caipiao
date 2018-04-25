@@ -467,6 +467,7 @@ var game = {
                         }
                         break;
                     case 2:
+                        console.log($(".gameo_int").val(),2222,$(".gameo_int").val().length);
                         if($(".gameo_int").val().length<3 || $(".gameo_int").val().length%3 !=0){
                             $(".dan_text").text('至少1个三位数号码组成一注');
                             lens =0;
