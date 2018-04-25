@@ -162,7 +162,7 @@ class Game extends WebLoginBase{
 	    $this->type = intval($type);
 	    $lastNo=$this->getGameLastNo($this->type);
 	    $kjHao=$this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
-	    //if($kjHao) $kjHao=explode(',', $kjHao);
+	    if($kjHao) $kjHao=explode(',', $kjHao);
 	    $actionNo=$this->getGameNo($this->type);
 	    $actionNo['difftime'] = strtotime($actionNo['actionTime']) -time();
 	    $actionNo['diffminute'] = intval($actionNo['difftime']/60);
@@ -174,7 +174,12 @@ class Game extends WebLoginBase{
 	    $data['name'] = $this->types[$type]['title'];
 	    $data['actionNo'] = $actionNo;
 	    $data['lastNo'] = $lastNo;
-	    $data['kjNo'] = $kjHao;
+	    $tnumber = '';		 	    
+	    foreach($kjHao as $k=>$v) {
+    	        $tnumber .= "<span>$v</span>";
+    	}
+	        
+	    $data['kjNo'] = $tnumber;
 	    $data['num'] = $types[$this->type]['num'];
 	    
 	    $this->outputData(0,$data);
@@ -252,7 +257,7 @@ class Game extends WebLoginBase{
 		    '2.00'=>'元'
 		);
 		$toTime=strtotime('00:00:00');
-		$sql="select id,wjorderId,actionNo,actionTime,fpEnable,zjCount,playedId,type,actionData,beiShu,mode,actionNum,lotteryNo,bonus,isDelete,kjTime,qz_uid from {$this->prename}bets where   uid=30 and 1=1 order by id desc limit 10";
+		$sql="select id,wjorderId,actionNo,actionTime,fpEnable,zjCount,playedId,type,actionData,beiShu,mode,actionNum,lotteryNo,bonus,isDelete,kjTime,qz_uid from {$this->prename}bets where   uid={$this->user['uid']} and actionTime>{$toTime} order by id desc limit 10";
 		if($list=$this->getRows($sql, $actionNo['actionNo'])){
 		    
 		    foreach($list as $key=> $var){
@@ -277,8 +282,6 @@ class Game extends WebLoginBase{
                   }else{
                       $list[$key]['status'] = 4;//未中奖
                   }
-                  if($var['id'] == 60796)
-                      $list[$key]['status'] = 5;//可以撤单显示撤单操作
       
                }else{
                    $list[$key]['status'] = 5;//可以撤单显示撤单操作
