@@ -317,7 +317,7 @@ var game = {
                     is_html+='            <td>'+mode_name+'</td>'
                     is_html+='        </tr>'
                 }
-                $(".tz_table table tbody").append(is_html);
+                $(".tz_table table tbody").html(is_html);
             }else{
                 $(".hint_pop .hint_cont").text('您还未添加预投注');
                 $(".hint_pop").show();
