@@ -301,18 +301,19 @@ var game = {
                 //确认是否投注html
                 $(".tz_title").text(game.allCont.actionNo);
                 var is_html = '';
-                for(var i=0;i<game.code.length;i++){
+                var list = game.code;
+                for(var i=0;i<list.length;i++){
                     var mode_name = '';
-                    if(game.code[i].mode<1){
+                    if(list[i].mode<1){
                         mode_name = '角';
                     }else{
                         mode_name = '元';
                     }
                     is_html+='        <tr>'
-                    is_html+='            <td>'+list.title+'</td>'
-                    is_html+='            <td>'+list.actionData+'</td>'
-                    is_html+='            <td>'+list.actionNum+'</td>'
-                    is_html+='            <td>'+list.beiShu+'倍</td>'
+                    is_html+='            <td>'+list[i].title+'</td>'
+                    is_html+='            <td>'+list[i].actionData+'</td>'
+                    is_html+='            <td>'+list[i].actionNum+'</td>'
+                    is_html+='            <td>'+list[i].beiShu+'倍</td>'
                     is_html+='            <td>'+mode_name+'</td>'
                     is_html+='        </tr>'
                 }
