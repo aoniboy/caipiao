@@ -12,10 +12,6 @@ var game = {
         kjTime:'1524574800',
         type:'',
     },
-    fandian:{
-    	fandian:
-    	bonus
-    },
     del_id:1,
     is_textarea:false,
     all_len:'',
@@ -226,9 +222,9 @@ var game = {
                 html_num = html_num.substring(0, html_num.length - 1); //去掉最后一个逗号
                 var mode =$(".gameo_check.active").data('money');
                 var multiple = $(".gameo_multiple").val();
-                list.fanDian = game.getFandian(); //不确定
-                list.bonusProp = '1900';
-                list.mode =mode;
+                list.fanDian = 0; //不确定
+                list.bonusProp = '1931.00';
+                list.mode =2;
                 list.beiShu =multiple;
                 list.orderId = (new Date()) -2147483647*623; //不确定
                 list.actionData = html_num;
@@ -344,7 +340,7 @@ var game = {
                 	game.allCont.actionNo = data.data.actionNo.actionNo;
                 	game.allCont.kjTime = data.data.actionNo.actionTime;
                 	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
-                        if(res.code){
+                        if(!res.code){
                             $.post('/index.php/game/getOrdered/'+cid,function(data){
                                 if(!data.code){
                                     var list = data.data;
@@ -383,6 +379,8 @@ var game = {
                                     $(".hint_pop").show();
                                 }
                             },'json' );
+                            $(".hint_pop .hint_cont").text(data.msg);
+                            $(".hint_pop").show();
                         }else{
                     		$(".hint_pop .hint_cont").text(data.msg);
                             $(".hint_pop").show();

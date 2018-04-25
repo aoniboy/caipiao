@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
     <script src="/wjinc/default/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/skin/js/jqueryui/jquery-ui-1.8.23.custom.min.js"></script>
 </head>
 <body>
 <style>
@@ -130,15 +131,6 @@
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
-    <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
-        <div class="fandian-box">
-          <input type="button" class="min" value="" step="-0.1"/>
-          <div id="slider" class="slider" value="<?=$this->ifs($_COOKIE['fanDian'], 0)?>" data-bet-count="<?=$this->settings['betMaxCount']?>" data-bet-zj-amount="<?=$this->settings['betMaxZjAmount']?>" max="<?=$this->user['fanDian']?>" game-fan-dian="<?=$this->settings['fanDianMax']?>" fan-dian="<?=$this->user['fanDian']?>" game-fan-dian-bdw="<?=$this->settings['fanDianBdwMax']?>" fan-dian-bdw="<?=$this->user['fanDianBdw']?>" min="0" step="0.1" slideCallBack="gameSetFanDian"></div>
-          <input type="button" class="max" value="" step="0.1"/>
-        </div>
-        <span id="fandian-value" class="fdmoney">
-        <?=$maxPl?>
-        /0%</span>
     <div class="tz_pop hide">
         <div class="gameo_mask"></div>
         <div class="tz_con">

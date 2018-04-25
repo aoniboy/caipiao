@@ -43,6 +43,7 @@ class Game extends WebLoginBase{
 			if(!$played['enable']) $this->outputData(1,[],'游戏玩法组已停,请刷新再投');
 			//检查赔率
 			$chkBonus=($played['bonusProp']-$played['bonusPropBase'])/$this->settings['fanDianMax']*$this->user['fanDian']+$played['bonusPropBase']-($played['bonusProp']-$played['bonusPropBase'])*$code['fanDian']/$this->settings['fanDianMax'];//实际奖金
+			//echo $chkBonus ;
 			if($code['bonusProp']>$played['bonusProp']) $this->outputData(1,[],'提交奖金大于最大奖金，请重新投注');
 			if($code['bonusProp']<$played['bonusPropBase']) $this->outputData(1,[],'提交奖金小于最小奖金，请重新投注');
 			if(intval($chkBonus)!=intval($code['bonusProp'])) $this->outputData(1,[],'提交奖金出错，请重新投注');
@@ -123,7 +124,6 @@ class Game extends WebLoginBase{
 		// 开始事物处理
 		$this->beginTransaction();
 		try{
-			
 			foreach($codes as $code){
 				// 插入投注表
 				$code['wjorderId']=$code['type'].$code['playedId'].$this->randomkeys(8-strlen($code['type'].$code['playedId']));
@@ -131,8 +131,9 @@ class Game extends WebLoginBase{
 				$code['mode']=abs($code['mode']);
 				$code['beiShu']=abs($code['beiShu']);
 				$amount=abs($code['actionNum']*$code['mode']*$code['beiShu']*$fpcount);
+				unset($code['del_id'],$code['money'],$code['title'],$code['all_stake'],$code['all_money'],$code['playid'],$code['groupid']);
+				
 				$this->insertRow($this->prename .'bets', $code);
-	
 				// 添加用户资金流动日志
 				$this->addCoin(array(
 					'uid'=>$this->user['uid'],
@@ -150,7 +151,7 @@ class Game extends WebLoginBase{
 			// 返点与积分等开奖时结算
 
 			$this->commit();
-			$this->outputData(0,[]);
+			$this->outputData(0,[],'投注成功');
 		}catch(Exception $e){
 			$this->rollBack();
 			throw $e;
@@ -161,7 +162,7 @@ class Game extends WebLoginBase{
 	    $this->type = intval($type);
 	    $lastNo=$this->getGameLastNo($this->type);
 	    $kjHao=$this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
-	    if($kjHao) $kjHao=explode(',', $kjHao);
+	    //if($kjHao) $kjHao=explode(',', $kjHao);
 	    $actionNo=$this->getGameNo($this->type);
 	    $actionNo['difftime'] = strtotime($actionNo['actionTime']) -time();
 	    $actionNo['diffminute'] = intval($actionNo['difftime']/60);
@@ -173,12 +174,7 @@ class Game extends WebLoginBase{
 	    $data['name'] = $this->types[$type]['title'];
 	    $data['actionNo'] = $actionNo;
 	    $data['lastNo'] = $lastNo;
-	    $tnumber = '';
-	    foreach($kjHao as $k=>$v) {
-	        $tnumber .= "<span>$v</span>";
-	    }
-	    
-	    $data['kjNo'] = $tnumber;
+	    $data['kjNo'] = $kjHao;
 	    $data['num'] = $types[$this->type]['num'];
 	    
 	    $this->outputData(0,$data);
