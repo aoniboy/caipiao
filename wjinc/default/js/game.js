@@ -244,12 +244,7 @@ var game = {
                 $(".game_stakes").find('i').removeClass('active');
                 //添加的html
 
-                var mode_name = '';
-                if(mode<1){
-                    mode_name = '角';
-                }else{
-                    mode_name = '元';
-                }
+
                 list.title = $(".gameo_sel").text();
                 var html = '';
                 html+='        <tr>'
@@ -265,19 +260,7 @@ var game = {
                 game.allCont.all_money += parseInt(list.money);
                 game.allCont.all_stake += parseInt(list.actionNum);
                 game.allCont.actionNo = $(".gameo_qi").text();
-                $(".all_money").text(game.allCont.all_money.toFixed(2));
-                $(".all_stake").text(game.allCont.all_stake)
-                //确认是否投注html
-                $(".tz_title").text(game.allCont.actionNo)
-                var is_html = '';
-                is_html+='        <tr>'
-                is_html+='            <td>'+list.title+'</td>'
-                is_html+='            <td>'+html_num+'</td>'
-                is_html+='            <td>'+list.actionNum+'</td>'
-                is_html+='            <td>'+list.beiShu+'倍</td>'
-                is_html+='            <td>'+mode_name+'</td>'
-                is_html+='        </tr>'
-                $(".tz_table table tbody").append(is_html);
+
             };
             
         })
@@ -313,6 +296,27 @@ var game = {
         $(".gameo_btns2").on('touchend',function(){
             if($(".game_tzlist table tr").length>0){
                 $(".tz_pop").show();
+                $(".all_money").text(game.allCont.all_money.toFixed(2));
+                $(".all_stake").text(game.allCont.all_stake)
+                //确认是否投注html
+                $(".tz_title").text(game.allCont.actionNo);
+                var is_html = '';
+                for(var i=0;i<game.code.length;i++){
+                    var mode_name = '';
+                    if(mode<1){
+                        mode_name = '角';
+                    }else{
+                        mode_name = '元';
+                    }
+                    is_html+='        <tr>'
+                    is_html+='            <td>'+list.title+'</td>'
+                    is_html+='            <td>'+list.actionData+'</td>'
+                    is_html+='            <td>'+list.actionNum+'</td>'
+                    is_html+='            <td>'+list.beiShu+'倍</td>'
+                    is_html+='            <td>'+mode_name+'</td>'
+                    is_html+='        </tr>'
+                }
+                $(".tz_table table tbody").append(is_html);
             }else{
                 $(".hint_pop .hint_cont").text('您还未添加预投注');
                 $(".hint_pop").show();
