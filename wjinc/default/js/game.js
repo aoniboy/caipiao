@@ -138,7 +138,7 @@ var game = {
     	})
   
         //数字选中 
-    	$(document).on('touchend','.game_stakes > i', function(){
+    	$(document).on('click','.game_stakes > i', function(){
     		if($(this).hasClass("active")){
                 $(this).removeClass("active");
             }else{
