@@ -33,6 +33,7 @@ var game = {
         $.post('/index.php/game/getOrdered/'+cid,function(data){
             if(!data.code){
                 var list = data.data;
+                console.log(list);
                 var html = '';
                 var text = '';
                 var prize_col = '';
@@ -176,6 +177,7 @@ var game = {
             game.currentCount();
         })
         //添加
+        // console.log($(".game_stakes").length)
         $(".game_add").on('touchend', function(){
             if(!game.currentCount()){
                return false; 
@@ -213,6 +215,7 @@ var game = {
                     lens*=len;
                     numarr[i] = $(".game_stakes").eq(i).find('i.active').text();
                     html_num +=numarr[i]+',';
+                    console.log(lens,999999999);
                     if(len ==0){
                         $(".hint_pop .hint_cont").text('请选3位数字');
                         $(".hint_pop").show();
@@ -227,7 +230,7 @@ var game = {
             list.bonusProp = '1900';
             list.mode =mode;
             list.beiShu =multiple;
-            list.orderId = 0; //不确定
+            list.orderId = (new Date()) -2147483647*623; //不确定
             list.actionData = html_num;
             list.actionNum = lens;
             list.weiShu = 0; //不确定；
@@ -235,6 +238,7 @@ var game = {
             list.playedId = game.allCont.playid; //playedGroup,playedId 合并一个
             list.type = cid;
 
+            // console.log(list.stake,22)
             list.money = (mode*lens*multiple).toFixed(2);
             $(this).attr('data-num',num+1);
             game.code.push(list);
@@ -317,51 +321,67 @@ var game = {
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
             $(".tz_pop").hide();
-            $.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
-                if(res.code){
-                    $.post('/index.php/game/getOrdered/'+cid,function(data){
-                        if(!data.code){
-                            var list = data.data;
-                            var html = '';
-                            var text = '';
-                            var prize_col = '';
-                            for(var i=0;i<list.length;i++){
-                                if(list[i].status ==1){
-                                    text ='已撤单';
-                                    prize_col='';
-                                }else if(list[i].status ==2){
-                                    text ='未开奖';
-                                    prize_col='';
-                                }else if(list[i].status ==3){
-                                    text ='中奖';
-                                    prize_col='';
-                                }else if(list[i].status ==4){
-                                    text ='未中奖';
-                                    prize_col='';
-                                }else if(list[i].status ==5){
-                                    text ='撤单';
-                                    prize_col='prize_col';
-                                }                               
-                                html+='    <tr>'
-                                html+='        <td>'+list[i].wjorderId+'</td>'
-                                html+='        <td>'+list[i].gamename+'</td>'
-                                html+='        <td>'+list[i].playname+'</td>'
-                                html+='        <td>'+list[i].actionNo+'</td>'
-                                html+='        <td>'+list[i].money+'</td>'
-                                html+='        <td id="'+list[i].id+'" class="'+prize_col+'">'+text+'</td>'
-                                html+='    </tr>'
-                            }
-                            $(".gameo_list tbody").html(html);
+
+            $.post('/index.php/game/getNo/'+cid,function(data){
+                if(!data.code){
+                	game.allCont.actionNo = ''
+                	game.allCont.kjTime	  = ''
+                	console.log(data.data);
+                	game.allCont.actionNo = data.data.actionNo.actionNo;
+                	game.allCont.kjTime = data.data.actionNo.actionTime;
+                	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
+                        if(res.code){
+                            $.post('/index.php/game/getOrdered/'+cid,function(data){
+                                if(!data.code){
+                                    var list = data.data;
+                                    console.log(list);
+                                    var html = '';
+                                    var text = '';
+                                    var prize_col = '';
+                                    for(var i=0;i<list.length;i++){
+                                        if(list[i].status ==1){
+                                            text ='已撤单';
+                                            prize_col='';
+                                        }else if(list[i].status ==2){
+                                            text ='未开奖';
+                                            prize_col='';
+                                        }else if(list[i].status ==3){
+                                            text ='中奖';
+                                            prize_col='';
+                                        }else if(list[i].status ==4){
+                                            text ='未中奖';
+                                            prize_col='';
+                                        }else if(list[i].status ==5){
+                                            text ='撤单';
+                                            prize_col='prize_col';
+                                        }                               
+                                        html+='    <tr>'
+                                        html+='        <td>'+list[i].wjorderId+'</td>'
+                                        html+='        <td>'+list[i].gamename+'</td>'
+                                        html+='        <td>'+list[i].playname+'</td>'
+                                        html+='        <td>'+list[i].actionNo+'</td>'
+                                        html+='        <td>'+list[i].money+'</td>'
+                                        html+='        <td id="'+list[i].id+'" class="'+prize_col+'">'+text+'</td>'
+                                        html+='    </tr>'
+                                    }
+                                    $(".gameo_list tbody").html(html);
+                                }else{
+                                    $(".hint_pop .hint_cont").text(data.msg);
+                                    $(".hint_pop").show();
+                                }
+                            },'json' );
                         }else{
-                            $(".hint_pop .hint_cont").text(data.msg);
+                    		$(".hint_pop .hint_cont").text(data.msg);
                             $(".hint_pop").show();
-                        }
+                    	}
                     },'json' );
-                }else{
-                    $(".hint_pop .hint_cont").text(res.msg);
+            	}else{
+            		$(".hint_pop .hint_cont").text(data.msg);
                     $(".hint_pop").show();
-                }
+            	}
+           
             },'json' );
+            
         })
         //撤单
         $(document).on('touchend', 'td.prize_col', function(){
@@ -377,6 +397,7 @@ var game = {
             },'json' );
         })
         $(".tz_btn2").on('touchend', function(){
+            console.log(11)
             $(".tz_pop").hide();
         })
         //只能是数字
@@ -432,6 +453,7 @@ var game = {
             if(game.all_len.length ==1){
                 console.log(game.all_len[0],'代表几');
                 //12 输入  34 选择
+                console.log(game.all_len[0]);
                 switch(game.all_len[0]){
                     case 1:
                         if($(".gameo_int").val().length<2 || $(".gameo_int").val().length%2 !=0){
@@ -518,6 +540,7 @@ var game = {
                 //     }
                 // }
             }else{
+                // console.log(111);
                 for(var i=0;i<$(".game_stakes").length;i++){
                     var len =$(".game_stakes").eq(i).find('i.active').length;
                     lens*=len;

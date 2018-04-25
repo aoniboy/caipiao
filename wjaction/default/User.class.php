@@ -149,7 +149,7 @@ class User extends WebBase{
 		$_SESSION[$this->memberSessionName]=serialize($user);
 		
 		// 把别人踢下线
-		$this->update("update ssc_member_session set isOnLine=0 where uid={$user['uid']} and id < {$user['sessionId']}");
+		//$this->update("update ssc_member_session set isOnLine=0 where uid={$user['uid']} and id < {$user['sessionId']}");
 
 		return $user;
 	}
