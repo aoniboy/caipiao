@@ -444,9 +444,9 @@ var game = {
     currentCount:function(){
             var lens= 1;
             if(game.all_len.length ==1){
-                console.log(game.all_len[0],'代表特殊',parseInt(game.all_len[0]);
+                console.log(game.all_len[0],'代表特殊',parseInt(game.all_len[0]));
                 //12 输入  34 选择
-                switch(parseInt(game.all_len[0]){
+                switch(parseInt(game.all_len[0])){
                     case 1:
                         if($(".gameo_int").val().length<2 || $(".gameo_int").val().length%2 !=0){
                             $(".dan_text").text('至少1个两位数号码组成一注');
