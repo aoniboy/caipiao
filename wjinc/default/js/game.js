@@ -288,6 +288,9 @@ var game = {
             game.allCont.all_stake = game.allCont.all_stake - parseInt(stake);
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
+            console.log(game.code,id);
+            console.log(game.allCont);
+
 
         })
         //清空号码
@@ -375,7 +378,6 @@ var game = {
             	}
            
             },'json' );
-            
         })
         //撤单
         $(document).on('touchend', 'td.prize_col', function(){
@@ -398,8 +400,6 @@ var game = {
             $(this).val().replace(/[^\d]/g,'');
             game.currentCount();
         })
-
-        
     },
     renderHtml: function(id){
         var narr =[];
@@ -444,7 +444,6 @@ var game = {
     currentCount:function(){
             var lens= 1;
             if(game.all_len.length ==1){
-                console.log(game.all_len[0],'代表特殊',parseInt(game.all_len[0]));
                 //12 输入  34 选择
                 switch(parseInt(game.all_len[0])){
                     case 1:
@@ -507,31 +506,6 @@ var game = {
                         }
                         break;
                 }
-                // if(game.all_len[0] == 1){
-                //     if($(".gameo_int").length()<2 || $(".gameo_int").length()%2 !=0){
-                //         $(".dan_text").text('至少输入1个两位数号码组成一注');
-                //     }
-                // }else if(game.all_len[0] == 2){
-                //     if($(".gameo_int").length()<3 || $(".gameo_int").length()%3 !=0){
-                //         $(".dan_text").text('至少输入1个三位数号码组成一注');
-                //     }
-                // }else if(game.all_len[0] == 3){
-                //     for(var i=0;i<$(".game_stakes").length;i++){
-                //         var len =$(".game_stakes").eq(i).find('i.active').length;
-                //         lens*=len;
-                //         if(len >=2){
-                //             $(".dan_text").text('请选2个或2个以上数字');
-                //         }
-                //     }
-                // }else if(game.all_len[0] == 4){
-                //     for(var i=0;i<$(".game_stakes").length;i++){
-                //         var len =$(".game_stakes").eq(i).find('i.active').length;
-                //         lens*=len;
-                //         if(len >=3){
-                //             $(".dan_text").text('请选3个或3个以上数字');
-                //         }
-                //     }
-                // }
             }else{
                 for(var i=0;i<$(".game_stakes").length;i++){
                     var len =$(".game_stakes").eq(i).find('i.active').length;
