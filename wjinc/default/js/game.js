@@ -326,11 +326,14 @@ var game = {
         $(".hint_btn").on('touchend', function(){
             $(".hint_pop").hide();
         })
+        $(".hint_btn1").on('touchend', function(){
+            $(".hint_pop1").hide();
+            window.location.reload();
+        })
         //提交
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
             $(".tz_pop").hide();
-
             $.post('/index.php/game/getNo/'+cid,function(data){
                 if(!data.code){
                 	game.allCont.actionNo = ''
@@ -554,9 +557,9 @@ var game = {
             }else if(second =='0' && minute=='0'){
                 clearInterval(timer);
                 $(".kaijiang")[0].pause();
-                $(".hint_pop .hint_titles").text('第'+ game.allCont.actionNo+'期投注已截止!');
-                $(".hint_pop .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
-                $(".hint_pop").show();
+                $(".hint_pop1 .hint_titles").text('第'+ game.allCont.actionNo+'期投注已截止!');
+                $(".hint_pop1 .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
+                $(".hint_pop1").show();
             }
         },1000)
     },
@@ -568,8 +571,6 @@ var game = {
     },
     randomNum: function(){
         return(Math.floor(Math.random()*9))
-        // return(Math.floor(Math.random()*10)
-
     }
 
 }
