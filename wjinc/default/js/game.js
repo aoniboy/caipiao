@@ -421,6 +421,9 @@ var game = {
                     html = '<li><input class="gameo_int" placeholder="输入至少1个三位位数号码组成一注" type="tel"></li>';
                 }else{
                     for(var j =0;j<narr.length;j++){
+                        if(narr[j]==3 || narr[j]==4){
+                            narr[j] = '选择';
+                        }
                         html+='    <li class="game_stakes rel" >'
                         html+='        <i>0</i>'
                         html+='        <i>1</i>'
