@@ -291,6 +291,11 @@ var game = {
             game.allCont.all_stake = game.allCont.all_stake - parseInt(stake);
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
+            for(var i=0;i<game.code.length;i++){
+                if(game.code[i].del_id ==id){
+                    consoel.log(game.code.splice(i,1));
+                }
+            }
             console.log(game.code,id);
             console.log(game.allCont);
 
