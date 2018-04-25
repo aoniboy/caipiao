@@ -181,103 +181,103 @@ var game = {
             if(!game.currentCount()){
                return false; 
             }else{
-            var list ={};
-            var num = parseInt($(this).attr('data-num'));
-            var numarr = [];
-            var lens =1;
-            var html_num =''
-            if(game.all_len.length ==1 && game.all_len[0] =='1'){
-                var input_val =$(".gameo_int").val();
-                for(var i =0;i<$(".gameo_int").val().length;i++){
-                    if(i%2 ==0 && html_num){
-                        html_num+=","+input_val[i];
-                    }else{
-                        html_num+=input_val[i];
+                var list ={};
+                var num = parseInt($(this).attr('data-num'));
+                var numarr = [];
+                var lens =1;
+                var html_num =''
+                if(game.all_len.length ==1 && game.all_len[0] =='1'){
+                    var input_val =$(".gameo_int").val();
+                    for(var i =0;i<$(".gameo_int").val().length;i++){
+                        if(i%2 ==0 && html_num){
+                            html_num+=","+input_val[i];
+                        }else{
+                            html_num+=input_val[i];
+                        }
+                        numarr = html_num.split(",");
+                        lens = numarr.length;
                     }
-                    numarr = html_num.split(",");
-                    lens = numarr.length;
-                }
-            }else if(game.all_len.length ==1 && game.all_len[0] =='2'){
-                var input_val =$(".gameo_int").val();
-                for(var i =0;i<$(".gameo_int").val().length;i++){
-                    if(i%3 ==0 && html_num){
-                        html_num+=","+input_val[i];
-                    }else{
-                        html_num+=input_val[i];
+                }else if(game.all_len.length ==1 && game.all_len[0] =='2'){
+                    var input_val =$(".gameo_int").val();
+                    for(var i =0;i<$(".gameo_int").val().length;i++){
+                        if(i%3 ==0 && html_num){
+                            html_num+=","+input_val[i];
+                        }else{
+                            html_num+=input_val[i];
+                        }
+                        numarr = html_num.split(",");
+                        lens = numarr.length;
                     }
-                    numarr = html_num.split(",");
-                    lens = numarr.length;
-                }
-            }else{
-                for(var i=0;i<$(".game_stakes").length;i++){
-                    var len =$(".game_stakes").eq(i).find('i.active').length;
-                    lens*=len;
-                    numarr[i] = $(".game_stakes").eq(i).find('i.active').text();
-                    html_num +=numarr[i]+',';
-                    if(len ==0){
-                        $(".hint_pop .hint_cont").text('请选3位数字');
-                        $(".hint_pop").show();
-                        return;
+                }else{
+                    for(var i=0;i<$(".game_stakes").length;i++){
+                        var len =$(".game_stakes").eq(i).find('i.active').length;
+                        lens*=len;
+                        numarr[i] = $(".game_stakes").eq(i).find('i.active').text();
+                        html_num +=numarr[i]+',';
+                        if(len ==0){
+                            $(".hint_pop .hint_cont").text('请选3位数字');
+                            $(".hint_pop").show();
+                            return;
+                        }
                     }
                 }
-            }
-            html_num = html_num.substring(0, html_num.length - 1); //去掉最后一个逗号
-            var mode =$(".gameo_check.active").data('money');
-            var multiple = $(".gameo_multiple").val();
-            list.fanDian = 0; //不确定
-            list.bonusProp = '1900';
-            list.mode =mode;
-            list.beiShu =multiple;
-            list.orderId = (new Date()) -2147483647*623; //不确定
-            list.actionData = html_num;
-            list.actionNum = lens;
-            list.weiShu = 0; //不确定；
-            list.playedGroup = game.allCont.groupid
-            list.playedId = game.allCont.playid; //playedGroup,playedId 合并一个
-            list.type = cid;
-            list.del_id = game.del_id;
-            game.del_id ++;
+                html_num = html_num.substring(0, html_num.length - 1); //去掉最后一个逗号
+                var mode =$(".gameo_check.active").data('money');
+                var multiple = $(".gameo_multiple").val();
+                list.fanDian = 0; //不确定
+                list.bonusProp = '1900';
+                list.mode =mode;
+                list.beiShu =multiple;
+                list.orderId = (new Date()) -2147483647*623; //不确定
+                list.actionData = html_num;
+                list.actionNum = lens;
+                list.weiShu = 0; //不确定；
+                list.playedGroup = game.allCont.groupid
+                list.playedId = game.allCont.playid; //playedGroup,playedId 合并一个
+                list.type = cid;
+                list.del_id = game.del_id;
+                game.del_id ++;
 
-            list.money = (mode*lens*multiple).toFixed(2);
-            $(this).attr('data-num',num+1);
-            game.code.push(list);
-            $(".game_stakes").find('i').removeClass('active');
-            //添加的html
+                list.money = (mode*lens*multiple).toFixed(2);
+                $(this).attr('data-num',num+1);
+                game.code.push(list);
+                $(".game_stakes").find('i').removeClass('active');
+                //添加的html
 
-            var mode_name = '';
-            if(mode<1){
-                mode_name = '角';
-            }else{
-                mode_name = '元';
-            }
-            list.title = $(".gameo_sel").text();
-            var html = '';
-            html+='        <tr>'
-            html+='            <td>'+list.title+'</td>'
-            html+='            <td>'+html_num+'</td>'
-            html+='            <td>'+list.actionNum+'注</td>'
-            html+='            <td>'+list.beiShu+'倍</td>'
-            html+='            <td>'+list.money+'元</td>'
-            html+='            <td>奖－返：1931.85-0.0%</td>'
-            html+='            <td class="iconfont icon-icon-cross-squre gameo_delete" id='+num+' data-del='+list.del_id+' data-money='+list.money+' data-stake='+list.stake+'></td>'
-            html+='        </tr>'
-            $(".game_tzlist table").append(html);
-            game.allCont.all_money += parseInt(list.money);
-            game.allCont.all_stake += parseInt(list.actionNum);
-            game.allCont.actionNo = $(".gameo_qi").text();
-            $(".all_money").text(game.allCont.all_money.toFixed(2));
-            $(".all_stake").text(game.allCont.all_stake)
-            //确认是否投注html
-            $(".tz_title").text(game.allCont.actionNo)
-            var is_html = '';
-            is_html+='        <tr>'
-            is_html+='            <td>'+list.title+'</td>'
-            is_html+='            <td>'+html_num+'</td>'
-            is_html+='            <td>'+list.actionNum+'</td>'
-            is_html+='            <td>'+list.beiShu+'倍</td>'
-            is_html+='            <td>'+mode_name+'</td>'
-            is_html+='        </tr>'
-            $(".tz_table table tbody").append(is_html);
+                var mode_name = '';
+                if(mode<1){
+                    mode_name = '角';
+                }else{
+                    mode_name = '元';
+                }
+                list.title = $(".gameo_sel").text();
+                var html = '';
+                html+='        <tr>'
+                html+='            <td>'+list.title+'</td>'
+                html+='            <td>'+html_num+'</td>'
+                html+='            <td>'+list.actionNum+'注</td>'
+                html+='            <td>'+list.beiShu+'倍</td>'
+                html+='            <td>'+list.money+'元</td>'
+                html+='            <td>奖－返：1931.85-0.0%</td>'
+                html+='            <td class="iconfont icon-icon-cross-squre gameo_delete" id='+num+' data-del='+list.del_id+' data-money='+list.money+' data-stake='+list.stake+'></td>'
+                html+='        </tr>'
+                $(".game_tzlist table").append(html);
+                game.allCont.all_money += parseInt(list.money);
+                game.allCont.all_stake += parseInt(list.actionNum);
+                game.allCont.actionNo = $(".gameo_qi").text();
+                $(".all_money").text(game.allCont.all_money.toFixed(2));
+                $(".all_stake").text(game.allCont.all_stake)
+                //确认是否投注html
+                $(".tz_title").text(game.allCont.actionNo)
+                var is_html = '';
+                is_html+='        <tr>'
+                is_html+='            <td>'+list.title+'</td>'
+                is_html+='            <td>'+html_num+'</td>'
+                is_html+='            <td>'+list.actionNum+'</td>'
+                is_html+='            <td>'+list.beiShu+'倍</td>'
+                is_html+='            <td>'+mode_name+'</td>'
+                is_html+='        </tr>'
+                $(".tz_table table tbody").append(is_html);
             };
             
         })
@@ -293,13 +293,10 @@ var game = {
             $(".all_stake").text(game.allCont.all_stake);
             for(var i=0;i<game.code.length;i++){
                 if(game.code[i].del_id ==id){
-                    consoel.log(game.code.splice(i,1));
+                    console.log(game.code.splice(i,1));
                 }
             }
             console.log(game.code,id);
-            console.log(game.allCont);
-
-
         })
         //清空号码
         $(".gameo_clearall").on('touchend', function(){
