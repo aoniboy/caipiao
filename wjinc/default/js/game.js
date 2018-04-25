@@ -74,10 +74,8 @@ var game = {
             if(!data.code){
                 $(".gameo_qi").text(data.data.actionNo.actionNo);
                 $(".gameo_qiall").text(data.data.num);
-                // $(".gameo_minute").text(data.data.actionNo.diffminute);
-                // $(".gameo_second").text(data.data.actionNo.diffsecond);
                 //倒计时
-                game.countdown(data.data.actionNo.diffminute,data.data.actionNo.diffsecond);
+                game.countdown(data.data.actionNo.difftime);
                 if(data.data.kjNo ==false){
                     setInterval(function(){
                         for(var i=0;i<$(".gameo_num span").length;i++){
@@ -544,26 +542,44 @@ var game = {
                 return true;
             }
     },
-    countdown: function(m,s){ //倒计时
-        var minute = parseInt(m);
-        var second = parseInt(s);
-        var timer = setInterval(function(){
-            second = second -1;
+    countdown: function(times){ //倒计时
+        var timer=null;
+        timer=setInterval(function(){
+            var day=0,
+            hour=0,
+            minute=0,
+            second=0;//时间默认值
+            if(times > 0){
+                day = Math.floor(times / (60 * 60 * 24));
+                hour = Math.floor(times / (60 * 60)) - (day * 24);
+                minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            // if (day <= 9) day = '0' + day;
+            // if (hour <= 9) hour = '0' + hour;
+            // if (minute <= 9) minute = '0' + minute;
+            // if (second <= 9) second = '0' + second;
+            console.log(day+"天:"+hour+"小时："+minute+"分钟："+second+"秒");
             $(".gameo_second").text(game.checkTime(second));
             $(".gameo_minute").text(game.checkTime(minute));
-            if(second =='00' && minute>0){
-                second = 60;
-                minute = minute -1;
-            }else if(second =='5' && minute=='0'){
+            if(hour>0){
+                $(".gameo_hour").text(game.checkTime(hour));
+            }
+            if(day>0){
+                $(".gameo_day").text(game.checkTime(day));
+            }
+            if(times ==5 ){
                 $(".kaijiang")[0].play();
-            }else if(second =='0' && minute=='0'){
+            }
+            if(times<=0){
                 clearInterval(timer);
                 $(".kaijiang")[0].pause();
                 $(".hint_pop1 .hint_titles").text('第'+ game.allCont.actionNo+'期投注已截止!');
                 $(".hint_pop1 .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
                 $(".hint_pop1").show();
             }
-        },1000)
+            times--;
+        },1000);
     },
     checkTime: function(i){ //将0-9的数字前面加上0，例1变为01 
         if(i<10) { 
