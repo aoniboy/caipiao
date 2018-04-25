@@ -41,7 +41,7 @@ var game = {
                         text ='已撤单';
                         prize_col='';
                     }else if(list[i].status ==2){
-                        text ='为开奖';
+                        text ='未开奖';
                         prize_col='';
                     }else if(list[i].status ==3){
                         text ='中奖';
@@ -319,6 +319,16 @@ var game = {
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
             $(".tz_pop").hide();
+            $.post('/index.php/game/getNo/'+cid,function(data){
+                if(!data.code){
+                	console.log(data.data);
+                	game.allCont
+
+                }else{
+                    $(".hint_pop .hint_cont").text(data.msg);
+                    $(".hint_pop").show();
+                }
+            },'json' );
             $.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
                 if(res.code){
                     $.post('/index.php/game/getOrdered/'+cid,function(data){
