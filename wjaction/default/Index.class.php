@@ -63,77 +63,30 @@ class Index extends WebLoginBase{
 			$this->display('index/game-played/un-open.php');
 		}
 	}
-	
 	public final function playedType($type,$playedId){
+	    $sql="select type from {$this->prename}type where id=? and enable = 1 order by sort";
+	    $data=$this->getRow($sql, $type);
+	    if(empty($data)) $this->outputData(1,[],'操作失败');
 	    $sql="select id from {$this->prename}played_group where type=? and enable = 1 order by sort";
-	    $data=$this->getRows($sql, $type);
+	    $data=$this->getRows($sql, $data['type']);
 	    $result = [];
 	    foreach($data as $key=>$val) {
-	        $sql="select id,name,groupId from {$this->prename}played where  groupId= ? and enable = 1";
+	        $sql="select id,name,groupId,numinfo from {$this->prename}played where  groupId= ? and enable = 1";
 	        $tmp=$this->getRows($sql, $val['id']);
 	        foreach($tmp as $k=>$v) {
 	            $result[] = $v;
 	        }
 	    }
-	    
-	    
+	     
+	     
 	    foreach ($result as $key=>$val) {
-	        switch ($val['id']) {
-	            case '10':
-	                $result[$key]['position'] = ['万位','千位','百位'];
-	                break;
-	            case '11':
-	                $result[$key]['position'] = [2];
-	                break;
-	            case '12':
-                    $result[$key]['position'] = ['百位','十位','个位'];
-                    break;
-                case '13':
-                    $result[$key]['position'] = [2];
-                    break;
-                case '16':
-                    $result[$key]['position'] = [3];
-                    break;
-                case '17':
-                    $result[$key]['position'] = [4];
-                    break;
-                case '19':
-                    $result[$key]['position'] = [3];
-                    break;
-                case '20':
-                    $result[$key]['position'] = [4];
-                    break;
-                case '25':
-                    $result[$key]['position'] = ['万位','千位'];
-                    break;
-                case '26':
-                    $result[$key]['position'] = [1];
-                    break;
-                case '27':
-                    $result[$key]['position'] = ['十位','个位'];
-                    break;
-                case '28':
-                    $result[$key]['position'] = [1];
-                    break;
-                case '31':
-                    $result[$key]['position'] = [3];
-                    break;
-                case '33':
-                    $result[$key]['position'] = [3];
-                    break;
-                case '37':
-                    $result[$key]['position'] = ['万位','千位','百位','十位','个位'];
-                    break;
-        		default:
-        		   break;
-	        }
+	        $result[$key]['position'] = explode(',',$val['numinfo']);
 	    }
-	    
-	    $data = ['code'=>0,'data'=>$result,'msg'=>'操作成功'];
-	    echo json_encode($data);
-	    exit;
-	    
-	}
+	     
+	    $this->outputData(0,$result);
+	     
+	}	
+	
 	
 	// 加载玩法介绍信息
 	public final function playTips($playedId){
@@ -203,9 +156,8 @@ class Index extends WebLoginBase{
 	        $result[$key]['tnumber'] = $tnumber;
 	    }
 	    $data = ['name'=>$typename,'result'=>$result];
-	    $data = ['code'=>0,'data'=>$data,'msg'=>'操作成功'];
-	    echo json_encode($data);
-	    exit;
+	    $this->outputData(0,$data);
+
 	}
 	
 	public final function getLastKjData($type){

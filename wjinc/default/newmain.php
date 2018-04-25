@@ -22,7 +22,7 @@
 <div class="wrap_box wrap_top bgf5">
 
     <div class="bgfff">
-        <p class="gameo_toptitle f24">优游分分彩 第<span class="gameo_qi">20180406-123</span>期 总共<span class="mcol">288期</span></p>
+        <p class="gameo_toptitle f24"><?=$this->finalgameinfo[$this->type]['title']?> 第<span class="gameo_qi"></span>期 总共<span class="mcol gameo_qiall"></span>期</p>
         <div class="lot_num tc gameo_num">
             <span>1</span>
             <span>3</span>
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div>
-        <p class="tc f24 gameo_stitle">距 20180406-123 期投注截止还有 <span class="mcol gameo_minute">00</span> 分 <span class="mcol gameo_second">30</span> 秒</p>
+        <p class="tc f24 gameo_stitle">距 <span class="gameo_qi"></span> 期投注截止还有 <span class="mcol gameo_minute">00</span> 分 <span class="mcol gameo_second">00</span> 秒</p>
         <ul class="gameo_cont">
             <li class="game_stakes rel" >
                 <i>0</i>
@@ -105,14 +105,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>110X9R0H</td>
-                    <td>重庆彩</td>
-                    <td>前三复式</td>
-                    <td>20180421-062</td>
-                    <td>250</td>
-                    <td>未开奖</td>
-                </tr>
+
             </tbody>
         </table>
     </div>
