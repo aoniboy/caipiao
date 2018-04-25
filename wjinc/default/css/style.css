@@ -116,7 +116,7 @@ input:focus,select{outline:0;}
 .gameo_stitle{ padding:.15rem 0; }
 .game_stakes{  text-align: right; margin-right: .2rem;}
 .game_stakes >i{ font-size: .32rem; width:.55rem; height:.55rem;line-height: .55rem;}
-.game_stakes >span{width:.53rem;height:.53rem;line-height: .53rem;border:.01rem solid #c3c3c3;}
+.game_stakes >span{width:.55rem; height:.55rem;line-height: .55rem;}
 .game_stakes >i,.game_stakes >span{display: inline-block;margin-bottom:.2rem;color:#fff;  border-radius: 100px;background: linear-gradient(#e4e4e4, #9a9898); text-align: center; margin-right: 2px;}
 .game_stakes >i.active{ background: linear-gradient(#fb7b5c, #fb3b38); }
 .game_sposl{ position: absolute;left:0;top:0;border-top-left-radius: .1rem;border-bottom-right-radius: .1rem; color:#fff;background: #c5c5c5; font-size: .22rem; padding:.05rem .1rem;}
