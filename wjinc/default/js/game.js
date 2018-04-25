@@ -288,7 +288,7 @@ var game = {
             game.allCont.all_stake = game.allCont.all_stake - parseInt(stake);
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
-            console.log(game.code,id);
+            console.log(game.code,$(this).parent('tr').index());
             console.log(game.allCont);
 
 
