@@ -12,6 +12,10 @@ var game = {
         kjTime:'1524574800',
         type:'',
     },
+    fandian:{
+    	fandian:
+    	bonus
+    },
     del_id:1,
     is_textarea:false,
     all_len:'',
@@ -222,7 +226,7 @@ var game = {
                 html_num = html_num.substring(0, html_num.length - 1); //去掉最后一个逗号
                 var mode =$(".gameo_check.active").data('money');
                 var multiple = $(".gameo_multiple").val();
-                list.fanDian = 0; //不确定
+                list.fanDian = game.getFandian(); //不确定
                 list.bonusProp = '1900';
                 list.mode =mode;
                 list.beiShu =multiple;

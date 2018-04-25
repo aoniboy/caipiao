@@ -32,7 +32,7 @@
         </div>
     </div>
     <div>
-        <p class="tc f24 gameo_stitle">距 <span class="gameo_qi"></span> 期投注截止还有 <span class="mcol gameo_day"></span> <span class="mcol gameo_hour"></span> <span class="mcol gameo_minute">00</span> 分 <span class="mcol gameo_second">00</span> 秒</p>
+        <p class="tc f24 gameo_stitle">距 <span class="gameo_qi"></span> 期投注截止还有 <span class="mcol gameo_minute">00</span> 分 <span class="mcol gameo_second">00</span> 秒</p>
         <ul class="gameo_cont">
             <li class="game_stakes rel" >
                 <i>0</i>
@@ -130,14 +130,15 @@
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
-    <div class="hint_pop1 hide">
-        <div class="gameo_mask"></div>
-        <div class="hint_con">
-            <div class="hint_title f32 tc hint_titles"></div>
-            <div class="hint_cont f24"></div>
-            <div class="tc hint_btn1 f32">确定</div>
+    <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
+        <div class="fandian-box">
+          <input type="button" class="min" value="" step="-0.1"/>
+          <div id="slider" class="slider" value="<?=$this->ifs($_COOKIE['fanDian'], 0)?>" data-bet-count="<?=$this->settings['betMaxCount']?>" data-bet-zj-amount="<?=$this->settings['betMaxZjAmount']?>" max="<?=$this->user['fanDian']?>" game-fan-dian="<?=$this->settings['fanDianMax']?>" fan-dian="<?=$this->user['fanDian']?>" game-fan-dian-bdw="<?=$this->settings['fanDianBdwMax']?>" fan-dian-bdw="<?=$this->user['fanDianBdw']?>" min="0" step="0.1" slideCallBack="gameSetFanDian"></div>
+          <input type="button" class="max" value="" step="0.1"/>
         </div>
-    </div>
+        <span id="fandian-value" class="fdmoney">
+        <?=$maxPl?>
+        /0%</span>
     <div class="tz_pop hide">
         <div class="gameo_mask"></div>
         <div class="tz_con">
