@@ -173,7 +173,12 @@ class Game extends WebLoginBase{
 	    $data['name'] = $this->types[$type]['title'];
 	    $data['actionNo'] = $actionNo;
 	    $data['lastNo'] = $lastNo;
-	    $data['kjNo'] = $kjHao;
+	    $tnumber = '';
+	    foreach($kjHao as $k=>$v) {
+	        $tnumber .= "<span>$v</span>";
+	    }
+	    
+	    $data['kjNo'] = $tnumber;
 	    $data['num'] = $types[$this->type]['num'];
 	    
 	    $this->outputData(0,$data);

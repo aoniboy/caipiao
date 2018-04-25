@@ -60,7 +60,7 @@ var game = {
                     html+='        <td>'+list[i].playname+'</td>'
                     html+='        <td>'+list[i].actionNo+'</td>'
                     html+='        <td>'+list[i].money+'</td>'
-                    html+='        <td id="'+list[i].id+'" class="'+prize_col+'">未开奖</td>'
+                    html+='        <td id="'+list[i].id+'" class="'+prize_col+'">'+text+'</td>'
                     html+='    </tr>'
                 }
                 $(".gameo_list tbody").html(html);
@@ -84,15 +84,8 @@ var game = {
                             $(".gameo_num span").eq(i).text(game.randomNum())
                         } 
                     },50)
-                }else{
-                    var html = ''
-                    // var harr = data.data.kjNo.split(',');
-                    // var harr = [2,6,5,5,3]
-                    // console.log(harr)
-                    // for(var i=0;i<harr.length;i++){
-                    //     html+='"<span>'+harr[i]+'</span>"';
-                    // } 
-                    // $(".gameo_num").html(html);
+                }else{ 
+                    $(".gameo_num").html(data.data.kjNo);
                 }
 
             }else{
@@ -380,7 +373,7 @@ var game = {
         //撤单
         $(document).on('touchend', 'td.prize_col', function(){
             var id = $(this).attr('id');
-            $.post('index.php/game/deleteCode/'+id,function(data){
+            $.post('/index.php/game/deleteCode/'+id,function(data){
                 if(!data.code){
                     $(".hint_pop .hint_cont").text('撤单成功');
                     $(".hint_pop").show();
