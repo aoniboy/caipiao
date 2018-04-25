@@ -41,7 +41,7 @@ var game = {
                         text ='已撤单';
                         prize_col='';
                     }else if(list[i].status ==2){
-                        text ='未开奖';
+                        text ='为开奖';
                         prize_col='';
                     }else if(list[i].status ==3){
                         text ='中奖';
@@ -92,7 +92,6 @@ var game = {
                 $(".hint_pop").show();
             }
         },'json' );
-        //随机数字
 
         //选择游戏
         $(".gameo_titles").on('touchend', function(){
@@ -289,7 +288,6 @@ var game = {
             game.allCont.all_stake = game.allCont.all_stake - parseInt(stake);
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
-            console.log($(this).parent('tr').index());
 
         })
         //清空号码
@@ -319,16 +317,6 @@ var game = {
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
             $(".tz_pop").hide();
-            $.post('/index.php/game/getNo/'+cid,function(data){
-                if(!data.code){
-                	console.log(data.data);
-                	game.allCont
-
-                }else{
-                    $(".hint_pop .hint_cont").text(data.msg);
-                    $(".hint_pop").show();
-                }
-            },'json' );
             $.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
                 if(res.code){
                     $.post('/index.php/game/getOrdered/'+cid,function(data){
@@ -442,6 +430,7 @@ var game = {
     currentCount:function(){
             var lens= 1;
             if(game.all_len.length ==1){
+                console.log(game.all_len[0],'代表几');
                 //12 输入  34 选择
                 switch(game.all_len[0]){
                     case 1:
@@ -544,6 +533,7 @@ var game = {
                 var dan_multiple = $(".gameo_multiple").val();
                 var dan_money = $(".gameo_check.active").attr('data-money');
                 var dan_allmoney = (dan_money*lens*dan_multiple).toFixed(2);
+                console.log(dan_money*lens*dan_multiple)
                 $(".dan_text").text('共'+dan_stake+'注，金额'+dan_allmoney+'元');
                 return true;
             }
