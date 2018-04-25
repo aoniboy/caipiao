@@ -42,7 +42,7 @@ var game = {
                         text ='已撤单';
                         prize_col='';
                     }else if(list[i].status ==2){
-                        text ='为开奖';
+                        text ='未开奖';
                         prize_col='';
                     }else if(list[i].status ==3){
                         text ='中奖';
@@ -106,7 +106,7 @@ var game = {
         })
         //清单双大小全
         var dan_len,dan_money,dan_stake;
-    	$(document).on('touchend', '.game_stakes > span', function(){
+    	$(document).on('click', '.game_stakes > span', function(){
             var id = $(this).data("id");
             var parent = $(this).parent(".game_stakes");
             var len = $(parent).find('i.active').length;
