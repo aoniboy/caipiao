@@ -12,6 +12,7 @@ var game = {
         kjTime:'1524574800',
         type:'',
     },
+    del_id:1,
     is_textarea:false,
     all_len:'',
     data:[],
@@ -234,6 +235,8 @@ var game = {
             list.playedGroup = game.allCont.groupid
             list.playedId = game.allCont.playid; //playedGroup,playedId 合并一个
             list.type = cid;
+            list.del_id = game.del_id;
+            game.del_id ++;
 
             list.money = (mode*lens*multiple).toFixed(2);
             $(this).attr('data-num',num+1);
@@ -256,7 +259,7 @@ var game = {
             html+='            <td>'+list.beiShu+'倍</td>'
             html+='            <td>'+list.money+'元</td>'
             html+='            <td>奖－返：1931.85-0.0%</td>'
-            html+='            <td class="iconfont icon-icon-cross-squre gameo_delete" id='+num+' data-money='+list.money+' data-stake='+list.stake+'></td>'
+            html+='            <td class="iconfont icon-icon-cross-squre gameo_delete" id='+num+' data-del='+list.del_id+' data-money='+list.money+' data-stake='+list.stake+'></td>'
             html+='        </tr>'
             $(".game_tzlist table").append(html);
             game.allCont.all_money += parseInt(list.money);
@@ -280,7 +283,7 @@ var game = {
         })
         //删除
         $(document).on('click','.gameo_delete', function(){
-            var id = parseInt($(this).attr('id'));
+            var id = parseInt($(this).attr('data-del'));
             $(this).parents('tr').remove();
             var money = $(this).attr('data-money');
             var stake = $(this).attr('data-stake');
@@ -288,7 +291,7 @@ var game = {
             game.allCont.all_stake = game.allCont.all_stake - parseInt(stake);
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
-            console.log(game.code,$(this).parent('tr').index());
+            console.log(game.code,id);
             console.log(game.allCont);
 
 
