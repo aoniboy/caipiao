@@ -324,6 +324,7 @@ var game = {
             }
         })
         $(".hint_btn").on('touchend', function(){
+            $(".hint_pop .hint_title").text('错误提示');
             $(".hint_pop").hide();
         })
         $(".hint_btn1").on('touchend', function(){
@@ -397,6 +398,7 @@ var game = {
             var id = $(this).attr('id');
             $.post('/index.php/game/deleteCode/'+id,function(data){
                 if(!data.code){
+                    $(".hint_pop .hint_title").text('提示');
                     $(".hint_pop .hint_cont").text('撤单成功');
                     $(".hint_pop").show();
                 }else{
