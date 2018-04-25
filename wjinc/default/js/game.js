@@ -259,7 +259,7 @@ var game = {
                 html+='            <td>'+list.beiShu+'倍</td>'
                 html+='            <td>'+list.money+'元</td>'
                 html+='            <td>奖－返：1931.85-0.0%</td>'
-                html+='            <td class="iconfont icon-icon-cross-squre gameo_delete" id='+num+' data-del='+list.del_id+' data-money='+list.money+' data-stake='+list.stake+'></td>'
+                html+='            <td class="iconfont icon-icon-cross-squre gameo_delete" id='+num+' data-del='+list.del_id+' data-money='+list.money+' data-stake='+list.actionNum+'></td>'
                 html+='        </tr>'
                 $(".game_tzlist table").append(html);
                 game.allCont.all_money += parseInt(list.money);
