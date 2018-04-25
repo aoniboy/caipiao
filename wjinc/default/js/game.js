@@ -496,7 +496,7 @@ var game = {
                             }
                         }
                         break;
-                    case '4':
+                    case 4:
                         for(var i=0;i<$(".game_stakes").length;i++){
                             var len =$(".game_stakes").eq(i).find('i.active').length;
                             lens*=len;
