@@ -303,7 +303,7 @@ var game = {
                 var is_html = '';
                 for(var i=0;i<game.code.length;i++){
                     var mode_name = '';
-                    if(game.mode[i]<1){
+                    if(game.code[i].mode<1){
                         mode_name = '角';
                     }else{
                         mode_name = '元';
