@@ -33,7 +33,6 @@ var game = {
         $.post('/index.php/game/getOrdered/'+cid,function(data){
             if(!data.code){
                 var list = data.data;
-                console.log(list);
                 var html = '';
                 var text = '';
                 var prize_col = '';
@@ -177,7 +176,6 @@ var game = {
             game.currentCount();
         })
         //添加
-        // console.log($(".game_stakes").length)
         $(".game_add").on('touchend', function(){
             if(!game.currentCount()){
                return false; 
@@ -215,7 +213,6 @@ var game = {
                     lens*=len;
                     numarr[i] = $(".game_stakes").eq(i).find('i.active').text();
                     html_num +=numarr[i]+',';
-                    console.log(lens,999999999);
                     if(len ==0){
                         $(".hint_pop .hint_cont").text('请选3位数字');
                         $(".hint_pop").show();
@@ -238,7 +235,6 @@ var game = {
             list.playedId = game.allCont.playid; //playedGroup,playedId 合并一个
             list.type = cid;
 
-            // console.log(list.stake,22)
             list.money = (mode*lens*multiple).toFixed(2);
             $(this).attr('data-num',num+1);
             game.code.push(list);
@@ -326,7 +322,6 @@ var game = {
                 if(!data.code){
                 	game.allCont.actionNo = ''
                 	game.allCont.kjTime	  = ''
-                	console.log(data.data);
                 	game.allCont.actionNo = data.data.actionNo.actionNo;
                 	game.allCont.kjTime = data.data.actionNo.actionTime;
                 	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
@@ -334,7 +329,6 @@ var game = {
                             $.post('/index.php/game/getOrdered/'+cid,function(data){
                                 if(!data.code){
                                     var list = data.data;
-                                    console.log(list);
                                     var html = '';
                                     var text = '';
                                     var prize_col = '';
@@ -397,7 +391,6 @@ var game = {
             },'json' );
         })
         $(".tz_btn2").on('touchend', function(){
-            console.log(11)
             $(".tz_pop").hide();
         })
         //只能是数字
@@ -451,9 +444,8 @@ var game = {
     currentCount:function(){
             var lens= 1;
             if(game.all_len.length ==1){
-                console.log(game.all_len[0],'代表几');
+                console.log(game.all_len[0],'代表特殊');
                 //12 输入  34 选择
-                console.log(game.all_len[0]);
                 switch(game.all_len[0]){
                     case 1:
                         if($(".gameo_int").val().length<2 || $(".gameo_int").val().length%2 !=0){
@@ -540,7 +532,6 @@ var game = {
                 //     }
                 // }
             }else{
-                // console.log(111);
                 for(var i=0;i<$(".game_stakes").length;i++){
                     var len =$(".game_stakes").eq(i).find('i.active').length;
                     lens*=len;
@@ -556,7 +547,6 @@ var game = {
                 var dan_multiple = $(".gameo_multiple").val();
                 var dan_money = $(".gameo_check.active").attr('data-money');
                 var dan_allmoney = (dan_money*lens*dan_multiple).toFixed(2);
-                console.log(dan_money*lens*dan_multiple)
                 $(".dan_text").text('共'+dan_stake+'注，金额'+dan_allmoney+'元');
                 return true;
             }
