@@ -32,7 +32,7 @@
         </div>
     </div>
     <div>
-        <p class="tc f24 gameo_stitle">距 <span class="gameo_qi"></span> 期投注截止还有 <span class="mcol gameo_minute">00</span> 分 <span class="mcol gameo_second">00</span> 秒</p>
+        <p class="tc f24 gameo_stitle">距 <span class="gameo_qi"></span> 期投注截止还有 <span class="mcol gameo_day"></span> <span class="mcol gameo_hour"></span> <span class="mcol gameo_minute">00</span> 分 <span class="mcol gameo_second">00</span> 秒</p>
         <ul class="gameo_cont">
             <li class="game_stakes rel" >
                 <i>0</i>
@@ -128,6 +128,14 @@
             <div class="hint_title f32 tc hint_titles">错误提示</div>
             <div class="hint_cont f24"></div>
             <div class="tc hint_btn f32">确定</div>
+        </div>
+    </div>
+    <div class="hint_pop1 hide">
+        <div class="gameo_mask"></div>
+        <div class="hint_con">
+            <div class="hint_title f32 tc hint_titles"></div>
+            <div class="hint_cont f24"></div>
+            <div class="tc hint_btn1 f32">确定</div>
         </div>
     </div>
     <div class="tz_pop hide">
