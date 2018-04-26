@@ -11,12 +11,13 @@ class Index extends WebLoginBase{
 	    }
 	    $this->finalgameinfo = $tmp;
 	    $this->type = intval($type);
+	    $this->game = 'active';
 	    if(!empty($this->type)&&$this->finalgameinfo[$type]['enable']) {
 		  $this->display('newmain.php');
 	    }
 	}
 	public final function gameList(){
-	    
+	    $this->game = 'active';
 	    $this->display('newindex/game-list.php');
 	}
 	
@@ -25,7 +26,7 @@ class Index extends WebLoginBase{
 	    $sql="select * from {$this->prename}content where enable=1 and nodeId=1";
 	    $sql.=' order by id desc';
 	    $this->noticeinfo =  $this->getRows($sql);
-	    //print_r($this->noticeinfo);
+	    $this->index = 'active';
 		$this->display('newindex.php');
 	}
 	public final function more(){
@@ -130,6 +131,7 @@ class Index extends WebLoginBase{
 	//全部彩种开奖页面
 	public final function openList($type){
 	    $this->type=intval($type);
+	    $this->open = 'active';
 	    $this->display('newindex/open-list.php',$pageSize,$type);
 	}
 	//new彩种开奖详情页面
@@ -138,6 +140,7 @@ class Index extends WebLoginBase{
 	    $this->typename=$this->getValue("select title from ssc_type where id=?",$type);
 	    $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit 0,10 ";
 	    $this->result  = $this->getRows($sql);
+	    $this->open = 'active';
 	    $this->display('newindex/open-list-detail.php');
 	}
 	

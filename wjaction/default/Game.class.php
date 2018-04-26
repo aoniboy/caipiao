@@ -184,6 +184,7 @@ class Game extends WebLoginBase{
 	    
 	    $this->outputData(0,$data);
 	}
+	
 	public final function getNo($type){
 		$type=intval($type);
 		$actionNo=$this->getGameNo($type);
@@ -195,6 +196,15 @@ class Game extends WebLoginBase{
 		$data['actionNo'] = $actionNo;
 		$this->outputData(0,$data);
 		
+	}
+
+	public final function getMaxPl($type,$playId){
+	    $type=intval($type);
+	    $playId = intval($playId);
+	    
+	    $data['maxPl'] = $this->getPl($type, $playId);
+	    $this->outputData(0,$data);
+	
 	}
 	//{{{ 庄内庄投注
 	public final function znzPost($id){

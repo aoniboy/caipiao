@@ -16,10 +16,17 @@ var game = {
     is_textarea:false,
     all_len:'',
     data:[],
+    global:{
+    	cid:0,
+    	gametimer:null
+    },
     bindEvent: function(){
         //默认数据
         var cid = $(".playedtype").val();
+        game.global.cid = cid;
         game.allCont.type = cid;
+        //定时获取开奖信息
+        game.kjinfo();
         $.post('/index.php/index/playedType/'+cid, function(res){
             game.data = res.data;
             game.allCont.playid = game.data[0].id;
@@ -30,67 +37,10 @@ var game = {
             game.renderHtml(game.allCont.playid)
             $(".select_title").html(shtml)
         },'json' );
-        //默认底部数据
-        $.post('/index.php/game/getOrdered/'+cid,function(data){
-            if(!data.code){
-                var list = data.data;
-                var html = '';
-                var text = '';
-                var prize_col = '';
-                for(var i=0;i<list.length;i++){
-                    if(list[i].status ==1){
-                        text ='已撤单';
-                        prize_col='';
-                    }else if(list[i].status ==2){
-                        text ='未开奖';
-                        prize_col='';
-                    }else if(list[i].status ==3){
-                        text ='中奖';
-                        prize_col='';
-                    }else if(list[i].status ==4){
-                        text ='未中奖';
-                        prize_col='';
-                    }else if(list[i].status ==5){
-                        text ='撤单';
-                        prize_col='prize_col';
-                    }                               
-                    html+='    <tr>'
-                    html+='        <td>'+list[i].wjorderId+'</td>'
-                    html+='        <td>'+list[i].gamename+'</td>'
-                    html+='        <td>'+list[i].playname+'</td>'
-                    html+='        <td>'+list[i].actionNo+'</td>'
-                    html+='        <td>'+list[i].money+'</td>'
-                    html+='        <td id="'+list[i].id+'" class="'+prize_col+'">'+text+'</td>'
-                    html+='    </tr>'
-                }
-                $(".gameo_list tbody").html(html);
-            }else{
-                $(".hint_pop .hint_cont").text(data.msg);
-                $(".hint_pop").show();
-            }
-        },'json' );
-        //默认期号
-        $.post('/index.php/game/getkjinfo/'+cid,function(data){
-            if(!data.code){
-                $(".gameo_qi").text(data.data.actionNo.actionNo);
-                $(".gameo_qiall").text(data.data.num);
-                //倒计时
-                game.countdown(data.data.actionNo.difftime);
-                if(data.data.kjNo ==false){
-                    setInterval(function(){
-                        for(var i=0;i<$(".gameo_num span").length;i++){
-                            $(".gameo_num span").eq(i).text(game.randomNum())
-                        } 
-                    },50)
-                }else{ 
-                    $(".gameo_num").html(data.data.kjNo);
-                }
+        //获取order
+        game.getOrder();
 
-            }else{
-                $(".hint_pop .hint_cont").text(data.msg);
-                $(".hint_pop").show();
-            }
-        },'json' );
+        
 
         //选择游戏
         $(".gameo_titles").on('touchend', function(){
@@ -257,7 +207,7 @@ var game = {
                 $(".game_tzlist table").append(html);
                 game.allCont.all_money += parseInt(list.money);
                 game.allCont.all_stake += parseInt(list.actionNum);
-                game.allCont.actionNo = $(".gameo_qi").text();
+                
 
             };
             
@@ -325,9 +275,18 @@ var game = {
             $(".hint_pop .hint_title").text('错误提示');
             $(".hint_pop").hide();
         })
-        $(".hint_btn1").on('touchend', function(){
+        $(".hint_btn2").on('touchend', function(){
             $(".hint_pop1").hide();
-            window.location.reload();
+            game.code = [];
+            game.allCont.all_stake =0;
+            game.allCont.all_money =0;
+            $(".game_tzlist table").html('');
+            $(".all_money").text(game.allCont.all_money.toFixed(2));
+            $(".all_stake").text(game.allCont.all_stake);
+        })
+        $(".hint_btn3").on('touchend', function(){
+            $(".hint_pop1").hide();
+            
         })
         //提交
         $(".tz_btn1").on('touchend', function(){
@@ -335,50 +294,12 @@ var game = {
             $(".tz_pop").hide();
             $.post('/index.php/game/getNo/'+cid,function(data){
                 if(!data.code){
-                	game.allCont.actionNo = ''
-                	game.allCont.kjTime	  = ''
                 	game.allCont.actionNo = data.data.actionNo.actionNo;
                 	game.allCont.kjTime = data.data.actionNo.actionTime;
                 	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
                         if(!res.code){
-                            $.post('/index.php/game/getOrdered/'+cid,function(data){
-                                if(!data.code){
-                                    var list = data.data;
-                                    var html = '';
-                                    var text = '';
-                                    var prize_col = '';
-                                    for(var i=0;i<list.length;i++){
-                                        if(list[i].status ==1){
-                                            text ='已撤单';
-                                            prize_col='';
-                                        }else if(list[i].status ==2){
-                                            text ='未开奖';
-                                            prize_col='';
-                                        }else if(list[i].status ==3){
-                                            text ='中奖';
-                                            prize_col='';
-                                        }else if(list[i].status ==4){
-                                            text ='未中奖';
-                                            prize_col='';
-                                        }else if(list[i].status ==5){
-                                            text ='撤单';
-                                            prize_col='prize_col';
-                                        }                               
-                                        html+='    <tr>'
-                                        html+='        <td>'+list[i].wjorderId+'</td>'
-                                        html+='        <td>'+list[i].gamename+'</td>'
-                                        html+='        <td>'+list[i].playname+'</td>'
-                                        html+='        <td>'+list[i].actionNo+'</td>'
-                                        html+='        <td>'+list[i].money+'</td>'
-                                        html+='        <td id="'+list[i].id+'" class="'+prize_col+'">'+text+'</td>'
-                                        html+='    </tr>'
-                                    }
-                                    $(".gameo_list tbody").html(html);
-                                }else{
-                                    $(".hint_pop .hint_cont").text(data.msg);
-                                    $(".hint_pop").show();
-                                }
-                            },'json' );
+                            game.getOrder();
+                            $(".hint_pop .hint_title").text('系统提示');
                             $(".hint_pop .hint_cont").text(data.msg);
                             $(".hint_pop").show();
                         }else{
@@ -557,11 +478,7 @@ var game = {
                 minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
                 second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
             }
-            // if (day <= 9) day = '0' + day;
-            // if (hour <= 9) hour = '0' + hour;
-            // if (minute <= 9) minute = '0' + minute;
-            // if (second <= 9) second = '0' + second;
-            console.log(day+"天:"+hour+"小时："+minute+"分钟："+second+"秒");
+            
             $(".gameo_second").text(game.checkTime(second));
             $(".gameo_minute").text(game.checkTime(minute));
             if(hour>0){
@@ -579,6 +496,7 @@ var game = {
                 $(".hint_pop1 .hint_titles").text('第'+ game.allCont.actionNo+'期投注已截止!');
                 $(".hint_pop1 .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
                 $(".hint_pop1").show();
+                game.timekjinfo();
             }
             times--;
         },1000);
@@ -588,6 +506,110 @@ var game = {
             i = "0" + i; 
         } 
         return i; 
+    },
+    timekjinfo: function() {
+    	var kjtimer=null;
+        kjtimer=setInterval(function(){
+        	//默认期号
+            $.post('/index.php/game/getkjinfo/'+game.global.cid,function(data){
+                if(!data.code){
+                    $(".gameo_qi").text(data.data.actionNo.actionNo);
+                    $(".gameo_qiall").text(data.data.num);
+                    game.allCont.actionNo = data.data.actionNo.actionNo;
+                    //倒计时
+                    game.countdown(data.data.actionNo.difftime);
+                    game.global.gametimer = null
+                    if(!data.data.kjNo){
+                    	
+                    	//game.global.gametimer = setInterval(function(){
+                            for(var i=0;i<$(".gameo_num span").length;i++){
+                                $(".gameo_num span").eq(i).text(game.randomNum())
+                            } 
+                        //},50)
+                    }else{ 
+                    	//clearInterval(kjtimer);
+                    	clearInterval(game.global.gametimer);
+                        $(".gameo_num").html(data.data.kjNo);
+                    }
+
+                }else{
+                    $(".hint_pop .hint_cont").text(data.msg);
+                    $(".hint_pop").show();
+                }
+            },'json' );
+            
+        },1000);
+    },
+    kjinfo: function(i) {
+    	
+    	//默认期号
+        $.post('/index.php/game/getkjinfo/'+game.global.cid,function(data){
+            if(!data.code){
+                $(".gameo_qi").text(data.data.actionNo.actionNo);
+                $(".gameo_qiall").text(data.data.num);
+                game.allCont.actionNo = data.data.actionNo.actionNo;
+                //倒计时
+                game.countdown(data.data.actionNo.difftime);
+                game.global.gametimer = null
+                if(!data.data.kjNo){
+                	
+                    //game.global.gametimer = setInterval(function(){
+                        for(var i=0;i<$(".gameo_num span").length;i++){
+                            $(".gameo_num span").eq(i).text(game.randomNum())
+                        } 
+                    //},50)
+                    game.timekjinfo();
+                }else{ 
+                	//clearInterval(game.global.gametimer);
+                    $(".gameo_num").html(data.data.kjNo);
+                }
+
+            }else{
+                $(".hint_pop .hint_cont").text(data.msg);
+                $(".hint_pop").show();
+            }
+        },'json' );
+    },
+    getOrder: function(){
+    	//默认底部数据
+        $.post('/index.php/game/getOrdered/'+game.global.cid,function(data){
+            if(!data.code){
+                var list = data.data;
+                var html = '';
+                var text = '';
+                var prize_col = '';
+                for(var i=0;i<list.length;i++){
+                    if(list[i].status ==1){
+                        text ='已撤单';
+                        prize_col='';
+                    }else if(list[i].status ==2){
+                        text ='未开奖';
+                        prize_col='';
+                    }else if(list[i].status ==3){
+                        text ='中奖';
+                        prize_col='';
+                    }else if(list[i].status ==4){
+                        text ='未中奖';
+                        prize_col='';
+                    }else if(list[i].status ==5){
+                        text ='撤单';
+                        prize_col='prize_col';
+                    }                               
+                    html+='    <tr>'
+                    html+='        <td>'+list[i].wjorderId+'</td>'
+                    html+='        <td>'+list[i].gamename+'</td>'
+                    html+='        <td>'+list[i].playname+'</td>'
+                    html+='        <td>'+list[i].actionNo+'</td>'
+                    html+='        <td>'+list[i].money+'</td>'
+                    html+='        <td id="'+list[i].id+'" class="'+prize_col+'">'+text+'</td>'
+                    html+='    </tr>'
+                }
+                $(".gameo_list tbody").html(html);
+            }else{
+                $(".hint_pop .hint_cont").text(data.msg);
+                $(".hint_pop").show();
+            }
+        },'json' );
     },
     randomNum: function(){
         return(Math.floor(Math.random()*9))

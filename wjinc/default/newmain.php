@@ -17,7 +17,7 @@
     <a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>
     <span class="iconfont icon-gantanhao iconright"></span>
     <span class="gameo_titles"><?=$this->finalgameinfo[$this->type]['title']?><br>
-        <span class="f20 gameo_sel iconfont icon-sanjiao1 rel">三星直选</span>
+        <span class="f20 gameo_sel iconfont icon-sanjiao1 rel">前三复式</span>
     </span>
 </div>
 <div class="wrap_box wrap_top bgf5">
@@ -131,6 +131,27 @@
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
+    <div class="hint_pop1 hide">
+        <div class="gameo_mask"></div>
+        <div class="hint_con">
+            <div class="hint_title f32 tc hint_titles">系统提示</div>
+            <div class="hint_cont f24"></div>
+            <div class="tc hint_btn1 f32">
+                <div class="tc hint_btn2">确定</div>
+                <div class="tc hint_btn3">取消</div>
+            </div>
+        </div>
+    </div>
+    <div class="fandian-k" style="display: none"> <span class="spn8">奖金/返点：</span>
+            <div class="fandian-box">
+              <input type="button" class="min" value="" step="-0.1"/>
+              <div id="slider" class="slider" value="<?=$this->ifs($_COOKIE['fanDian'], 0)?>" data-bet-count="<?=$this->settings['betMaxCount']?>" data-bet-zj-amount="<?=$this->settings['betMaxZjAmount']?>" max="<?=$this->user['fanDian']?>" game-fan-dian="<?=$this->settings['fanDianMax']?>" fan-dian="<?=$this->user['fanDian']?>" game-fan-dian-bdw="<?=$this->settings['fanDianBdwMax']?>" fan-dian-bdw="<?=$this->user['fanDianBdw']?>" min="0" step="0.1" slideCallBack="gameSetFanDian"></div>
+              <input type="button" class="max" value="" step="0.1"/>
+            </div>
+            <span id="fandian-value" class="fdmoney">
+            <?=$maxPl?>
+            /0%</span>
+          </div>
     <div class="tz_pop hide">
         <div class="gameo_mask"></div>
         <div class="tz_con">

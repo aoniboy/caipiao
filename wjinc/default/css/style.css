@@ -157,7 +157,7 @@ input:focus,select{outline:0;}
 .hint_pop{  }
 .hint_title{color:#000; padding:.3rem 0 .1rem 0;}
 .hint_cont{ padding:0 .3rem .3rem .3rem; }
-.hint_btn,.hint_btn1{color:#79b5f3; border-top:1px solid #aeaeae; padding:.2rem 0;}
+
 .hint_con{width:80%; position:fixed;left:50%;top:50%; transform: translate(-50%,-50%); background: #e9e9e9; border-radius: .1rem;}
 .tz_con{width:80%; position:fixed;left:50%;top:50%; transform: translate(-50%,-50%); background: #e9e9e9; border-radius: .1rem;}
 .tz_table{ padding:.2rem 0; }
@@ -165,6 +165,9 @@ input:focus,select{outline:0;}
 .tz_btn{ display: flex }
 .tz_btn div{color:#79b5f3; border-top:1px solid #aeaeae; padding:.2rem 0; flex:1; border-right: 1px solid #aeaeae}
 .tz_btn div:nth-child(2){border-right:none; color:#333;}
+.hint_btn1{ display: flex }
+.hint_btn1 div{color:#79b5f3; border-top:1px solid #aeaeae; padding:.2rem 0; flex:1; border-right: 1px solid #aeaeae}
+.hint_btn1 div:nth-child(2){border-right:none; color:#333;}
 .tz_allnum{ margin:.2rem 0; }
 .gameo_int{width: 100%; padding-bottom: 1rem;}
 
