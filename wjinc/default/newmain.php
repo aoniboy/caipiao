@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
     <script src="/wjinc/default/js/jquery.min.js"></script>
     <script type="text/javascript" src="/skin/js/jqueryui/jquery-ui-1.8.23.custom.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/skin/js/jqueryui/skin/smoothness/jquery-ui-1.8.21.custom.css" />
 </head>
 <body>
 <style>
@@ -187,5 +188,8 @@
 <input type="hidden" class="playedtype" value="<?=$this->type?>"/>
 <audio class="kaijiang" loop src="/wjinc/default/sound/kaijiang.wav"></audio>
 <script src="/wjinc/default/js/game.js"></script>
+<script type="text/javascript">
+$( "#slider" ).slider();
+</script>
 </body>
 </html>
