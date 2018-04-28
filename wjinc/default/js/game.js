@@ -287,6 +287,13 @@ var game = {
         })
         $(".hint_btn3").on('touchend', function(){
             $(".hint_pop1").hide();
+            game.code = [];
+            game.allCont.all_stake =0;
+            game.allCont.all_money =0;
+            $(".game_tzlist table").html('');
+            $(".all_money").text(game.allCont.all_money.toFixed(2));
+            $(".all_stake").text(game.allCont.all_stake);
+
             
         })
         //提交
