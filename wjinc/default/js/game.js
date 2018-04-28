@@ -520,15 +520,7 @@ var game = {
                     game.countdown(data.data.actionNo.difftime);
                     game.global.gametimer = null
                     if(!data.data.kjNo){
-                    	if(!game.is_false){
-                            for(var i=0;i<$(".gameo_num span").length;i++){
-                                $(".gameo_num span").eq(i).text(game.randomNum())
-                            } 
-                            game.is_false = true;
-                        }
-                    	//game.global.gametimer = setInterval(function(){
-
-                        //},50)
+   
                     }else{ 
                     	//clearInterval(kjtimer);
                     	clearInterval(game.global.gametimer);
@@ -555,12 +547,11 @@ var game = {
                 game.countdown(data.data.actionNo.difftime);
                 game.global.gametimer = null
                 if(!data.data.kjNo){
-                	
-                    //game.global.gametimer = setInterval(function(){
+                    setInterval(function(){
                         for(var i=0;i<$(".gameo_num span").length;i++){
                             $(".gameo_num span").eq(i).text(game.randomNum())
                         } 
-                    //},50)
+                    },50)
                     game.timekjinfo();
                 }else{ 
                 	//clearInterval(game.global.gametimer);
