@@ -521,12 +521,6 @@ var game = {
                     game.global.gametimer = null
                     if(!data.data.kjNo){
                         if(!game.is_false){
-                            setInterval(function(){
-                                for(var i=0;i<$(".gameo_num span").length;i++){
-                                    $(".gameo_num span").eq(i).text(game.randomNum())
-                                } 
-                            },50)
-
                         }
                         game.is_false = true;
                     }else{ 
