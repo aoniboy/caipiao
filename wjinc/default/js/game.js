@@ -564,6 +564,7 @@ var game = {
                         game.is_false = true;
 
                     }
+                    game.timekjinfo();
                 }else{ 
                 	//clearInterval(game.global.gametimer);
                     $(".gameo_num").html(data.data.kjNo);
