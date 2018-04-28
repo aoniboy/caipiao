@@ -13,7 +13,7 @@ var game = {
         type:'',
     },
     del_id:1,
-    is_textarea:false,
+    is_false:false,
     all_len:'',
     data:[],
     global:{
@@ -520,11 +520,14 @@ var game = {
                     game.countdown(data.data.actionNo.difftime);
                     game.global.gametimer = null
                     if(!data.data.kjNo){
-                    	
-                    	//game.global.gametimer = setInterval(function(){
+                    	if(!game.is_false){
                             for(var i=0;i<$(".gameo_num span").length;i++){
                                 $(".gameo_num span").eq(i).text(game.randomNum())
                             } 
+                            game.is_false = true;
+                        }
+                    	//game.global.gametimer = setInterval(function(){
+
                         //},50)
                     }else{ 
                     	//clearInterval(kjtimer);
