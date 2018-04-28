@@ -520,7 +520,15 @@ var game = {
                     game.countdown(data.data.actionNo.difftime);
                     game.global.gametimer = null
                     if(!data.data.kjNo){
-   
+                        if(!game.is_false){
+                            setInterval(function(){
+                                for(var i=0;i<$(".gameo_num span").length;i++){
+                                    $(".gameo_num span").eq(i).text(game.randomNum())
+                                } 
+                            },50)
+
+                        }
+                        game.is_false = true;
                     }else{ 
                     	//clearInterval(kjtimer);
                     	clearInterval(game.global.gametimer);
@@ -545,14 +553,19 @@ var game = {
                 game.allCont.actionNo = data.data.actionNo.actionNo;
                 //倒计时
                 game.countdown(data.data.actionNo.difftime);
-                game.global.gametimer = null
+                game.global.gametimer = null;
                 if(!data.data.kjNo){
-                    setInterval(function(){
-                        for(var i=0;i<$(".gameo_num span").length;i++){
-                            $(".gameo_num span").eq(i).text(game.randomNum())
-                        } 
-                    },50)
+                    if(!game.is_false){
+                        game.global.gametimer =setInterval(function(){
+                                                    for(var i=0;i<$(".gameo_num span").length;i++){
+                                                        $(".gameo_num span").eq(i).text(game.randomNum())
+                                                    } 
+                                                },50)
+
+                    }
+                    game.is_false = true;
                     game.timekjinfo();
+
                 }else{ 
                 	//clearInterval(game.global.gametimer);
                     $(".gameo_num").html(data.data.kjNo);
