@@ -12,7 +12,7 @@
 
 <div class="wrap_box wrap_top">
     <div class="my_top rel">
-        <img class="my_tx" src="images/tx.jpg">
+        <img class="my_tx" src="/wjinc/default/images/tx.jpg">
         <div class="tc fff f32 my_name">coco</div>
         <div class="my_toppos">
             <span class="iconfont icon-kefu f30 fff"></span>
