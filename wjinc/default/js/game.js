@@ -207,7 +207,8 @@ var game = {
                 $(".game_tzlist table").append(html);
                 game.allCont.all_money += parseInt(list.money);
                 game.allCont.all_stake += parseInt(list.actionNum);
-                
+                $(".all_money").text(game.allCont.all_money.toFixed(2));
+                $(".all_stake").text(game.allCont.all_stake)
 
             };
             
@@ -238,14 +239,12 @@ var game = {
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
             // $(".dan_text").text('');
-
         })
         //确认是否投注
         $(".gameo_btns2").on('touchend',function(){
             if($(".game_tzlist table tr").length>0){
                 $(".tz_pop").show();
-                $(".all_money").text(game.allCont.all_money.toFixed(2));
-                $(".all_stake").text(game.allCont.all_stake)
+
                 //确认是否投注html
                 $(".tz_title").text(game.allCont.actionNo);
                 var is_html = '';
