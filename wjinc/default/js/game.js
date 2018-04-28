@@ -496,7 +496,7 @@ var game = {
                 $(".hint_pop1 .hint_titles").text('第'+ game.allCont.actionNo+'期投注已截止!');
                 $(".hint_pop1 .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
                 $(".hint_pop1").show();
-                game.timekjinfo();
+                // game.timekjinfo();
             }
             times--;
         },1000);
@@ -523,7 +523,9 @@ var game = {
                         console.log(111);
                         clearInterval(game.global.gametimer);
                         $(".gameo_num").html(data.data.kjNo);
+                        clearInterval(game.global.kjtimer);
                     }else{
+
                         console.log(222);
                     }
                 }else{
