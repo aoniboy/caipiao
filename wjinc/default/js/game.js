@@ -283,6 +283,7 @@ var game = {
             $(".game_tzlist table").html('');
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
+            window.location.reload();
         })
         $(".hint_btn3").on('touchend', function(){
             $(".hint_pop1").hide();
