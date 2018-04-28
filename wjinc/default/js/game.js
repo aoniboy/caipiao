@@ -520,8 +520,11 @@ var game = {
                     game.countdown(data.data.actionNo.difftime);
                     game.global.gametimer = null
                     if(data.data.kjNo){
+                        console.log(1111111);
                         clearInterval(game.global.gametimer);
                         $(".gameo_num").html(data.data.kjNo);
+                    }else{
+                        console.log(22222222);
                     }
                 }else{
                     $(".hint_pop .hint_cont").text(data.msg);
@@ -543,7 +546,6 @@ var game = {
                 game.countdown(data.data.actionNo.difftime);
                 game.global.gametimer = null;
                 if(!data.data.kjNo){
-                    if(!game.is_false){
                         game.global.gametimer =setInterval(function(){
                                                     for(var i=0;i<$(".gameo_num span").length;i++){
                                                         $(".gameo_num span").eq(i).text(game.randomNum())
