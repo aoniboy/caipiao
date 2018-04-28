@@ -523,7 +523,7 @@ var game = {
                         console.log(111);
                         clearInterval(game.global.gametimer);
                         $(".gameo_num").html(data.data.kjNo);
-                        clearInterval(game.global.kjtimer);
+                        clearInterval(kjtimer);
                     }else{
 
                         console.log(222);
