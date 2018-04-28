@@ -26,7 +26,7 @@ var game = {
         game.global.cid = cid;
         game.allCont.type = cid;
         //定时获取开奖信息
-        game.kjinfo();
+        game.qhinfo();
         $.post('/index.php/index/playedType/'+cid, function(res){
             game.data = res.data;
             game.allCont.playid = game.data[0].id;
@@ -503,7 +503,7 @@ var game = {
                 $(".hint_pop1 .hint_titles").text('第'+ game.allCont.actionNo+'期投注已截止!');
                 $(".hint_pop1 .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
                 $(".hint_pop1").show();
-                game.timekjinfo();
+                game.qhinfo();
             }
             times--;
         },1000);
@@ -514,25 +514,28 @@ var game = {
         } 
         return i; 
     },
-    timekjinfo: function() {
+    kjinfo: function() {
     	var kjtimer=null;
         kjtimer=setInterval(function(){
         	//默认期号
             $.post('/index.php/game/getkjinfo/'+game.global.cid,function(data){
                 if(!data.code){
-                    $(".gameo_qi").text(data.data.actionNo.actionNo);
-                    $(".gameo_qiall").text(data.data.num);
-                    game.allCont.actionNo = data.data.actionNo.actionNo;
-                    //倒计时
-                    game.countdown(data.data.actionNo.difftime);
-                    game.global.gametimer = null;
                     if(data.data.kjNo){
                         console.log(111);
                         clearInterval(game.global.gametimer);
                         $(".gameo_num").html(data.data.kjNo);
+                        game.is_false = false;
                         clearInterval(kjtimer);
                     }else{
+                    	if(!game.is_false){
+                            game.global.gametimer =setInterval(function(){
+                                for(var i=0;i<$(".gameo_num span").length;i++){
+                                    $(".gameo_num span").eq(i).text(game.randomNum())
+                                } 
+                            },50)
+                            game.is_false = true;
 
+                        }
                         console.log(222);
                     }
                 }else{
@@ -543,10 +546,10 @@ var game = {
             
         },1000);
     },
-    kjinfo: function(i) {
+    qhinfo: function(i) {
     	
     	//默认期号
-        $.post('/index.php/game/getkjinfo/'+game.global.cid,function(data){
+        $.post('/index.php/game/getqhinfo/'+game.global.cid,function(data){
             if(!data.code){
                 $(".gameo_qi").text(data.data.actionNo.actionNo);
                 $(".gameo_qiall").text(data.data.num);
@@ -555,17 +558,19 @@ var game = {
                 game.countdown(data.data.actionNo.difftime);
                 game.global.gametimer = null;
                 if(!data.data.kjNo){
+                    
                     if(!game.is_false){
                         game.global.gametimer =setInterval(function(){
-                                                    for(var i=0;i<$(".gameo_num span").length;i++){
-                                                        $(".gameo_num span").eq(i).text(game.randomNum())
-                                                    } 
-                                                },50)
+                            for(var i=0;i<$(".gameo_num span").length;i++){
+                                $(".gameo_num span").eq(i).text(game.randomNum())
+                            } 
+                        },50)
+                        game.kjinfo();
                         game.is_false = true;
 
                     }
                 }else{ 
-                	//clearInterval(game.global.gametimer);
+                	
                     $(".gameo_num").html(data.data.kjNo);
                 }
             }else{

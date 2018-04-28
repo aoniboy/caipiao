@@ -163,6 +163,20 @@ class Game extends WebLoginBase{
 	    $lastNo=$this->getGameLastNo($this->type);
 	    $kjHao=$this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
 	    if($kjHao) $kjHao=explode(',', $kjHao);
+	    $tnumber = '';		 	    
+	    foreach($kjHao as $k=>$v) {
+    	        $tnumber .= "<span>$v</span>";
+    	}
+	        
+	    $data['kjNo'] = $tnumber;
+	    $this->outputData(0,$data);
+	}
+	
+	public final function getQhinfo($type) {
+	    $this->type = intval($type);
+	    $lastNo=$this->getGameLastNo($this->type);
+	    $kjHao=$this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
+	    if($kjHao) $kjHao=explode(',', $kjHao);
 	    $actionNo=$this->getGameNo($this->type);
 	    $actionNo['difftime'] = strtotime($actionNo['actionTime']) -time();
 	    $actionNo['diffminute'] = intval($actionNo['difftime']/60);
@@ -174,14 +188,14 @@ class Game extends WebLoginBase{
 	    $data['name'] = $this->types[$type]['title'];
 	    $data['actionNo'] = $actionNo;
 	    $data['lastNo'] = $lastNo;
-	    $tnumber = '';		 	    
+	    $tnumber = '';
 	    foreach($kjHao as $k=>$v) {
-    	        $tnumber .= "<span>$v</span>";
-    	}
-	        
+	        $tnumber .= "<span>$v</span>";
+	    }
+	     
 	    $data['kjNo'] = $tnumber;
 	    $data['num'] = $types[$this->type]['num'];
-	    
+	     
 	    $this->outputData(0,$data);
 	}
 	

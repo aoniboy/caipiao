@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>首页</title>
+    <title>会员中心</title>
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
     <script src="/wjinc/default/js/jquery.min.js"></script>
@@ -75,24 +75,7 @@
         </li>
 
     </ul>    
-    <div class="footer">
-        <a class="active" href="">
-            <div class="iconfont icon-home"></div>
-            <p>首页</p>
-        </a>
-        <a href="">
-            <div class="iconfont icon-qian"></div>
-            <p>游戏</p>
-        </a>
-        <a href="">
-            <div class="iconfont icon-jiangbei"></div>
-            <p>开奖</p>
-        </a>
-        <a href="">
-            <div class="iconfont icon-icon_gerenzhongxin"></div>
-            <p>账户</p>
-        </a>
-    </div>
+    <?php $this->display('newinc_footer.php'); ?>
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
