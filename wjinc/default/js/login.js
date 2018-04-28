@@ -14,7 +14,7 @@ var login = {
         }
     },
     login: function(){
-        $(".login_btn1").on('touchend', function(){
+        $(".login_btn1").on('click', function(){
             if($(".login_name").val() ==""){
                 $(".login_name").siblings('.error').show();
                 return ;

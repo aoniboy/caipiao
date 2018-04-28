@@ -244,7 +244,7 @@ var game = {
             $(".game_tzlist table").html('');
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
-            // $(".dan_text").text('');
+            $(".dan_text").text('');
         })
         //确认是否投注
         $(".gameo_btns2").on('touchend',function(){
@@ -296,6 +296,7 @@ var game = {
             $(".game_tzlist table").html('');
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
+            $(".dan_text").text('');
         })
         $(".hint_btn3").on('touchend', function(){
             $(".hint_pop1").hide();
@@ -310,7 +311,6 @@ var game = {
 	                	game.allCont.actionNo = data.data.actionNo.actionNo;
 	                	game.allCont.kjTime = data.data.actionNo.actionTime;
 	                	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
-	                		console.log(res)
 	                        if(!res.code){
 	                            game.getOrder();
 	                            $(".hint_pop .hint_title").text('系统提示');
