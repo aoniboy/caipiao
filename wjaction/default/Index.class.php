@@ -29,12 +29,6 @@ class Index extends WebLoginBase{
 	    $this->index = 'active';
 		$this->display('newindex.php');
 	}
-	public final function more(){
-	    $this->display('index.php');
-	}
-	public final function index1(){		
-		$this->display('index.php');
-	}
 	public final function znz($type=null, $groupId=null, $played=null){
 		if($type) $this->type=intval($type);
 		if($groupId) $this->groupId=intval($groupId);
@@ -64,6 +58,7 @@ class Index extends WebLoginBase{
 			$this->display('index/game-played/un-open.php');
 		}
 	}
+	
 	public final function playedType($type,$playedId){
 	    $sql="select type from {$this->prename}type where id=? and enable = 1 order by sort";
 	    $data=$this->getRow($sql, $type);
@@ -72,14 +67,14 @@ class Index extends WebLoginBase{
 	    $data=$this->getRows($sql, $data['type']);
 	    $result = [];
 	    foreach($data as $key=>$val) {
-	        $sql="select id,name,groupId,numinfo from {$this->prename}played where  groupId= ? and enable = 1";
+	        $sql="select id,name,groupId,numinfo,simpleInfo from {$this->prename}played where  groupId= ? and enable = 1";
 	        $tmp=$this->getRows($sql, $val['id']);
 	        foreach($tmp as $k=>$v) {
 	            $result[] = $v;
 	        }
 	    }
 	     
-	     
+	    
 	    foreach ($result as $key=>$val) {
 	        $result[$key]['position'] = explode(',',$val['numinfo']);
 	    }
@@ -188,6 +183,14 @@ class Index extends WebLoginBase{
 	public final function getHistoryDataLeft($type){
 		$this->type=intval($type);
 		$this->display('index/inc_data_history_left.php');
+	}
+	
+	public final function checkLogin() {
+	    if($user=unserialize($_SESSION[$this->memberSessionName])) {
+	        $this->outputData(0,0);
+	    }else{
+	        $this->outputData(0,1);
+	    }
 	}
 
 }

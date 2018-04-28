@@ -1,15 +1,16 @@
 <?php
 include_once 'Bet.class.php';
 class Game extends WebLoginBase{
-    //验证是否开始投注
+    
+    //验证是否可以投注
 	public final function checkBuy(){
 		$actionNo="";
 		if($this->settings['switchBuy']==0){
 			$actionNo['flag']=1;
 		}
-		echo json_encode($actionNo);
-		}
-	//{{{ 投注
+		$this->outputData(0,$actionNo);
+	}
+	
 	public final function postCode(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['SERVER_NAME']; //本站域名
@@ -157,8 +158,22 @@ class Game extends WebLoginBase{
 			throw $e;
 		}
 	}
-	//}}}
+	
 	public final function getKJinfo($type) {
+	    $this->type = intval($type);
+	    $lastNo=$this->getGameLastNo($this->type);
+	    $kjHao=$this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
+	    if($kjHao) $kjHao=explode(',', $kjHao);
+	    $tnumber = '';		 	    
+	    foreach($kjHao as $k=>$v) {
+    	        $tnumber .= "<span>$v</span>";
+    	}
+	        
+	    $data['kjNo'] = $tnumber;
+	    $this->outputData(0,$data);
+	}
+	
+	public final function getQhinfo($type) {
 	    $this->type = intval($type);
 	    $lastNo=$this->getGameLastNo($this->type);
 	    $kjHao=$this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
@@ -174,14 +189,14 @@ class Game extends WebLoginBase{
 	    $data['name'] = $this->types[$type]['title'];
 	    $data['actionNo'] = $actionNo;
 	    $data['lastNo'] = $lastNo;
-	    $tnumber = '';		 	    
+	    $tnumber = '';
 	    foreach($kjHao as $k=>$v) {
-    	        $tnumber .= "<span>$v</span>";
-    	}
-	        
+	        $tnumber .= "<span>$v</span>";
+	    }
+	     
 	    $data['kjNo'] = $tnumber;
 	    $data['num'] = $types[$this->type]['num'];
-	    
+	     
 	    $this->outputData(0,$data);
 	}
 	
@@ -302,7 +317,7 @@ class Game extends WebLoginBase{
 		
 	}
 	/**
-	 * {{{ ajax撤单
+	 *  ajax撤单
 	 */
 	public final function deleteCode($id){
 		$id=intval($id);

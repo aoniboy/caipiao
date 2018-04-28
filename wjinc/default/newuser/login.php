@@ -30,11 +30,13 @@
         <div class="login_btns">
             <a class="login_btn fff mbg login_btn1 tc" href="javascript:;" action="/index.php/user/loginedto" method="post" onajax="userBeforeLoginto" enter="true" call="userLoginto" target="ajax">登录</a>
         </div>
-        <div class="tc login_ques f24">如有任何疑问请<a href="">联系客服</a></div>
+        <div class="tc login_ques kf f24">如有任何疑问请<a href="javascript:;">联系客服</a></div>
+        <input id="kefu" type="hidden" value="<?=$this->settings['kefuGG']?>">
     </div>
 </div>
 
     <script src="/wjinc/default/js/login.js"></script>
+    <script src="/wjinc/default/js/common.js"></script>
 
 </body>
 </html>

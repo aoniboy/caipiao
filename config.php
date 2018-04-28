@@ -3,7 +3,7 @@ require_once('sqlin.php');
 $conf['debug']['level']=5;
 
 /*		数据库配置		*/
-$conf['db']['dsn']='mysql:host=47.52.228.144;dbname=hy70;charset=utf8';
+$conf['db']['dsn']='mysql:host=47.52.228.144;dbname=hytest;charset=utf8';
 $dbname='by';
 $dbhost='localhost';
 $conf['db']['user']='root';

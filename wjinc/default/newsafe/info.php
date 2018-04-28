@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>首页</title>
+    <title>会员中心</title>
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
     <script src="/wjinc/default/js/jquery.min.js"></script>
@@ -15,7 +15,7 @@
         <img class="my_tx" src="/wjinc/default/images/tx.jpg">
         <div class="tc fff f32 my_name">coco</div>
         <div class="my_toppos">
-            <span class="iconfont icon-kefu f30 fff"></span>
+            <span class="iconfont icon-kefu kf f30 fff"></span>
             <span class="iconfont icon-shezhi f34 fff"></span>
         </div>
         <div class="flex fff my_toptitle">
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="flex tc my_titl">
-        <a href="" class="fx f32"><i class="iconfont icon-qiapian my_titl_icon1 f34"></i> 充值</a>
+        <a href="javascript:;" class="fx f32 kf"><i class="iconfont  icon-qiapian my_titl_icon1 f34"></i> 充值</a>
         <a href="" class="fx f32"><i class="iconfont icon-qian my_titl_icon2 f34"></i> 提现</a>
     </div>
     <div class="my_line"></div>
@@ -75,24 +75,7 @@
         </li>
 
     </ul>    
-    <div class="footer">
-        <a class="active" href="">
-            <div class="iconfont icon-home"></div>
-            <p>首页</p>
-        </a>
-        <a href="">
-            <div class="iconfont icon-qian"></div>
-            <p>游戏</p>
-        </a>
-        <a href="">
-            <div class="iconfont icon-jiangbei"></div>
-            <p>开奖</p>
-        </a>
-        <a href="">
-            <div class="iconfont icon-icon_gerenzhongxin"></div>
-            <p>账户</p>
-        </a>
-    </div>
+    <?php $this->display('newinc_footer.php'); ?>
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>

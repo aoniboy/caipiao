@@ -16,4 +16,5 @@
         <p>账户</p>
     </a>
 </div>
+<input id="kefu" type="hidden" value="<?=$this->settings['kefuGG']?>">
 

@@ -42,7 +42,7 @@
 	<?php $this->display('newinc_footer.php'); ?>
 </div>
 <script src="/wjinc/default/js/index_home.js"></script>
-
+<script src="/wjinc/default/js/common.js"></script>
 </body>
 </html>
 
