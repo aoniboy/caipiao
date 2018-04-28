@@ -282,17 +282,10 @@ var game = {
             $(".game_tzlist table").html('');
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
-            window.location.reload();
         })
         $(".hint_btn3").on('touchend', function(){
             $(".hint_pop1").hide();
-            game.code = [];
-            game.allCont.all_stake =0;
-            game.allCont.all_money =0;
-            $(".game_tzlist table").html('');
-            $(".all_money").text(game.allCont.all_money.toFixed(2));
-            $(".all_stake").text(game.allCont.all_stake);
-
+            
             
         })
         //提交
@@ -536,7 +529,6 @@ var game = {
                             game.is_false = true;
 
                         }
-                        console.log(222);
                     }
                 }else{
                     $(".hint_pop .hint_cont").text(data.msg);

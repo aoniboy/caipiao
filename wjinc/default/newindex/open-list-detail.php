@@ -30,17 +30,7 @@
 </div>
 <script>
 var type = '<?=$this->type?>'
-    // $(document).ready(function (){  
-    //     var nScrollHight = 0;  
-    //     var nScrollTop = 0;   
-    //     var nDivHight = $(".wrap_box").height();  
-    //     $('.wrap_box').scroll(function(){  
-    //     nScrollHight = $(this)[0].scrollHeight;  
-    //     nScrollTop = $(this)[0].scrollTop;  
-    //     if(nScrollTop + nDivHight >= nScrollHight)  
-    //     alert("滚动条到底部了");  
-    //     });  
-    // });  
+    
     var page = 10;
     var is_false =false;
     $(window).scroll(function () {
@@ -50,7 +40,6 @@ var type = '<?=$this->type?>'
         if(windowHeight + scrollTop >= scrollHeight){
             $.post('/index.php/index/getOpenHistoryData/'+type+'/'+page, function(res){
                 var list = res.data.result;
-                console.log(list);
                 if(list.length>0){
                     page += 10;
          

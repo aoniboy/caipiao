@@ -2,10 +2,6 @@ var login = {
     init: function(){
         this.bindEvent();
         this.login();
-        this.kf();
-    },
-    bindEvent: function(){
-        $(".w_heiht").height($(window).height());
     },
     logindo:function(err, data) {
     	if(err){
@@ -24,8 +20,6 @@ var login = {
 	        var newWin = window.open(url,window, winOption);
 	        return false;
     	});
-
-
     },
     login: function(){
         $(".login_btn1").on('touchend', function(){
@@ -40,7 +34,6 @@ var login = {
             $this		= $(this),
             self		= this,            
             call		= login.logindo;
-			console.log(call)
 	        
 	        $.ajax({
 	            url:$this.attr('action'),
@@ -55,7 +48,6 @@ var login = {
 	            },
 	            success:function(data, textStatus, xhr, headers){
 	                var errorMessage=xhr.getResponseHeader('X-Error-Message');
-	                console.log(errorMessage)
 	                if(errorMessage){
 	                    call.call(self, decodeURIComponent(errorMessage), data);
 	                }else{

@@ -126,7 +126,8 @@
                                 case 14:
                                     echo "幸运300秒";
                                     break;
-
+                                default:
+                                    break;
 
                             }
                             ?></div>
@@ -139,6 +140,7 @@
 </div>
 
 <script src="/wjinc/default/js/index_home.js"></script>
+<script src="/wjinc/default/js/common.js"></script>
 
 </body>
 </html>

@@ -1,11 +1,7 @@
 var index = {
     init: function(){
-        this.bindEvent();
         this.loopwin();
         this.opengame();
-    },
-    bindEvent: function(){
-        $(".w_heiht").height($(window).height());
     },
     opengame:function(){
     	$('.alink').on('click',function(){
