@@ -7,7 +7,7 @@ class Safe extends WebLoginBase{
 	 * 用户信息页面
 	 */
 	public final function info(){
-		$this->display('safe/info.php');
+		$this->display('newsafe/info.php');
 	}
 	/**
 	 * 密码管理
