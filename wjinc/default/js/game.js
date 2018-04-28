@@ -519,16 +519,10 @@ var game = {
                     //倒计时
                     game.countdown(data.data.actionNo.difftime);
                     game.global.gametimer = null
-                    if(!data.data.kjNo){
-                        if(!game.is_false){
-                        }
-                        game.is_false = true;
-                    }else{ 
-                    	//clearInterval(kjtimer);
-                    	clearInterval(game.global.gametimer);
+                    if(data.data.kjNo){
+                        clearInterval(game.global.gametimer);
                         $(".gameo_num").html(data.data.kjNo);
                     }
-
                 }else{
                     $(".hint_pop .hint_cont").text(data.msg);
                     $(".hint_pop").show();
@@ -555,9 +549,10 @@ var game = {
                                                         $(".gameo_num span").eq(i).text(game.randomNum())
                                                     } 
                                                 },50)
+                        game.is_false = true;
 
                     }
-                    game.is_false = true;
+                    
                     game.timekjinfo();
 
                 }else{ 
