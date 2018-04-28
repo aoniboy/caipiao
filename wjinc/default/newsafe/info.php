@@ -15,7 +15,7 @@
         <img class="my_tx" src="/wjinc/default/images/tx.jpg">
         <div class="tc fff f32 my_name">coco</div>
         <div class="my_toppos">
-            <span class="iconfont icon-kefu f30 fff"></span>
+            <span class="iconfont icon-kefu kf f30 fff"></span>
             <span class="iconfont icon-shezhi f34 fff"></span>
         </div>
         <div class="flex fff my_toptitle">
@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="flex tc my_titl">
-        <a href="" class="fx f32"><i class="iconfont icon-qiapian my_titl_icon1 f34"></i> 充值</a>
+        <a href="javascript:;" class="fx f32 kf"><i class="iconfont  icon-qiapian my_titl_icon1 f34"></i> 充值</a>
         <a href="" class="fx f32"><i class="iconfont icon-qian my_titl_icon2 f34"></i> 提现</a>
     </div>
     <div class="my_line"></div>

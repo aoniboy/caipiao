@@ -34,7 +34,9 @@
         </div>
     </div>
     <div>
-        <p class="tc f24 gameo_stitle">距 <span class="gameo_qi"></span> 期投注截止还有 <span class="mcol gameo_minute">00</span> 分 <span class="mcol gameo_second">00</span> 秒</p>
+        <p class="tc f24 gameo_stitle">距
+         <span class="gameo_qi"></span> 期投注截止还有 
+         <span class="mcol gameo_minute">00</span> 分 <span class="mcol gameo_second">00</span> 秒</p>
         <ul class="gameo_cont">
             <li class="game_stakes rel" >
                 <i>0</i>
@@ -114,14 +116,7 @@
     <div class="select_pop hide">
         <div class="gameo_mask"></div>
         <ul class="select_title rel clearfix">
-            <li id="1"><div class="tover">三星通选-直选复式</div></li>
-            <li id="1"><div class='tover'>三星直选-后三</div></li>
-            <li id="1"><div class='tover'>三星组三-后三</div></li>
-            <li id="1"><div class='tover'>三星通选-直选复式</div></li>
-            <li id="1"><div class='tover'>三星通选-直选复式</div></li>
-            <li id="1"><div class='tover'>三星直选-后三</div></li>
-            <li id="1"><div class='tover'>三星组三-后三</div></li>
-            <li id="1"><div class='tover'>三星通选-直选复式</div></li>
+            
         </ul>
     </div>
     <div class="hint_pop hide">
@@ -152,7 +147,10 @@
             <span id="fandian-value" class="fdmoney">
             <?=$maxPl?>
             /0%</span>
-          </div>
+    </div>
+    <?php if($this->settings['switchDLBuy']==0){ //代理不能买单?>
+    <input name="wjdl" type="hidden" value="<?=$this->ifs($this->user['type'],1)?>" id="wjdl" />
+    <?php } ?>
     <div class="tz_pop hide">
         <div class="gameo_mask"></div>
         <div class="tz_con">

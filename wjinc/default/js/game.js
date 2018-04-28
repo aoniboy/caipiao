@@ -129,6 +129,12 @@ var game = {
             if(!game.currentCount()){
                return false; 
             }else{
+            	var flag=$.parseJSON($.ajax('/index.php/game/checkBuy',{async:false}).responseText);
+            	if(flag.data){
+            		$(".hint_pop .hint_cont").text('暂停销售');
+                    $(".hint_pop").show();
+            		return false;
+            	}
                 var list ={};
                 var num = parseInt($(this).attr('data-num'));
                 var numarr = [];
@@ -242,6 +248,14 @@ var game = {
         })
         //确认是否投注
         $(".gameo_btns2").on('touchend',function(){
+        	if($('#wjdl'))
+        	{
+        		if(parseInt($('#wjdl').val())>0){
+        			$(".hint_pop .hint_cont").text('代理不能买单');
+                    $(".hint_pop").show();
+        			return false;
+        		}
+        	}
             if($(".game_tzlist table tr").length>0){
                 $(".tz_pop").show();
 
@@ -285,8 +299,6 @@ var game = {
         })
         $(".hint_btn3").on('touchend', function(){
             $(".hint_pop1").hide();
-            
-            
         })
         //提交
         $(".tz_btn1").on('touchend', function(){
@@ -294,19 +306,25 @@ var game = {
             $(".tz_pop").hide();
             $.post('/index.php/game/getNo/'+cid,function(data){
                 if(!data.code){
-                	game.allCont.actionNo = data.data.actionNo.actionNo;
-                	game.allCont.kjTime = data.data.actionNo.actionTime;
-                	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
-                        if(!res.code){
-                            game.getOrder();
-                            $(".hint_pop .hint_title").text('系统提示');
-                            $(".hint_pop .hint_cont").text(data.msg);
-                            $(".hint_pop").show();
-                        }else{
-                    		$(".hint_pop .hint_cont").text(data.msg);
-                            $(".hint_pop").show();
-                    	}
-                    },'json' );
+                	if(game.allCont.actionNo == data.data.actionNo.actionNo) {
+	                	game.allCont.actionNo = data.data.actionNo.actionNo;
+	                	game.allCont.kjTime = data.data.actionNo.actionTime;
+	                	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
+	                		console.log(res)
+	                        if(!res.code){
+	                            game.getOrder();
+	                            $(".hint_pop .hint_title").text('系统提示');
+	                            $(".hint_pop .hint_cont").text(res.msg);
+	                            $(".hint_pop").show();
+	                        }else{
+	                    		$(".hint_pop .hint_cont").text(res.msg);
+	                            $(".hint_pop").show();
+	                    	}
+	                    },'json' );
+                	}else{
+                		$(".hint_pop .hint_cont").text("你投注的期数："+game.allCont.actionNo+"已经停止销售!");
+                        $(".hint_pop").show();
+                	}
             	}else{
             		$(".hint_pop .hint_cont").text(data.msg);
                     $(".hint_pop").show();
@@ -496,6 +514,8 @@ var game = {
                 $(".hint_pop1 .hint_titles").text('第'+ game.allCont.actionNo+'期投注已截止!');
                 $(".hint_pop1 .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
                 $(".hint_pop1").show();
+                $(".hint_pop").hide();
+                $(".tz_pop").hide();
                 game.qhinfo();
             }
             times--;

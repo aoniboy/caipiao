@@ -1,15 +1,16 @@
 <?php
 include_once 'Bet.class.php';
 class Game extends WebLoginBase{
-    //验证是否开始投注
+    
+    //验证是否可以投注
 	public final function checkBuy(){
 		$actionNo="";
 		if($this->settings['switchBuy']==0){
 			$actionNo['flag']=1;
 		}
-		echo json_encode($actionNo);
-		}
-	//{{{ 投注
+		$this->outputData(0,$actionNo);
+	}
+	
 	public final function postCode(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['SERVER_NAME']; //本站域名
@@ -157,7 +158,7 @@ class Game extends WebLoginBase{
 			throw $e;
 		}
 	}
-	//}}}
+	
 	public final function getKJinfo($type) {
 	    $this->type = intval($type);
 	    $lastNo=$this->getGameLastNo($this->type);
@@ -316,7 +317,7 @@ class Game extends WebLoginBase{
 		
 	}
 	/**
-	 * {{{ ajax撤单
+	 *  ajax撤单
 	 */
 	public final function deleteCode($id){
 		$id=intval($id);
