@@ -35,7 +35,7 @@
             </div>
         </form>
         <div class="clearfix flex dlm_btns tc fff">
-            <a class="dlm_link dlm_btn fx fff" href="">添加会员</a>
+            <a class="dlm_link dlm_btn fx fff" href="/index.php/team/addMember">添加会员</a>
             <div class="dlm_btn fx dlm_btn_js">查询</div>
             
         </div>

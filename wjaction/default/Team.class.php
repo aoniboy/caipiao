@@ -95,7 +95,7 @@ class Team extends WebLoginBase{
 	
 	public final function addMember(){
 		
-		$this->display('team/add-member.php');
+		$this->display('newsafe/dl_member_add.php');
 	}
 	public final function userUpdate($id){
 		$this->display('team/update-menber.php', 0, intval($id));
@@ -115,7 +115,7 @@ class Team extends WebLoginBase{
 		$this->display('team/cash-record-list.php');
 	}
 	public final function addLink(){
-		$this->display('team/add-link.php');
+		$this->display('newsafe/dl_tuiguang_add.php');
 	}
 	public final function linkDelete($lid){
 		$this->display('team/delete-link.php',0,intval($lid));

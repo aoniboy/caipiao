@@ -42,6 +42,5 @@
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
-<script src="/wjinc/default/js/my.js"></script>
 </body>
 </html>
