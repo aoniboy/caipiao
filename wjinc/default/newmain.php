@@ -183,6 +183,58 @@
         </div>
         </div>
     </div>
+    <style>
+
+    </style>
+    <div class="zhui_pop">
+        <div class="gameo_mask"></div>
+        <div class="zhui-hao-modal">
+            <div>
+                <select>
+                    <option>最近10期</option>
+                </select>
+                <label class="fff"><input type="checkbox" checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>
+                　追号期数：<span class="">1</span>　总金额：<span class="">2</span>元
+            </div>
+            <div class="" style="display: block; width: auto; min-height: 0px; height: 177.28px;" scrolltop="0" scrollleft="0">
+            <table width="100%">
+                <thead class="tr-top">
+                    <tr>
+                        <td><input type="checkbox">
+                        </td><td>期号</td>
+                        <td>倍数</td>
+                        <td>金额</td>
+                        <td>开奖时间</td>
+                    </tr>
+                </thead>
+                <tbody class="tr-cont">
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>20180501-099</td>
+                        <td><input type="text" class="beishu" value="1"></td>
+                        <td><span class="amount">24</span>元</td>
+                        <td>2018-05-01 22:15:00</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>20180501-100</td>
+                        <td><input type="text" class="beishu" value="1"></td>
+                        <td><span class="amount">68</span>元</td>
+                        <td>2018-05-01 22:20:00</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+                <div class="ui-dialog-buttonset">
+                    <button type="button">全选</button>
+                    <button type="button">反选</button>
+                    <button type="button">确定追号</button>
+                    <button type="button">取消追号</button>
+                </div>
+            </div>
+        </div>
+    </div>
 	<?php $this->display('newinc_footer.php'); ?>
 </div>
 <input type="hidden" class="playedtype" value="<?=$this->type?>"/>
@@ -191,6 +243,8 @@
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript">
 $( "#slider" ).slider();
+
+
 </script>
 </body>
 </html>
