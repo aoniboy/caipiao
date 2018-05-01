@@ -104,7 +104,7 @@ class Team extends WebLoginBase{
 		$this->display('team/menber-recharge.php', 0, intval($id));
 	}
 	public final function memberList(){
-		$this->display('team/member-list.php');
+		$this->display('newsafe/dl_member.php');
 	}
 	
 	public final function cashRecord(){
@@ -121,7 +121,7 @@ class Team extends WebLoginBase{
 		$this->display('team/delete-link.php',0,intval($lid));
 	}
 	public final function linkList(){
-		$this->display('team/link-list.php');
+		$this->display('newsafe/tuiguang.php');
 	}
 	public final function getLinkCode($id){
 		$this->display('team/get-linkcode.php', 0, intval($id), $this->user['uid'], $this->urlPasswordKey);

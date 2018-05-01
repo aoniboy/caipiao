@@ -54,26 +54,41 @@
     <div class="my_line"></div>
     <ul class="my_list1 my_list">
         <li>
-            <a href="" class="clearfix">
+            <a href="/index.php/team/memberList" class="clearfix">
                 <i class="iconfont icon-huiyuanguanli my_col4"></i> <span>会员管理<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
         <li>
-            <a href="" class="clearfix">
-                <i class="iconfont icon-yaoqinghaoyou my_col5"></i> <span>邀请注册<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+            <a href="/index.php/team/gameRecord" class="clearfix">
+                <i class="iconfont icon-huiyuanguanli my_col4"></i> <span>游戏记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
         <li>
-            <a href="" class="clearfix">
-                <i class="iconfont icon-tuandui my_col6"></i> <span>团队帐变<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+            <a href="/index.php/team/report" class="clearfix">
+                <i class="iconfont icon-huiyuanguanli my_col4"></i> <span>盈亏报表<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
         <li>
-            <a href="" class="clearfix">
-                <i class="iconfont icon-045zhuanqulirun my_col7"></i> <span>团队盈亏<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+            <a href="/index.php/team/coinall" class="clearfix">
+                <i class="iconfont icon-045zhuanqulirun my_col4"></i> <span>团队统计<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/index.php/team/coin" class="clearfix">
+                <i class="iconfont icon-tuandui my_col4"></i> <span>帐变记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
 
+        <li>
+            <a href="/index.php/team/cashRecord" class="clearfix">
+                <i class="iconfont icon-yaoqinghaoyou my_col5"></i> <span>提现记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/index.php/team/linkList" class="clearfix">
+                <i class="iconfont icon-tuandui my_col6"></i> <span>推广链接<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+            </a>
+        </li>
     </ul>    
     <?php $this->display('newinc_footer.php'); ?>
 </div>

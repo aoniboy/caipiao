@@ -6,7 +6,7 @@ class Record extends WebLoginBase{
 		$this->getTypes();
 		$this->getPlayeds();
 		$this->action='searchGameRecord';
-		$this->display('newself/my_game.php');
+		$this->display('newsafe/my_game.php');
 	}
 
 	public final function searchGameRecord(){
