@@ -13,14 +13,14 @@
 <div class="wrap_box wrap_top">
     <div class="my_top rel">
         <img class="my_tx" src="/wjinc/default/images/tx.jpg">
-        <div class="tc fff f32 my_name">coco</div>
+        <div class="tc fff f32 my_name"><?=$this->user['username']?></div>
         <div class="my_toppos">
             <span class="iconfont icon-kefu kf f30 fff"></span>
             <span class="iconfont icon-shezhi f34 fff"></span>
         </div>
         <div class="flex fff my_toptitle">
             <div class="fx tc">
-                <div class="f34">0.00</div>
+                <div class="f34"><?=$this->user['coin']?></div>
                 <div>可用余额</div>
             </div>
             <div class="fx tc">
