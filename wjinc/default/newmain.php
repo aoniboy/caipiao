@@ -225,7 +225,7 @@
             </table>
             </div>
             <div class="">
-                <div class="zhui_btn">
+                <div class="zhui_btn tc">
                     <button type="button">全选</button>
                     <button type="button">反选</button>
                     <button type="button">确定追号</button>
