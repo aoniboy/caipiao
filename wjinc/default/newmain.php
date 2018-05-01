@@ -37,6 +37,8 @@
         <p class="tc f24 gameo_stitle">距
          <span class="gameo_qi"></span> 期投注截止还有 
          <span class="mcol gameo_minute">00</span> 分 <span class="mcol gameo_second">00</span> 秒</p>
+        
+        <p class="tc f22 gameo_tips"></p>
         <ul class="gameo_cont">
             <li class="game_stakes rel" >
                 <i>0</i>

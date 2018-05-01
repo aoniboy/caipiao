@@ -18,7 +18,12 @@ var game = {
     data:[],
     global:{
     	cid:0,
-    	gametimer:null
+    	gametimer:null,
+        datainfo:{
+            num:0,
+            bonus:0,
+            fun:''
+        }
     },
     bindEvent: function(){
         //默认数据
@@ -32,7 +37,12 @@ var game = {
             game.allCont.playid = game.data[0].id;
             var shtml ='';
             for(var i =0;i<res.data.length;i++){
-                shtml +='<li id="'+game.data[i].id+'" data-groupid="'+game.data[i].groupid+'"><div class="tover">'+game.data[i].name+'</div></li>';
+                shtml +='<li data-num="'+game.data[i].selectNum+'" data-bonusProp="'+game.data[i].bonusProp+'" data-bonusPropBase="'+game.data[i].bonusPropBase+'" data-desc="'+game.data[i].simpleInfo+'" data-fun="'+game.data[i].betCountFun+'" id="'+game.data[i].id+'" data-groupid="'+game.data[i].groupId+'"><div class="tover">'+game.data[i].name+'</div></li>';
+                if(i ===0) {
+                    game.global.datainfo.num = game.data[i].selectNum;
+                    game.global.datainfo.fun = game.data[i].betCountFun;
+                    game.global.datainfo.bonus = game.data[i].bonusPropBase;
+                }
             }
             game.renderHtml(game.allCont.playid)
             $(".select_title").html(shtml)
@@ -50,10 +60,15 @@ var game = {
         $(document).on('touchend', '.select_title li', function(){
             game.allCont.playid = $(this).attr('id');
             game.allCont.groupid = $(this).attr('data-groupid');
+            game.global.datainfo.num = $(this).attr('data-num');
+            game.global.datainfo.fun = $(this).attr('data-fun');
+            game.global.datainfo.bonus = $(this).attr('data-bonuspropbase');
             $(".gameo_sel").text($(this).find('div').text());
             $(".select_pop").hide();
             game.renderHtml(game.allCont.playid);
+            return false;
         })
+        
         //清单双大小全
         var dan_len,dan_money,dan_stake;
     	$(document).on('click', '.game_stakes > span', function(){
@@ -89,7 +104,7 @@ var game = {
   
         //数字选中 
     	$(document).on('click','.game_stakes > i', function(){
-    		if($(this).hasClass("active")){
+    	    if($(this).hasClass("active")){
                 $(this).removeClass("active");
             }else{
                 $(this).addClass("active");
@@ -131,9 +146,9 @@ var game = {
             }else{
             	var flag=$.parseJSON($.ajax('/index.php/game/checkBuy',{async:false}).responseText);
             	if(flag.data){
-            		$(".hint_pop .hint_cont").text('暂停销售');
+                    $(".hint_pop .hint_cont").text('暂停销售');
                     $(".hint_pop").show();
-            		return false;
+                    return false;
             	}
                 var list ={};
                 var num = parseInt($(this).attr('data-num'));
@@ -143,25 +158,29 @@ var game = {
                 if(game.all_len.length ==1 && game.all_len[0] =='1'){
                     var input_val =$(".gameo_int").val();
                     for(var i =0;i<$(".gameo_int").val().length;i++){
-                        if(i%2 ==0 && html_num){
-                            html_num+=","+input_val[i];
+                    	if(i%2 ==0 && html_num){
+                            html_num+="|"+input_val[i];
                         }else{
-                            html_num+=input_val[i];
+                            html_num+=","+input_val[i];
                         }
-                        numarr = html_num.split(",");
+                        numarr = html_num.split("|");
                         lens = numarr.length;
                     }
+                    html_num = html_num.substring(1, html_num.length); //去掉最前面逗号
                 }else if(game.all_len.length ==1 && game.all_len[0] =='2'){
+
                     var input_val =$(".gameo_int").val();
                     for(var i =0;i<$(".gameo_int").val().length;i++){
                         if(i%3 ==0 && html_num){
-                            html_num+=","+input_val[i];
+                            html_num+="|"+input_val[i];
                         }else{
-                            html_num+=input_val[i];
+                            html_num+=","+input_val[i];
                         }
-                        numarr = html_num.split(",");
+                        numarr = html_num.split("|");
                         lens = numarr.length;
                     }
+                    
+                    html_num = html_num.substring(1, html_num.length); //去掉最前面逗号
                 }else{
                     for(var i=0;i<$(".game_stakes").length;i++){
                         var len =$(".game_stakes").eq(i).find('i.active').length;
@@ -174,15 +193,17 @@ var game = {
                             return;
                         }
                     }
+                    html_num = html_num.substring(0, html_num.length - 1); //去掉最后一个逗号
+                    
                 }
-                html_num = html_num.substring(0, html_num.length - 1); //去掉最后一个逗号
+               
                 var mode =$(".gameo_check.active").data('money');
                 var multiple = $(".gameo_multiple").val();
                 list.fanDian = 0; //不确定
                 list.bonusProp = '1931.00';
                 list.mode =2;
                 list.beiShu =multiple;
-                list.orderId = (new Date()) -2147483647*623; //不确定
+                list.orderId = (new Date()) -2147483647*623; 
                 list.actionData = html_num;
                 list.actionNum = lens;
                 list.weiShu = 0; //不确定；
@@ -215,7 +236,7 @@ var game = {
                 game.allCont.all_stake += parseInt(list.actionNum);
                 $(".all_money").text(game.allCont.all_money.toFixed(2));
                 $(".all_stake").text(game.allCont.all_stake)
-
+                $(".gameo_int").val('');
             };
             
         })
@@ -248,14 +269,14 @@ var game = {
         })
         //确认是否投注
         $(".gameo_btns2").on('touchend',function(){
-        	if($('#wjdl'))
-        	{
-        		if(parseInt($('#wjdl').val())>0){
-        			$(".hint_pop .hint_cont").text('代理不能买单');
-                    $(".hint_pop").show();
-        			return false;
-        		}
-        	}
+            if($('#wjdl'))
+            {
+                    if(parseInt($('#wjdl').val())>0){
+                            $(".hint_pop .hint_cont").text('代理不能买单');
+                $(".hint_pop").show();
+                            return false;
+                    }
+            }
             if($(".game_tzlist table tr").length>0){
                 $(".tz_pop").show();
 
@@ -287,6 +308,7 @@ var game = {
         $(".hint_btn").on('touchend', function(){
             $(".hint_pop .hint_title").text('错误提示');
             $(".hint_pop").hide();
+            return false;
         })
         $(".hint_btn2").on('touchend', function(){
             $(".hint_pop1").hide();
@@ -297,9 +319,11 @@ var game = {
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
             $(".dan_text").text('');
+            return false;
         })
         $(".hint_btn3").on('touchend', function(){
             $(".hint_pop1").hide();
+            return false;
         })
         //提交
         $(".tz_btn1").on('touchend', function(){
@@ -307,28 +331,35 @@ var game = {
             $(".tz_pop").hide();
             $.post('/index.php/game/getNo/'+cid,function(data){
                 if(!data.code){
-                	if(game.allCont.actionNo == data.data.actionNo.actionNo) {
+                	//if(game.allCont.actionNo == data.data.actionNo.actionNo) {
 	                	game.allCont.actionNo = data.data.actionNo.actionNo;
 	                	game.allCont.kjTime = data.data.actionNo.actionTime;
 	                	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
 	                        if(!res.code){
 	                            game.getOrder();
+	                            game.code = [];
+	                            game.allCont.all_stake =0;
+	                            game.allCont.all_money =0;
+	                            $(".game_tzlist table").html('');
+	                            $(".all_money").text(game.allCont.all_money.toFixed(2));
+	                            $(".all_stake").text(game.allCont.all_stake);
 	                            $(".hint_pop .hint_title").text('系统提示');
 	                            $(".hint_pop .hint_cont").text(res.msg);
 	                            $(".hint_pop").show();
 	                        }else{
-	                    		$(".hint_pop .hint_cont").text(res.msg);
+                                    $(".hint_pop .hint_cont").text(res.msg);
 	                            $(".hint_pop").show();
 	                    	}
 	                    },'json' );
-                	}else{
-                		$(".hint_pop .hint_cont").text("你投注的期数："+game.allCont.actionNo+"已经停止销售!");
-                        $(".hint_pop").show();
-                	}
+//                	}else{
+//                            $(".hint_pop .hint_cont").text("你投注的期数："+game.allCont.actionNo+"已经停止销售!");
+//                            $(".hint_pop").show();
+//                	}
             	}else{
-            		$(".hint_pop .hint_cont").text(data.msg);
+            	    $(".hint_pop .hint_cont").text(data.msg);
                     $(".hint_pop").show();
             	}
+                return false;
            
             },'json' );
         })
@@ -361,8 +392,10 @@ var game = {
             if(game.data[i].id == id){
                 game.allCont.groupid = game.data[i].groupId;
                 $(".gameo_sel").text(game.data[i].name)
+                $(".gameo_tips").text("说明："+game.data[i].simpleInfo)
+                
                 narr = game.data[i].position;
-                game.all_len = narr;
+                game.all_len = game.data[i].position;
                 var html =''
                 if(game.all_len.length==1 && game.all_len[0]=='1'){
                     html = '<li><input class="gameo_int" placeholder="输入至少1个两位位数号码组成一注" type="tel"></li>';
@@ -399,7 +432,26 @@ var game = {
         }
     },
     currentCount:function(){
+            window.sscqzh3xfs = function  sscqzh3xfs(){
+//                var code=[], len=1,codeLen=parseInt(this.attr('length')), delimiter=this.attr('delimiter')||"";
+//                if(this.has('.checked').length!=codeLen) throw('请选'+codeLen+'位数字');
+//                this.each(function(i){
+//                        var $code=$('input.code.checked', this);
+//                        if($code.length==0){
+//                                code[i]='-';
+//                        }else{
+//                                len*=$code.length;
+//                                code[i]=[];
+//                                $code.each(function(){
+//                                        code[i].push(this.value);
+//                                });
+//                                code[i]=code[i].join(delimiter);
+//                        }
+//                });
+//                return {actionData:code.join(','), actionNum:len};
+            }
             var lens= 1;
+            console.log(game)
             if(game.all_len.length ==1){
                 //12 输入  34 选择
                 switch(parseInt(game.all_len[0])){
@@ -408,67 +460,36 @@ var game = {
                             $(".dan_text").text('至少1个两位数号码组成一注');
                             lens =0;
                             return false;
-                        }else{
-                            var input_val =$(".gameo_int").val();
-                            var html_num ='';
-                            for(var i =0;i<$(".gameo_int").val().length;i++){
-                                if(i%2 ==0 && html_num){
-                                    html_num+=","+input_val[i];
-                                }else{
-                                    html_num+=input_val[i];
-                                }
-                                var larr  = html_num.split(",");
-                                lens = larr.length;
-                            }
                         }
                         break;
                     case 2:
-                        console.log($(".gameo_int").val(),2222,$(".gameo_int").val().length);
                         if($(".gameo_int").val().length<3 || $(".gameo_int").val().length%3 !=0){
                             $(".dan_text").text('至少1个三位数号码组成一注');
                             lens =0;
                             return false;
-                        }else{
-                            var input_val =$(".gameo_int").val();
-                            var html_num ='';
-                            for(var i =0;i<$(".gameo_int").val().length;i++){
-                                if(i%3 ==0 && html_num){
-                                    html_num+=","+input_val[i];
-                                }else{
-                                    html_num+=input_val[i];
-                                }
-                                var larr  = html_num.split(",");
-                                lens = larr.length;
-                            }
                         }
                         break;
                     case 3:
-                        for(var i=0;i<$(".game_stakes").length;i++){
-                            var len =$(".game_stakes").eq(i).find('i.active').length;
-                            lens*=len;
-                            if(len <2){
-                                $(".dan_text").text('请选2个或2个以上数字');
-                                return false;
-                            }
-                        }
-                        break;
                     case 4:
-                        for(var i=0;i<$(".game_stakes").length;i++){
+                        console.log(game.global)
+                        for(var i=0;i<game.global.datainfo.num;i++){
                             var len =$(".game_stakes").eq(i).find('i.active').length;
                             lens*=len;
-                            if(len <3){
-                                $(".dan_text").text('请选3个或3个以上数字');
+                            if(len ===0){
+                                $(".dan_text").text('请选'+game.global.datainfo.num+'个或'+game.global.datainfo.num+'个以上数字');
                                 return false;
                             }
                         }
                         break;
                 }
             }else{
-                for(var i=0;i<$(".game_stakes").length;i++){
+                console.log(game.global)
+                for(var i=0;i<game.global.datainfo.num;i++){
+                    console.log(i)
                     var len =$(".game_stakes").eq(i).find('i.active').length;
                     lens*=len;
-                    if(len ==0){
-                        $(".dan_text").text('请选3位数字');
+                    if(len ===0){
+                        $(".dan_text").text('请选'+game.global.datainfo.num+'位数字');
                         return false;
                     }
                 } 
@@ -476,12 +497,23 @@ var game = {
 
             if(lens>0){
                 var dan_stake = lens;
+                calcFun =  game.global.datainfo.fun;
+                var data = {actionNum:0,actionData:''};
+                if(calcFun && (calcFun=window[calcFun]) && (typeof calcFun=='function')) {
+                   
+                    calcFun.call(data);
+                   
+                }
+                console.log(data) 
+                
+                
                 var dan_multiple = $(".gameo_multiple").val();
                 var dan_money = $(".gameo_check.active").attr('data-money');
                 var dan_allmoney = (dan_money*lens*dan_multiple).toFixed(2);
                 $(".dan_text").text('共'+dan_stake+'注，金额'+dan_allmoney+'元');
                 return true;
             }
+            
     },
     countdown: function(times){ //倒计时
         var timer=null;
@@ -534,11 +566,11 @@ var game = {
             $.post('/index.php/game/getkjinfo/'+game.global.cid,function(data){
                 if(!data.code){
                     if(data.data.kjNo){
-                        console.log(111);
                         clearInterval(game.global.gametimer);
                         $(".gameo_num").html(data.data.kjNo);
                         game.is_false = false;
                         clearInterval(kjtimer);
+                        game.getOrder();
                     }else{
                     	if(!game.is_false){
                             game.global.gametimer =setInterval(function(){
@@ -581,7 +613,6 @@ var game = {
                         game.is_false = true;
 
                     }
-                    game.timekjinfo();
                 }else{ 
                 	
                     $(".gameo_num").html(data.data.kjNo);
@@ -635,7 +666,31 @@ var game = {
     },
     randomNum: function(){
         return(Math.floor(Math.random()*9))
-    }
+    },
+   
+    //自定义组合函数(就是数学排列组合里的C)  
+    C: function(m,n){  
+        return game.factorial(m,n)/game.factorial(n,n);//就是Cmn(上面是n，下面是m) = Amn(上面是n，下面是m)/Ann(上下都是n)  
+    },  
+    //自定义排列函数(就是数学排列组合里的A)  
+    A:function (m,n){  
+        return game.factorial(m,n);//就是数学里的Amn,上面是n，下面是m  
+    }, 
+  
+  
+    //自定义一个阶乘函数，就是有n个数相乘，从m开始，每个数减1，如factorial(5,4)就是5*(5-1)*(5-2)*(5-3),相乘的数有4个  
+    factorial: function(m,n){  
+        var num = 1;  
+        var count = 0;  
+        for(var i = m;i > 0;i--){  
+            if(count == n){//当循环次数等于指定的相乘个数时，即跳出for循环  
+                break;  
+            }  
+            num = num * i;  
+            count++;  
+        }  
+        return num;  
+    }  
 
 }
 game.init();

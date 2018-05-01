@@ -21,7 +21,7 @@ class Game extends WebLoginBase{
 		$para=$_POST['para'];
 		$amount=0;
 		$fpcount=1;  //飞盘 默认为1
-        if(!ctype_digit($codes[0]['actionNum'])) $this->outputData(1,[],'注数只能为整数');
+                if(!ctype_digit($codes[0]['actionNum'])) $this->outputData(1,[],'注数只能为整数');
 		if(!ctype_digit($codes[0]['beiShu'])) $this->outputData(1,[],'倍数只能为整数');
 		if(!ctype_digit($codes[0]['weiShu'])) $this->outputData(1,[],'位数只能为整数');
 		$this->getSystemSettings();
@@ -120,7 +120,7 @@ class Game extends WebLoginBase{
 	    }
 		// 查询用户可用资金
 		$userAmount=$this->getValue("select coin from {$this->prename}members where uid={$this->user['uid']}");
-		if($userAmount < $amount) $this->outputData(1,[],'您的可用资金不足，是否充值？');
+		if($userAmount < $amount) $this->outputData(1,[],'您的可用资金不足，请充值。');
 
 		// 开始事物处理
 		$this->beginTransaction();
@@ -211,15 +211,6 @@ class Game extends WebLoginBase{
 		$data['actionNo'] = $actionNo;
 		$this->outputData(0,$data);
 		
-	}
-
-	public final function getMaxPl($type,$playId){
-	    $type=intval($type);
-	    $playId = intval($playId);
-	    
-	    $data['maxPl'] = $this->getPl($type, $playId);
-	    $this->outputData(0,$data);
-	
 	}
 	//{{{ 庄内庄投注
 	public final function znzPost($id){
