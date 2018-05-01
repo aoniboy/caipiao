@@ -11,7 +11,7 @@
         <div class="iconfont icon-jiangbei"></div>
         <p>开奖</p>
     </a>
-    <a class="<?=$this->my?>" href="/index.php/safe/info">
+    <a class="<?=$this->my?>" href="/index.php/safe/my">
         <div class="iconfont icon-icon_gerenzhongxin"></div>
         <p>账户</p>
     </a>
