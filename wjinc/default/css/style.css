@@ -7,7 +7,7 @@ h1,h2,h3,h4,h5,h6{font-weight:400;}
 li,ol,ul{list-style:none;}
 em,i{font-style:normal;}
 img,input{vertical-align:middle;}
-input,select,textarea{border:0;border-radius:0;-webkit-tap-highlight-color:transparent;-webkit-appearance:none; font-size:.28rem; font-family:arial,Microsoft Yahei;}
+input,textarea{border:0;border-radius:0;-webkit-tap-highlight-color:transparent;-webkit-appearance:none; font-size:.28rem; font-family:arial,Microsoft Yahei;}
 a,textarea:focus{outline:0;}
 a{color:#333;text-decoration:none;}
 a.current,a:active,a:hover{outline:0;}
@@ -245,3 +245,11 @@ input:focus,select{outline:0;}
 .dlm_top .dl_gametop_zhang{width: 30%;}
 .dl_dglink a{display: block;}
 .dl_dglink{width:1.5rem; margin:0 auto;}
+
+.zhui_pop{ position: fixed;left:50%;height:100%; width:100%;top:50%; transform: translate(-50%,-50%);}
+.zhui_box{ position: fixed;left:50%;top:50%; width:90%; top:50%; transform: translate(-50%,-50%);   background: #fff; padding:.15rem;border-radius: .1rem}
+.zhui_top{ border-bottom: 1px solid #eee; padding:.2rem .1rem;background: #eee }
+.zhui_table{display: block; width: auto; min-height: 0px; height: 4rem; padding:.2rem 0;}
+.zhui_table .beishu{ width:.8rem; }
+.zhuicheck,.zhuicheck1{ -webkit-appearance: checkbox; }
+.zhui_btn button{ background: #eee;  padding:.1rem .2rem; border:none;  }

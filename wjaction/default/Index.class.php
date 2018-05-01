@@ -145,7 +145,7 @@ class Index extends WebLoginBase{
 	    $sql = "select sd.type, sd.time, sd.number, sd.data,st.title from ssc_data sd,ssc_type st where sd.type = {$type} and st.id={$type}  order by sd.id desc  limit {$start},10 ";
 	    $result  = $this->getRows($sql);
 	    foreach($result as $key=>$val) {
-	        $result[$key]['time'] = date("H时:i分",$val['time']);
+	        $result[$key]['time'] = date("Y-m-d H:i",$val['time']);
 	        $data = explode(",", $val['data']);
 	        $tnumber = '';
 	        foreach($data as $k=>$v) {

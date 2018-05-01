@@ -183,24 +183,14 @@
         </div>
         </div>
     </div>
-    <style>
-        .zhui_pop{ position: fixed;left:50%;height:100%; width:100%;top:50%; transform: translate(-50%,-50%);}
-        .zhui_box{ position: fixed;left:50%;top:50%; width:90%; top:50%; transform: translate(-50%,-50%);   background: #fff; padding:.15rem;}
-        .zhui_top{ border-bottom: 1px solid #eee; padding:.2rem .1rem; }
-        .zhui_table{display: block; width: auto; min-height: 0px; height: 4rem; padding:.2rem 0;}
-        .zhui_table .beishu{ width:.8rem; }
-        .zhuicheck,.zhuicheck1{ -webkit-appearance: checkbox; }
-        .zhui_btn button{ background: #eee;  padding:.1rem .2rem; border:none;  }
-    </style>
     <div class="zhui_pop hide">
         <div class="gameo_mask"></div>
         <div class="zhui_box">
             <div class="zhui_top">
-                <select>
-                    <option>最近10期</option>
-                </select>
-                <label class=""><input class="zhuicheck1" type="checkbox" checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>
-                　追号期数：<span class="">1</span>　总金额：<span class="">2</span>元
+                
+                <select name="qh"><option value="10">最近10期</option><option value="20">最近20期</option><option value="30">最近30期</option><option value="40">最近40期</option><option value="50">最近50期</option><option value="0">今天全部</option></select>
+                <label><input class="zhuicheck1"  type="checkbox" checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>　
+                追号期数：<span class="qs">0</span>　总金额：<span class="amount">0</span>元
             </div>
             <div class="zhui_table tc" style="" scrolltop="0" scrollleft="0">
             <table width="100%">
@@ -242,16 +232,6 @@
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript">
 $( "#slider" ).slider();
-
-$(".gameo_btns1").click(function(){
-    $(".zhui_pop").show();
-        $.post('', function(res){
-
-        },'json' );
-})
-$(".zhui_close").click(function(){
-        $(".zhui_pop").hide();
-})
 </script>
 </body>
 </html>

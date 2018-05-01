@@ -20,13 +20,12 @@
         }
     ?>
         <li>
-            <div class="clearfix"><p class="fl">第<?=$var['number']?>期</p><span class="fr f24 col9"><?=date("H时:i分",$var['time'])?>开奖</span></div>
+            <div class="clearfix"><p class="fl">第<?=$var['number']?>期</p><span class="fr f24 col9"><?=date("Y-m-d H:i",$var['time'])?>开奖</span></div>
             <div class="lot_num"><?=$tnumber?></div>
         </li>
         <?php } ?>
         
     </ul>
-	<?php $this->display('newinc_footer.php'); ?>
 </div>
 <script src="/wjinc/default/js/common.js"></script>
 <script>

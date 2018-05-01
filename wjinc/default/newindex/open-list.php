@@ -32,7 +32,7 @@
             <a class="clearfix rel" href="/index.php/index/openListDetail/<?=$var['type']?>">
                 <img class="fl" src="/wjinc/default/images/index_logo<?=$var['type']?>.jpg">
                 <div class="fl lot_left">
-                    <p class=""><?=$var['title']?><span class="f20 col9">第<?=$var['number']?>期 <?=date("H时:i分",$var['time'])?>开奖</span></p>
+                    <p class=""><?=$var['title']?><span class="f20 col9">第<?=$var['number']?>期 <?=date("H:i",$var['time'])?>开奖</span></p>
                     <div class="lot_num"><?=$tnumber?></div>
                 </div>
                 

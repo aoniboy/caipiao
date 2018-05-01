@@ -51,7 +51,7 @@ function get_str($string)
 if (!get_magic_quotes_gpc()) { 
 return addslashes($string); 
 } 
-return $string; 
+return wjStrFilter($string); 
 }
 
 
