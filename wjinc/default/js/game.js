@@ -1,6 +1,7 @@
 var game = {
     init: function(){
         this.bindEvent();
+        this.windowInit()
     },
     code:[],
     allCont:{
@@ -23,9 +24,18 @@ var game = {
             num:0,
             bonus:0,
             fun:''
-        }
+        },
+        namespace:'youle'
+    },
+    betInfo:{
+        num:0,
+        data:'',
+        money:0,
+        fandian:0
     },
     bindEvent: function(){
+        window[game.global.namespace] = [];
+        game.betInfo.fandian = $('#slider').attr('fan-dian');
         //默认数据
         var cid = $(".playedtype").val();
         game.global.cid = cid;
@@ -151,70 +161,25 @@ var game = {
                     return false;
             	}
                 var list ={};
-                var num = parseInt($(this).attr('data-num'));
-                var numarr = [];
-                var lens =1;
-                var html_num =''
-                if(game.all_len.length ==1 && game.all_len[0] =='1'){
-                    var input_val =$(".gameo_int").val();
-                    for(var i =0;i<$(".gameo_int").val().length;i++){
-                    	if(i%2 ==0 && html_num){
-                            html_num+="|"+input_val[i];
-                        }else{
-                            html_num+=","+input_val[i];
-                        }
-                        numarr = html_num.split("|");
-                        lens = numarr.length;
-                    }
-                    html_num = html_num.substring(1, html_num.length); //去掉最前面逗号
-                }else if(game.all_len.length ==1 && game.all_len[0] =='2'){
-
-                    var input_val =$(".gameo_int").val();
-                    for(var i =0;i<$(".gameo_int").val().length;i++){
-                        if(i%3 ==0 && html_num){
-                            html_num+="|"+input_val[i];
-                        }else{
-                            html_num+=","+input_val[i];
-                        }
-                        numarr = html_num.split("|");
-                        lens = numarr.length;
-                    }
-                    
-                    html_num = html_num.substring(1, html_num.length); //去掉最前面逗号
-                }else{
-                    for(var i=0;i<$(".game_stakes").length;i++){
-                        var len =$(".game_stakes").eq(i).find('i.active').length;
-                        lens*=len;
-                        numarr[i] = $(".game_stakes").eq(i).find('i.active').text();
-                        html_num +=numarr[i]+',';
-                        if(len ==0){
-                            $(".hint_pop .hint_cont").text('请选3位数字');
-                            $(".hint_pop").show();
-                            return;
-                        }
-                    }
-                    html_num = html_num.substring(0, html_num.length - 1); //去掉最后一个逗号
-                    
-                }
-               
+                
                 var mode =$(".gameo_check.active").data('money');
                 var multiple = $(".gameo_multiple").val();
-                list.fanDian = 0; //不确定
-                list.bonusProp = '1931.00';
+                list.fanDian = game.betInfo.fandian;
+                list.bonusProp = game.global.datainfo.bonus;
                 list.mode =2;
                 list.beiShu =multiple;
                 list.orderId = (new Date()) -2147483647*623; 
-                list.actionData = html_num;
-                list.actionNum = lens;
+                list.actionData = game.betInfo.data;
+                list.actionNum = game.betInfo.num;
                 list.weiShu = 0; //不确定；
                 list.playedGroup = game.allCont.groupid
-                list.playedId = game.allCont.playid; //playedGroup,playedId 合并一个
+                list.playedId = game.allCont.playid; 
                 list.type = cid;
                 list.del_id = game.del_id;
                 game.del_id ++;
 
-                list.money = (mode*lens*multiple).toFixed(2);
-                $(this).attr('data-num',num+1);
+                list.money = game.betInfo.money;
+                $(this).attr('data-num',1);
                 game.code.push(list);
                 $(".game_stakes").find('i').removeClass('active');
                 //添加的html
@@ -224,12 +189,12 @@ var game = {
                 var html = '';
                 html+='        <tr>'
                 html+='            <td>'+list.title+'</td>'
-                html+='            <td>'+html_num+'</td>'
+                html+='            <td>'+list.actionData+'</td>'
                 html+='            <td>'+list.actionNum+'注</td>'
                 html+='            <td>'+list.beiShu+'倍</td>'
                 html+='            <td>'+list.money+'元</td>'
-                html+='            <td>奖－返：1931.85-0.0%</td>'
-                html+='            <td class="iconfont icon-icon-cross-squre gameo_delete" id='+num+' data-del='+list.del_id+' data-money='+list.money+' data-stake='+list.actionNum+'></td>'
+                html+='            <td>奖－返：'+parseFloat(game.global.datainfo.bonus).toFixed(2)+'-'+parseFloat(game.betInfo.fandian).toFixed(1)+'%</td>'
+                html+='            <td class="iconfont icon-icon-cross-squre gameo_delete"  data-del='+list.del_id+' data-money='+list.money+' data-stake='+list.actionNum+'></td>'
                 html+='        </tr>'
                 $(".game_tzlist table").append(html);
                 game.allCont.all_money += parseInt(list.money);
@@ -237,6 +202,7 @@ var game = {
                 $(".all_money").text(game.allCont.all_money.toFixed(2));
                 $(".all_stake").text(game.allCont.all_stake)
                 $(".gameo_int").val('');
+                $(".dan_text").text('');
             };
             
         })
@@ -396,6 +362,7 @@ var game = {
                 
                 narr = game.data[i].position;
                 game.all_len = game.data[i].position;
+                console.log(game.all_len)
                 var html =''
                 if(game.all_len.length==1 && game.all_len[0]=='1'){
                     html = '<li><input class="gameo_int" placeholder="输入至少1个两位位数号码组成一注" type="tel"></li>';
@@ -404,7 +371,9 @@ var game = {
                 }else{
                     for(var j =0;j<narr.length;j++){
                         if(narr[j]==3 || narr[j]==4){
-                            narr[j] = '选择';
+                            var tips = '选择';
+                        }else{
+                            var tips = narr[j]
                         }
                         html+='    <li class="game_stakes rel" >'
                         html+='        <i>0</i>'
@@ -412,7 +381,7 @@ var game = {
                         html+='        <i>2</i>'
                         html+='        <i>3</i>'
                         html+='        <i>4</i>'
-                        html+='        <a class="game_sposl">'+narr[j]+'</a>'
+                        html+='        <a class="game_sposl">'+tips+'</a>'
                         html+='        <i>5</i>'
                         html+='        <i>6</i>'
                         html+='        <i>7</i><br>'
@@ -432,88 +401,27 @@ var game = {
         }
     },
     currentCount:function(){
-            window.sscqzh3xfs = function  sscqzh3xfs(){
-//                var code=[], len=1,codeLen=parseInt(this.attr('length')), delimiter=this.attr('delimiter')||"";
-//                if(this.has('.checked').length!=codeLen) throw('请选'+codeLen+'位数字');
-//                this.each(function(i){
-//                        var $code=$('input.code.checked', this);
-//                        if($code.length==0){
-//                                code[i]='-';
-//                        }else{
-//                                len*=$code.length;
-//                                code[i]=[];
-//                                $code.each(function(){
-//                                        code[i].push(this.value);
-//                                });
-//                                code[i]=code[i].join(delimiter);
-//                        }
-//                });
-//                return {actionData:code.join(','), actionNum:len};
-            }
-            var lens= 1;
-            console.log(game)
-            if(game.all_len.length ==1){
-                //12 输入  34 选择
-                switch(parseInt(game.all_len[0])){
-                    case 1:
-                        if($(".gameo_int").val().length<2 || $(".gameo_int").val().length%2 !=0){
-                            $(".dan_text").text('至少1个两位数号码组成一注');
-                            lens =0;
-                            return false;
-                        }
-                        break;
-                    case 2:
-                        if($(".gameo_int").val().length<3 || $(".gameo_int").val().length%3 !=0){
-                            $(".dan_text").text('至少1个三位数号码组成一注');
-                            lens =0;
-                            return false;
-                        }
-                        break;
-                    case 3:
-                    case 4:
-                        console.log(game.global)
-                        for(var i=0;i<game.global.datainfo.num;i++){
-                            var len =$(".game_stakes").eq(i).find('i.active').length;
-                            lens*=len;
-                            if(len ===0){
-                                $(".dan_text").text('请选'+game.global.datainfo.num+'个或'+game.global.datainfo.num+'个以上数字');
-                                return false;
-                            }
-                        }
-                        break;
-                }
-            }else{
-                console.log(game.global)
-                for(var i=0;i<game.global.datainfo.num;i++){
-                    console.log(i)
-                    var len =$(".game_stakes").eq(i).find('i.active').length;
-                    lens*=len;
-                    if(len ===0){
-                        $(".dan_text").text('请选'+game.global.datainfo.num+'位数字');
-                        return false;
-                    }
-                } 
-            }
-
-            if(lens>0){
-                var dan_stake = lens;
-                calcFun =  game.global.datainfo.fun;
-                var data = {actionNum:0,actionData:''};
-                if(calcFun && (calcFun=window[calcFun]) && (typeof calcFun=='function')) {
-                   
-                    calcFun.call(data);
-                   
-                }
-                console.log(data) 
-                
-                
-                var dan_multiple = $(".gameo_multiple").val();
-                var dan_money = $(".gameo_check.active").attr('data-money');
-                var dan_allmoney = (dan_money*lens*dan_multiple).toFixed(2);
-                $(".dan_text").text('共'+dan_stake+'注，金额'+dan_allmoney+'元');
-                return true;
-            }
             
+            calcFun =  game.global.datainfo.fun;
+            if(calcFun && (calcFun=window[game.global.namespace][calcFun]) && (typeof calcFun=='function')) {
+                try{
+                    var obj = calcFun.call();
+                    var dan_multiple = $(".gameo_multiple").val();
+                    var dan_money = $(".gameo_check.active").attr('data-money');
+                    var dan_allmoney = (dan_money*obj.actionNum*dan_multiple).toFixed(2);
+                    $(".dan_text").text('共'+obj.actionNum+'注，金额'+dan_allmoney+'元'); 
+                    game.betInfo.num = obj.actionNum;
+                    game.betInfo.data = obj.actionData;
+                    game.betInfo.money = dan_allmoney;
+                    console.log(obj)
+                    return true;
+                }catch(err){
+                    $(".dan_text").text(err);
+                    return false;
+		}
+            }else{
+                return false;
+            }
     },
     countdown: function(times){ //倒计时
         var timer=null;
@@ -668,29 +576,78 @@ var game = {
         return(Math.floor(Math.random()*9))
     },
    
-    //自定义组合函数(就是数学排列组合里的C)  
-    C: function(m,n){  
-        return game.factorial(m,n)/game.factorial(n,n);//就是Cmn(上面是n，下面是m) = Amn(上面是n，下面是m)/Ann(上下都是n)  
-    },  
-    //自定义排列函数(就是数学排列组合里的A)  
-    A:function (m,n){  
-        return game.factorial(m,n);//就是数学里的Amn,上面是n，下面是m  
-    }, 
-  
-  
-    //自定义一个阶乘函数，就是有n个数相乘，从m开始，每个数减1，如factorial(5,4)就是5*(5-1)*(5-2)*(5-3),相乘的数有4个  
-    factorial: function(m,n){  
-        var num = 1;  
-        var count = 0;  
-        for(var i = m;i > 0;i--){  
-            if(count == n){//当循环次数等于指定的相乘个数时，即跳出for循环  
-                break;  
-            }  
-            num = num * i;  
-            count++;  
-        }  
-        return num;  
-    }  
+    /* 组合算法*/
+    C: function (arr, num) {
+            var r = [];
+            (function f(t, a, n) {
+                    if (n == 0) return r.push(t);
+                    for (var i = 0, l = a.length; i <= l - n; i++) {
+                            f(t.concat(a[i]), a.slice(i + 1), n - 1);
+                    }
+            })([], arr, num);
+            return r;
+    },
+    /* 排列算法*/
+    A: function (arr, num){
+            var r=[];
+            (function f(t,a,n){
+                    if (n==0) return r.push(t);
+                    for (var i=0,l=a.length; i<l; i++){
+                            f(t.concat(a[i]), a.slice(0,i).concat(a.slice(i+1)), n-1);
+                    }
+            })([],arr,num);
+            return r;
+    },
+    windowInit: function() {
+        
+        window[game.global.namespace].sscqzh3xfs = function  sscqzh3xfs(){
+            var code=[], len=1,codeLen=parseInt(game.global.datainfo.num), delimiter="";
+            if($(".game_stakes").has('.active').length!=codeLen) {
+                throw('请选'+game.global.datainfo.num+'位数字');     
+            }
+            $(".game_stakes").each(function(i){
+                    var $code=$('i.active', this);
+                    if($code.length==0){
+                        code[i]='-';
+                    }else{
+                        len*=$code.length;
+                        code[i]=[];
+                        $code.each(function(){
+                            code[i].push(this.innerText);
+                        });
+                        code[i]=code[i].join(delimiter);
+                    }
+            });
+            return {actionData:code.join(','), actionNum:len};
+        }
+        window[game.global.namespace].qzh3ds = function  qzh3ds(){
+            var codeLen=parseInt(game.global.datainfo.num),
+                codes=[],
+                str=$('.gameo_int').val().replace(/[^\d]/g,'');
+            if(str.length && str.length % codeLen == 0){
+                    if(/[^\d]/.test(str)) throw('投注有错，不能有数字以外的字符。');
+                    codes=codes.concat(str.match(new RegExp('\\d{'+codeLen+'}', 'g')));
+            }else{
+                    throw('输入号码不正确');
+            }
+            codes=codes.map(function(code){
+                    return code.split("").join(',')
+            });
+            return {actionData:codes.join('|'), actionNum:codes.length}
+        }
+        window[game.global.namespace].rx3z3 = function rx3z3(){
+            var codeLen=parseInt(game.global.datainfo.num),
+                codes=''
+                $select=$("li >.active"),
+                len=1;
+            if($select.length<codeLen) throw('请选'+codeLen+'位数');
+            $select.each(function(){
+                    codes+=this.innerText;
+            });
+            len = game.A(codes.split(""), codeLen).length;
+            return {actionData:codes, actionNum:len};
+        }
+    }
 
 }
 game.init();
