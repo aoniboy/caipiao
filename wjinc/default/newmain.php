@@ -184,7 +184,7 @@
         </div>
     </div>
     <style>
-
+        .zhui_pop{ position: fixed;left:50%;top:50%; width:80%; transform: translate(-50%,-50%); }
     </style>
     <div class="zhui_pop">
         <div class="gameo_mask"></div>
