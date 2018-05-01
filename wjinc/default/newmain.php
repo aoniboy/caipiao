@@ -189,7 +189,7 @@
         .zhui_top{ border-bottom: 1px solid #eee; }
         .zhui_table{display: block; width: auto; min-height: 0px; height: 4rem;}
         .zhui_table .beishu{ width:.8rem; }
-        .zhuicheck:{ -webkit-appearance: checkbox; }
+        .zhuicheck,.zhuicheck1{ -webkit-appearance: checkbox; }
     </style>
     <div class="zhui_pop">
         <div class="gameo_mask"></div>
@@ -198,7 +198,7 @@
                 <select>
                     <option>最近10期</option>
                 </select>
-                <label class="fff"><input type="checkbox" checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>
+                <label class="fff"><input type="checkbox zhuicheck1" checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>
                 　追号期数：<span class="">1</span>　总金额：<span class="">2</span>元
             </div>
             <div class="" style="" scrolltop="0" scrollleft="0">
