@@ -187,7 +187,7 @@
         .zhui_pop{ position: fixed;left:50%;height:100%; width:100%;top:50%; transform: translate(-50%,-50%);}
         .zhui_box{ position: fixed;left:50%;top:50%; width:90%; top:50%; transform: translate(-50%,-50%);   background: #fff; padding:.15rem;}
         .zhui_top{ border-bottom: 1px solid #eee; padding:.2rem .1rem; }
-        .zhui_table{display: block; width: auto; min-height: 0px; height: 4rem;}
+        .zhui_table{display: block; width: auto; min-height: 0px; height: 4rem; padding:.2rem 0;}
         .zhui_table .beishu{ width:.8rem; }
         .zhuicheck,.zhuicheck1{ -webkit-appearance: checkbox; }
         .zhui_btn button{ background: #eee;  padding:.1rem .2rem; border:none;  }
