@@ -53,7 +53,7 @@ class Team extends WebLoginBase{
 		$this->getTypes();
 		$this->getPlayeds();
 		$this->action='searchGameRecord';
-		$this->display('team/record.php');
+		$this->display('newsafe/dl_game.php');
 	}
 	
 	public final function searchGameRecord(){
@@ -68,7 +68,7 @@ class Team extends WebLoginBase{
 	public final function report(){
 
 		$this->action='searchReport';
-		$this->display('team/report.php');
+		$this->display('newsafe/dl_yingkui.php');
 	}
 	
 	public final function searchReport(){
@@ -80,7 +80,7 @@ class Team extends WebLoginBase{
 	/*帐变列表*/
 	public final function coin(){
 		$this->action='searchCoin';
-		$this->display('team/coin.php');
+		$this->display('newsafe/dl_zhangbian.php');
 	}
 	
 	public final function searchCoin(){
@@ -90,7 +90,7 @@ class Team extends WebLoginBase{
 	
 	public final function coinall(){
 		$this->freshSession();
-		$this->display('team/coinall.php');
+		$this->display('newsafe/dl_team.php');
 	}
 	
 	public final function addMember(){
@@ -108,7 +108,7 @@ class Team extends WebLoginBase{
 	}
 	
 	public final function cashRecord(){
-		$this->display('team/cash-record.php');
+		$this->display('newsafe/dl_tixian.php');
 	}
 	
 	public final function searchCashRecord(){
