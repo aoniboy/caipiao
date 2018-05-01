@@ -50,7 +50,7 @@
     </ul>
     <input class="myt_btn tc" type="button" value="确认">
     </form>
-    <?php $this->display('newinc_footer.php'); ?>
+    
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>

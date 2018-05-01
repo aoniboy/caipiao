@@ -80,7 +80,7 @@
             </tbody>
         </table>
     </div>
-    <?php $this->display('newinc_footer.php'); ?>
+    
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>

@@ -74,7 +74,7 @@
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
-    <?php $this->display('newinc_footer.php'); ?>
+    
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>

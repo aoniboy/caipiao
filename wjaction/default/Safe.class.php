@@ -4,11 +4,18 @@ class Safe extends WebLoginBase{
 	public $title='香雨娱乐平台';
 	private $vcodeSessionName='ssc_vcode_session_name';
 	/**
+	 * 我的页面
+	 */
+	public final function my(){
+	    $this->my = 'active';
+		$this->display('newsafe/my.php');
+	}
+	/**
 	 * 用户信息页面
 	 */
 	public final function info(){
 	    $this->my = 'active';
-		$this->display('newsafe/info.php');
+		$this->display('newsafe/my_info.php');
 	}
 	/**
 	 * 密码管理

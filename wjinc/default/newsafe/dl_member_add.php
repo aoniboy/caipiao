@@ -60,7 +60,7 @@
             <input class="tc fx myi_btns2" type="reset" value="重置" />
         </div>
     </form>
-    <?php $this->display('newinc_footer.php'); ?>
+   
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
