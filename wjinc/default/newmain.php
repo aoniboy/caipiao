@@ -198,7 +198,7 @@
                 <select>
                     <option>最近10期</option>
                 </select>
-                <label class="fff"><input type="checkbox zhuicheck1" checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>
+                <label class="fff zhuicheck1"><input type="checkbox " checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>
                 　追号期数：<span class="">1</span>　总金额：<span class="">2</span>元
             </div>
             <div class="" style="" scrolltop="0" scrollleft="0">
