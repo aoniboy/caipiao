@@ -190,6 +190,7 @@
         .zhui_table{display: block; width: auto; min-height: 0px; height: 4rem;}
         .zhui_table .beishu{ width:.8rem; }
         .zhuicheck,.zhuicheck1{ -webkit-appearance: checkbox; }
+        .zhui_btn button{ background: #eee;  padding:.1rem .2rem;  }
     </style>
     <div class="zhui_pop hide">
         <div class="gameo_mask"></div>
@@ -224,7 +225,7 @@
             </table>
             </div>
             <div class="">
-                <div class="">
+                <div class="zhui_btn">
                     <button type="button">全选</button>
                     <button type="button">反选</button>
                     <button type="button">确定追号</button>
