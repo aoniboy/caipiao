@@ -3,15 +3,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>会员管理</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/font.css">
-    <script src="js/jquery.min.js"></script>
+    <title>会员中心</title>
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
+    <script src="/wjinc/default/js/jquery.min.js"></script>
 </head>
 <body class="bgf5">
-<style>
-
-</style>
 <div class="wrap_box">
     <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>会员管理</div>
     <div class="myi_title">新增成员</div>
@@ -63,9 +60,10 @@
             <input class="tc fx myi_btns2" type="reset" value="重置" />
         </div>
     </form>
+    <?php $this->display('newinc_footer.php'); ?>
 </div>
 
-<script src="js/common.js"></script>
-<script src="js/my.js"></script>
+<script src="/wjinc/default/js/common.js"></script>
+<script src="/wjinc/default/js/my.js"></script>
 </body>
 </html>

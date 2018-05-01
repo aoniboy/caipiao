@@ -4,13 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>提现申请</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/font.css">
-    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
+    <script src="/wjinc/default/js/jquery.min.js"></script>
 </head>
 <body class="bgf5">
-<style>
-</style>
 <div class="wrap_box">
     <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>提现申请</div>
     <div class="f24 myt_text">每天提现<span class="mcol f32">3</span>次，今天您已经成功发起了<span class="f34 mlv">0</span>次提现申请<br>
@@ -52,9 +50,10 @@
     </ul>
     <input class="myt_btn tc" type="button" value="确认">
     </form>
+    <?php $this->display('newinc_footer.php'); ?>
 </div>
 
-<script src="js/common.js"></script>
+<script src="/wjinc/default/js/common.js"></script>
 
 </body>
 </html>

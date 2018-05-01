@@ -4,13 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>帐变记录</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/font.css">
-    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
+    <script src="/wjinc/default/js/jquery.min.js"></script>
 </head>
 <body class="bgf5">
-<style>
-</style>
 <div class="wrap_box">
     <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>帐变记录</div>
     <div class="clearfix myp_top dlm_top">
@@ -86,9 +84,10 @@
             </tbody>
         </table>
     </div>
+    <?php $this->display('newinc_footer.php'); ?>
 </div>
 
-<script src="js/common.js"></script>
+<script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript">
     var page = 10;
     var s1 = $(".myp_sel1").val();
