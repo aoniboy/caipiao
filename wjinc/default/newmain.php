@@ -191,7 +191,7 @@
         .zhui_table .beishu{ width:.8rem; }
         .zhuicheck,.zhuicheck1{ -webkit-appearance: checkbox; }
     </style>
-    <div class="zhui_pop">
+    <div class="zhui_pop hide">
         <div class="gameo_mask"></div>
         <div class="zhui_box">
             <div class="zhui_top">
@@ -201,7 +201,7 @@
                 <label class="fff zhuicheck1"><input type="checkbox " checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>
                 　追号期数：<span class="">1</span>　总金额：<span class="">2</span>元
             </div>
-            <div class="zhui_table" style="" scrolltop="0" scrollleft="0">
+            <div class="zhui_table tc" style="" scrolltop="0" scrollleft="0">
             <table width="100%">
                 <thead class="tr-top">
                     <tr>
@@ -223,12 +223,12 @@
                 </tbody>
             </table>
             </div>
-            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-                <div class="ui-dialog-buttonset">
+            <div class="">
+                <div class="">
                     <button type="button">全选</button>
                     <button type="button">反选</button>
                     <button type="button">确定追号</button>
-                    <button type="button">取消追号</button>
+                    <button type="button" class="zhui_close">取消追号</button>
                 </div>
             </div>
         </div>
@@ -242,7 +242,15 @@
 <script type="text/javascript">
 $( "#slider" ).slider();
 
+$(".gameo_btns1").click(function(){
+    $(".zhui_pop").show();
+        $.post('', function(res){
 
+        },'json' );
+})
+$(".zhui_close").click(function(){
+        $(".zhui_pop").hide();
+})
 </script>
 </body>
 </html>
