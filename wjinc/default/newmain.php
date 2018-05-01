@@ -191,7 +191,7 @@
         .zhui_table .beishu{ width:.8rem; }
         .zhui_table tr td:nth-child(1) input:{ -webkit-appearance: checkbox; }
     </style>
-    <div class="zhui_pop">
+<!--     <div class="zhui_pop">
         <div class="gameo_mask"></div>
         <div class="zhui_box">
             <div class="zhui_top">
@@ -239,7 +239,101 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+    <style>
+    .ui-dialog{    position: absolute;
+    padding: .2em;
+    width: 300px;
+    overflow: hidden;}
+    .ui-dialog .ui-dialog-title{    float: left;
+    margin: .1em 16px .1em 0;}
+    </style>
+    <div class="ui-dialog ui-widget ui-widget-content ui-corner-all zhui-hao-modal ui-draggable ui-resizable" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-1" style="display: block; z-index: 1002; outline: 0px; position: absolute; height: auto; width: 300px; top: 1190.5px; left: 6.5px;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title" id="ui-dialog-title-1"><select name="qh"><option value="10">最近10期</option><option value="20">最近20期</option><option value="30">最近30期</option><option value="40">最近40期</option><option value="50">最近50期</option><option value="0">今天全部</option></select>　<label><input type="checkbox" checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>　追号期数：<span class="qs">0</span>　总金额：<span class="amount">0.00</span>元</span><a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div src="/index.php/index/zhuiHaoQs/1/2/" rel="2" class="ui-dialog-content ui-widget-content" style="display: block; width: auto; min-height: 0px; height: 177.28px;" scrolltop="0" scrollleft="0">
+<table width="100%">
+    <thead class="tr-top">
+        <tr>
+            <td><input type="checkbox">
+            </td><td>期号</td>
+            <td>倍数</td>
+            <td>金额</td>
+            <td>开奖时间</td>
+        </tr>
+    </thead>
+    <tbody class="tr-cont"><tr>
+    <td><input type="checkbox">
+    </td><td>20180501-105</td>
+    <td><input type="text" class="beishu" value="1"></td>
+    <td><span class="amount">2</span>元</td>
+    <td>2018-05-01 22:45:00</td>
+</tr>
+<tr>
+    <td><input type="checkbox">
+    </td><td>20180501-106</td>
+    <td><input type="text" class="beishu" value="1"></td>
+    <td><span class="amount">2</span>元</td>
+    <td>2018-05-01 22:50:00</td>
+</tr>
+<tr>
+    <td><input type="checkbox">
+    </td><td>20180501-107</td>
+    <td><input type="text" class="beishu" value="1"></td>
+    <td><span class="amount">2</span>元</td>
+    <td>2018-05-01 22:55:00</td>
+</tr>
+<tr>
+    <td><input type="checkbox">
+    </td><td>20180501-108</td>
+    <td><input type="text" class="beishu" value="1"></td>
+    <td><span class="amount">2</span>元</td>
+    <td>2018-05-01 23:00:00</td>
+</tr>
+<tr>
+    <td><input type="checkbox">
+    </td><td>20180501-109</td>
+    <td><input type="text" class="beishu" value="1"></td>
+    <td><span class="amount">2</span>元</td>
+    <td>2018-05-01 23:05:00</td>
+</tr>
+<tr>
+    <td><input type="checkbox">
+    </td><td>20180501-110</td>
+    <td><input type="text" class="beishu" value="1"></td>
+    <td><span class="amount">2</span>元</td>
+    <td>2018-05-01 23:10:00</td>
+</tr>
+<tr>
+    <td><input type="checkbox">
+    </td><td>20180501-111</td>
+    <td><input type="text" class="beishu" value="1"></td>
+    <td><span class="amount">2</span>元</td>
+    <td>2018-05-01 23:15:00</td>
+</tr>
+<tr>
+    <td><input type="checkbox">
+    </td><td>20180501-112</td>
+    <td><input type="text" class="beishu" value="1"></td>
+    <td><span class="amount">2</span>元</td>
+    <td>2018-05-01 23:20:00</td>
+</tr>
+<tr>
+    <td><input type="checkbox">
+    </td><td>20180501-113</td>
+    <td><input type="text" class="beishu" value="1"></td>
+    <td><span class="amount">2</span>元</td>
+    <td>2018-05-01 23:25:00</td>
+</tr>
+<tr>
+    <td><input type="checkbox">
+    </td><td>20180501-114</td>
+    <td><input type="text" class="beishu" value="1"></td>
+    <td><span class="amount">2</span>元</td>
+    <td>2018-05-01 23:30:00</td>
+</tr>
+</tbody>
+</table>
+</div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 1000;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 1000;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 1000;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 1000;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se ui-icon-grip-diagonal-se" style="z-index: 1000;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 1000;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 1000;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 1000;"></div><div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"><div class="ui-dialog-buttonset"><button type="button">全选</button><button type="button">反选</button><button type="button">确定追号</button><button type="button">取消追号</button></div></div></div>
+
+
 	<?php $this->display('newinc_footer.php'); ?>
 </div>
 <input type="hidden" class="playedtype" value="<?=$this->type?>"/>
