@@ -9,7 +9,7 @@ class Cash extends WebLoginBase{
 	}
 	
 	public final function toCashLog(){
-		$this->display('cash/to-cash-log.php');
+		$this->display('newself/tixianlist.php');
 	}
 	
 	public final function toCashResult(){
@@ -21,7 +21,7 @@ class Cash extends WebLoginBase{
 	}
 	
 	public final function rechargeLog(){
-		$this->display('cash/recharge-log.php');
+		$this->display('newself/paylist.php');
 	}
 	
 	/**
