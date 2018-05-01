@@ -5,11 +5,11 @@ class Cash extends WebLoginBase{
 	private $vcodeSessionName='ssc_vcode_session_name';
 
 	public final function toCash(){
-		$this->display('cash/to-cash.php');
+		$this->display('newsafe/my_tixian.php');
 	}
 	
 	public final function toCashLog(){
-		$this->display('newsafe/my_tixian.php');
+		$this->display('newsafe/my_tixian_list.php');
 	}
 	
 	public final function toCashResult(){
