@@ -36,17 +36,17 @@
     <div class="my_line"></div>
     <ul class="my_list">
         <li>
-            <a href="" class="clearfix">
+            <a href="/index.php/record/search" class="clearfix">
                 <i class="iconfont icon-jilu my_col1"></i> <span>投注记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
         <li>
-            <a href="" class="clearfix">
+            <a href="/index.php/cash/rechargeLog" class="clearfix">
                 <i class="iconfont icon-yinxingqia my_col2"></i> <span>充值记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
         <li>
-            <a href="" class="clearfix">
+            <a href="/index.php/cash/toCashLog" class="clearfix">
                 <i class="iconfont icon-qian my_col3"></i> <span>提现记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
