@@ -108,7 +108,7 @@ class Team extends WebLoginBase{
 	}
 	
 	public final function cashRecord(){
-		$this->display('newsafe/dl_tixian.php');
+		$this->display('newsafe/dl_tixian_list.php');
 	}
 	
 	public final function searchCashRecord(){
