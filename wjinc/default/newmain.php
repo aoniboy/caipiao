@@ -189,7 +189,7 @@
         .zhui_top{ border-bottom: 1px solid #eee; }
         .zhui_table{display: block; width: auto; min-height: 0px; height: 4rem;}
         .zhui_table .beishu{ width:.8rem; }
-        .zhui_table input:checkbox{ -webkit-appearance: radio; }
+        .zhui_table tr td:nth-child(1) input:{ -webkit-appearance: checkbox; }
     </style>
     <div class="zhui_pop">
         <div class="gameo_mask"></div>
