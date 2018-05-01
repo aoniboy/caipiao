@@ -201,7 +201,7 @@
                 <label class="fff zhuicheck1"><input type="checkbox " checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>
                 　追号期数：<span class="">1</span>　总金额：<span class="">2</span>元
             </div>
-            <div class="" style="" scrolltop="0" scrollleft="0">
+            <div class="beishu" style="" scrolltop="0" scrollleft="0">
             <table width="100%">
                 <thead class="tr-top">
                     <tr>
