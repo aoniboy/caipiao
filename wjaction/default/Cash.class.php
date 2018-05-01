@@ -13,7 +13,7 @@ class Cash extends WebLoginBase{
 	}
 	
 	public final function toCashResult(){
-		$this->display('cash/cash-result.php');
+		$this->display('newsafe/my_tixian.php');
 	}
 	
 	public final function recharge(){

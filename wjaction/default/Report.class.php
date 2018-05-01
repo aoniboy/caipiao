@@ -7,7 +7,7 @@ class Report extends WebLoginBase{
 	public final function coin($type=0){
 		$this->type=intval($type);
 		$this->action='coinlog';
-		$this->display('report/coin.php');
+		$this->display('newsafe/my_zhangbian.php');
 	}
 	
 	public final function coinlog($type=0){
@@ -18,7 +18,7 @@ class Report extends WebLoginBase{
 	// ×Ü½áËã²éÑ¯
 	public final function count(){
 		$this->action='countSearch';
-		$this->display('report/count.php');
+		$this->display('newsafe/my_yingkui.php');
 	}
 	
 	public final function countSearch(){

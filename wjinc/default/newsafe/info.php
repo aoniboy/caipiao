@@ -35,9 +35,29 @@
     </div>
     <div class="my_line"></div>
     <ul class="my_list">
+<!--         <li>
+            <a href="/index.php/record/search" class="clearfix">
+                <i class="iconfont icon-jilu my_col1"></i> <span>个人资料<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+            </a>
+        </li> -->
+        <li>
+            <a href="/index.php/safe/passwd" class="clearfix">
+                <i class="iconfont icon-jilu my_col1"></i> <span>密码管理<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+            </a>
+        </li>
         <li>
             <a href="/index.php/record/search" class="clearfix">
-                <i class="iconfont icon-jilu my_col1"></i> <span>投注记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+                <i class="iconfont icon-jilu my_col1"></i> <span>游戏记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/index.php/report/count" class="clearfix">
+                <i class="iconfont icon-jilu my_col1"></i> <span>盈亏报表<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/index.php/cash/rechargeLog" class="clearfix">
+                <i class="iconfont icon-jilu my_col1"></i> <span>帐变记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
         <li>
