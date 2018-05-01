@@ -184,7 +184,7 @@
         </div>
     </div>
     <style>
-        .zhui_pop{ position: fixed;left:50%;height:100% width:100%;top:50%; transform: translate(-50%,-50%); background: #fff;}
+        .zhui_pop{ position: fixed;left:50%;height:100%; width:100%;top:50%; transform: translate(-50%,-50%); background: #fff;}
         .zhui_box{ position: fixed;left:50%;top:50%; width:90%; top:50%; transform: translate(-50%,-50%);  }
         .zhui_top{ border-bottom: 1px solid #eee; }
     </style>
