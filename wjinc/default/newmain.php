@@ -184,9 +184,12 @@
         </div>
     </div>
     <style>
-        .zhui_pop{ position: fixed;left:50%;height:100%; width:100%;top:50%; transform: translate(-50%,-50%); background: #fff;}
-        .zhui_box{ position: fixed;left:50%;top:50%; width:90%; top:50%; transform: translate(-50%,-50%);  }
+        .zhui_pop{ position: fixed;left:50%;height:100%; width:100%;top:50%; transform: translate(-50%,-50%);}
+        .zhui_box{ position: fixed;left:50%;top:50%; width:90%; top:50%; transform: translate(-50%,-50%);   background: #fff; padding:.15rem;}
         .zhui_top{ border-bottom: 1px solid #eee; }
+        .zhui_table{display: block; width: auto; min-height: 0px; height: 4rem;}
+        .zhui_table .beishu{ width:.8rem; }
+        .zhui_table input:checkbox{ -webkit-appearance: radio; }
     </style>
     <div class="zhui_pop">
         <div class="gameo_mask"></div>
@@ -198,7 +201,7 @@
                 <label class="fff"><input type="checkbox" checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>
                 　追号期数：<span class="">1</span>　总金额：<span class="">2</span>元
             </div>
-            <div class="" style="display: block; width: auto; min-height: 0px; height: 177.28px;" scrolltop="0" scrollleft="0">
+            <div class="" style="" scrolltop="0" scrollleft="0">
             <table width="100%">
                 <thead class="tr-top">
                     <tr>
@@ -213,7 +216,7 @@
                     <tr>
                         <td><input type="checkbox"></td>
                         <td>20180501-099</td>
-                        <td><input type="text" class="beishu" value="1"></td>
+                        <td><input type="text" class="beishu" value="1" ></td>
                         <td><span class="amount">24</span>元</td>
                         <td>2018-05-01 22:15:00</td>
                     </tr>
