@@ -25,7 +25,9 @@ var game = {
             bonus:0,
             fun:''
         },
-        namespace:'youle'
+        namespace:'youle',
+        fengpan:false,
+        lastactionNo:''
     },
     betInfo:{
         num:0,
@@ -236,6 +238,11 @@ var game = {
         })
         //确认是否投注
         $(".gameo_btns2").on('touchend',function(){
+        	if(game.global.fengpan) {
+            	$(".hint_pop .hint_cont").text('第'+ game.allCont.actionNo+'期投注已截止!');
+                $(".hint_pop").show();
+            	return false;
+            }
             if($('#wjdl'))
             {
                     if(parseInt($('#wjdl').val())>0){
@@ -313,6 +320,11 @@ var game = {
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
             $(".tz_pop").hide();
+            if(game.global.fengpan) {
+            	$(".hint_pop .hint_cont").text('第'+ game.allCont.actionNo+'期投注已截止!');
+                $(".hint_pop").show();
+            	return false;
+            }
             $.post('/index.php/game/getNo/'+cid,function(data){
                 if(!data.code){
                 	//if(game.allCont.actionNo == data.data.actionNo.actionNo) {
@@ -443,9 +455,9 @@ var game = {
                 return false;
             }
     },
-    countdown: function(times){ //倒计时
+    countdown: function(times,kjtime,kjftime){ //倒计时
         var timer=null;
-        if()
+
         timer=setInterval(function(){
             var day=0,
             hour=0,
@@ -469,7 +481,7 @@ var game = {
             if(times ==5 ){
                 $(".kaijiang")[0].play();
             }
-            if(times<=0){
+            if(times<0){
                 clearInterval(timer);
                 $(".kaijiang")[0].pause();
                 $(".hint_pop1 .hint_titles").text('第'+ game.allCont.actionNo+'期投注已截止!');
@@ -477,7 +489,28 @@ var game = {
                 $(".hint_pop1").show();
                 $(".hint_pop").hide();
                 $(".tz_pop").hide();
-                game.qhinfo();
+                $('.gameo_ftips').show();
+                $('.gameo_num').hide();
+                game.global.fengpan = true;
+                setTimeout("game.nextinfo()",parseInt(kjftime)*1000);
+                return false;
+            }
+            if(kjtime>0){
+                clearInterval(timer);
+                $(".kaijiang")[0].pause();
+                $(".hint_pop1 .hint_titles").text('第'+ game.global.lastactionNo+'期投注已截止!');
+                $(".hint_pop1 .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
+                $(".hint_pop1").show();
+                $(".hint_pop").hide();
+                $(".tz_pop").hide();
+                $('.gameo_ftips').show();
+                $('.gameo_num').hide();
+                game.global.fengpan = true;
+                setTimeout("game.nextinfo()",parseInt(kjtime)*1000);
+                $(".gameo_second").text('00');
+                $(".gameo_minute").text(game.checkTime('00'));
+                $(".gameo_hour").text(game.checkTime('00'));
+                return false;
             }
             times--;
         },1000);
@@ -487,6 +520,12 @@ var game = {
             i = "0" + i; 
         } 
         return i; 
+    },
+    nextinfo: function() {
+    	$('.gameo_ftips').hide();
+        $('.gameo_num').show();
+        game.global.fengpan = false;
+        game.qhinfo();
     },
     kjinfo: function() {
     	var kjtimer=null;
@@ -519,7 +558,7 @@ var game = {
             
         },1000);
     },
-    qhinfo: function(i) {
+    qhinfo: function() {
     	
     	//默认期号
         $.post('/index.php/game/getqhinfo/'+game.global.cid,function(data){
@@ -528,8 +567,9 @@ var game = {
                 $(".gameo_toptitle .gameo_qi").text(data.data.lastNo.actionNo);
                 $(".gameo_qiall").text(data.data.num);
                 game.allCont.actionNo = data.data.actionNo.actionNo;
+                game.global.lastactionNo = data.data.lastNo.actionNo;
                 //倒计时
-                game.countdown(data.data.actionNo.difftime,data.data.actionNo.diffKtime,data.data.actionNo.diffFtime);
+                game.countdown(data.data.actionNo.difftime,data.data.actionNo.diffKTime,data.data.actionNo.diffFTime);
                 game.global.gametimer = null;
                 if(!data.data.kjNo){
                     

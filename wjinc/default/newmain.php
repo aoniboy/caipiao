@@ -32,7 +32,7 @@
             <span>6</span>
             <span>9</span>
         </div>
-        <p class="tc f50 gameo_ftips hide"><span class="iconfont icon-mima">封盘中</p>
+        <p class="tc f50 gameo_ftips hide"><span class="iconfont icon-mima">封盘中...</p>
     </div>
     <div>
         <p class="tc f24 gameo_stitle">距
