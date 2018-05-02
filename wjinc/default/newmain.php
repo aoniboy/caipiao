@@ -256,6 +256,7 @@ $(document).on('blur', '.beishu', function(){
     var val = parseInt($(this).val());
     $(this).parents('tr').find('.amount').text(val*2);
 })
+console.log(12);
 </script>
 </body>
 </html>
