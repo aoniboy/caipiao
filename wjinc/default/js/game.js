@@ -912,16 +912,17 @@ var game = {
     		$('.zhui_table tbody :checkbox').each(function(){
                 var d = [];
                 var s =null;
-                var n = 1;
+                var n = 0;
                 $('.zhui_table tbody :checkbox').each(function(index,item){
                     if(this.checked) {
                         s+=  Number($(this).parent("td").siblings("td").find('.amount').text());
-                        n =index+1;
+                        n =n+1;
                         d.push(this.value);
                     }
                 });
                 game.zhuihao = d.join(";");
                 console.log(game.zhuihao);
+
                 $(".zhui_qs").text(n);
                 $(".zhui_amount").text(s);
 	        });
