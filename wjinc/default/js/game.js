@@ -312,7 +312,7 @@ var game = {
         $(".zhui_close").click(function(){
             $(".zhui_table table").find('input:checkbox').prop('checked',false);
             game.allCont.all_stake=game.beiyong.all_stake;
-            game.allCont.all_money=game.bieyong.all_money;
+            game.allCont.all_money=game.beiyong.all_money;
             game.zhuihao = '';
             game.allCont.zhuiHaoMode = '';
             $("zhui_qs").text('0');
@@ -363,7 +363,7 @@ var game = {
                 game.allCont.zhuiHaoMode = 0;
             }
             game.beiyong.all_stake = game.allCont.all_stake;
-            game.bieyong.all_money = game.allCont.all_money;
+            game.beiyong.all_money = game.allCont.all_money;
             game.allCont.all_stake =$("zhui_qs").text(n);
             game.allCont.all_money =$(".zhui_amount").text(s);
             game.dealZhuihao(true);
