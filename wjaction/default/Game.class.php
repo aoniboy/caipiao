@@ -187,6 +187,9 @@ class Game extends WebLoginBase{
 	    $actionNo['difftime'] = $diffTime;
 	    $actionNo['diffKTime'] = $kjDiffTime;
 	    $actionNo['diffFTime'] = $kjdTime;
+// 	    $actionNo['difftime'] = 20;
+// 	    $actionNo['diffKTime'] = 10;
+// 	    $actionNo['diffFTime'] = 10;
 	    $data['name'] = $this->types[$type]['title'];
 	    $data['actionNo'] = $actionNo;
 	    $data['lastNo'] = $lastNo;

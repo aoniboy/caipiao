@@ -20,6 +20,7 @@ var game = {
     global:{
     	cid:0,
     	gametimer:null,
+    	kjtimer:false,
         datainfo:{
             num:0,
             bonus:0,
@@ -27,7 +28,8 @@ var game = {
         },
         namespace:'youle',
         fengpan:false,
-        lastactionNo:''
+        lastactionNo:'',
+        ttime:0
     },
     betInfo:{
         num:0,
@@ -492,6 +494,7 @@ var game = {
                 $('.gameo_ftips').show();
                 $('.gameo_num').hide();
                 game.global.fengpan = true;
+                $(".gameo_qi").text(game.global.lastactionNo);
                 setTimeout("game.nextinfo()",parseInt(kjftime)*1000);
                 return false;
             }
@@ -506,11 +509,12 @@ var game = {
                 $('.gameo_ftips').show();
                 $('.gameo_num').hide();
                 game.global.fengpan = true;
-                setTimeout("game.nextinfo()",parseInt(kjtime)*1000);
                 $(".gameo_second").text('00');
-                $(".gameo_minute").text(game.checkTime('00'));
-                $(".gameo_hour").text(game.checkTime('00'));
-                return false;
+                $(".gameo_minute").text('00');
+                $(".gameo_hour").text('00');
+                $(".gameo_qi").text(game.global.lastactionNo);
+                setTimeout("game.nextkjinfo()",parseInt(kjtime)*1000);
+                
             }
             times--;
         },1000);
@@ -525,38 +529,51 @@ var game = {
     	$('.gameo_ftips').hide();
         $('.gameo_num').show();
         game.global.fengpan = false;
+        $(".gameo_stitle .gameo_qi").text(game.allCont.actionNo);
         game.qhinfo();
+    },
+    nextkjinfo: function() {
+    	game.countdown(game.global.ttime,0,0)
+    	$('.gameo_ftips').hide();
+        $('.gameo_num').show();
+        game.global.fengpan = false;
+        $(".gameo_stitle .gameo_qi").text(game.allCont.actionNo);
+        game.kjinfo();
     },
     kjinfo: function() {
     	var kjtimer=null;
-        kjtimer=setInterval(function(){
-        	//默认期号
-            $.post('/index.php/game/getkjinfo/'+game.global.cid,function(data){
-                if(!data.code){
-                    if(data.data.kjNo){
-                        clearInterval(game.global.gametimer);
-                        $(".gameo_num").html(data.data.kjNo);
-                        game.is_false = false;
-                        clearInterval(kjtimer);
-                        game.getOrder();
-                    }else{
-                    	if(!game.is_false){
-                            game.global.gametimer =setInterval(function(){
-                                for(var i=0;i<$(".gameo_num span").length;i++){
-                                    $(".gameo_num span").eq(i).text(game.randomNum())
-                                } 
-                            },50)
-                            game.is_false = true;
-
-                        }
-                    }
-                }else{
-                    $(".hint_pop .hint_cont").text(data.msg);
-                    $(".hint_pop").show();
-                }
-            },'json' );
-            
-        },1000);
+    	if(!game.global.kjtimer) {
+	        kjtimer=setInterval(function(){
+	        	//默认期号
+	            $.post('/index.php/game/getkjinfo/'+game.global.cid,function(data){
+	                if(!data.code){
+	                    if(data.data.kjNo){
+	                        clearInterval(game.global.gametimer);
+	                        $(".gameo_num").html(data.data.kjNo);
+	                        game.is_false = false;
+	                        game.global.kjtimer = false;
+	                        clearInterval(kjtimer);
+	                        game.getOrder();
+	                    }else{
+	                    	if(!game.is_false){
+	                            game.global.gametimer =setInterval(function(){
+	                                for(var i=0;i<$(".gameo_num span").length;i++){
+	                                    $(".gameo_num span").eq(i).text(game.randomNum())
+	                                } 
+	                            },50)
+	                            game.is_false = true;
+	
+	                        }
+	                    }
+	                }else{
+	                    $(".hint_pop .hint_cont").text(data.msg);
+	                    $(".hint_pop").show();
+	                }
+	            },'json' );
+	            
+	        },1000);
+	        game.global.kjtimer = true;
+    	}
     },
     qhinfo: function() {
     	
@@ -568,6 +585,7 @@ var game = {
                 $(".gameo_qiall").text(data.data.num);
                 game.allCont.actionNo = data.data.actionNo.actionNo;
                 game.global.lastactionNo = data.data.lastNo.actionNo;
+                game.global.ttime = data.data.actionNo.difftime-data.data.actionNo.diffKTime;
                 //倒计时
                 game.countdown(data.data.actionNo.difftime,data.data.actionNo.diffKTime,data.data.actionNo.diffFTime);
                 game.global.gametimer = null;
