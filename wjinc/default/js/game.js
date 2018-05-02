@@ -270,6 +270,7 @@ var game = {
             }else{
                 $(".hint_pop .hint_cont").text('您还未添加预投注');
                 $(".hint_pop").show();
+                return false;
             }
         })
         $(".gameo_btns1").click(function(){
@@ -281,10 +282,12 @@ var game = {
                 $(".hint_pop .hint_cont").text('您还未添加预投注');
                 $(".hint_pop").show();
             }
+            return false;
     
         })
         $(".zhui_close").click(function(){
             $(".zhui_pop").hide();
+            return false;
         })
         $(".hint_btn").on('touchend', function(){
             $(".hint_pop .hint_title").text('错误提示');
@@ -340,9 +343,10 @@ var game = {
             	    $(".hint_pop .hint_cont").text(data.msg);
                     $(".hint_pop").show();
             	}
-                return false;
+                
            
             },'json' );
+            return false;
         })
         //撤单
         $(document).on('touchend', 'td.prize_col', function(){
@@ -357,6 +361,7 @@ var game = {
                     $(".hint_pop").show();
                 }
             },'json' );
+            return false;
         })
         $(".tz_btn2").on('touchend', function(){
             $(".tz_pop").hide();
@@ -440,6 +445,7 @@ var game = {
     },
     countdown: function(times){ //倒计时
         var timer=null;
+        if()
         timer=setInterval(function(){
             var day=0,
             hour=0,
@@ -518,11 +524,12 @@ var game = {
     	//默认期号
         $.post('/index.php/game/getqhinfo/'+game.global.cid,function(data){
             if(!data.code){
-                $(".gameo_qi").text(data.data.actionNo.actionNo);
+            	$(".gameo_qi").text(data.data.actionNo.actionNo);
+                $(".gameo_toptitle .gameo_qi").text(data.data.lastNo.actionNo);
                 $(".gameo_qiall").text(data.data.num);
                 game.allCont.actionNo = data.data.actionNo.actionNo;
                 //倒计时
-                game.countdown(data.data.actionNo.difftime);
+                game.countdown(data.data.actionNo.difftime,data.data.actionNo.diffKtime,data.data.actionNo.diffFtime);
                 game.global.gametimer = null;
                 if(!data.data.kjNo){
                     
@@ -662,7 +669,7 @@ var game = {
         window[game.global.namespace].rx3z3 = function rx3z3(){
             var codeLen=parseInt(game.global.datainfo.num),
                 codes=''
-                $select=$("li >.active"),
+                $select=$("i.active"),
                 len=1;
             if($select.length<codeLen) throw('请选'+codeLen+'位数');
             $select.each(function(){
@@ -674,7 +681,7 @@ var game = {
         window[game.global.namespace].rx3z6 = function rx3z6(){
             var codeLen=parseInt(game.global.datainfo.num),
                 codes=''
-                $select=$("li >.active"),
+                $select=$("i.active"),
                 len=1;
             if($select.length<codeLen) throw('请选'+codeLen+'位数');
             $select.each(function(){
@@ -698,17 +705,17 @@ var game = {
         window[game.global.namespace].ssc5xdwd = function ssc5xdwd(){
             var code=[], len=0, delimiter="";
             $(".game_stakes").each(function(i){
-                    var $code=$('i.active', this);
-                    if($code.length==0){
-                            code[i]='-';
-                    }else{
-                            len+=$code.length;
-                            code[i]=[];
-                            $code.each(function(){
-                                    code[i].push(this.innerText);
-                            });
-                            code[i]=code[i].join(delimiter);
-                    }
+                var $code=$('i.active', this);
+                if($code.length==0){
+                        code[i]='-';
+                }else{
+                        len+=$code.length;
+                        code[i]=[];
+                        $code.each(function(){
+                                code[i].push(this.innerText);
+                        });
+                        code[i]=code[i].join(delimiter);
+                }
             });
             if(!len) throw('至少选一个号码');
             return {actionData:code.join(','), actionNum:len};

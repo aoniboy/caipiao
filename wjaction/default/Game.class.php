@@ -179,13 +179,14 @@ class Game extends WebLoginBase{
 	    $kjHao=$this->getValue("select data from {$this->prename}data where type={$this->type} and number='{$lastNo['actionNo']}'");
 	    if($kjHao) $kjHao=explode(',', $kjHao);
 	    $actionNo=$this->getGameNo($this->type);
-	    $actionNo['difftime'] = strtotime($actionNo['actionTime']) -time();
-	    $actionNo['diffminute'] = intval($actionNo['difftime']/60);
-	    $actionNo['diffsecond'] = $actionNo['difftime'] - intval($actionNo['difftime']/60)*60;
+
 	    $types=$this->getTypes();
 	    $kjdTime=$types[$this->type]['data_ftime'];
 	    $diffTime=strtotime($actionNo['actionTime'])-$this->time-$kjdTime;
 	    $kjDiffTime=strtotime($lastNo['actionTime'])-$this->time;
+	    $actionNo['difftime'] = $diffTime;
+	    $actionNo['diffKTime'] = $kjDiffTime;
+	    $actionNo['diffFTime'] = $kjdTime;
 	    $data['name'] = $this->types[$type]['title'];
 	    $data['actionNo'] = $actionNo;
 	    $data['lastNo'] = $lastNo;
