@@ -256,4 +256,16 @@ class User extends WebBase{
 			throw $e;
 		}
 	}
+	public final function checkLogin() {
+	    if($user=unserialize($_SESSION[$this->memberSessionName])) {
+	        $this->outputData(0,0);
+	    }else{
+	        $this->outputData(0,1);
+	    }
+	}
+	public function outputData($code=0,$data=[],$message='操作成功') {
+	    $output = ['code'=>$code,'data'=>$data,'msg'=>$message];
+	    echo json_encode($output);
+	    exit;
+	}
 }

@@ -234,28 +234,6 @@
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript">
 $( "#slider" ).slider();
-//全选
-$(document).on('click', '.zhui_all', function(){
-    $(".zhui_table table").find('input:checkbox').prop('checked',true)
-})
-//反选
-$(document).on('click', '.zhui_fan', function(){
-    $('.zhui_table tbody :checkbox').each(function(){
-        this.checked=!this.checked;
-        console.log(this.checked);
-        $(this).trigger('change');
-    });
-    $('.zhui_table thead :checkbox').prop('checked', false);
-})
-//全/反选
-$(document).on('click', '.zhui_allfan', function(){
-    $('.zhui_table tbody :checkbox').prop('checked', this.checked).trigger('change');
-})
-//填写倍数
-$(document).on('blur', '.beishu', function(){
-    var val = parseInt($(this).val());
-    $(this).parents('tr').find('.amount').text(val*2);
-})
 </script>
 </body>
 </html>

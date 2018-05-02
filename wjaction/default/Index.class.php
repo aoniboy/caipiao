@@ -185,12 +185,6 @@ class Index extends WebLoginBase{
 		$this->display('index/inc_data_history_left.php');
 	}
 	
-	public final function checkLogin() {
-	    if($user=unserialize($_SESSION[$this->memberSessionName])) {
-	        $this->outputData(0,0);
-	    }else{
-	        $this->outputData(0,1);
-	    }
-	}
+
 
 }

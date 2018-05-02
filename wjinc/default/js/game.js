@@ -1,7 +1,8 @@
 var game = {
     init: function(){
         this.bindEvent();
-        this.windowInit()
+        this.windowInit();
+        this.dealh5inback();
     },
     code:[],
     allCont:{
@@ -21,6 +22,8 @@ var game = {
     	cid:0,
     	gametimer:null,
     	kjtimer:false,
+    	fengpantimer:null,
+    	counttimer:null,
         datainfo:{
             num:0,
             bonus:0,
@@ -292,10 +295,39 @@ var game = {
             }
             return false;
     
-        })
+        });
         $(".zhui_close").click(function(){
             $(".zhui_pop").hide();
             return false;
+        });
+        //全选
+        $(document).on('click', '.zhui_all', function(){
+            $(".zhui_table table").find('input:checkbox').prop('checked',true)
+            game.dealZhuihao();
+        })
+        //反选
+        $(document).on('click', '.zhui_fan', function(){
+            $('.zhui_table tbody :checkbox').each(function(){
+                this.checked=!this.checked;
+                $(this).prop('checked',this.checked)
+            });
+            $('.zhui_table thead :checkbox').prop('checked', false);
+            game.dealZhuihao();
+        })
+        //全/反选
+        $(document).on('click', '.zhui_allfan', function(){
+            $('.zhui_table tbody :checkbox').prop('checked', this.checked);
+            game.dealZhuihao();
+        })
+        //填写倍数
+        $(document).on('blur', '.beishu', function(){
+            var val = parseInt($(this).val());
+            $(this).parents('tr').find('.amount').text(val*2);
+            game.dealZhuihao();
+        })
+        //确定追号
+        $(document).on('click', '.zhui_sure', function(){
+            game.dealZhuihao(true);
         })
         $(".hint_btn").on('touchend', function(){
             $(".hint_pop .hint_title").text('错误提示');
@@ -442,20 +474,19 @@ var game = {
                     game.betInfo.num = obj.actionNum;
                     game.betInfo.data = obj.actionData;
                     game.betInfo.money = dan_allmoney;
-                    console.log(obj)
                     return true;
                 }catch(err){
                     $(".dan_text").text(err);
                     return false;
-		}
+                }
             }else{
                 return false;
             }
     },
     countdown: function(times,kjtime,kjftime){ //倒计时
-        var timer=null;
-
-        timer=setInterval(function(){
+        
+        
+        game.global.counttimer=setInterval(function(){
             var day=0,
             hour=0,
             minute=0,
@@ -479,7 +510,7 @@ var game = {
                 $(".kaijiang")[0].play();
             }
             if(times<0){
-                clearInterval(timer);
+                clearInterval(game.global.counttimer);
                 $(".kaijiang")[0].pause();
                 $(".hint_pop1 .hint_titles").text('第'+ game.allCont.actionNo+'期投注已截止!');
                 $(".hint_pop1 .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
@@ -494,7 +525,7 @@ var game = {
                 return false;
             }
             if(kjtime>0){
-                clearInterval(timer);
+                clearInterval(game.global.counttimer);
                 $(".kaijiang")[0].pause();
                 $(".hint_pop1 .hint_titles").text('第'+ game.global.lastactionNo+'期投注已截止!');
                 $(".hint_pop1 .hint_cont").text('清空预投注内容请点击"确定"，不刷新页面请点击"取消"。');
@@ -515,9 +546,8 @@ var game = {
         },1000);
     },
     fengpancount: function(times,flag){ //倒计时
-        var ftimer=null;
 
-        ftimer=setInterval(function(){
+    	game.global.fengpantimer=setInterval(function(){
             var day=0,
             hour=0,
             minute=0,
@@ -533,7 +563,7 @@ var game = {
             var text = "距"+qishu+"期封盘结束还有"+game.checkTime(hour)+"时"+game.checkTime(minute)+"分"+game.checkTime(second)+"秒";
             $(".gameo_ftips >span").text(text);
             if(times<0){
-                clearInterval(ftimer);
+                clearInterval(game.global.fengpantimer);
                 $('.gameo_ftips').hide();
                 $('.gameo_num').show();
                 game.global.fengpan = false;
@@ -811,6 +841,35 @@ var game = {
         }
         
         
+    },
+    dealh5inback: function(){
+    	var hiddenProperty = 'hidden' in document ? 'hidden' :
+    	    'webkitHidden' in document ? 'webkitHidden' :
+    	        'mozHidden' in document ? 'mozHidden' :
+    	            null;
+    	var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+    	var onVisibilityChange = function(){
+
+    	    if (!document[hiddenProperty]) {
+    	    	window.location.href = location.href;
+//    	    	if(game.global.fengpantimer) clearInterval(game.global.fengpantimer);
+//    	    	if(game.global.counttimer) clearInterval(game.global.counttimer);
+//    	        game.qhinfo();
+    	    }else{
+//    	    	if(game.global.fengpantimer) clearInterval(game.global.fengpantimer);
+//    	    	if(game.global.counttimer) clearInterval(game.global.counttimer);
+    	    }
+    	}
+    	document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+    },
+    dealZhuihao: function(flag=false) {
+    	if(flag) {
+	    	
+    	}else{
+    		$('.zhui_table tbody :checkbox').each(function(){
+	            console.log(111);
+	        });
+    	}
     }
 
 }

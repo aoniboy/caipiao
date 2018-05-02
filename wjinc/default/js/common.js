@@ -21,7 +21,7 @@ var common = {
     	var timer=null;
         timer=setInterval(function(){
         	//默认期号
-            $.post('/index.php/index/checklogin',function(data){
+            $.post('/index.php/user/checklogin',function(data){
                 if(!data.code){
                 	if(data.data){
                 		window.location.href='/index.php/user/login';
