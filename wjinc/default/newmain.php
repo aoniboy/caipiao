@@ -192,7 +192,7 @@
                 
                 <select name="qh"><option value="10">最近10期</option><option value="20">最近20期</option><option value="30">最近30期</option><option value="40">最近40期</option><option value="50">最近50期</option><option value="0">今天全部</option></select>
                 <label><input class="zhuicheck1"  type="checkbox" checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>　
-                追号期数：<span class="qs">0</span>　总金额：<span class="amount">0</span>元
+                追号期数：<span class="qs zhui_qs">0</span>　总金额：<span class="amount zhui_amount">0</span>元
             </div>
             <div class="zhui_table tc" style="" scrolltop="0" scrollleft="0">
                 <table width="100%">
