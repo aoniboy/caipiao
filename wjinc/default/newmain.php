@@ -234,9 +234,10 @@
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript">
 $( "#slider" ).slider();
-$(document).on('change', '.zhui_all', function){
-    $(".zhui_table table").find('tbody :checkbox').prop('checked', 'checked');   
-}
+$(document).on('change', '.zhui_all', function(){
+    $(".zhui_table table").find('tbody :checkbox').prop('checked',true);   
+    
+})
 </script>
 </body>
 </html>
