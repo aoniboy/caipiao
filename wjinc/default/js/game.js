@@ -920,6 +920,7 @@ var game = {
                     }
                 });
                 game.zhuihao = d.join(";");
+                console.log(game.zhuihao);
                 $("zhui_qs").text(n);
                 $(".zhui_amount").text(s);
 	        });
