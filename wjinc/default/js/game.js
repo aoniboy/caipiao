@@ -184,7 +184,6 @@ var game = {
                 game.del_id ++;
 
                 list.money = game.betInfo.money;
-                $(this).attr('data-num',1);
                 game.code.push(list);
                 $(".game_stakes").find('i').removeClass('active');
                 //添加的html
@@ -329,30 +328,27 @@ var game = {
             }
             $.post('/index.php/game/getNo/'+cid,function(data){
                 if(!data.code){
-                	//if(game.allCont.actionNo == data.data.actionNo.actionNo) {
-	                	game.allCont.actionNo = data.data.actionNo.actionNo;
-	                	game.allCont.kjTime = data.data.actionNo.actionTime;
-	                	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
-	                        if(!res.code){
-	                            game.getOrder();
-	                            game.code = [];
-	                            game.allCont.all_stake =0;
-	                            game.allCont.all_money =0;
-	                            $(".game_tzlist table").html('');
-	                            $(".all_money").text(game.allCont.all_money.toFixed(2));
-	                            $(".all_stake").text(game.allCont.all_stake);
-	                            $(".hint_pop .hint_title").text('系统提示');
-	                            $(".hint_pop .hint_cont").text(res.msg);
-	                            $(".hint_pop").show();
-	                        }else{
-                                    $(".hint_pop .hint_cont").text(res.msg);
-	                            $(".hint_pop").show();
-	                    	}
-	                    },'json' );
-//                	}else{
-//                            $(".hint_pop .hint_cont").text("你投注的期数："+game.allCont.actionNo+"已经停止销售!");
-//                            $(".hint_pop").show();
-//                	}
+
+                	game.allCont.actionNo = data.data.actionNo.actionNo;
+                	game.allCont.kjTime = data.data.actionNo.actionTime;
+                	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
+                        if(!res.code){
+                            game.getOrder();
+                            game.code = [];
+                            game.allCont.all_stake =0;
+                            game.allCont.all_money =0;
+                            $(".game_tzlist table").html('');
+                            $(".all_money").text(game.allCont.all_money.toFixed(2));
+                            $(".all_stake").text(game.allCont.all_stake);
+                            $(".hint_pop .hint_title").text('系统提示');
+                            $(".hint_pop .hint_cont").text(res.msg);
+                            $(".hint_pop").show();
+                        }else{
+                                $(".hint_pop .hint_cont").text(res.msg);
+                            $(".hint_pop").show();
+                    	}
+                    },'json' );
+                	$(".gameo_multiple").val('1')
             	}else{
             	    $(".hint_pop .hint_cont").text(data.msg);
                     $(".hint_pop").show();
@@ -494,7 +490,7 @@ var game = {
                 $('.gameo_num').hide();
                 game.global.fengpan = true;
                 $(".gameo_qi").text(game.allCont.actionNo);
-                setTimeout("game.nextinfo()",parseInt(kjftime)*1000);
+                game.fengpancount(parseInt(kjftime),1);
                 return false;
             }
             if(kjtime>0){
@@ -512,9 +508,47 @@ var game = {
                 $(".gameo_minute").text('00');
                 $(".gameo_hour").text('00');
                 $(".gameo_qi").text(game.global.lastactionNo);
-                setTimeout("game.nextkjinfo()",parseInt(kjtime)*1000);
+                game.fengpancount(parseInt(kjtime),0);
                 
             }
+            times--;
+        },1000);
+    },
+    fengpancount: function(times,flag){ //倒计时
+        var ftimer=null;
+
+        ftimer=setInterval(function(){
+            var day=0,
+            hour=0,
+            minute=0,
+            second=0;//时间默认值
+            if(times > 0){
+                day = Math.floor(times / (60 * 60 * 24));
+                hour = Math.floor(times / (60 * 60)) - (day * 24);
+                minute = Math.floor(times / 60) - (day * 24 * 60) - (hour * 60);
+                second = Math.floor(times) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+            }
+            
+            var qishu =  flag?game.allCont.actionNo:game.global.lastactionNo;
+            var text = "距"+qishu+"期封盘结束还有"+game.checkTime(hour)+"时"+game.checkTime(minute)+"分"+game.checkTime(second)+"秒";
+            $(".gameo_ftips >span").text(text);
+            if(times<0){
+                clearInterval(ftimer);
+                $('.gameo_ftips').hide();
+                $('.gameo_num').show();
+                game.global.fengpan = false;
+                if(flag) {
+                	game.qhinfo();
+                	$(".gameo_stitle .gameo_qi").text(game.allCont.actionNo);
+                	
+                }else{
+                	game.countdown(game.global.ttime,0,0)
+                    game.kjinfo();
+                	$(".gameo_stitle .gameo_qi").text(game.allCont.actionNo);
+                }
+                
+            }
+            
             times--;
         },1000);
     },
@@ -525,19 +559,15 @@ var game = {
         return i; 
     },
     nextinfo: function() {
-    	$('.gameo_ftips').hide();
-        $('.gameo_num').show();
-        game.global.fengpan = false;
-        game.qhinfo();
-        $(".gameo_stitle .gameo_qi").text(game.allCont.actionNo);
+    	
+        
     },
     nextkjinfo: function() {
-    	game.countdown(game.global.ttime,0,0)
+    	
     	$('.gameo_ftips').hide();
         $('.gameo_num').show();
         game.global.fengpan = false;
-        $(".gameo_stitle .gameo_qi").text(game.allCont.actionNo);
-        game.kjinfo();
+        
     },
     kjinfo: function() {
     	var kjtimer=null;
