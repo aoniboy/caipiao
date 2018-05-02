@@ -13,11 +13,19 @@ var game = {
         actionNo:'',
         kjTime:'1524574800',
         type:'',
+        zhuiHao:'1',
+        zhuiHaoMode:'',
     },
+    zhuihao:'',
     del_id:1,
     is_false:false,
     all_len:'',
     data:[],
+    is_zhui:false,
+    beiyong:{
+        all_stake:,
+        all_money:,
+    }
     global:{
     	cid:0,
     	gametimer:null,
@@ -208,6 +216,8 @@ var game = {
                 $(".game_tzlist table").append(html);
                 game.allCont.all_money += parseInt(list.money);
                 game.allCont.all_stake += parseInt(list.actionNum);
+                game.beiyong.all_money = game.allCont.all_money;
+                game.beiyong.all_stake = game.allCont.all_stake;
                 $(".all_money").text(game.allCont.all_money.toFixed(2));
                 $(".all_stake").text(game.allCont.all_stake)
                 $(".gameo_int").val('');
@@ -298,7 +308,15 @@ var game = {
             return false;
     
         });
+        //取消追号
         $(".zhui_close").click(function(){
+            $(".zhui_table table").find('input:checkbox').prop('checked',false);
+            game.allCont.all_stake=game.beiyong.all_stake;
+            game.allCont.all_money=game.bieyong.all_money;
+            game.zhuihao = '';
+            game.allCont.zhuiHaoMode = '';
+            $("zhui_qs").text('0');
+            $(".zhui_amount").text('0');
             $(".zhui_pop").hide();
             return false;
         });
@@ -338,6 +356,16 @@ var game = {
         })
         //确定追号
         $(document).on('click', '.zhui_sure', function(){
+            game.is_zhui = true;
+            if($('.zhuicheck1').is(':checked')) {
+                game.allCont.zhuiHaoMode = $(".zhuicheck1").val();
+            }else{
+                game.allCont.zhuiHaoMode = 0;
+            }
+            game.beiyong.all_stake = game.allCont.all_stake;
+            game.bieyong.all_money = game.allCont.all_money;
+            game.allCont.all_stake =$("zhui_qs").text(n);
+            game.allCont.all_money =$(".zhui_amount").text(s);
             game.dealZhuihao(true);
         })
         $(".hint_btn").on('touchend', function(){
@@ -364,6 +392,7 @@ var game = {
         $(".tz_btn1").on('touchend', function(){
             $(".hint_pop").hide();
             $(".tz_pop").hide();
+
             if(game.global.fengpan) {
             	$(".hint_pop .hint_cont").text('第'+ game.allCont.actionNo+'期投注已截止!');
                 $(".hint_pop").show();
@@ -374,7 +403,7 @@ var game = {
 
                 	game.allCont.actionNo = data.data.actionNo.actionNo;
                 	game.allCont.kjTime = data.data.actionNo.actionTime;
-                	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont}, function(res){
+                	$.post('/index.php/game/postCode', {code:game.code,para:game.allCont,zhuiHao:game.zhuihao}, function(res){
                         if(!res.code){
                             game.getOrder();
                             game.code = [];
@@ -873,13 +902,23 @@ var game = {
     	document.addEventListener(visibilityChangeEvent, onVisibilityChange);
     },
     dealZhuihao: function(flag=false) {
+        var zhui_arr = [];
     	if(flag) {
 	    	
     	}else{
     		$('.zhui_table tbody :checkbox').each(function(){
-	            if(this.checked) {
-	            	console.log(222)
-	            }
+                var d = [];
+                var s =null;
+                var n = 1;
+                $('.zhui_table tbody :checkbox').each(function(index,item){
+                    if(this.checked) {
+                        s+=  Number($(this).parent("td").siblings("td").find('.amount').text());
+                        n =index+1;
+                    }
+                });
+                game.zhuihao = d.join(";");
+                $("zhui_qs").text(n);
+                $(".zhui_amount").text(s);
 	        });
     	}
     }
