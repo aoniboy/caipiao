@@ -240,7 +240,7 @@ $(document).on('click', '.zhui_all', function(){
 })
 //反选
 $(document).on('click', '.zhui_fan', function(){
-    $(".zhui_table table").find('input:checkbox').prop('checked', this.checked);
+    $(".zhui_table table").find('tbody:checkbox').prop('checked', this.checked).trigger('change');;
 })
 //全/反选
 $(document).on('click', '.zhui_fan', function(){
