@@ -23,8 +23,8 @@ var game = {
     data:[],
     is_zhui:false,
     beiyong:{
-        all_stake:,
-        all_money:,
+        all_stake:0,
+        all_money:0,
     },
     global:{
     	cid:0,
