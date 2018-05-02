@@ -198,7 +198,7 @@
                 <table width="100%">
                     <thead class="tr-top">
                         <tr>
-                            <td><input class="zhuicheck" type="checkbox" class="zhui_all">
+                            <td><input class="zhuicheck zhui_all" type="checkbox" class="">
                             </td><td>期号</td>
                             <td>倍数</td>
                             <td>金额</td>
@@ -234,10 +234,13 @@
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript">
 $( "#slider" ).slider();
+//全选
 $(document).on('click', '.zhui_all', function(){
-    console.log(1);
     $(".zhui_table table").find('input:checkbox').prop('checked',true);   
-
+})
+//反选
+$(document).on('click', '.zhui_fan', function(){
+    $(".zhui_table table").find('input:checkbox').prop('checked',false);   
 })
 </script>
 </body>
