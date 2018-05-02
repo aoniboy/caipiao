@@ -235,7 +235,7 @@
 <script type="text/javascript">
 $( "#slider" ).slider();
 $(document).on('change', '.zhui_all', function){
-    $(".zhui_table table").find('tbody :checkbox').prop('checked', this.checked).trigger('change');   
+    $(".zhui_table table").find('tbody :checkbox').prop('checked', 'checked');   
 }
 </script>
 </body>
