@@ -396,7 +396,6 @@ var game = {
                 
                 narr = game.data[i].position;
                 game.all_len = game.data[i].position;
-                console.log(game.all_len)
                 var html =''
                 if(game.all_len.length==1 && game.all_len[0]=='1'){
                     html = '<li><input class="gameo_int" placeholder="输入至少1个两位位数号码组成一注" type="tel"></li>';
@@ -494,7 +493,7 @@ var game = {
                 $('.gameo_ftips').show();
                 $('.gameo_num').hide();
                 game.global.fengpan = true;
-                $(".gameo_qi").text(game.global.lastactionNo);
+                $(".gameo_qi").text(game.allCont.actionNo);
                 setTimeout("game.nextinfo()",parseInt(kjftime)*1000);
                 return false;
             }
@@ -529,8 +528,8 @@ var game = {
     	$('.gameo_ftips').hide();
         $('.gameo_num').show();
         game.global.fengpan = false;
-        $(".gameo_stitle .gameo_qi").text(game.allCont.actionNo);
         game.qhinfo();
+        $(".gameo_stitle .gameo_qi").text(game.allCont.actionNo);
     },
     nextkjinfo: function() {
     	game.countdown(game.global.ttime,0,0)
@@ -680,10 +679,8 @@ var game = {
     },
     getZhuihao: function() {
         var mode = parseFloat($(".gameo_check.active").data('money')||1);
-        console.log(mode)
         $('.tr-cont').load('/index.php/index/zhuiHaoQs/'+game.global.cid+'/'+mode+'/10');
         $('.zhui_top').find('select:first').change(function(){
-            console.log($(this))
             $('.tr-cont').load('/index.php/index/zhuiHaoQs/'+game.global.cid+'/'+mode+'/'+$(this).val());
         });
     },
