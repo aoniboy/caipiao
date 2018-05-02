@@ -32,6 +32,7 @@
         </div>
         <div class="tc login_ques kf f24">如有任何疑问请<a href="javascript:;">联系客服</a></div>
         <input id="kefu" type="hidden" value="<?=$this->settings['kefuGG']?>">
+        <input id="denglu" type="hidden" value="1">
     </div>
 </div>
 

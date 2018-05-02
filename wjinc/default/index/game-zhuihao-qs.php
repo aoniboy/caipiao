@@ -4,9 +4,9 @@
 ?>
 <tr>
 	<td><input type="checkbox" value="<?=$var['actionNo']?>|1|<?=date('Y-m-d H:i:s', $var['actionTime'])?>" />
-	<td><?=$var['actionNo']?></td>
+	<td class="qqh"><?=$var['actionNo']?></td>
 	<td><input type="text" class="beishu" value="1"/></td>
 	<td><span class="amount"><?=$args[0]?></span>元</td>
-	<td><?=date('Y-m-d H:i:s', $var['actionTime'])?></td>
+	<td class="qqt"><?=date('Y-m-d H:i:s', $var['actionTime'])?></td>
 </tr>
 <?php } ?>

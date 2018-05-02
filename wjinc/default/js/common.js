@@ -18,20 +18,23 @@ var common = {
     	});
     },
     checklogin: function() {//每5秒检查用户是否在线
-    	var timer=null;
-        timer=setInterval(function(){
-        	//默认期号
-            $.post('/index.php/user/checklogin',function(data){
-                if(!data.code){
-                	if(data.data){
-                		window.location.href='/index.php/user/login';
-                		return false;
-                	}
-                    
-                }
-            },'json' );
-            
-        },5000);
+    	if($('#denglu').val() !=1) {
+	    	var timers=null;
+	        timers=setInterval(function(){
+	        	//默认期号
+	            $.post('/index.php/user/checklogin',function(data){
+	                if(!data.code){
+	                	if(data.data){
+	                		clearInterval(timers)
+	                		window.location.href='/index.php/user/login';
+	                		return false;
+	                	}
+	                    
+	                }
+	            },'json' );
+	            
+	        },5000);
+    	}
     },
 }
 common.init();

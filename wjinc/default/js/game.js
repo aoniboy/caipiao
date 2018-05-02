@@ -298,8 +298,13 @@ var game = {
         })
         $(".gameo_btns1").click(function(){
             if($(".game_tzlist table tr").length>0){
-                $(".zhui_pop").show();
-                game.getZhuihao();
+            	if($(".game_tzlist table tr").length<2){
+	                $(".zhui_pop").show();
+	                game.getZhuihao();
+            	}else{
+            		$(".hint_pop .hint_cont").text('只能对一种方案追号');
+                    $(".hint_pop").show();
+            	}
                 
             }else{
                 $(".hint_pop .hint_cont").text('您还未添加预投注');
@@ -329,11 +334,6 @@ var game = {
         })
         //单个点击
         $(document).on('click', '.zhui_table tbody :checkbox', function(){
-//            if($(this).prop('checked')) {
-//            	$(this).prop('checked',false)
-//            }else{
-//            	$(this).prop('checked',true)
-//            }
             game.dealZhuihao();
         })
         //反选
@@ -353,7 +353,8 @@ var game = {
         //填写倍数
         $(document).on('blur', '.beishu', function(){
             var val = parseInt($(this).val());
-            $(this).parents('tr').find('.amount').text(val*2);
+            var mode = parseFloat($(".gameo_check.active").data('money')||1)
+            $(this).parents('tr').find('.amount').text(parseFloat(val*game.betInfo.money).toFixed(2));
             game.dealZhuihao();
         })
         //确定追号
@@ -367,7 +368,7 @@ var game = {
             }
             game.beiyong.all_stake = game.allCont.all_stake;
             game.beiyong.all_money = game.allCont.all_money;
-            game.allCont.all_stake =Number($(".zhui_qs").text());
+            game.allCont.all_stake =Number($(".zhui_qs").text()*game.betInfo.num);
             game.allCont.all_money =Number($(".zhui_amount").text());
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
@@ -447,6 +448,7 @@ var game = {
                     $(".hint_pop .hint_cont").text(data.msg);
                     $(".hint_pop").show();
                 }
+                game.getOrder();
             },'json' );
             return false;
         })
@@ -782,10 +784,11 @@ var game = {
             return r;
     },
     getZhuihao: function() {
-        var mode = parseFloat($(".gameo_check.active").data('money')||1);
+        var mode = game.betInfo.money;
         $('.tr-cont').load('/index.php/index/zhuiHaoQs/'+game.global.cid+'/'+mode+'/10');
         $('.zhui_top').find('select:first').change(function(){
             $('.tr-cont').load('/index.php/index/zhuiHaoQs/'+game.global.cid+'/'+mode+'/'+$(this).val());
+            $('.zhui_table thead :checkbox').prop('checked', false);
         });
     },
     windowInit: function() {
@@ -895,7 +898,7 @@ var game = {
     	var onVisibilityChange = function(){
 
     	    if (!document[hiddenProperty]) {
-    	    	window.location.href = location.href;
+    	    	//window.location.href = location.href;
 //    	    	if(game.global.fengpantimer) clearInterval(game.global.fengpantimer);
 //    	    	if(game.global.counttimer) clearInterval(game.global.counttimer);
 //    	        game.qhinfo();
@@ -919,14 +922,18 @@ var game = {
                     if(this.checked) {
                         s+=  Number($(this).parent("td").siblings("td").find('.amount').text());
                         n =n+1;
-                        d.push(this.value);
+                        var value = $(this).parent("td").siblings(".qqh").text()+"|"+$(this).parent("td").siblings("td").find('.beishu').val()+"|"+$(this).parent("td").siblings(".qqt").text()
+                        d.push(value);
                     }
                 });
                 game.zhuihao = d.join(";");
-                console.log(game.zhuihao);
-
+                console.log(game.zhuihao)
                 $(".zhui_qs").text(n);
-                $(".zhui_amount").text(s);
+                if(s){ 
+                	$(".zhui_amount").text(parseFloat(s).toFixed(2));
+                }else{
+                	$(".zhui_amount").text('0')
+                }
 	        });
     	}
     }
