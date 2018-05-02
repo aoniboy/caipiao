@@ -234,7 +234,7 @@
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript">
 $( "#slider" ).slider();
-$(document).on('change', '.zhui_all', function(){
+$(document).on('click', '.zhui_all', function(){
     console.log(1);
     $(".zhui_table table").find('input:checkbox').prop('checked',true);   
 
