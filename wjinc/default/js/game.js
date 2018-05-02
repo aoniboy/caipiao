@@ -356,6 +356,7 @@ var game = {
         })
         //确定追号
         $(document).on('click', '.zhui_sure', function(){
+            $(".zhui_pop").hide();
             game.is_zhui = true;
             if($('.zhuicheck1').is(':checked')) {
                 game.allCont.zhuiHaoMode = $(".zhuicheck1").val();
@@ -366,6 +367,8 @@ var game = {
             game.beiyong.all_money = game.allCont.all_money;
             game.allCont.all_stake =$("zhui_qs").text();
             game.allCont.all_money =$(".zhui_amount").text();
+            $(".all_money").text(game.allCont.all_money.toFixed(2));
+            $(".all_stake").text(game.allCont.all_stake);
             game.dealZhuihao(true);
         })
         $(".hint_btn").on('touchend', function(){
