@@ -214,8 +214,8 @@ var game = {
                 html+='            <td class="iconfont icon-icon-cross-squre gameo_delete"  data-del='+list.del_id+' data-money='+list.money+' data-stake='+list.actionNum+'></td>'
                 html+='        </tr>'
                 $(".game_tzlist table").append(html);
-                game.allCont.all_money += parseInt(list.money);
-                game.allCont.all_stake += parseInt(list.actionNum);
+                game.allCont.all_money += Number(list.money);
+                game.allCont.all_stake += Number(list.actionNum);
                 game.beiyong.all_money = game.allCont.all_money;
                 game.beiyong.all_stake = game.allCont.all_stake;
                 $(".all_money").text(game.allCont.all_money.toFixed(2));
@@ -231,8 +231,8 @@ var game = {
             $(this).parents('tr').remove();
             var money = $(this).attr('data-money');
             var stake = $(this).attr('data-stake');
-            game.allCont.all_money = game.allCont.all_money - parseInt(money);
-            game.allCont.all_stake = game.allCont.all_stake - parseInt(stake);
+            game.allCont.all_money = game.allCont.all_money - Number(money);
+            game.allCont.all_stake = game.allCont.all_stake - Number(stake);
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
             for(var i=0;i<game.code.length;i++){
@@ -365,8 +365,8 @@ var game = {
             }
             game.beiyong.all_stake = game.allCont.all_stake;
             game.beiyong.all_money = game.allCont.all_money;
-            game.allCont.all_stake =$("zhui_qs").text();
-            game.allCont.all_money =$(".zhui_amount").text();
+            game.allCont.all_stake =Number($("zhui_qs").text());
+            game.allCont.all_money =Number($(".zhui_amount").text());
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
             game.dealZhuihao(true);
@@ -917,11 +917,12 @@ var game = {
                     if(this.checked) {
                         s+=  Number($(this).parent("td").siblings("td").find('.amount').text());
                         n =index+1;
+                        d.push(this.value);
                     }
                 });
                 game.zhuihao = d.join(";");
                 console.log(game.zhuihao);
-                $("zhui_qs").text(n);
+                $(".zhui_qs").text(n);
                 $(".zhui_amount").text(s);
 	        });
     	}
