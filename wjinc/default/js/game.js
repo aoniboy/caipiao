@@ -452,8 +452,20 @@ var game = {
             },'json' );
             return false;
         })
+        //查看详情
+        $(document).on('touchend', 'td.orderdetail', function(){
+            var id = $(this).attr('data-id');
+            $.post('/index.php/record/betInfo/'+id,function(data){
+            	$(".detail_pop").show();
+                $('.detail_table').html(data);
+            },'text' );
+            return false;
+        })
         $(".tz_btn2").on('touchend', function(){
             $(".tz_pop").hide();
+        })
+        $(".detail_close").on('touchend', function(){
+            $(".detail_pop").hide();
         })
         //只能是数字
         $(document).on('keyup', '.gameo_int', function(){
@@ -742,7 +754,7 @@ var game = {
                         prize_col='prize_col';
                     }                               
                     html+='    <tr>'
-                    html+='        <td>'+list[i].wjorderId+'</td>'
+                    html+='        <td data-id="'+list[i].id+'" class="orderdetail" >'+list[i].wjorderId+'</td>'
                     html+='        <td>'+list[i].gamename+'</td>'
                     html+='        <td>'+list[i].playname+'</td>'
                     html+='        <td>'+list[i].actionNo+'</td>'
@@ -899,12 +911,11 @@ var game = {
 
     	    if (!document[hiddenProperty]) {
     	    	//window.location.href = location.href;
-//    	    	if(game.global.fengpantimer) clearInterval(game.global.fengpantimer);
-//    	    	if(game.global.counttimer) clearInterval(game.global.counttimer);
-//    	        game.qhinfo();
+
+    	        game.qhinfo();
     	    }else{
-//    	    	if(game.global.fengpantimer) clearInterval(game.global.fengpantimer);
-//    	    	if(game.global.counttimer) clearInterval(game.global.counttimer);
+    	    	if(game.global.fengpantimer) clearInterval(game.global.fengpantimer);
+    	    	if(game.global.counttimer) clearInterval(game.global.counttimer);
     	    }
     	}
     	document.addEventListener(visibilityChangeEvent, onVisibilityChange);

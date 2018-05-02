@@ -226,6 +226,21 @@
             </div>
         </div>
     </div>
+        <div class="detail_pop hide">
+        <div class="gameo_mask"></div>
+        <div class="detail_box">
+            <div class="detail_top f33">投注信息 </div>
+            <div class="detail_table tc" style="" scrolltop="0" scrollleft="0">
+                
+            </div>
+            <div class="">
+                <div class="detail_btn tc">
+                    <button type="button" style="border:none; border-radius:5px;padding:.1rem .5rem" class="detail_close f26">关闭</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 	<?php $this->display('newinc_footer.php'); ?>
 </div>
 <input type="hidden" class="playedtype" value="<?=$this->type?>"/>

@@ -256,3 +256,13 @@ input:focus,select{outline:0;}
 .zhui_pop,input[type=text]{ -webkit-appearance: !important; }
 .zhui_pop,input[type=checkbox]{ -webkit-appearance: checkbox; }
 .prize_win{color:red}
+
+.detail_pop{ position: fixed;left:50%;height:100%; width:100%;top:50%; transform: translate(-50%,-50%);}
+.detail_box{ position: fixed;left:50%;top:50%; width:90%; top:50%; transform: translate(-50%,-50%);   background: #fff; padding:.15rem;border-radius: .1rem}
+.detail_top{ border-bottom: 1px solid red; padding:.2rem .1rem;text-align:center; }
+.detail_table{display: block; width: auto; min-height: 0px; height: 4rem; padding:.2rem .5rem;overflow-y: scroll}
+.detail_table table tr {text-align:left;}
+.detail_table .red{color:red};
+.detail_btn button{ border:none; border-radius:5px; }
+.detail_pop .orderdetail{cursor:hand};
+
