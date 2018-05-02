@@ -154,6 +154,8 @@ var game = {
         $(".gameo_numi").on('keyup', function(){
             if($(this).val()==0){
                 $(this).val(1)
+            }else{
+            	$(this).val(Math.abs($(this).val()))
             }
             game.currentCount();
         })
@@ -303,6 +305,15 @@ var game = {
         //全选
         $(document).on('click', '.zhui_all', function(){
             $(".zhui_table table").find('input:checkbox').prop('checked',true)
+            game.dealZhuihao();
+        })
+        //单个点击
+        $(document).on('click', '.zhui_table tbody :checkbox', function(){
+//            if($(this).prop('checked')) {
+//            	$(this).prop('checked',false)
+//            }else{
+//            	$(this).prop('checked',true)
+//            }
             game.dealZhuihao();
         })
         //反选
@@ -647,7 +658,6 @@ var game = {
                 game.global.ttime = data.data.actionNo.difftime-data.data.actionNo.diffKTime;
                 //倒计时
                 game.countdown(data.data.actionNo.difftime,data.data.actionNo.diffKTime,data.data.actionNo.diffFTime);
-                game.global.gametimer = null;
                 if(!data.data.kjNo){
                     
                     if(!game.is_false){
@@ -867,7 +877,9 @@ var game = {
 	    	
     	}else{
     		$('.zhui_table tbody :checkbox').each(function(){
-	            console.log(111);
+	            if(this.checked) {
+	            	console.log(222)
+	            }
 	        });
     	}
     }
