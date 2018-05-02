@@ -25,7 +25,7 @@ var game = {
     beiyong:{
         all_stake:,
         all_money:,
-    }
+    },
     global:{
     	cid:0,
     	gametimer:null,
