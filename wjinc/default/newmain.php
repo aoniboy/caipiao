@@ -195,32 +195,32 @@
                 追号期数：<span class="qs">0</span>　总金额：<span class="amount">0</span>元
             </div>
             <div class="zhui_table tc" style="" scrolltop="0" scrollleft="0">
-            <table width="100%">
-                <thead class="tr-top">
-                    <tr>
-                        <td><input class="zhuicheck" type="checkbox">
-                        </td><td>期号</td>
-                        <td>倍数</td>
-                        <td>金额</td>
-                        <td>开奖时间</td>
-                    </tr>
-                </thead>
-                <tbody class="tr-cont">
-                    <tr>
-                        <td><input class="zhuicheck" type="checkbox"></td>
-                        <td>20180501-099</td>
-                        <td><input type="text" class="beishu" value="1" ></td>
-                        <td><span class="amount">24</span>元</td>
-                        <td>2018-05-01 22:15:00</td>
-                    </tr>
-                </tbody>
-            </table>
+                <table width="100%">
+                    <thead class="tr-top">
+                        <tr>
+                            <td><input class="zhuicheck" type="checkbox" class="zhui_all">
+                            </td><td>期号</td>
+                            <td>倍数</td>
+                            <td>金额</td>
+                            <td>开奖时间</td>
+                        </tr>
+                    </thead>
+                    <tbody class="tr-cont">
+                        <tr>
+                            <td><input class="zhuicheck" type="checkbox"></td>
+                            <td>20180501-099</td>
+                            <td><input type="text" class="beishu" value="1" ></td>
+                            <td><span class="amount">24</span>元</td>
+                            <td>2018-05-01 22:15:00</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="">
                 <div class="zhui_btn tc">
-                    <button type="button">全选</button>
-                    <button type="button">反选</button>
-                    <button type="button">确定追号</button>
+                    <button type="button" class="zhui_all">全选</button>
+                    <button type="button" class="zhui_fan">反选</button>
+                    <button type="button" class="zhui_sure">确定追号</button>
                     <button type="button" class="zhui_close">取消追号</button>
                 </div>
             </div>
@@ -234,6 +234,9 @@
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript">
 $( "#slider" ).slider();
+$(document).on('change', '.zhui_all', function){
+    $(".zhui_table table").find('tbody :checkbox').prop('checked', this.checked).trigger('change');   
+}
 </script>
 </body>
 </html>
