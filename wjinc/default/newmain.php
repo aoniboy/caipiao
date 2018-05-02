@@ -240,18 +240,21 @@ $(document).on('click', '.zhui_all', function(){
 })
 //反选
 $(document).on('click', '.zhui_fan', function(){
-    $(".zhui_table table").find('tbody:checkbox').prop('checked', this.checked).trigger('change');;
+    $('.zhui_table tbody :checkbox').each(function(){
+        this.checked=!this.checked;
+        console.log(this.checked);
+        $(this).trigger('change');
+    });
+    $('.zhui_table thead :checkbox').prop('checked', false);
 })
 //全/反选
-$(document).on('click', '.zhui_fan', function(){
-    var is_c = true;
-    if(is_c){
-        $(".zhui_table table").find('input:checkbox').prop('checked',true);
-        is_c = false;
-    }else{
-        $(".zhui_table table").find('input:checkbox').prop('checked',false);
-        is_c = true;
-    }
+$(document).on('click', '.zhui_allfan', function(){
+    $('.zhui_table tbody :checkbox').prop('checked', this.checked).trigger('change');
+})
+//填写倍数
+$(document).on('blur', '.beishu', function(){
+    var val = parseInt($(this).val());
+    $(this).parents('tr').find('.amount').text(val*2);
 })
 </script>
 </body>
