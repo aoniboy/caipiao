@@ -35,11 +35,11 @@
     </div>
     <div class="my_line"></div>
     <ul class="my_list">
-<!--         <li>
-            <a href="/index.php/record/search" class="clearfix">
+        <li>
+            <a href="/index.php/safe/info" class="clearfix">
                 <i class="iconfont icon-jilu my_col1"></i> <span>个人资料<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
-        </li> -->
+        </li> 
         <li>
             <a href="/index.php/safe/passwd" class="clearfix">
                 <i class="iconfont icon-jilu my_col1"></i> <span>密码管理<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
@@ -110,7 +110,7 @@
             </a>
         </li>
     </ul>    
-    
+    	<?php $this->display('newinc_footer.php'); ?>
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>

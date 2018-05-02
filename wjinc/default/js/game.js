@@ -273,11 +273,18 @@ var game = {
             }
         })
         $(".gameo_btns1").click(function(){
-            $(".zhui_pop").show();
+            if($(".game_tzlist table tr").length>0){
+                $(".zhui_pop").show();
+                game.getZhuihao();
+                
+            }else{
+                $(".hint_pop .hint_cont").text('您还未添加预投注');
+                $(".hint_pop").show();
+            }
     
         })
         $(".zhui_close").click(function(){
-                $(".zhui_pop").hide();
+            $(".zhui_pop").hide();
         })
         $(".hint_btn").on('touchend', function(){
             $(".hint_pop .hint_title").text('错误提示');
@@ -378,7 +385,7 @@ var game = {
                     html = '<li><input class="gameo_int" placeholder="输入至少1个三位位数号码组成一注" type="tel"></li>';
                 }else{
                     for(var j =0;j<narr.length;j++){
-                        if(narr[j]==3 || narr[j]==4){
+                        if(narr[j]==3 || narr[j]==4 || narr[j]==5){
                             var tips = '选择';
                         }else{
                             var tips = narr[j]
@@ -556,7 +563,7 @@ var game = {
                         prize_col='';
                     }else if(list[i].status ==3){
                         text ='中奖';
-                        prize_col='';
+                        prize_col='prize_win';
                     }else if(list[i].status ==4){
                         text ='未中奖';
                         prize_col='';
@@ -605,6 +612,15 @@ var game = {
                     }
             })([],arr,num);
             return r;
+    },
+    getZhuihao: function() {
+        var mode = parseFloat($(".gameo_check.active").data('money')||1);
+        console.log(mode)
+        $('.tr-cont').load('/index.php/index/zhuiHaoQs/'+game.global.cid+'/'+mode+'/10');
+        $('.zhui_top').find('select:first').change(function(){
+            console.log($(this))
+            $('.tr-cont').load('/index.php/index/zhuiHaoQs/'+game.global.cid+'/'+mode+'/'+$(this).val());
+        });
     },
     windowInit: function() {
         
