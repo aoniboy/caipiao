@@ -364,8 +364,8 @@ var game = {
             }
             game.beiyong.all_stake = game.allCont.all_stake;
             game.beiyong.all_money = game.allCont.all_money;
-            game.allCont.all_stake =$("zhui_qs").text(n);
-            game.allCont.all_money =$(".zhui_amount").text(s);
+            game.allCont.all_stake =$("zhui_qs").text();
+            game.allCont.all_money =$(".zhui_amount").text();
             game.dealZhuihao(true);
         })
         $(".hint_btn").on('touchend', function(){
