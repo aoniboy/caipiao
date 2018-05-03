@@ -206,7 +206,7 @@ var game = {
                 var html = '';
                 html+='        <tr>'
                 html+='            <td>'+list.title+'</td>'
-                html+='            <td>'+list.actionData+'</td>'
+                html+='            <td class="tdover">'+list.actionData+'</td>'
                 html+='            <td>'+list.actionNum+'注</td>'
                 html+='            <td>'+list.beiShu+'倍</td>'
                 html+='            <td>'+list.money+'元</td>'
@@ -283,7 +283,7 @@ var game = {
                     }
                     is_html+='        <tr>'
                     is_html+='            <td>'+list[i].title+'</td>'
-                    is_html+='            <td>'+list[i].actionData+'</td>'
+                    is_html+='            <td class="tdover">'+list[i].actionData+'</td>'
                     is_html+='            <td>'+list[i].actionNum+'</td>'
                     is_html+='            <td>'+list[i].beiShu+'倍</td>'
                     is_html+='            <td>'+mode_name+'</td>'
@@ -372,7 +372,7 @@ var game = {
             game.allCont.all_money =Number($(".zhui_amount").text());
             $(".all_money").text(game.allCont.all_money.toFixed(2));
             $(".all_stake").text(game.allCont.all_stake);
-            game.dealZhuihao(true);
+            
         })
         $(".hint_btn").on('touchend', function(){
             $(".hint_pop .hint_title").text('错误提示');
@@ -647,17 +647,6 @@ var game = {
         } 
         return i; 
     },
-    nextinfo: function() {
-    	
-        
-    },
-    nextkjinfo: function() {
-    	
-    	$('.gameo_ftips').hide();
-        $('.gameo_num').show();
-        game.global.fengpan = false;
-        
-    },
     kjinfo: function() {
     	var kjtimer=null;
     	if(!game.global.kjtimer) {
@@ -920,33 +909,31 @@ var game = {
     	}
     	document.addEventListener(visibilityChangeEvent, onVisibilityChange);
     },
-    dealZhuihao: function(flag=false) {
-        var zhui_arr = [];
-    	if(flag) {
-	    	
-    	}else{
-    		$('.zhui_table tbody :checkbox').each(function(){
-                var d = [];
-                var s =null;
-                var n = 0;
-                $('.zhui_table tbody :checkbox').each(function(index,item){
-                    if(this.checked) {
-                        s+=  Number($(this).parent("td").siblings("td").find('.amount').text());
-                        n =n+1;
-                        var value = $(this).parent("td").siblings(".qqh").text()+"|"+$(this).parent("td").siblings("td").find('.beishu').val()+"|"+$(this).parent("td").siblings(".qqt").text()
-                        d.push(value);
-                    }
-                });
-                game.zhuihao = d.join(";");
-                console.log(game.zhuihao)
-                $(".zhui_qs").text(n);
-                if(s){ 
-                	$(".zhui_amount").text(parseFloat(s).toFixed(2));
-                }else{
-                	$(".zhui_amount").text('0')
+    dealZhuihao: function() {
+
+    	
+		$('.zhui_table tbody :checkbox').each(function(){
+            var d = [];
+            var s =null;
+            var n = 0;
+            $('.zhui_table tbody :checkbox').each(function(index,item){
+                if(this.checked) {
+                    s+=  Number($(this).parent("td").siblings("td").find('.amount').text());
+                    n =n+1;
+                    var value = $(this).parent("td").siblings(".qqh").text()+"|"+$(this).parent("td").siblings("td").find('.beishu').val()+"|"+$(this).parent("td").siblings(".qqt").text()
+                    d.push(value);
                 }
-	        });
-    	}
+            });
+            game.zhuihao = d.join(";");
+            console.log(game.zhuihao)
+            $(".zhui_qs").text(n);
+            if(s){ 
+            	$(".zhui_amount").text(parseFloat(s).toFixed(2));
+            }else{
+            	$(".zhui_amount").text('0')
+            }
+        });
+    	
     }
 
 }

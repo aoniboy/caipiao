@@ -12,8 +12,9 @@
 
 <div class="wrap_box wrap_top">
     <div class="my_top rel">
-        <img class="my_tx" src="/wjinc/default/images/tx.jpg">
+        <a href="/index.php/safe/info"><img class="my_tx" src="/wjinc/default/images/tx.jpg">
         <div class="tc fff f32 my_name"><?=$this->user['username']?></div>
+        </a>
         <div class="my_toppos">
             <span class="iconfont icon-kefu kf f30 fff"></span>
             <span class="iconfont icon-shezhi f34 fff"></span>
@@ -35,11 +36,7 @@
     </div>
     <div class="my_line"></div>
     <ul class="my_list">
-        <li>
-            <a href="/index.php/safe/info" class="clearfix">
-                <i class="iconfont icon-jilu my_col1"></i> <span>个人资料<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
-            </a>
-        </li> 
+
         <li>
             <a href="/index.php/safe/passwd" class="clearfix">
                 <i class="iconfont icon-jilu my_col1"></i> <span>密码管理<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
@@ -72,6 +69,7 @@
         </li>
     </ul>
     <div class="my_line"></div>
+    <?php if($this->user['type']){ ?>
     <ul class="my_list1 my_list">
         <li>
             <a href="/index.php/team/memberList" class="clearfix">
@@ -109,7 +107,8 @@
                 <i class="iconfont icon-tuandui my_col6"></i> <span>团队帐变<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
-    </ul>    
+    </ul> 
+     <?php } ?>   
     	<?php $this->display('newinc_footer.php'); ?>
 </div>
 
