@@ -117,7 +117,7 @@
     var calendar = new LCalendar();
     calendar.init({
         'trigger': '#start_date', 
-        'type': 'datetime', 
+        'type': 'date', 
         'minDate': (new Date().getFullYear()-20) + '-' + 1 + '-' + 1, 
         'maxDate': (new Date().getFullYear()) + '-' + 12 + '-' + 31 
     });
