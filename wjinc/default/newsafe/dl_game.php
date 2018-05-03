@@ -6,6 +6,8 @@
     <title>游戏记录</title>
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/js/calendar/LCalendar.css">
+    <script src="/wjinc/default/js/calendar/LCalendar.js"></script>
     <script src="/wjinc/default/js/jquery.min.js"></script>
 </head>
 <body class="bgf5">
@@ -16,32 +18,35 @@
         <form class="dl_form">
             <div class="clearfix">
                 <div class="rel fl myp_top_l ">
+                    <select class="myp_sel1" name="type">
+                        <option value="0">全部彩种</option>
+                        <option value="1">会员</option>
+                        <option value="14">幸运300秒</option>
+                    </select>
+                    <i class="iconfont icon-xialajiantou myp_topicon"></i>
+                </div>
+                <div class="rel fl myp_top_l ">
+                    <select class="myp_sel2" name="state">
+                        <option value="0">所有状态</option>
+                        <option value="1">已派奖</option>
+                        <option value="2">未中奖</option>
+                        <option value="3">未开奖</option>
+                        <option value="4">追号</option>
+                        <option value="5">撤单</option>
+                    </select>
+                    <i class="iconfont icon-xialajiantou myp_topicon"></i>
+                </div>
+                <div class="rel fl myp_top_l ">
                     <select class="myp_sel1">
-                        <option value="-1">会员类型</option>
-                        <option value="0">会员</option>
-                        <option value="1">代理</option>
+                        <option value="-1">全部模式</option>
+                        <option value="2.00">元</option>
+                        <option value="0.20">角</option>
+                        <option value="0.02">分</option>
                     </select>
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="rel fl myp_top_l ">
-                    <select class="myp_sel2">
-                        <option value="0">所有人</option>
-                        <option value="1">我自己</option>
-                        <option value="2">直属下线</option>
-                        <option value="2">所有下线</option>
-                    </select>
-                    <i class="iconfont icon-xialajiantou myp_topicon"></i>
-                </div>
-                <div class="rel fl myp_top_l ">
-                    <select class="myp_sel1">
-                        <option value="-1">会员类型</option>
-                        <option value="0">会员</option>
-                        <option value="1">代理</option>
-                    </select>
-                    <i class="iconfont icon-xialajiantou myp_topicon"></i>
-                </div>
-                <div class="rel fl myp_top_l ">
-                    <select class="myp_sel2">
+                    <select class="myp_sel2" name="mode">
                         <option value="0">所有人</option>
                         <option value="1">我自己</option>
                         <option value="2">直属下线</option>
@@ -51,23 +56,16 @@
                 </div>
             </div>
             <div class="clearfix dlg_input">
-                <input class="fl dlg_iname" type="text" name="" placeholder="用户名">
-                <input class="fr dlg_idan" type="text" name="" placeholder="输入单号">
+                <input class="fr dlg_idan" type="text" name="betId" placeholder="输入单号">
             </div>
             <div class="clearfix myp_top dl_gametop_1">
                 <div class="rel fl myp_top_l ">
-                    <select class="myp_sel1">
-                        <option value="2018424">2018年4月24</option>
-                        <option value="2018424">2018年4月24</option>
-                    </select>
+                    <input type="text" name="fromTime" id="start_date" placeholder="选择开始日期" readonly="readonly">
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="fl myp_zhi">至</div>
                 <div class="rel fl myp_top_l ">
-                    <select class="myp_sel2">
-                        <option value="2018424">2018年4月24</option>
-                        <option value="2018424">2018年4月24</option>
-                    </select>
+                    <input type="text" name="toTime" id="end_date" placeholder="选择开始日期" readonly="readonly">
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="myp_btn fr">查询</div>
@@ -113,7 +111,28 @@
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
+
 <script type="text/javascript">
+
+    var calendar = new LCalendar();
+    calendar.init({
+        'trigger': '#start_date', //标签id
+        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+        'minDate': (new Date().getFullYear()-3) + '-' + 1 + '-' + 1, //最小日期
+        'maxDate': (new Date().getFullYear()+3) + '-' + 12 + '-' + 31 //最大日期
+    });
+    var calendar = new LCalendar();
+    calendar.init({
+        'trigger': '#end_date', //标签id
+        'type': 'date', //date 调出日期选择 datetime 调出日期时间选择 time 调出时间选择 ym 调出年月选择,
+        'minDate': (new Date().getFullYear()-3) + '-' + 1 + '-' + 1, //最小日期
+        'maxDate': (new Date().getFullYear()+3) + '-' + 12 + '-' + 31 //最大日期
+    });
+    //      $(function() {
+    //          $('#start_date').date();
+    //          $('#end_date').date();
+    //      });
+
     var page = 10;
     $(window).scroll(function () {
         var scrollTop = $(this).scrollTop()
