@@ -7,7 +7,7 @@ h1,h2,h3,h4,h5,h6{font-weight:400;}
 li,ol,ul{list-style:none;}
 em,i{font-style:normal;}
 img,input{vertical-align:middle;}
-input,textarea{border:0;border-radius:0;-webkit-tap-highlight-color:transparent;-webkit-appearance:none; font-size:.28rem; font-family:arial,Microsoft Yahei;}
+input,select,textarea{border:0;border-radius:0;-webkit-tap-highlight-color:transparent;-webkit-appearance:none; font-size:.28rem; font-family:arial,Microsoft Yahei;}
 a,textarea:focus{outline:0;}
 a{color:#333;text-decoration:none;}
 a.current,a:active,a:hover{outline:0;}
@@ -145,8 +145,9 @@ input:focus,select{outline:0;}
 .game_ls{ background: #fff; padding:.2rem; border-top:1px solid #bfbfbf; }
 .game_ls .fl{ padding:.1rem 0 0 0 ; }
 .game_tzlist{ margin: 0 .2rem; }
-.game_tzlist table{ min-height: 1rem;width:100%;text-align: center; }
+.game_tzlist table{ min-height: 1rem;width:100%;text-align: center; table-layout: fixed;}
 .game_tzlist table tr{ padding:0 .2rem; }
+.game_tzlist table .tdover{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .flex{padding:0 .2rem;    
 	display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
     display: -moz-box;     /* 老版本语法: Firefox (buggy) */
@@ -187,7 +188,8 @@ input:focus,select{outline:0;}
 .hint_con{width:80%; position:fixed;left:50%;top:50%; transform: translate(-50%,-50%); background: #e9e9e9; border-radius: .1rem;}
 .tz_con{width:80%; position:fixed;left:50%;top:50%; transform: translate(-50%,-50%); background: #e9e9e9; border-radius: .1rem;}
 .tz_table{ padding:.2rem 0; }
-.tz_table table{ width:100%; font-size: .2rem; text-align: center; }
+.tz_table table{ width:100%; font-size: .2rem; text-align: center; table-layout: fixed;}
+.tz_table table .tdover{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .tz_btn{	display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
     display: -moz-box;     /* 老版本语法: Firefox (buggy) */
     display: -ms-flexbox;  /* 混合版本语法: IE 10 */
