@@ -127,6 +127,8 @@
     $(".myp_btn").on('click',function(){
         s1 = $(".myp_sel1").val();
         s2 = $(".myp_sel2").val();
+        console.log(s1,s2)
+        console.log($(".dl_form").serialize());
         upload();
     })
     function upload(){
