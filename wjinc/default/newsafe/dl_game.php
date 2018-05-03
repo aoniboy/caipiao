@@ -130,7 +130,8 @@
         upload();
     })
     function upload(){
-        $.post('/index.php/team/searchMember/'+page,{data:$(".dl_form").serialize()}, function(res){
+        $.post('/index.php/team/searchGameRecord/'+page,{data:$(".dl_form").serialize()}, function(res){
+            console.log(res);
             var list = res.data.result;
             console.log(list);
             if(list.length>0){

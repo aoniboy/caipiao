@@ -1,7 +1,7 @@
 <?php
 	//echo $this->userType;
 	$para=$_GET;
-	
+	print_r($_GET);exit;
 	if($para['state']==5){
 		$whereStr = ' and b.isDelete=1 ';
 	}else{
