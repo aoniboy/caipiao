@@ -134,8 +134,17 @@ input:focus,select{outline:0;}
 .game_tzlist{ margin: 0 .2rem; }
 .game_tzlist table{ min-height: 1rem;width:100%;text-align: center; }
 .game_tzlist table tr{ padding:0 .2rem; }
-.flex{ display: flex; padding:0 .2rem; }
-.fx{ flex:1; } 
+.flex{padding:0 .2rem;    
+	display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */ }
+.fx{   -webkit-box-flex: 1   /* OLD - iOS 6-, Safari 3.1-6 */  
+    -moz-box-flex: 1;     /* OLD - Firefox 19- */              
+    -webkit-flex: 1;      /* Chrome */  
+    -ms-flex: 1           /* IE 10 */  
+    flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */} 
 .gameo_btns{ margin:.3rem  0 0 .2rem; }
 .gameo_btns >div{ width:37%; padding:.1rem 0; border-radius: .1rem; }
 .gameo_btns .gameo_btns1{background: #fb3e3a; color:#4c0301;  margin-right: 11%;}
