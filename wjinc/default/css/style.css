@@ -308,6 +308,6 @@ input:focus,select{outline:0;}
 .detail_table table tr {text-align:left;}
 .detail_table .red{color:red};
 .detail_btn button{ border:none; border-radius:5px; }
-.detail_pop .orderdetail{cursor:hand};
+.detail_pop .orderdetail{cursor:hand}
 .my_calendar{ width:100%; line-height: .6rem; }
 
