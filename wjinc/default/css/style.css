@@ -85,8 +85,21 @@ input:focus,select{outline:0;}
 .index_rank li{ line-height: .7rem;height: .7rem; border-bottom:1px solid #ededed; padding:0 .2rem; }
 .index_rank li p{ position: absolute;left:0;top:0;width:100%; color:#eb0202; }
 .index_rank li div{ color:#999; }
-.footer { display: flex; position: fixed;left:0;bottom:0;z-index: 9; width:100%; text-align: center; background: #f7f7f7; border-top:1px solid #d9d9d9;}
-.footer > a{ flex: 1; color:#999;}
+.footer {position: fixed;left:0;bottom:0;z-index: 9; width:100%; text-align: center; background: #f7f7f7; border-top:1px solid #d9d9d9;
+	display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+}
+.footer > a{ color:#999;
+   -webkit-box-flex: 1   /* OLD - iOS 6-, Safari 3.1-6 */  
+    -moz-box-flex: 1;     /* OLD - Firefox 19- */              
+    -webkit-flex: 1;      /* Chrome */  
+    -ms-flex: 1           /* IE 10 */  
+    flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
+}
 .footer > a >div{ font-size: .5rem; }
 .footer > a >p{ margin-top: -.1rem;  font-size: .26rem;}
 .footer > a.active{ color:#fe3838; }
@@ -166,16 +179,36 @@ input:focus,select{outline:0;}
 .hint_pop{  }
 .hint_title{color:#000; padding:.3rem 0 .1rem 0;}
 .hint_cont{ padding:0 .3rem .3rem .3rem; }
-.hint_btn{color:#79b5f3; border-top:1px solid #aeaeae; padding:.1rem 0; flex:1;}
+.hint_btn{color:#79b5f3; border-top:1px solid #aeaeae; padding:.1rem 0;   -webkit-box-flex: 1   /* OLD - iOS 6-, Safari 3.1-6 */  
+    -moz-box-flex: 1;     /* OLD - Firefox 19- */              
+    -webkit-flex: 1;      /* Chrome */  
+    -ms-flex: 1           /* IE 10 */  
+    flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */}
 .hint_con{width:80%; position:fixed;left:50%;top:50%; transform: translate(-50%,-50%); background: #e9e9e9; border-radius: .1rem;}
 .tz_con{width:80%; position:fixed;left:50%;top:50%; transform: translate(-50%,-50%); background: #e9e9e9; border-radius: .1rem;}
 .tz_table{ padding:.2rem 0; }
 .tz_table table{ width:100%; font-size: .2rem; text-align: center; }
-.tz_btn{ display: flex }
-.tz_btn div{color:#79b5f3; border-top:1px solid #aeaeae; padding:.2rem 0; flex:1; border-right: 1px solid #aeaeae}
+.tz_btn{	display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */}
+.tz_btn div{color:#79b5f3; border-top:1px solid #aeaeae; padding:.2rem 0;   -webkit-box-flex: 1   /* OLD - iOS 6-, Safari 3.1-6 */  
+    -moz-box-flex: 1;     /* OLD - Firefox 19- */              
+    -webkit-flex: 1;      /* Chrome */  
+    -ms-flex: 1           /* IE 10 */  
+    flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */ border-right: 1px solid #aeaeae}
 .tz_btn div:nth-child(2){border-right:none; color:#333;}
-.hint_btn1{ display: flex }
-.hint_btn1 div{color:#79b5f3; border-top:1px solid #aeaeae; padding:.2rem 0; flex:1; border-right: 1px solid #aeaeae}
+.hint_btn1{	display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */ }
+.hint_btn1 div{color:#79b5f3; border-top:1px solid #aeaeae; padding:.2rem 0;    -webkit-box-flex: 1   /* OLD - iOS 6-, Safari 3.1-6 */  
+    -moz-box-flex: 1;     /* OLD - Firefox 19- */              
+    -webkit-flex: 1;      /* Chrome */  
+    -ms-flex: 1           /* IE 10 */  
+    flex: 1;              /* NEW, Spec - Opera 12.1, Firefox 20+ */ border-right: 1px solid #aeaeae}
 .hint_btn1 div:nth-child(2){border-right:none; color:#333;}
 .tz_allnum{ margin:.2rem 0; }
 .gameo_int{width: 100%; padding-bottom: 1rem;}
