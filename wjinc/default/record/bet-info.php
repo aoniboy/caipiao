@@ -80,7 +80,7 @@
 			<td><em>购买盈亏：￥&nbsp</em><em class="green"><?=$this->iff($bet['lotteryNo'], number_format($bet['bonus'] - $betCont + ($bet['fanDian']/100)*$betCont, 2), '－')?></em> 元<em class="green">&nbsp(<?=$this->iff($bet['lotteryNo'], $this->iff(number_format($bet['bonus'] - $betCont + ($bet['fanDian']/100)*$betCont, 2)>=0,"赢","亏"), '－')?>)</em></td>
 		</tr>
         <tr class="nobd">
-			<td><em>投注内容：</em><p class="tzdata"><?=$wei.$bet['actionData']?></p></td>
+			<td><em>投注内容：</em><p class="tzdata" style="word-wrap:break-word;width:150px;"><?=$wei.$bet['actionData']?></p></td>
 		</tr>
 		
         
