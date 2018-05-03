@@ -19,9 +19,16 @@
             <div class="clearfix">
                 <div class="rel fl myp_top_l ">
                     <select class="myp_sel1" name="type">
-                        <option value="0">全部彩种</option>
-                        <option value="1">会员</option>
-                        <option value="14">幸运300秒</option>
+                        
+                        <option value="0" <?=$this->iff($_REQUEST['type']=='', 'selected="selected"')?>>全部彩种</option>
+                        <?php
+                            if($this->types) foreach($this->types as $var){ 
+                                if($var['enable']){
+                        ?>
+                        <option value="<?=$var['id']?>" <?=$this->iff($_REQUEST['type']==$var['id'], 'selected="selected"')?>><?=$this->iff($var['shortName'], $var['shortName'], $var['title'])?></option>
+            
+                        <?php }} ?>
+                   
                     </select>
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
@@ -50,7 +57,7 @@
                         <option value="0">所有人</option>
                         <option value="1">我自己</option>
                         <option value="2">直属下线</option>
-                        <option value="2">所有下线</option>
+                        <option value="3">所有下线</option>
                     </select>
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
