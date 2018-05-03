@@ -60,12 +60,12 @@
             </div>
             <div class="clearfix myp_top dl_gametop_1">
                 <div class="rel fl myp_top_l ">
-                    <input type="text" name="fromTime" id="start_date" placeholder="选择开始日期" readonly="readonly">
+                    <input class="my_calendar" type="text" name="fromTime" id="start_date" placeholder="选择开始日期" readonly="readonly">
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="fl myp_zhi">至</div>
                 <div class="rel fl myp_top_l ">
-                    <input type="text" name="toTime" id="end_date" placeholder="选择开始日期" readonly="readonly">
+                    <input class="my_calendar" type="text" name="toTime" id="end_date" placeholder="选择开始日期" readonly="readonly">
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="myp_btn fr">查询</div>
