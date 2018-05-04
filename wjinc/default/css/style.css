@@ -313,3 +313,6 @@ input:focus,select{outline:0;}
 table {table-layout: fixed;}
 .table_scroll{ width:100%; overflow-x: scroll; }
 
+.my_register{ padding: 0 .6rem; }
+.my_reinput{ width:100%; height: .6rem; text-indent: .2rem;position: absolute; right: 0; top: 0; }
+.my_reibtn{display: block; margin: 0 auto; background: #fc7166; border: none;color: #fff; padding: .2rem .4rem;border-radius: .1rem;}
