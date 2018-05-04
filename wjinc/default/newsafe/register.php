@@ -42,7 +42,7 @@
             </dl>
             <dl>
             	<dt>验证码：</dt>
-                <dd style="position:relative;"><input name="vcode" type="text" class="login-text my_reinput m_re5" /><div class="yzmNum"><img width="72" height="24" border="0" id="vcode" style="cursor:pointer;" align="absmiddle" src="/index.php/user/vcode/<?=$this->time?>" title="看不清楚，换一张图片" onclick="this.src='/index.php/user/vcode/'+(new Date()).getTime()"/></div></dd>
+                <dd style="position:relative;"><input name="vcode" type="text" class="login-text my_reinput m_re5" /><div class="yzmNum my_yzm"><img width="72" height="24" border="0" id="vcode" style="cursor:pointer;" align="absmiddle" src="/index.php/user/vcode/<?=$this->time?>" title="看不清楚，换一张图片" onclick="this.src='/index.php/user/vcode/'+(new Date()).getTime()"/></div></dd>
             </dl>
              <dl>
             	<dt class="hide"><input type="submit" value=""/></dt>
