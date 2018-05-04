@@ -159,7 +159,7 @@ var game = {
             game.currentCount();
         })
         //倍数不能小于1
-        $(".gameo_numi").on('keyup', function(){
+        $(".gameo_numi").on('blur', function(){
             if($(this).val()==0){
                 $(this).val(1)
             }else{
