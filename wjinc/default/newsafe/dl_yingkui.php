@@ -77,17 +77,6 @@
         'minDate': (new Date().getFullYear()-20) + '-' + 1 + '-' + 1, 
         'maxDate': (new Date().getFullYear()) + '-' + 12 + '-' + 31
     });
-
-    var page = 10;
-    $(window).scroll(function () {
-        var scrollTop = $(this).scrollTop()
-        var scrollHeight = $(document).height()
-        var windowHeight = $(this).height()
-        if(windowHeight + scrollTop >= scrollHeight){
-            //upload();
-        }
-
-    })
     upload();
     $(".myp_btn").on('click',function(){
         upload();
@@ -97,6 +86,14 @@
             $(".myp_table").html(res.data);
         },'json' );
     }
+    //查看详情
+    $(document).on('click', '.qzbtn', function(){
+        var href = $(this).attr('data-href');
+        $.post(href,function(res){
+        	$(".myp_table").html(res.data);
+        },'json' );
+        return false;
+    })
 </script>
 </body>
 </html>

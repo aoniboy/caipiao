@@ -76,15 +76,15 @@ class Safe extends WebLoginBase{
 		if(!$pwd['coinPassword']){
 			$npwd=md5($npwd);
 			if($npwd==$pwd['password']) $this->outputData(1,[],'资金密码与登录密码不能一样');
-			$this->outputData(0,[],'资金密码设置成功1');
+			$tishi='资金密码设置成功';
 		}else{
 			if($opwd && md5($opwd)!=$pwd['coinPassword']) $this->outputData(1,[],'原资金密码不正确');
 			$npwd=md5($npwd);
 			if($npwd==$pwd['password']) $this->outputData(1,[],'资金密码与登录密码不能一样');
-			$this->outputData(0,[],'修改资金密码成功2');
+			$tishi='资金密码设置成功';
 		}
 		$sql="update {$this->prename}members set coinPassword=? where uid={$this->user['uid']}";
-		if($this->update($sql, $npwd)) $this->outputData(0,[],'修改资金密码成功3');
+		if($this->update($sql, $npwd)) $this->outputData(0,[],$tishi);
 		$this->outputData(1,[],'修改资金密码失败');
 	}
 	

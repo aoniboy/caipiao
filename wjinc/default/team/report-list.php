@@ -130,10 +130,10 @@
 			<td><?=$this->ifs($var['zjAmount']-$var['betAmount']+$var['fanDianAmount']+$var['brokerageAmount'], '--')?></td>
             <td>
                 <?php if(!$noChildren){?>
-                <a target="ajax" dataType="html" call="searchData" class="qzbtn" href="<?="{$rel}/?parentId={$var['uid']}&fromTime={$para['fromTime']}&toTime={$para['toTime']}"?>">下级</a>
+                <a target="ajax" href="javascript:void(0)" dataType="html" call="searchData" class="qzbtn" data-href="<?="{$rel}/?parentId={$var['uid']}&fromTime={$para['fromTime']}&toTime={$para['toTime']}"?>">下级</a>
 				<?php }?>
                 <?php if($var['uid']!=$this->user['uid']&&$var['parentId']){?>
-                  <a target="ajax" dataType="html" call="searchData" class="qzbtn" href="<?="{$rel}/?uid={$var['uid']} &fromTime={$para['fromTime']}&toTime={$para['toTime']}"?>">上级</a>
+                  <a target="ajax" href="javascript:void(0)" dataType="html" call="searchData" class="qzbtn" data-href="<?="{$rel}/?uid={$var['uid']} &fromTime={$para['fromTime']}&toTime={$para['toTime']}"?>">上级</a>
 				<?php }?>
             </td>
 		</tr>

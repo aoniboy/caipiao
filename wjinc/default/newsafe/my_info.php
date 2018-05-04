@@ -34,8 +34,9 @@
             <p class="fl col67"><?=$this->iff($this->user['type'], '代理', '会员')?></p>
         </li>
     </ul>
-    <?php if($this->user['coinPassword']){ ?>
     <div class="myi_title">个人银行信息</div>
+    <?php if($this->user['coinPassword']){ ?>
+    
     <form class="myi_form">
         <ul class="myi_list">
             <li class="clearfix rel">
@@ -78,6 +79,12 @@
         <div class="tc fx myi_btns2">重置</div>
     </div>
     <?php }else{?>
+    <ul class="myi_list">
+    	<li class="clearfix" style="height:1.2rem;" >
+        	<div class="fl myw">温馨提示：</div>
+        	<div class="font_line_2">设置银行信息要用资金密码，您尚未设置资金密码！<a href="/index.php/safe/passwd" style="text-decoration:none; color:#f00">设置资金密码&gt;&gt;</a></div>
+    	</li>
+	</ul>
     <?php }?>
     <div class="hint_pop hide">
         <div class="gameo_mask"></div>

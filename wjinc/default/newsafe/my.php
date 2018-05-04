@@ -17,7 +17,7 @@
         </a>
         <div class="my_toppos">
             <span class="iconfont icon-kefu kf f30 fff"></span>
-            <span class="iconfont icon-shezhi f34 fff"></span>
+            <span class="iconfont icon-shezhi logout f34 fff"></span>
         </div>
         <div class="flex fff my_toptitle">
             <div class="fx tc">
