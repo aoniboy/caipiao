@@ -176,10 +176,8 @@ class DBAccess extends PDO{
 			}elseif($page<=1){
 				for($i=0;$i<$pageSize; $i++) $return['data'][]=$stmt->fetch();
 			}else{
-				$pageCount=ceil($return['total']/$pageSize);
-				if($page>$pageCount) $page=$pageCount;
 				$startRow=($page-1)*$pageSize;//echo $page;
-				$sql.=" limit $startRow, $pageSize";//echo $sql;
+				$sql.=" limit $startRow, $pageSize";
 				$return['data']=$this->getRows($sql, $params);
 			}
 			$stmt=null;

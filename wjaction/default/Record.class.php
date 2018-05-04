@@ -12,6 +12,7 @@ class Record extends WebLoginBase{
 	public final function searchGameRecord(){
 		$this->getTypes();
 		$this->getPlayeds();
+		$this->page = empty($_GET['page'])?1:$_GET['page'];
 		$data = $this->fetch('record/search-list.php');
 		$this->outputData(0,$data);
 	}
