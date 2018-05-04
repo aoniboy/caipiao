@@ -42,7 +42,7 @@ class Safe extends WebLoginBase{
 		if($urlcheck<>$urldan)  throw new Exception('数据包被篡改，请重新操作');
 
 		$opwd=$_POST['oldpassword'];
-		print_r($opwd);exit;
+		print_r(11111);exit;
 		if(!$opwd) throw new Exception('原密码不能为空');
 		if(strlen($opwd)<6) throw new Exception('原密码至少6位');
 		if(!$npwd=$_POST['newpassword']) throw new Exception('密码不能为空');
