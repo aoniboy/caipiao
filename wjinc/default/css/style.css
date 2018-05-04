@@ -67,8 +67,8 @@ input:focus,select{outline:0;}
 .error{ display: none; position: absolute;left:0;bottom:-.35rem;left:8%; font-size: .22rem; color:red; }
 
 /*首页*/
-.marquee {height: 1rem; line-height: 1rem; color: #666; background: #fff;  border-bottom: 1px solid #ededed;  box-sizing: border-box; word-break: break-all; white-space: nowrap; padding:0 .3rem;}
-.marquee >div { overflow: hidden; }
+.marquee { color: #666; background: #fff;  border-bottom: 1px solid #ededed;  box-sizing: border-box; word-break: break-all; white-space: nowrap; padding:0 .3rem;}
+.marquee >div { overflow: hidden;height: 1rem; line-height: 1rem; }
 .marquee >div> span { display: inline;} 
 .marquee_icon { background: url(../images/icons.png) no-repeat left top / auto 5rem;position: absolute;left:-1px;top:50%; width:.5rem; height: .5rem; transform: translateY(-50%);}
 
