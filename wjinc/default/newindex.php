@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
     <script src="/wjinc/default/js/jquery.min.js"></script>
+    <script src="/wjinc/default/js/scroll.js"></script>
 </head>
 <body>
 <div class="wrap_box wrap_top">
@@ -147,22 +148,29 @@
 <script src="/wjinc/default/js/index_home.js"></script>
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript"> 
-function ScrollImgLeft(){ 
-    var speed=30; 
-    var scroll_begin = document.getElementById("scroll_begin"); 
-    var scroll_end = document.getElementById("scroll_end"); 
-    var scroll_div = document.getElementById("scroll_div"); 
-    scroll_end.innerHTML=scroll_begin.innerHTML; 
-    function Marquee(){ 
-    if(scroll_end.offsetWidth-scroll_div.scrollLeft<=0) 
-        scroll_div.scrollLeft-=scroll_begin.offsetWidth; 
-    else 
-        scroll_div.scrollLeft++; 
-    } 
-    var MyMar=setInterval(Marquee,speed); 
 
-} 
-ScrollImgLeft();
+$(function(){
+    $("#win_list").myScroll({
+        speed:40, //数值越大，速度越慢
+        rowHeight:35 //li的高度
+    });
+    function ScrollImgLeft(){ 
+        var speed=30; 
+        var scroll_begin = document.getElementById("scroll_begin"); 
+        var scroll_end = document.getElementById("scroll_end"); 
+        var scroll_div = document.getElementById("scroll_div"); 
+        scroll_end.innerHTML=scroll_begin.innerHTML; 
+        function Marquee(){ 
+        if(scroll_end.offsetWidth-scroll_div.scrollLeft<=0) 
+            scroll_div.scrollLeft-=scroll_begin.offsetWidth; 
+        else 
+            scroll_div.scrollLeft++; 
+        } 
+        var MyMar=setInterval(Marquee,speed); 
+
+    } 
+    ScrollImgLeft();
+});
 </script> 
 </body>
 </html>

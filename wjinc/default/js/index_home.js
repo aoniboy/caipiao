@@ -1,6 +1,6 @@
 var index = {
     init: function(){
-        this.loopwin();
+        // this.loopwin();
         this.opengame();
     },
     opengame:function(){
