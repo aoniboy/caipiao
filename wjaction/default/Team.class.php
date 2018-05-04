@@ -60,7 +60,9 @@ class Team extends WebLoginBase{
 		
 		$this->getTypes();
 		$this->getPlayeds();
-		$this->display('team/record-list.php');
+
+	    $data = $this->fetch('team/record-list.php');
+	    $this->outputData(0,$data);
 	}
 	/*游戏记录 结束*/
 	
@@ -73,7 +75,8 @@ class Team extends WebLoginBase{
 	
 	public final function searchReport(){
 		
-		$this->display('team/report-list.php');
+		$data = $this->fetch('team/report-list.php');
+		$this->outputData(0,$data);
 	}
 	/*团队报表 结束*/
 	
@@ -84,7 +87,8 @@ class Team extends WebLoginBase{
 	}
 	
 	public final function searchCoin(){
-		$this->display('team/coin-log.php');
+		$data = $this->fetch('team/coin-log.php');
+		$this->outputData(0,$data);
 	}
 	/*帐变列表 结束*/
 	
@@ -121,7 +125,7 @@ class Team extends WebLoginBase{
 		$this->display('team/delete-link.php',0,intval($lid));
 	}
 	public final function linkList(){
-		$this->display('newsafe/tuiguang.php');
+		$this->display('newsafe/dl_tuiguang.php');
 	}
 	public final function getLinkCode($id){
 		$this->display('team/get-linkcode.php', 0, intval($id), $this->user['uid'], $this->urlPasswordKey);

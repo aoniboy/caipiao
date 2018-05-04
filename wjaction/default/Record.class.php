@@ -12,7 +12,8 @@ class Record extends WebLoginBase{
 	public final function searchGameRecord(){
 		$this->getTypes();
 		$this->getPlayeds();
-		$this->display('record/search-list.php');
+		$data = $this->fetch('record/search-list.php');
+		$this->outputData(0,$data);
 	}
 	
 	public final function betInfo($id){

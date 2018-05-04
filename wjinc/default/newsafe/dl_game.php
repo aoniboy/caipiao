@@ -63,56 +63,40 @@
                 </div>
             </div>
             <div class="clearfix dlg_input">
-                <input class="fr dlg_idan" type="text" name="betId" placeholder="输入单号">
+            	<input class="fl dlg_idani" type="text" name="username" placeholder="输入用户名">
+                <input class="fr dlg_idani" type="text" name="betId" placeholder="输入单号">
             </div>
             <div class="clearfix myp_top dl_gametop_1">
                 <div class="rel fl myp_top_l ">
-                    <input class="my_calendar" type="text" name="fromTime" id="start_date" placeholder="选择开始日期" readonly="readonly">
+                    <input class="my_calendar" type="text" name="fromTime" id="start_date" placeholder="选择开始日期" readonly="readonly" value="<?=date("Y-m-d")?>">
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="fl myp_zhi">至</div>
                 <div class="rel fl myp_top_l ">
-                    <input class="my_calendar" type="text" name="toTime" id="end_date" placeholder="选择开始日期" readonly="readonly">
+                    <input class="my_calendar" type="text" name="toTime" id="end_date" placeholder="选择结束日期" readonly="readonly" value="<?=date("Y-m-d",strtotime("+1 days"))?>">
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="myp_btn fr">查询</div>
             </div>
         </form>
     </div>
+    <div class="detail_pop hide">
+        <div class="gameo_mask"></div>
+        <div class="detail_box">
+            <div class="detail_top f33">投注信息 </div>
+            <div class="detail_table tc" style="" scrolltop="0" scrollleft="0">
+                
+            </div>
+            <div class="">
+                <div class="detail_btn tc">
+                    <button type="button" style="border:none; border-radius:5px;padding:.1rem .5rem" class="detail_close f26">关闭</button>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
     <div class="myp_table">
-        <table class="f24 tc">
-            <thead>
-                <tr>
-                    <th>编号</th>
-                    <th>用户</th>
-                    <th>投注时间</th>
-                    <th>彩种</th>
-                    <th>期号</th>
-                    <th>玩法</th>
-                    <th>倍数模式</th>
-                    <th>总额(元)</th>
-                    <th>奖金(元)</th>
-                    <th>开奖号码</th>
-                    <th>状态</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>8</td>
-                    <td>9</td>
-                    <td>10</td>
-                    <td>11</td>
-                    <td>12</td>  
-                </tr>
-            </tbody>
-        </table>
+        
     </div>
  
 </div>
@@ -136,48 +120,23 @@
         'maxDate': (new Date().getFullYear()) + '-' + 12 + '-' + 31
     });
 
-
     var page = 10;
     $(window).scroll(function () {
         var scrollTop = $(this).scrollTop()
         var scrollHeight = $(document).height()
         var windowHeight = $(this).height()
         if(windowHeight + scrollTop >= scrollHeight){
-            upload();
+            //upload();
         }
 
     })
+    upload();
     $(".myp_btn").on('click',function(){
-        s1 = $(".myp_sel1").val();
-        s2 = $(".myp_sel2").val();
-        console.log(s1,s2)
-        console.log($(".dl_form").serialize());
         upload();
     })
     function upload(){
-        $.post('/index.php/team/searchGameRecord/'+page,{data:$(".dl_form").serialize()}, function(res){
-            console.log(res);
-            var list = res.data.result;
-            console.log(list);
-            if(list.length>0){
-                page += 10;
-                var html = '';
-                for(var i=0;i<list.length;i++){
-                    html+='    <td>1</td>'
-                    html+='    <td>2</td>'
-                    html+='    <td>3</td>'
-                    html+='    <td>4</td>'
-                    html+='    <td>5</td>'
-                    html+='    <td>6</td>'
-                    html+='    <td>7</td>'
-                    html+='    <td>8</td>'
-                    html+='    <td>9</td>'
-                    html+='    <td>10</td>'
-                    html+='    <td>11</td>'
-                    html+='    <td>12</td>'
-                }
-            }
-            $(".myp_table table tbody").append(html);
+        $.post('/index.php/team/searchGameRecord/?'+$(".dl_form").serialize(), function(res){
+            $(".myp_table").html(res.data);
         },'json' );
     }
 </script>

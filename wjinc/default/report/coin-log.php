@@ -85,7 +85,6 @@
 	);
 	
 ?>
-<div>
 <table width="100%" class='table_b'>
 	<thead>
 		<tr class="table_b_th">
@@ -137,7 +136,3 @@
 		<?php } ?>
 	</tbody>
 </table>
-<?php 
-	$this->display('inc_page.php',0,$list['total'],$this->pageSize, "/index.php/{$this->controller}/{$this->action}-{page}/{$this->type}?$params");
-?>
-</div>

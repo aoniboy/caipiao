@@ -278,6 +278,7 @@ input:focus,select{outline:0;}
 .dl_gametop .myp_top_l{ margin-left: 2%; }
 .dlg_iname{ width:30%; margin-left: 2%; }
 .dlg_idan{ width:60%; margin-right: 2%; }
+.dlg_idani{ width:48%;border-left:1px solid #eee }
 .dlg_input input{  line-height: 2;text-indent: .2rem; }
 .dl_gametop .dl_gametop_1 .myp_top_l{ width: 30%; margin-left: .2rem;}
 .dlg_input_y{ padding:0 .2rem; }
@@ -297,8 +298,7 @@ input:focus,select{outline:0;}
 .zhui_table .beishu{ width:.8rem; }
 
 .zhui_btn button{ background: #eee;  padding:.1rem .2rem; border:none;  }
-.zhui_pop,input[type=text]{ -webkit-appearance: !important; }
-.zhui_pop,input[type=checkbox]{ -webkit-appearance: checkbox; }
+.zhui_pop input[type=checkbox]{ -webkit-appearance: checkbox; }
 .prize_win{color:red}
 
 .detail_pop{ position: fixed;left:50%;height:100%; width:100%;top:50%; transform: translate(-50%,-50%);}
@@ -310,4 +310,5 @@ input:focus,select{outline:0;}
 .detail_btn button{ border:none; border-radius:5px; }
 .detail_pop .orderdetail{cursor:hand}
 .my_calendar{ width:100%; line-height: .6rem; }
+table {table-layout: fixed;}
 

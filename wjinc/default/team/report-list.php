@@ -86,7 +86,7 @@
 	$rel="/index.php/{$this->controller}/{$this->action}";
 
 ?>
-<div>
+
 <table width="100%" class='table_b'>
 	<thead>
 		<tr class="table_b_th">
@@ -151,7 +151,7 @@
 				
 		?>
 		<tr>
-			<td><span class="spn9">本页总结</span></td>
+			<td><span class="spn9">本页总计</span></td>
             <td><?=$this->ifs($count['rechargeAmount'], '--')?></td>
 			<td><?=$this->ifs($count['cashAmount'], '--')?></td>
 			<td><?=$this->ifs($count['betAmount'], '--')?></td>
@@ -162,7 +162,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td><span class="spn9">团队总结</span></td>
+			<td><span class="spn9">团队总计</span></td>
             <td><?=$this->ifs($all['rechargeAmount'], '--')?></td>
 			<td><?=$this->ifs($all['cashAmount'], '--')?></td>
 			<td><?=$this->ifs($all['betAmount'], '--')?></td>
@@ -183,7 +183,7 @@
 				
 		?>
         <tr>
-			<td><span class="spn9">本页总结</span></td>
+			<td><span class="spn9">本页总计</span></td>
             <td><?=$this->ifs($count['rechargeAmount'], '--')?></td>
 			<td><?=$this->ifs($count['cashAmount'], '--')?></td>
 			<td><?=$this->ifs($count['betAmount'], '--')?></td>
@@ -228,7 +228,3 @@
         <?php }?>
 	</tbody>
 </table>
-<?php 
-	$this->display('inc_page.php',0,$list['total'],$this->pageSize, "$rel-{page}?$params");
-?>
-</div>

@@ -67,7 +67,6 @@
 	$rel="/index.php/{$this->controller}/{$this->action}";
 
 ?>
-<div>
 <table width="100%" class='table_b'>
 	<thead>
 		<tr class="table_b_th">
@@ -113,7 +112,3 @@
 
 	</tbody>
 </table>
-<?php 
-	//$this->display('inc_page.php',0,$list['total'],$this->pageSize, "$rel-{page}?$params");
-?>
-</div>

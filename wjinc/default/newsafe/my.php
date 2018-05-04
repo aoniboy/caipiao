@@ -53,7 +53,7 @@
             </a>
         </li>
         <li>
-            <a href="/index.php/cash/rechargeLog" class="clearfix">
+            <a href="/index.php/report/coin" class="clearfix">
                 <i class="iconfont icon-jilu my_col1"></i> <span>帐变记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
@@ -87,28 +87,21 @@
             </a>
         </li>
         <li>
-            <a href="/index.php/team/coinall" class="clearfix">
-                <i class="iconfont icon-045zhuanqulirun my_col4"></i> <span>团队统计<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
-            </a>
-        </li>
-        <li>
             <a href="/index.php/team/coin" class="clearfix">
-                <i class="iconfont icon-tuandui my_col4"></i> <span>帐变记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
-            </a>
-        </li>
-
-        <li>
-            <a href="/index.php/team/cashRecord" class="clearfix">
-                <i class="iconfont icon-yaoqinghaoyou my_col5"></i> <span>提现记录<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+                <i class="iconfont icon-tuandui my_col4"></i> <span>团队帐变<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
         <li>
             <a href="/index.php/team/linkList" class="clearfix">
-                <i class="iconfont icon-tuandui my_col6"></i> <span>团队帐变<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
+                <i class="iconfont icon-tuandui my_col6"></i> <span>邀请注册<span> <i class="iconfont icon-xiangyoujiantou fr my_coli"></i>
             </a>
         </li>
     </ul> 
      <?php } ?>   
+     <div class="myi_btns flex myt_btns ">
+        <div class="tc fx myi_btns1 " > <a href="/index.php/user/logout" style="color:white;" >退出</a></div>
+        
+    </div>
     	<?php $this->display('newinc_footer.php'); ?>
 </div>
 

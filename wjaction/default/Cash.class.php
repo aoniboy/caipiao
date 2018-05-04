@@ -23,6 +23,14 @@ class Cash extends WebLoginBase{
 	public final function rechargeLog(){
 		$this->display('newsafe/my_paylist.php');
 	}
+	public final function searchrechargeLog(){
+	    $data = $this->fetch('cash/recharge-log-list.php');
+	    $this->outputData(0,$data);
+	}
+	public final function searchcashLog(){
+	    $data = $this->fetch('cash/to-cash-log-list.php');
+	    $this->outputData(0,$data);
+	}
 	
 	/**
 	 * 提现申请

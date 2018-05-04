@@ -3,6 +3,7 @@ var common = {
         this.bindEvent();
         this.kf();
         this.checklogin();
+        this.orderdetail();
     },
     bindEvent: function(){
         $(".w_heiht").height($(window).height());
@@ -36,5 +37,19 @@ var common = {
 	        },5000);
     	}
     },
+    orderdetail: function(){
+    	//查看详情
+        $(document).on('click', 'td.orderdetail', function(){
+            var id = $(this).attr('data-id');
+            $.post('/index.php/record/betInfo/'+id,function(data){
+            	$(".detail_pop").show();
+                $('.detail_table').html(data);
+            },'text' );
+            return false;
+        })
+         $(".detail_close").on('touchend', function(){
+            $(".detail_pop").hide();
+        })
+    }
 }
 common.init();

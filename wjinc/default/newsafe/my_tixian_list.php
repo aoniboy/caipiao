@@ -6,112 +6,87 @@
     <title>提现记录</title>
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/js/calendar/LCalendar.css">
+    <script src="/wjinc/default/js/calendar/LCalendar.js"></script>
     <script src="/wjinc/default/js/jquery.min.js"></script>
 </head>
 <body class="bgf5">
 <div class="wrap_box">
     <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>提现记录</div>
-    <div class="clearfix myp_top dlm_top">
+
+    <div class="clearfix myp_top dl_gametop">
         <form class="dl_form">
             <div class="clearfix myp_top dl_gametop_1">
-                <div class="rel fl myp_top_l dl_gametop_zhang">
-                    <select class="myp_sel1">
-                        <option value="2018424">2018年4月24</option>
-                        <option value="2018424">2018年4月24</option>
-                    </select>
+                <div class="rel fl myp_top_l ">
+                    <input class="my_calendar" type="text" name="fromTime" id="start_date" placeholder="选择开始日期" readonly="readonly" value="<?=date("Y-m-d")?>">
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="fl myp_zhi">至</div>
-                <div class="rel fl myp_top_l dl_gametop_zhang ">
-                    <select class="myp_sel2">
-                        <option value="2018424">2018年4月24</option>
-                        <option value="2018424">2018年4月24</option>
-                    </select>
-                    <i class="iconfont icon-xialajiantou myp_topicon"></i>
-                </div>
-            </div>
-            <div class="clearfix">
                 <div class="rel fl myp_top_l ">
-                    <select class="myp_sel2">
-                        <option value="1">我自己</option>
-                        <option value="2">直属下线</option>
-                        <option value="2">所有下线</option>
-                    </select>
+                    <input class="my_calendar" type="text" name="toTime" id="end_date" placeholder="选择结束日期" readonly="readonly" value="<?=date("Y-m-d",strtotime("+1 days"))?>">
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
-                <input class="dlm_input fl myp_sel3" type="text" value="" name="username" placeholder="用户名" style="margin-left: 5%">   
-                <div class="myp_btn fr">查询</div> 
+                <div class="myp_btn fr">查询</div>
             </div>
-
         </form>
     </div>
+    <div class="detail_pop hide">
+        <div class="gameo_mask"></div>
+        <div class="detail_box">
+            <div class="detail_top f33">投注信息 </div>
+            <div class="detail_table tc" style="" scrolltop="0" scrollleft="0">
+                
+            </div>
+            <div class="">
+                <div class="detail_btn tc">
+                    <button type="button" style="border:none; border-radius:5px;padding:.1rem .5rem" class="detail_close f26">关闭</button>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
     <div class="myp_table">
-        <table class="f24 tc">
-            <thead>
-                <tr>
-                    <th>提现金额</th>
-                    <th>用户账号</th>
-                    <th>申请时间</th>
-                    <th>提现银行</th>
-                    <th>银行尾号</th>
-                    <th>状态</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-
-                </tr>
-            </tbody>
-        </table>
+        
     </div>
-    
+ 
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
+
 <script type="text/javascript">
+
+    var calendar = new LCalendar();
+    calendar.init({
+        'trigger': '#start_date', 
+        'type': 'date', 
+        'minDate': (new Date().getFullYear()-20) + '-' + 1 + '-' + 1, 
+        'maxDate': (new Date().getFullYear()) + '-' + 12 + '-' + 31 
+    });
+    var calendar = new LCalendar();
+    calendar.init({
+        'trigger': '#end_date',
+        'type': 'date', 
+        'minDate': (new Date().getFullYear()-20) + '-' + 1 + '-' + 1, 
+        'maxDate': (new Date().getFullYear()) + '-' + 12 + '-' + 31
+    });
+
     var page = 10;
-    var s1 = $(".myp_sel1").val();
-    var s2 = $(".myp_sel2").val();
-    var s3 = $(".myp_sel3").val();
     $(window).scroll(function () {
         var scrollTop = $(this).scrollTop()
         var scrollHeight = $(document).height()
         var windowHeight = $(this).height()
         if(windowHeight + scrollTop >= scrollHeight){
-            upload();
+            //upload();
         }
 
     })
+    upload();
     $(".myp_btn").on('click',function(){
-        s1 = $(".myp_sel1").val();
-        s2 = $(".myp_sel2").val();
         upload();
     })
     function upload(){
-        $.post('/index.php/team/searchMember/'+page,{data:$(".dl_form").serialize()}, function(res){
-            var list = res.data.result;
-            console.log(list);
-            if(list.length>0){
-                page += 10;
-                var html = '';
-                for(var i=0;i<list.length;i++){
-                    html+='    <tr>'
-                    html+='        <td>1</td>'
-                    html+='        <td>2</td>'
-                    html+='        <td>3</td>'
-                    html+='        <td>4</td>'
-                    html+='        <td>5</td>'
-                    html+='        <td>6</td>'
-                    html+='    </tr>'
-                }
-            }
-            $(".myp_table table tbody").append(html);
+        $.post('/index.php/cash/searchcashLog/?'+$(".dl_form").serialize(), function(res){
+            $(".myp_table").html(res.data);
         },'json' );
     }
 </script>

@@ -8,7 +8,7 @@
 	}
 ?>
 
-<div class="recharge-modal popupModal">
+
 	<table width="100%" cellpadding="2" cellspacing="2">
 		<tr>
 			<td class="title">用户</td>
@@ -39,4 +39,3 @@
 			<td><?=date("Y-m-d H:i:s",$rechargeInfo['rechargeTime'])?></td>
 		</tr>
 	</table>
-</div>

@@ -75,8 +75,7 @@
 	
 	$modeName=array('2.00'=>'元', '0.20'=>'角', '0.02'=>'分');
 ?>
-<div>
-<table width="100%" class='table_b'>
+<table width="100%" class='f24 tc'>
 	<thead>
 		<tr class="table_b_th">
 			<td>编号</td>
@@ -84,7 +83,7 @@
 			<td>玩法</td>
 			<td>总额(元)</td>
 			<td>奖金(元)</td>
-			<td>开奖号码</td>
+			
 			<td>状态</td>
             <td>操作</td>
 		</tr>
@@ -93,14 +92,13 @@
 	<?php if($data['data']){ 
 	foreach($data['data'] as $var){ ?>
 		<tr>
-			<td>
-				<a href="/index.php/record/betInfo/<?=$var['id']?>" width="800" title="投注信息" button="关闭:defaultModalCloase" target="modal"><?=$var['wjorderId']?></a>
+			<td data-id="<?=$var['id']?>" class="orderdetail">
+				<?=$var['wjorderId']?>
 			</td>
 			<td><?=$var['actionNo']?></td>
 			<td><?=$this->playeds[$var['playedId']]['name']?></td>
 			<td><?=$var['mode']*$var['beiShu']*$var['actionNum']*($var['fpEnable']+1)?></td>
 			<td><?=$this->iff($var['lotteryNo'], number_format($var['bonus'], 2), '0.00')?></td>
-			<td><?=$this->ifs($var['lotteryNo'], '--')?></td>
 			<td>
 			<?php
 				if($var['isDelete']==1){
@@ -127,7 +125,3 @@
     <?php } ?>
 	</tbody>
 </table>
-<?php 
-	$this->display('inc_page.php',0,$data['total'],$this->pageSize, "/index.php/{$this->controller}/{$this->action}-{page}/?$params");
-?>
-</div>

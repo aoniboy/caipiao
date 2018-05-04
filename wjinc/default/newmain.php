@@ -190,7 +190,7 @@
         <div class="zhui_box">
             <div class="zhui_top">
                 
-                <select name="qh"><option value="10">最近10期</option><option value="20">最近20期</option><option value="30">最近30期</option><option value="40">最近40期</option><option value="50">最近50期</option><option value="0">今天全部</option></select>
+                <select name="qh"><option value="10">最近10期</option><option value="20">最近20期</option><option value="30">最近30期</option><option value="40">最近40期</option><option value="50">最近50期</option><option value="0">今天全部</option></select><i class="iconfont icon-xialajiantou myp_topicon"></i>
                 <label><input class="zhuicheck1"  type="checkbox" checked="" name="zhuiHaoMode" value="1">中奖后停止追号</label>　
                 追号期数：<span class="qs zhui_qs">0</span>　总金额：<span class="amount zhui_amount">0</span>元
             </div>

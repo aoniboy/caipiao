@@ -3,7 +3,7 @@ class Report extends WebLoginBase{
 	public $type;
 	public $pageSize=20;
 	
-	// ÕÊ±äÁĞ±í
+	// ï¿½Ê±ï¿½ï¿½Ğ±ï¿½
 	public final function coin($type=0){
 		$this->type=intval($type);
 		$this->action='coinlog';
@@ -12,16 +12,18 @@ class Report extends WebLoginBase{
 	
 	public final function coinlog($type=0){
 		$this->type=intval($type);
-		$this->display('report/coin-log.php');
+		$data = $this->fetch('report/coin-log.php');
+		$this->outputData(0,$data);
 	}
 
-	// ×Ü½áËã²éÑ¯
+	// ï¿½Ü½ï¿½ï¿½ï¿½ï¿½Ñ¯
 	public final function count(){
 		$this->action='countSearch';
 		$this->display('newsafe/my_yingkui.php');
 	}
 	
 	public final function countSearch(){
-		$this->display('report/count-list.php');
+		$data = $this->fetch('report/count-list.php');
+		$this->outputData(0,$data);
 	}
 }

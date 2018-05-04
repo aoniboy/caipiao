@@ -452,20 +452,9 @@ var game = {
             },'json' );
             return false;
         })
-        //查看详情
-        $(document).on('touchend', 'td.orderdetail', function(){
-            var id = $(this).attr('data-id');
-            $.post('/index.php/record/betInfo/'+id,function(data){
-            	$(".detail_pop").show();
-                $('.detail_table').html(data);
-            },'text' );
-            return false;
-        })
+        
         $(".tz_btn2").on('touchend', function(){
             $(".tz_pop").hide();
-        })
-        $(".detail_close").on('touchend', function(){
-            $(".detail_pop").hide();
         })
         //只能是数字
         $(document).on('keyup', '.gameo_int', function(){

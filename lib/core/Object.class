@@ -18,10 +18,10 @@ class Object extends DBAccess{
 			$argc-=2;
 			$args=array_values($args);
 			if($__expire>0){
-				// ÆôÓÃ»º´æ
+				// ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 				$__cacheFile=$this->getCacheDir().md5($__tplfile.serialize($args));
 				if(is_file($__cacheFile) && filemtime($__cacheFile)+$__expire>$this->time){
-					// »º´æÓÐÐ§Ê±£¬Ö±½Ó¶Á»º´æ
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§Ê±ï¿½ï¿½Ö±ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½
 					readfile($__cacheFile);
 				}else{
 					ob_start();
@@ -37,6 +37,20 @@ class Object extends DBAccess{
 		
 		include $__tplfile;
 	}
+	public function fetch(){
+		$args=func_get_args();
+		$argc=func_num_args();
+		if($argc==0) throw new Exception('Template is null');
+		$__tplfile=$this->actionTemplate .$args[0];
+		unset($args[0]);
+		
+		
+		ob_start();
+		include $__tplfile;
+		$content = ob_get_contents();
+		ob_clean();
+		return $content;
+	}
 	
 	public function error($message, $isExit=null){
 		header('X-Error-Message: '.rawurlencode($message));
@@ -51,12 +65,12 @@ class Object extends DBAccess{
 		try{
 			//file_put_contents($this->logFileName, date('[Y-m-d H:i:s] ', $this->time).var_export($message,true)."\r\n", FILE_APPEND);
 		}catch(Exception $e){
-			//file_put_contents($this->sysLogFileName, date('[Y-m-d H:i:s] ', $this->time)."Ð´ÓÃ»§ÈÕÖ¾ÎÄ¼þ{$this->debugLevel}³ö´í£º".$e->getmessage()."\r\n", FILE_APPEND);
+			//file_put_contents($this->sysLogFileName, date('[Y-m-d H:i:s] ', $this->time)."Ð´ï¿½Ã»ï¿½ï¿½ï¿½Ö¾ï¿½Ä¼ï¿½{$this->debugLevel}ï¿½ï¿½ï¿½ï¿½".$e->getmessage()."\r\n", FILE_APPEND);
 		}
 	}
 
 	/**
-	 * »ñÈ¡À´·ÃIPµØÖ·
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½IPï¿½ï¿½Ö·
 	 */
 	public static final function ip($outFormatAsLong=false){
 		if (isset($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR']))
@@ -84,8 +98,8 @@ class Object extends DBAccess{
 	}
 	
 	/**
-	 * °Ñ¶ÔÏó×ª»»ÎªÊý×é
-	 * ¿ÉÒÔ×ª»»xml¶ÔÏó£¬Ê¹xml×ª»»³ÉÊý×é
+	 * ï¿½Ñ¶ï¿½ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½xmlï¿½ï¿½ï¿½ï¿½Ê¹xml×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public static final function obj2arr($o){
 		if(is_object($o)) $o=get_object_vars($o);
@@ -123,7 +137,7 @@ class Object extends DBAccess{
 	}
 	
 	/**
-	 * Ìí¼ÓÈÕÖ¾
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
 	 */
 	public static final function log($obj, $file=null){
 		//if($file==null) $file=dirname(__FILE__).'/../jms.log';
