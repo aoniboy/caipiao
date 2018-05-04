@@ -21,42 +21,75 @@
 	
 		?>
 
-		<form class="dl_form" action="/index.php/user/registered" method="post" onajax="registerBeforSubmit" enter="true" call="registerSubmit" target="ajax">
+		<form class="dl_form my_register" action="/index.php/user/registered" method="post" onajax="registerBeforSubmit" enter="true" call="registerSubmit" target="ajax">
         	<input type="hidden" name="parentId" value="<?=$args[0]?>" />
             <input type="hidden" name="lid" value="<?=$linkData['lid']?>"  />
           	<dl>
             	<dt>用户名：</dt>
-                <dd><input name="username" type="text" id="username" class="login-text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/></dd>
+                <dd><input name="username" type="text" id="username" class="login-text my_reinput m_re1" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"/></dd>
             </dl>
             <dl>
             	<dt>密  码：</dt>
-                <dd><input name="password" type="password" id="password" class="login-text" /></dd>
+                <dd><input name="password" type="password" id="password" class="login-text my_reinput m_re2" /></dd>
             </dl>
              <dl>
             	<dt>确认密码：</dt>
-                <dd><input name="cpasswd" type="password" id="cpasswd" class="login-text" /></dd>
+                <dd><input name="cpasswd" type="password" id="cpasswd" class="login-text my_reinput m_re3" /></dd>
             </dl>
              <dl>
             	<dt>微  信：</dt>
-                <dd><input name="qq" type="test" id="qq" class="login-text" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/></dd>
+                <dd><input name="qq" type="test" id="qq" class="login-text my_reinput m_re4" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/></dd>
             </dl>
             <dl>
             	<dt>验证码：</dt>
-                <dd style="position:relative;"><input name="vcode" type="text" class="login-text" /><div class="yzmNum"><img width="72" height="24" border="0" id="vcode" style="cursor:pointer;" align="absmiddle" src="/index.php/user/vcode/<?=$this->time?>" title="看不清楚，换一张图片" onclick="this.src='/index.php/user/vcode/'+(new Date()).getTime()"/></div></dd>
+                <dd style="position:relative;"><input name="vcode" type="text" class="login-text my_reinput m_re5" /><div class="yzmNum"><img width="72" height="24" border="0" id="vcode" style="cursor:pointer;" align="absmiddle" src="/index.php/user/vcode/<?=$this->time?>" title="看不清楚，换一张图片" onclick="this.src='/index.php/user/vcode/'+(new Date()).getTime()"/></div></dd>
             </dl>
              <dl>
             	<dt class="hide"><input type="submit" value=""/></dt>
-                <dd><button class="login-btn" tabindex="5" type="button" onclick="$(this).closest('form').submit()">注　册</button></dd>
+                <dd><button class="login-btn my_reibtn" tabindex="5" type="button" onclick="$(this).closest('form').submit()">注　册</button></dd>
             </dl>
           </form>
            <?php }else{?>
            <div style="text-align:center; line-height:50px; color:#FF0; font-size:20px; font-weight:bold;">链接失效！</div>
            <?php }?>
         </div>
-   
+        <div class="hint_pop hide">
+            <div class="gameo_mask"></div>
+            <div class="hint_con">
+                <div class="hint_title f32 tc hint_titles">错误提示</div>
+                <div class="hint_cont f24"></div>
+                <div class="tc hint_btn f32">确定</div>
+            </div>
+        </div>
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
 <script src="/wjinc/default/js/my.js"></script>
+<script>
+    $(".my_reibtn").click(function(){
+        var m1 = $(".m_re1").val();
+        var m2 = $(".m_re2").val();
+        var m3 = $(".m_re3").val();
+        var m4 = $(".m_re4").val();
+        var m5 = $(".m_re5").val();
+        var regEx = /^[a-zA-Z0-9_]{4,16}$/;
+        if(regEx.test(m1)){
+            $(".hint_pop").show();
+            $(".hint_pop .hint_cont").text('用户名由4到16位的字母、数字及下划线组成');
+            return;
+        }else if(m2.length<6 || m2!=m3){
+            $(".hint_pop").show();
+            $(".hint_pop .hint_cont").text('密码至少6位');
+            return;
+        }else if(m5==""){
+            $(".hint_pop").show();
+            $(".hint_pop .hint_cont").text('验证码不能为空');
+            return;
+        }
+        $.post('/index.php/user/registered',{data:$(".dl_form").serialize()}, function(res){
+                        
+        },'json' );
+    })
+</script>
 </body>
 </html>
