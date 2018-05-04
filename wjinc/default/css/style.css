@@ -78,7 +78,7 @@ input:focus,select{outline:0;}
 .index_cont li a { display: block; }
 .index_cont li a img{ width:1rem;height:1rem; border-radius: 100px; border:1px solid #f3f3f3;}
 .index_cont li a p{ line-height: 1rem;margin-left: .1rem; font-size: .3rem;  }
-.index_rank li{ line-height: 36px;height: 36px; border-bottom:1px solid #ededed; padding:0 .2rem; }
+.index_rank li{ line-height: 35px;height: 35px; border-bottom:1px solid #ededed; padding:0 .2rem; }
 .index_rank li p{ position: absolute;left:0;top:0;width:100%; color:#eb0202; }
 .index_rank li div{ color:#999; }
 .footer {position: fixed;left:0;bottom:0;z-index: 9; width:100%; text-align: center; background: #f7f7f7; border-top:1px solid #d9d9d9;

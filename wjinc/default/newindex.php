@@ -152,7 +152,7 @@
 $(function(){
     $("#win_list").myScroll({
         speed:40, //数值越大，速度越慢
-        rowHeight:35 //li的高度
+        rowHeight:36 //li的高度
     });
     function ScrollImgLeft(){ 
         var speed=30; 
