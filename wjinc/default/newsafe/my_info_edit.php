@@ -84,7 +84,14 @@
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
-    
+    <div class="hint_pop hide hint_pop1">
+        <div class="gameo_mask"></div>
+        <div class="hint_con">
+            <div class="hint_title f32 tc hint_titles">系统提示</div>
+            <div class="hint_cont f24"></div>
+            <div class="tc hint_btn f32">确定</div>
+        </div>
+    </div>
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
