@@ -87,8 +87,16 @@
             return;
         }
         $.post('/index.php/user/registered',{data:$(".dl_form").serialize()}, function(res){
-                        
+            if(!data.code){
+
+            } else{
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text(msg);
+            }
         },'json' );
+    })
+    $(".hint_btn").click(function(){
+        $(".hint_pop").hide();
     })
 </script>
 </body>

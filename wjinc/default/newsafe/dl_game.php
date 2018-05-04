@@ -121,14 +121,13 @@
         'maxDate': (new Date().getFullYear()) + '-' + 12 + '-' + 31
     });
 
-    var page = 1;
+    var page = 10;
     $(window).scroll(function () {
         var scrollTop = $(this).scrollTop()
         var scrollHeight = $(document).height()
         var windowHeight = $(this).height()
         if(windowHeight + scrollTop >= scrollHeight){
-            page++
-            upload();
+            //upload();
         }
 
     })
@@ -138,9 +137,7 @@
     })
     function upload(){
         $.post('/index.php/team/searchGameRecord/?'+$(".dl_form").serialize(), function(res){
-            if(res.data){
-            	$(".myp_table").html(res.data);
-            }
+            $(".myp_table").html(res.data);
         },'json' );
     }
 </script>
