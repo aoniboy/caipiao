@@ -95,11 +95,11 @@
             </div>
         </div>
         </div>
-    <div class="table_scroll">
-        <div class="myp_table" style="width:800px">
-            
+        <div class="table_scroll">
+            <div class="myp_table" style="width:800px">
+                
+            </div>
         </div>
-    </div>
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
