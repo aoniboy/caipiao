@@ -50,7 +50,7 @@
             </li>
         </ul>
     <div class="myi_btns flex myt_btns">
-        <div class="tc fx myi_btns1 " id="pay_btn"  data-url="/index.php/safe/setCoinPwd">修改密码</div>
+        <div class="tc fx myi_btns1 " id="pay_btn"  data-url="/index.php/safe/setCoinPwd2">修改密码</div>
         <input class="tc fx myi_btns2" type="reset" value="重置"/>
     </div>
     </form>
@@ -71,7 +71,7 @@
             </li>
         </ul>
     <div class="myi_btns flex myt_btns">
-        <div class="tc fx myi_btns1 " id="pay_btn"  data-url="/index.php/safe/setCoinPwd2">设置密码</div>
+        <div class="tc fx myi_btns1 " id="pay_btn"  data-url="/index.php/safe/setCoinPwd">设置密码</div>
         <input class="tc fx myi_btns2" type="reset" value="重置" />
     </div>
     </form>
