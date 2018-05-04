@@ -94,23 +94,27 @@
         'maxDate': (new Date().getFullYear()) + '-' + 12 + '-' + 31
     });
 
-    var page = 10;
+    var page = 1;
     $(window).scroll(function () {
         var scrollTop = $(this).scrollTop()
         var scrollHeight = $(document).height()
         var windowHeight = $(this).height()
         if(windowHeight + scrollTop >= scrollHeight){
-            //upload();
+        	page++
+            upload();
         }
 
     })
-    upload();
+    upload(false);
     $(".myp_btn").on('click',function(){
-        upload();
+    	page = 1;
+        upload(true);
     })
-    function upload(){
-        $.post('/index.php/report/coinlog/?'+$(".dl_form").serialize(), function(res){
-            $(".myp_table").html(res.data);
+    function upload(flag){
+        $.post('/index.php/report/coinlog/?page='+page+"&"+$(".dl_form").serialize(), function(res){
+        	if(res.data){
+        		!flag?(page == 1 ?$(".myp_table").append(res.data):$(".table_b_tr").append(res.data)):page == 1 ?$(".myp_table").html(res.data):$(".table_b_tr").html(res.data);
+        	}
         },'json' );
     }
 </script>

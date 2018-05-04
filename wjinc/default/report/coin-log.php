@@ -30,8 +30,6 @@
 	}
 	
 	$sql="select b.type, b.playedId, b.actionNo, b.mode, l.liqType, l.coin, l.fcoin, l.userCoin, l.actionTime, l.extfield0, l.extfield1, l.info, u.username from {$this->prename}members u, {$this->prename}coin_log l left join {$this->prename}bets b on b.id=extfield0 where l.uid=u.uid $liqTypeWhere $timeWhere $userWhere $typeWhere $fcoinModalWhere and l.liqType not in(4,11,104) order by l.id desc";
-	//echo $sql;
-	
 	$list=$this->getPage($sql, $this->page, $this->pageSize);
 	$params=http_build_query($_REQUEST, '', '&');
 	$modeName=array('2.00'=>'元', '0.20'=>'角', '0.02'=>'分');
@@ -85,6 +83,7 @@
 	);
 	
 ?>
+<?php if($this->page==1) {?>
 <table width="100%" class='table_b'>
 	<thead>
 		<tr class="table_b_th">
@@ -99,6 +98,7 @@
 		</tr>
 	</thead>
 	<tbody class="table_b_tr">
+	<?php }?>
 		<?php if($list['data']) foreach($list['data'] as $var){ ?>
 		<tr>
 			<td><?php echo substr(date('Y-m-d H:i:s', $var['actionTime']),2)?></td>
@@ -106,7 +106,7 @@
 			<!-- <td><?//=$var['info']?></td> -->
 			
 			<?php if($var['extfield0'] && in_array($var['liqType'], array(2,3,4,5,6,7,10,11,100,101,102,103,104,105,108))){ ?>
-                <td><a href="/index.php/record/betInfo/<?=$var['extfield0']?>" width="800" title="投注信息" target="modal"><?=$this->getValue("select wjorderId from {$this->prename}bets where id=?", $var['extfield0'])?></a>
+                <td><?=$this->getValue("select wjorderId from {$this->prename}bets where id=?", $var['extfield0'])?>
                 </td>
                 <td><?=$this->types[$var['type']]['shortName']?></td>
                 <td><?=$this->playeds[$var['playedId']]['name']?></td>
@@ -134,5 +134,7 @@
 			<td><?=$var['userCoin']?></td>
 		</tr>
 		<?php } ?>
+<?php if($this->page==1) {?>
 	</tbody>
 </table>
+<?php } ?>

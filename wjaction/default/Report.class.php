@@ -12,6 +12,7 @@ class Report extends WebLoginBase{
 	
 	public final function coinlog($type=0){
 		$this->type=intval($type);
+		$this->page = empty($_GET['page'])?1:$_GET['page'];
 		$data = $this->fetch('report/coin-log.php');
 		$this->outputData(0,$data);
 	}

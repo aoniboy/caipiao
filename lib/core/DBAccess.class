@@ -171,15 +171,9 @@ class DBAccess extends PDO{
 			$stmt->setFetchMode(PDO::FETCH_ASSOC);
 
 			$return['total']=$stmt->rowCount();
-			if($return['total']<=$pageSize){
-				$return['data']=$stmt->fetchAll();
-			}elseif($page<=1){
-				for($i=0;$i<$pageSize; $i++) $return['data'][]=$stmt->fetch();
-			}else{
-				$startRow=($page-1)*$pageSize;//echo $page;
+			$startRow=($page-1)*$pageSize;//echo $page;
 				$sql.=" limit $startRow, $pageSize";
 				$return['data']=$this->getRows($sql, $params);
-			}
 			$stmt=null;
 			return $return;
 		}
