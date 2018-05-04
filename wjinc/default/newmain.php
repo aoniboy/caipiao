@@ -25,7 +25,7 @@
 
     <div class="bgfff">
         <p class="gameo_toptitle f24"><?=$this->finalgameinfo[$this->type]['title']?> 第<span class="gameo_qi"></span>期 总共<span class="mcol gameo_qiall"></span>期</p>
-        <div class="lot_num tc gameo_num f32">
+        <div class="lot_num tc gameo_num f38">
             <span>1</span>
             <span>3</span>
             <span>5</span>
