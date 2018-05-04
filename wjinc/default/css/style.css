@@ -314,3 +314,4 @@ table {table-layout: fixed;}
 .my_reibtn{display: block; margin: .4rem auto .2rem auto; background: #fc7166; border: none;color: #fff; padding: .2rem .4rem;border-radius: .1rem;}
 .my_yzm{position: absolute; right: 0; top: 0;}
 .win_list{ height: 220px;overflow:hidden; }
+.inline{ display: inline; }

@@ -17,13 +17,13 @@
 
     <div class="marquee rel">
         <div class="" id="scroll_div">
-            <div id="scroll_begin">
+            <div id="scroll_begin" class="inline">
                 <?php if($this->noticeinfo) foreach($this->noticeinfo as $key=>$var){ 
         
     ?><span><?=$var['title']?></span>
     <?php } ?>
             </div>
-            <div id="scroll_end"></div>
+            <div id="scroll_end" class="inline"></div>
         </div>
         <i class="marquee_icon"></i>
     </div> 
