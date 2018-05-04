@@ -56,7 +56,7 @@
             </div>
             <div class="clearfix dlg_input">
             	
-                <input class="fl dlg_iname" type="text" name="betId" placeholder="输入单号">
+                <input class="fl dlg_idani" type="text" name="betId" placeholder="输入单号">
             </div>
             <div class="clearfix myp_top dl_gametop_1">
                 <div class="rel fl myp_top_l ">
