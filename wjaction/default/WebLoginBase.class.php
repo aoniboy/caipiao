@@ -101,7 +101,7 @@ class WebLoginBase extends WebBase{
 	}
 
 	public function outputData($code=0,$data=[],$message='操作成功') {
-	    $output = ['code'=>$code,'data'=>$data,'msg'=>$message];
+	   $output = array('code'=>$code,'data'=>$data,'msg'=>$message);
 	    echo json_encode($output);
 	    exit;
 	}
