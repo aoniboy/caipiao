@@ -160,7 +160,7 @@ var game = {
         })
         //倍数不能小于1
         $(".gameo_numi").on('keyup', function(){
-            if($(this).val()===0){
+            if($(this).val()==0&&$(this).val().length==1){
                 $(this).val(1)
             }else{
             	if($.trim($(this).val())) {
@@ -181,10 +181,8 @@ var game = {
         })
         //添加
         $(".game_add").on('touchend', function(){
-        	if($(this).val()==0){
-                $(this).val(1)
-            }else{
-            	$(this).val(Math.abs($(this).val()))
+        	if($(".gameo_numi").val()==0){
+        		$(".gameo_numi").val(1)
             }
             if(!game.currentCount()){
                return false; 
