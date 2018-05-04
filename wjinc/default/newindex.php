@@ -14,8 +14,8 @@
         <img src="/wjinc/default/images/index_img.jpg">
     </div>
 
-    <div class="marquee">
-        <div class="rel" id="scroll_div">
+    <div class="marquee rel">
+        <div class="" id="scroll_div">
             <div id="scroll_begin">
                 <?php if($this->noticeinfo) foreach($this->noticeinfo as $key=>$var){ 
         
@@ -23,8 +23,8 @@
     <?php } ?>
             </div>
             <div id="scroll_end"></div>
-            <i class="marquee_icon"></i>
         </div>
+        <i class="marquee_icon"></i>
     </div> 
     <div>
         <div class="title tc">热门彩票</div>
