@@ -315,3 +315,4 @@ table {table-layout: fixed;}
 .my_yzm{position: absolute; right: 0; top: 0;}
 .win_list{ height: 220px;overflow:hidden; }
 .inline{ display: inline; }
+.lot_left .lot_num span{background: linear-gradient(#fb7b5c, #fb3b38); display: inline-block;width:.46rem ;height: .46rem; border-radius: 100px; line-height: .46rem; text-align: center; color: #fff; margin-right: .1rem; }
