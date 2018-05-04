@@ -263,7 +263,8 @@ input:focus,select{outline:0;}
 .myp_btn{ margin-right: .2rem; color:#fff; background: #fb7166; padding:0 .25rem; border-radius: .1rem;}
 .myp_zhi{ margin-left: .2rem; }
 .myp_table{ width:100%; }
-.myp_table table{ width:100%; line-height: 2.2 ; text-align: center; }
+/*.myp_table table{ width:100%; line-height: 2.2 ; text-align: center;word-break:break-all }*/
+.myp_table table{ width:100%; line-height: 2.2 ; text-align: center;white-space:nowrap }
 .myp_table table thead{background: #dedadb; }
 .myp_table table tbody{background: #fff; color:#666; }
 .myp_table table tbody tr td{overflow-x: scroll;}
