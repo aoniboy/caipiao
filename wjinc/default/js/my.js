@@ -40,6 +40,11 @@ var my = {
                 $(".hint_pop .hint_cont").text('新密码不一致');
                 return;
             }
+            if($(".myi_form1 .pas2").val().length<6){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('登录密码至少6位');
+                return;
+            }
             $.post('/index.php/safe/setPasswd', $(".myi_form1").serialize(), function(res){
                     $(".hint_pop1").show();
                     $(".hint_pop1 .hint_cont").text(msg);
@@ -55,6 +60,11 @@ var my = {
             if($(".myi_form2 .pas2").val() != $(".myi_form2 .pas3").val() || $(".myi_form2 .pas2").val() ==""){
                 $(".hint_pop").show();
                 $(".hint_pop .hint_cont").text('新密码不一致');
+                return;
+            }
+            if($(".myi_form2 .pas2").val().length<6){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('资金密码至少6位');
                 return;
             }
             $.post('/index.php/safe/setCoinPwd2', $(".myi_form2").serialize(), function(res){
