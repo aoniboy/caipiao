@@ -57,10 +57,7 @@
     <?php }else{?>
         <form  class="myi_form2">
         <ul class="myi_list">
-            <li class="clearfix rel">
-                <div class="fl myw">原始密码：</div>
-                <input  class="col67 fl pas1" type="password" name="oldpassword" value="">
-            </li>
+
             <li class="clearfix">
                 <div class="fl myw">新密码：</div>
                 <input  class="col67 fl pas2" type="password" name="newpassword" value="">
