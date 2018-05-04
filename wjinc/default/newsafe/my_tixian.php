@@ -52,7 +52,7 @@
     <ul class="myi_list myt_list">
         <li class="clearfix rel">
             <div class="fl myw">银行类型：</div>
-            <img class="fl col67" src="/<?=$bank['logo']?>" title="<?=$bank['bankName']?>">
+            <img class="fl col67" src="/<?=$bank['logo']?>" title="<?=$bank['bankName']?>" style="    width: auto;margin: .05rem 0;height: .6rem;">
         </li>
         <li class="clearfix">
             <div class="fl myw">银行账号：</div>
