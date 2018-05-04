@@ -28,7 +28,7 @@ class Safe extends WebLoginBase{
 		}else{
 			$coinPassword=true;
 		}
-		print_r($args[0]);
+
 		$this->display('newsafe/my_info_edit.php',0,$coinPassword);
 	}
 	

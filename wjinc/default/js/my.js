@@ -47,11 +47,12 @@ var my = {
             }
             $.post('/index.php/safe/setPasswd', $(".myi_form1").serialize(), function(res){
                     $(".hint_pop1").show();
-                    $(".hint_pop1 .hint_cont").text(msg);
+                    $(".hint_pop1 .hint_cont").text(res.msg);
             },'json' );
         })
         //支付密码修改
         $("#pay_btn").on('touchend', function(){
+            var url = $(this).attr("data-url");
             if($(".myi_form2 .pas1").val() ==""){
                 $(".hint_pop").show();
                 $(".hint_pop .hint_cont").text('密码不能为空');
@@ -67,9 +68,9 @@ var my = {
                 $(".hint_pop .hint_cont").text('资金密码至少6位');
                 return;
             }
-            $.post('/index.php/safe/setCoinPwd2', $(".myi_form2").serialize(), function(res){
+            $.post(url, $(".myi_form2").serialize(), function(res){
                 $(".hint_pop1").show();
-                $(".hint_pop1 .hint_cont").text(msg);
+                $(".hint_pop1 .hint_cont").text(res.msg);
             },'json' );
         })
     },

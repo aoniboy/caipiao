@@ -34,7 +34,7 @@
     </form>
     <div class="myi_title">资金密码管理</div>
     <?php if($args[0]){ ?>
-    <form class="myi_form2 /index.php/safe/setCoinPwd2"  >
+    <form class="myi_form2"  >
         <ul class="myi_list">
             <li class="clearfix rel">
                 <div class="fl myw">原始密码：</div>
@@ -51,11 +51,11 @@
         </ul>
     <div class="myi_btns flex myt_btns">
         <div class="tc fx myi_btns1 " id="pay_btn">修改密码</div>
-        <input class="tc fx myi_btns2" type="reset" value="重置" />
+        <input class="tc fx myi_btns2" type="reset" value="重置" data-url="/index.php/safe/setCoinPwd"/>
     </div>
     </form>
     <?php }else{?>
-        <form  class="myi_form2 /index.php/safe/setCoinPwd">
+        <form  class="myi_form2">
         <ul class="myi_list">
             <li class="clearfix rel">
                 <div class="fl myw">原始密码：</div>
@@ -71,8 +71,8 @@
             </li>
         </ul>
     <div class="myi_btns flex myt_btns">
-        <div class="tc fx myi_btns1 " id="pay_btn">修改密码</div>
-        <input class="tc fx myi_btns2" type="reset" value="重置" />
+        <div class="tc fx myi_btns1 " id="pay_btn">设置密码</div>
+        <input class="tc fx myi_btns2" type="reset" value="重置" data-url="/index.php/safe/setCoinPwd2" />
     </div>
     </form>
     <?php }?>
