@@ -32,17 +32,17 @@
 				}
 			}, speed);
 
-			_this.hover(function(){
-				clearInterval(intId[i]);
-			},function(){
-				intId[i] = setInterval(function(){
-					if(_this.find("ul").height()<=_this.height()){
-						clearInterval(intId[i]);
-					}else{
-						marquee(_this, sh);
-					}
-				}, speed);
-			});
+			// _this.hover(function(){
+			// 	clearInterval(intId[i]);
+			// },function(){
+			// 	intId[i] = setInterval(function(){
+			// 		if(_this.find("ul").height()<=_this.height()){
+			// 			clearInterval(intId[i]);
+			// 		}else{
+			// 			marquee(_this, sh);
+			// 		}
+			// 	}, speed);
+			// });
 		
 		});
 
