@@ -266,7 +266,7 @@ input:focus,select{outline:0;}
 .myp_table table{ width:100%; line-height: 2.2 ; text-align: center;word-break:break-all }
 .myp_table table thead{background: #dedadb; }
 .myp_table table tbody{background: #fff; color:#666; }
-
+.myp_table table tbody tr td{overflow-x: scroll;}
 /*代理*/
 .dlm_top .myp_top_l{ width:25%; }
 .dlm_input{ width:35%; margin-right: .2rem; height:.6rem;text-indent: .1rem; }
