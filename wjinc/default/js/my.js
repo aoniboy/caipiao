@@ -56,7 +56,7 @@ var my = {
                 $(".hint_pop .hint_cont").text('新密码不一致');
                 return;
             }
-            $.post('/index.php/safe/setCoinPwd2', {data:$(".myi_form1").serialize()}, function(data){
+            $.post('/index.php/safe/setCoinPwd2', $(".myi_form1").serialize(), function(data){
                     
             },'json' );
         })
