@@ -65,27 +65,27 @@ class Safe extends WebLoginBase{
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['SERVER_NAME']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  throw new Exception('数据包被篡改，请重新操作');
+		if($urlcheck<>$urldan)  $this->outputData(1,[],'数据包被篡改，请重新操作');
 
 		$opwd=$_POST['oldpassword'];
-		if(!$npwd=$_POST['newpassword']) throw new Exception('资金密码不能为空');
-		if(strlen($npwd)<6) throw new Exception('资金密码至少6位');
+		if(!$npwd=$_POST['newpassword'])  $this->outputData(1,[],'资金密码不能为空');
+		if(strlen($npwd)<6) $this->outputData(1,[],'资金密码至少6位');
 		
 		$sql="select password, coinPassword from {$this->prename}members where uid=?";
 		$pwd=$this->getRow($sql, $this->user['uid']);
 		if(!$pwd['coinPassword']){
 			$npwd=md5($npwd);
-			if($npwd==$pwd['password']) throw new Exception('资金密码与登录密码不能一样');
-			$tishi='资金密码设置成功';
+			if($npwd==$pwd['password']) $this->outputData(1,[],'资金密码与登录密码不能一样');
+			$this->outputData(0,[],'资金密码设置成功';
 		}else{
-			if($opwd && md5($opwd)!=$pwd['coinPassword']) throw new Exception('原资金密码不正确');
+			if($opwd && md5($opwd)!=$pwd['coinPassword']) $this->outputData(1,[],'原资金密码不正确');
 			$npwd=md5($npwd);
-			if($npwd==$pwd['password']) throw new Exception('资金密码与登录密码不能一样');
-			$tishi='修改资金密码成功';
+			if($npwd==$pwd['password']) $this->outputData(1,[],'资金密码与登录密码不能一样');
+			$this->outputData(0,[],'修改资金密码成功');
 		}
 		$sql="update {$this->prename}members set coinPassword=? where uid={$this->user['uid']}";
-		if($this->update($sql, $npwd)) return $tishi;
-		return '修改资金密码失败';
+		if($this->update($sql, $npwd)) $this->outputData(0,[],'修改资金密码成功');
+		$this->outputData(1,[],'修改资金密码失败');
 	}
 	
 	public final function setCoinPwd2(){

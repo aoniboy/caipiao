@@ -40,8 +40,9 @@ var my = {
                 $(".hint_pop .hint_cont").text('新密码不一致');
                 return;
             }
-            $.post('/index.php/safe/setPasswd', $(".myi_form1").serialize(), function(data){
-                    
+            $.post('/index.php/safe/setPasswd', $(".myi_form1").serialize(), function(res){
+                    $(".hint_pop1").show();
+                    $(".hint_pop1 .hint_cont").text(msg);
             },'json' );
         })
         //支付密码修改
@@ -56,8 +57,9 @@ var my = {
                 $(".hint_pop .hint_cont").text('新密码不一致');
                 return;
             }
-            $.post('/index.php/safe/setCoinPwd2', $(".myi_form1").serialize(), function(data){
-                    
+            $.post('/index.php/safe/setCoinPwd2', $(".myi_form2").serialize(), function(res){
+                $(".hint_pop1").show();
+                $(".hint_pop1 .hint_cont").text(msg);
             },'json' );
         })
     },
