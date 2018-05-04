@@ -33,7 +33,8 @@
     </div>
     </form>
     <div class="myi_title">资金密码管理</div>
-    <form class="myi_form2">
+    <?php if($args[0]){ ?>
+    <form class="myi_form2 /index.php/safe/setCoinPwd2"  >
         <ul class="myi_list">
             <li class="clearfix rel">
                 <div class="fl myw">原始密码：</div>
@@ -53,6 +54,28 @@
         <input class="tc fx myi_btns2" type="reset" value="重置" />
     </div>
     </form>
+    <?php }else{?>
+        <form  class="myi_form2 /index.php/safe/setCoinPwd">
+        <ul class="myi_list">
+            <li class="clearfix rel">
+                <div class="fl myw">原始密码：</div>
+                <input  class="col67 fl pas1" type="password" name="oldpassword" value="">
+            </li>
+            <li class="clearfix">
+                <div class="fl myw">新密码：</div>
+                <input  class="col67 fl pas2" type="password" name="newpassword" value="">
+            </li>
+            <li class="clearfix">
+                <div class="fl myw">确认密码：</div>
+                <input class="col67 fl pas3" type="password" name="" value="">
+            </li>
+        </ul>
+    <div class="myi_btns flex myt_btns">
+        <div class="tc fx myi_btns1 " id="pay_btn">修改密码</div>
+        <input class="tc fx myi_btns2" type="reset" value="重置" />
+    </div>
+    </form>
+    <?php }?>
     <div class="hint_pop hide">
         <div class="gameo_mask"></div>
         <div class="hint_con">
@@ -61,14 +84,7 @@
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
-    <div class="hint_pop hide hint_pop1">
-        <div class="gameo_mask"></div>
-        <div class="hint_con">
-            <div class="hint_title f32 tc hint_titles">错误提示</div>
-            <div class="hint_cont f24"></div>
-            <div class="tc hint_btn f32">确定</div>
-        </div>
-    </div>
+    
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>

@@ -44,8 +44,8 @@
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="rel fl myp_top_l ">
-                    <select class="myp_sel1">
-                        <option value="-1">全部模式</option>
+                    <select class="myp_sel1" name="mode">
+                        <option value="">全部模式</option>
                         <option value="2.00">元</option>
                         <option value="0.20">角</option>
                         <option value="0.02">分</option>
@@ -53,7 +53,7 @@
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="rel fl myp_top_l ">
-                    <select class="myp_sel2" name="mode">
+                    <select class="myp_sel2" name="utype">
                         <option value="0">所有人</option>
                         <option value="1">我自己</option>
                         <option value="2">直属下线</option>
@@ -121,23 +121,27 @@
         'maxDate': (new Date().getFullYear()) + '-' + 12 + '-' + 31
     });
 
-    var page = 10;
+    var page = 1;
     $(window).scroll(function () {
         var scrollTop = $(this).scrollTop()
         var scrollHeight = $(document).height()
         var windowHeight = $(this).height()
         if(windowHeight + scrollTop >= scrollHeight){
-            //upload();
+        	page++
+            upload();
         }
 
     })
-    upload();
+    upload(false);
     $(".myp_btn").on('click',function(){
-        upload();
+        page = 1;
+        upload(true);
     })
-    function upload(){
-        $.post('/index.php/team/searchGameRecord/?'+$(".dl_form").serialize(), function(res){
-            $(".myp_table").html(res.data);
+    function upload(flag){
+        $.post('/index.php/team/searchGameRecord/?page='+page+"&"+$(".dl_form").serialize(), function(res){
+        	if(res.data){
+          		!flag?(page == 1 ?$(".myp_table").append(res.data):$(".table_b_tr").append(res.data)):page == 1 ?$(".myp_table").html(res.data):$(".table_b_tr").html(res.data);
+            }
         },'json' );
     }
 </script>

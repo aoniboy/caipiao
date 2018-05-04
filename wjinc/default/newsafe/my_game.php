@@ -45,7 +45,7 @@
                 </div>
                 <div class="rel fl myp_top_l ">
                     <select class="myp_sel1" name="mode">
-                        <option value="-1">全部模式</option>
+                        <option value="">全部模式</option>
                         <option value="2.00">元</option>
                         <option value="0.20">角</option>
                         <option value="0.02">分</option>

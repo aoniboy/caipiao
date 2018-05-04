@@ -93,6 +93,7 @@
 	
 	$modeName=array('2.00'=>'元', '0.20'=>'角', '0.02'=>'分');
 ?>
+<?php if($this->page==1) {?>
 <table width="100%" class='f24 tc'>
 	<thead>
 		<tr class="table_b_th">
@@ -108,6 +109,7 @@
 		</tr>
 	</thead>
 	<tbody class="table_b_tr">
+	<?php }?>
 	<?php if($data['data']){ 
 	foreach($data['data'] as $var){ ?>
 		<tr>
@@ -141,7 +143,9 @@
 			</td>
 		</tr>
 	<?php } }else{ ?>
-    <tr><td colspan="12">暂无投注信息</td></tr>
+    <?php if($this->page==1) {?><tr><td colspan="12">暂无投注信息</td></tr><?php } ?>
     <?php } ?>
+	<?php if($this->page==1) {?>
 	</tbody>
 </table>
+<?php } ?>

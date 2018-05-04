@@ -60,7 +60,7 @@ class Team extends WebLoginBase{
 		
 		$this->getTypes();
 		$this->getPlayeds();
-
+		$this->page = empty($_GET['page'])?1:$_GET['page'];
 	    $data = $this->fetch('team/record-list.php');
 	    $this->outputData(0,$data);
 	}
