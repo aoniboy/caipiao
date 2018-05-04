@@ -106,21 +106,25 @@
 			<!-- <td><?//=$var['info']?></td> -->
 			
 			<?php if($var['extfield0'] && in_array($var['liqType'], array(2,3,4,5,6,7,10,11,100,101,102,103,104,105,108))){ ?>
-                <td><?=$this->getValue("select wjorderId from {$this->prename}bets where id=?", $var['extfield0'])?>
+                <td class="orderdetail" data-id="<?=$var['extfield0']?>"><?=$this->getValue("select wjorderId from {$this->prename}bets where id=?", $var['extfield0'])?>
                 </td>
                 <td><?=$this->types[$var['type']]['shortName']?></td>
                 <td><?=$this->playeds[$var['playedId']]['name']?></td>
                 <td><?=$var['actionNo']?></td>
+                <td><?=$modeName[$var['mode']]?></td>
 			<?php }elseif(in_array($var['liqType'], array(1,9,52))){?>
-                <td><a href="/index.php/cash/rechargeModal/<?=$var['extfield0']?>" width="500" title="充值信息" target="modal"><?=$var['extfield1']?></a></td>
+                <td class="orderdetail" data-id="<?=$var['extfield0']?>"><?=$var['extfield1']?></td>
+                <td>--</td>
                 <td>--</td>
                 <td>--</td>
                 <td>--</td>
 			<?php }elseif(in_array($var['liqType'], array(8,106,107))){?>
-                <td><a href="/index.php/cash/cashModal/<?=$var['extfield0']?>" width="500" title="提现信息" target="modal"><?=$var['extfield0']?></a></td>
+                <td class="orderdetail" data-id="<?=$var['extfield0']?>"><?=$var['extfield0']?></td>
                 <td>--</td>
                 <td>--</td>
                 <td>--</td>
+                <td>--</td>
+                
                 
             <?php }else{ ?>
                 <td>--</td>

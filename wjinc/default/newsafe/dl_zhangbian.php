@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>帐变记录</title>
+    <title>团队帐变</title>
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/js/calendar/LCalendar.css">
@@ -12,7 +12,7 @@
 </head>
 <body class="bgf5">
 <div class="wrap_box">
-    <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>帐变记录</div>
+    <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>团队帐变</div>
 
     <div class="clearfix myp_top dl_gametop">
         <form class="dl_form">
@@ -93,23 +93,27 @@
         'maxDate': (new Date().getFullYear()) + '-' + 12 + '-' + 31
     });
 
-    var page = 10;
+    var page = 1;
     $(window).scroll(function () {
         var scrollTop = $(this).scrollTop()
         var scrollHeight = $(document).height()
         var windowHeight = $(this).height()
         if(windowHeight + scrollTop >= scrollHeight){
-            //upload();
+        	page++
+            upload();
         }
 
     })
-    upload();
+    upload(false);
     $(".myp_btn").on('click',function(){
-        upload();
+    	page = 1;
+        upload(true);
     })
-    function upload(){
-        $.post('/index.php/team/searchCoin/?'+$(".dl_form").serialize(), function(res){
-            $(".myp_table").html(res.data);
+    function upload(flag){
+        $.post('/index.php/team/searchCoin/?page='+page+"&"+$(".dl_form").serialize(), function(res){
+        	if(res.data){
+        		!flag?(page == 1 ?$(".myp_table").append(res.data):$(".table_b_tr").append(res.data)):page == 1 ?$(".myp_table").html(res.data):$(".table_b_tr").html(res.data);
+        	}
         },'json' );
     }
 </script>

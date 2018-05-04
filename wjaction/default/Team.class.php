@@ -87,6 +87,7 @@ class Team extends WebLoginBase{
 	}
 	
 	public final function searchCoin(){
+	    $this->page = empty($_GET['page'])?1:$_GET['page'];
 		$data = $this->fetch('team/coin-log.php');
 		$this->outputData(0,$data);
 	}
