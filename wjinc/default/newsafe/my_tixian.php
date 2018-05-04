@@ -9,6 +9,9 @@
     <script src="/wjinc/default/js/jquery.min.js"></script>
 </head>
 <body class="bgf5">
+<style>
+.myi_list li .col67{ min-width: 3.5rem; }
+</style>
 <div class="wrap_box">
     <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>提现申请</div>
     <div class="f24 myt_text">每天提现<span class="mcol f32">3</span>次，今天您已经成功发起了<span class="f34 mlv">0</span>次提现申请<br>
