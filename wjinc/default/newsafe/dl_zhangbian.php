@@ -67,10 +67,11 @@
             </div>
         </div>
         </div>
-    <div class="myp_table">
-        
-    </div>
- 
+        <div class="table_scroll">
+            <div class="myp_table" style="width:1000px">
+                
+            </div>
+        </div>
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>

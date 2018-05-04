@@ -48,9 +48,11 @@
             </div>
         </div>
         </div>
-    <div class="myp_table">
-        
-    </div>
+        <div class="table_scroll">
+            <div class="myp_table" style="width:620px">
+                
+            </div>
+        </div>
  
 </div>
 
