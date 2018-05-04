@@ -51,16 +51,22 @@ class CImage{
 	}
 	
 	function printimg($type){
-		header("content-type:image/$type");
+		ob_end_clean(); 
+		header("content-type:image/png");
+		
 		$len=strlen($this->chars);
 		$code='';
 		for($i=0;$i<$this->charlen;$i++) $code.=$this->chars{mt_rand(0,$len-1)};
 		$_SESSION[$this->sessionName]=strtolower($code);
+		
 		$this->writeChar($code);
+		
 		//$this->writeArc(3);
 		$this->writePix(20);
+		
 		$fun='image'.$type;
 		$fun($this->img);
+
 	}
 	
 }

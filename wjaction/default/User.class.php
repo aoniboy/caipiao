@@ -27,10 +27,6 @@ class User extends WebBase{
 	 */
 	public final function logout(){
 		$_SESSION=array();
-		if($this->user['uid']){
-			$this->update("update {$this->prename}member_session set isOnLine=0 where uid={$this->user['uid']}");
-			$this->user = null ;
-		}
 		header('location: /index.php/user/login');
 	}
 	

@@ -99,7 +99,7 @@
     </ul> 
      <?php } ?>   
      <div class="myi_btns flex myt_btns ">
-        <div class="tc fx myi_btns1 " > <a href="/index.php/user/logout" style="color:white;" >退出</a></div>
+        <div class="tc fx myi_btns1 logout " > 退出</div>
         
     </div>
     	<?php $this->display('newinc_footer.php'); ?>

@@ -4,12 +4,13 @@ var common = {
         this.kf();
         this.checklogin();
         this.orderdetail();
+        this.logout();
     },
     bindEvent: function(){
         $(".w_heiht").height($(window).height());
     },
     kf: function(){
-    	$(".kf").on('touchend', function(){
+    	$(".kf").on('click', function(){
 	        var iTop = (window.screen.availHeight-30-570)/2; //获得窗口的垂直位置;
 	        var iLeft = (window.screen.availWidth-10-750)/2; //获得窗口的水平位置;
 	        var url = $('#kefu').val();
@@ -50,6 +51,11 @@ var common = {
          $(".detail_close").on('touchend', function(){
             $(".detail_pop").hide();
         })
+    },
+    logout: function() {
+    	$(document).on('click', '.logout', function(){
+    		window.location.href = "/index.php/user/logout";
+    	});
     }
 }
 common.init();
