@@ -46,7 +46,7 @@
             </dl>
              <dl>
             	<dt class="hide"><input type="submit" value=""/></dt>
-                <dd><button class="login-btn my_reibtn" tabindex="5" type="button" onclick="$(this).closest('form').submit()">注　册</button></dd>
+                <dd><button class="login-btn my_reibtn" tabindex="5" type="button">注　册</button></dd>
             </dl>
           </form>
            <?php }else{?>
@@ -73,7 +73,8 @@
         var m4 = $(".m_re4").val();
         var m5 = $(".m_re5").val();
         var regEx = /^[a-zA-Z0-9_]{4,16}$/;
-        if(regEx.test(m1)){
+    
+        if(!regEx.test(m1)){
             $(".hint_pop").show();
             $(".hint_pop .hint_cont").text('用户名由4到16位的字母、数字及下划线组成');
             return;
