@@ -39,8 +39,8 @@ class Cash extends WebLoginBase{
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['SERVER_NAME']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  throw new Exception('数据被篡改，请重新操作');
-		if(!$_POST) throw new Exception('参数出错');
+		if($urlcheck<>$urldan)  $this->outputData(1,[],'数据被篡改，请重新操作');
+		if(!$_POST) $this->outputData(1,[],'参数出错');
 
 		$para['amount']=$_POST['amount'];
 		$para['coinpwd']=$_POST['coinpwd'];
@@ -48,15 +48,15 @@ class Cash extends WebLoginBase{
 		$para['username']=$bank['username'];
 		$para['account']=$bank['account'];
 		$para['bankId']=$bank['bankId'];
-		if($para['amount']<=0) throw new Exception("提现金额只能为正整数");
-        if(!ctype_digit($para['amount'])) throw new Exception('提现金额包含非法字符');
+		if($para['amount']<=0) $this->outputData(1,[],'提现金额只能为正整数');
+        if(!ctype_digit($para['amount'])) $this->outputData(1,[],'提现金额包含非法字符');
 		
 		//提示时间检查
 		$baseTime=strtotime(date('Y-m-d',$this->time).'06:00');
 		$fromTime=strtotime(date('Y-m-d',$this->time).$this->settings['cashFromTime'].':00');
 		$toTime=strtotime(date('Y-m-d',$this->time).$this->settings['cashToTime'].':00');
 		if($toTime<$baseTime) $toTime.=24*3600;
-		if($this->time < $fromTime || $this->time > $toTime ) throw new Exception("提现时间：从".$this->settings['cashFromTime']."到".$this->settings['cashToTime']);
+		if($this->time < $fromTime || $this->time > $toTime ) $this->outputData(1,[],"提现时间：从".$this->settings['cashFromTime']."到".$this->settings['cashToTime']);
 
 		//消费判断
 		$cashAmout=0;
@@ -69,30 +69,30 @@ class Cash extends WebLoginBase{
 			if($gRs){
 				$rechargeAmount=$gRs["rechargeAmount"]*$cashMinAmount;
 			}
-			if(!$rechargeAmount) throw new Exception("消费满".$this->settings['cashMinAmount']."%才能提现");
+			if(!$rechargeAmount) $this->outputData(1,[],"消费满".$this->settings['cashMinAmount']."%才能提现");
 				//消费总额
 				$cashAmout=$this->getValue("select sum(mode*beiShu*actionNum) from {$this->prename}bets where actionTime>={$rechargeTime} and uid={$this->user['uid']} and isDelete=0");
-				if(!$cashAmout || floatval($cashAmout)<floatval($rechargeAmount)) throw new Exception("消费满".$this->settings['cashMinAmount']."%才能提现");
+				if(!$cashAmout || floatval($cashAmout)<floatval($rechargeAmount)) $this->outputData(1,[],"消费满".$this->settings['cashMinAmount']."%才能提现");
 		}//消费判断结束
 		$this->beginTransaction();
 		try{
 			$this->freshSession();
-			if($this->user['coinPassword']!=md5($para['coinpwd'])) throw new Exception('资金密码不正确');
+			if($this->user['coinPassword']!=md5($para['coinpwd'])) $this->outputData(1,[],'资金密码不正确');
 			unset($para['coinpwd']);
 			
-			if($this->user['coin']<$para['amount']) throw new Exception('你帐户资金不足');
+			if($this->user['coin']<$para['amount']) $this->outputData(1,[],'你帐户资金不足');
 		
 			// 查询最大提现次数与已经提现次数
 			$time=strtotime(date('Y-m-d', $this->time));
 			if($times=$this->getValue("select count(*) from {$this->prename}member_cash where actionTime>=$time and uid=?", $this->user['uid'])){
 				$cashTimes=$this->getValue("select maxToCashCount from {$this->prename}member_level where level=?", $this->user['grade']);
-				if($times>=$cashTimes) throw new Exception('对不起，今天你提现次数已达到最大限额，请明天再来');
+				if($times>=$cashTimes) $this->outputData(1,[],'对不起，今天你提现次数已达到最大限额，请明天再来');
 			}
 			
 			// 插入提现请求表
 			$para['actionTime']=$this->time;
 			$para['uid']=$this->user['uid'];
-			if(!$this->insertRow($this->prename .'member_cash', $para)) throw new Exception('提交提现请求出错');
+			if(!$this->insertRow($this->prename .'member_cash', $para)) $this->outputData(1,[],'提交提现请求出错');
 			$id=$this->lastInsertId();
 			
 			// 流动资金
@@ -106,7 +106,7 @@ class Cash extends WebLoginBase{
 			));
 
 			$this->commit();
-			  return '申请提现成功，提现将在10分钟内到帐，如未到账请联系在线客服。';
+			  $this->outputData(0,[],'申请提现成功，提现将在10分钟内到帐，如未到账请联系在线客服。');
 		}catch(Exception $e){
 			$this->rollBack();
 			//return 9999;
