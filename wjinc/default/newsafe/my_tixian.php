@@ -64,11 +64,11 @@
         </li>
         <li class="clearfix">
             <div class="fl myw">提款金额：</div>
-            <input class="col67 fl" type="tel" name="amount" placeholder="单笔体现限额为:最低100元，最高1000000元"  value="">
+            <input class="col67 fl my_tixian1" type="tel" name="amount" placeholder="单笔体现限额为:最低100元，最高1000000元"  value="">
         </li>
         <li class="clearfix">
             <div class="fl myw">提现金额(大写)：</div>
-            <input class="col67 fl" type="tel" readonly placeholder=""  value="">
+            <input class="col67 fl my_tixian2" type="tel" readonly placeholder=""  value="">
         </li>
         <li class="clearfix">
             <div class="fl myw">资金密码：</div>
