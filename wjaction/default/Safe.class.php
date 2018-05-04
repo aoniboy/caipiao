@@ -36,14 +36,12 @@ class Safe extends WebLoginBase{
 	 * 设置密码
 	 */
 	public final function setPasswd(){
-		print_r($_POST['oldpassword']);exit;
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['SERVER_NAME']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  throw new Exception('数据包被篡改，请重新操作');
 
 		$opwd=$_POST['oldpassword'];
-		
 		if(!$opwd) throw new Exception('原密码不能为空');
 		if(strlen($opwd)<6) throw new Exception('原密码至少6位');
 		if(!$npwd=$_POST['newpassword']) throw new Exception('密码不能为空');
