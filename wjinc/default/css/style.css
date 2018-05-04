@@ -114,7 +114,7 @@ input:focus,select{outline:0;}
 .lotter_cont li a img{width:1rem; height: 1rem; border-radius: 100px;}
 .lotter_cont li a .lot_left p span{ margin-left: .1rem; }
 .lot_num{ margin-top: .05rem; }
-.lot_num span{background: linear-gradient(#fb7b5c, #fb3b38); display: inline-block;width:.46rem ;height: .46rem; border-radius: 100px; line-height: .46rem; text-align: center; color: #fff; margin-right: .1rem; }
+.lot_num span{background: linear-gradient(#fb7b5c, #fb3b38); display: inline-block;width:.88rem ;height: .88rem; border-radius: 100px; line-height: .88rem; text-align: center; color: #fff; margin-right: .1rem; }
 .lot_iconr{ position: absolute;right:0; top:50%; transform: translateY(-50%); }
 .title_top .iconback{ position: absolute;left:.2rem;top:50%;transform: translateY(-50%); font-size:.34rem; color:#fff;}
 .lotter_dcont li{ border-bottom:1px solid #eeebeb; padding:.3rem .2rem;}
