@@ -180,6 +180,7 @@ var my = {
         } else if (decimalNum == '') {
             chineseStr += cnInteger;
         }
+        console.log(chineseStr);
         return chineseStr;
     }
 
