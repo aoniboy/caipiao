@@ -148,7 +148,7 @@
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript"> 
 function ScrollImgLeft(){ 
-    var speed=1; 
+    var speed=50; 
     var scroll_begin = document.getElementById("scroll_begin"); 
     var scroll_end = document.getElementById("scroll_end"); 
     var scroll_div = document.getElementById("scroll_div"); 
