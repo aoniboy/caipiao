@@ -14,6 +14,12 @@ var my = {
         $(".my_tixian1").keyup(function(){
             $(".my_tixian2").val(my.convertCurrency($(this).val()));
         })
+        $(".tixian_btn").click(function(){
+            $.post('/index.php/cash/ajaxToCash', $(".myt_form").serialize(), function(res){
+                $(".hint_pop1").show();
+                $(".hint_pop1 .hint_cont").text(res.msg);
+            },'json' );
+        })
 
     },
     myInfo: function(){
