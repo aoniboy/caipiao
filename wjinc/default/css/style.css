@@ -55,7 +55,7 @@ input:focus,select{outline:0;}
 .mcol{ color:#ff2525; }
 .mbg{ background: #ff2525; }
 /*登录*/
-.login_logo{ position: absolute;width:1rem;left:50%;top:50%; transform: translate(-50%,-50%); }
+.login_logo{ position: absolute;width:5rem;left:50%;top:50%; transform: translate(-50%,-50%); }
 .login_con{ width:95%; margin:0 auto; }
 .login_item{ border-bottom: 1px solid #f4f4f4; padding:.1rem 8%; margin-top: .3rem;}
 .login_item input{ line-height: .6rem ;line-height: .6rem; padding-left: .05rem; }

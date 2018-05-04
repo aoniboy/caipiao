@@ -169,7 +169,7 @@ class User extends WebBase{
 	public final function r($userxxx){
 		if(!$userxxx){
 			//throw new Exception('链接错误！');
-			$this->display('team/register.php');
+			$this->display('newsafe/register.php');
 		}else{
 			include_once $_SERVER['DOCUMENT_ROOT'].'/lib/classes/Xxtea.class';
 			$userxxx=str_replace(array('-','*',''), array('+','/','='), $userxxx);
@@ -181,9 +181,9 @@ class User extends WebBase{
 
 			if(!$this->getRow("select uid from {$this->prename}members where uid=?",$uid)){
 				//throw new Exception('链接失效！');
-				$this->display('team/register.php');
+				$this->display('newsafe/register.php');
 			}else{
-				$this->display('team/register.php',0,$uid,$lid);
+				$this->display('newsafe/register.php',0,$uid,$lid);
 			}
 		}
 	}
