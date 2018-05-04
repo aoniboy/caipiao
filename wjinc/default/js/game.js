@@ -159,6 +159,18 @@ var game = {
             game.currentCount();
         })
         //倍数不能小于1
+        $(".gameo_numi").on('keyup', function(){
+            if($(this).val()===0){
+                $(this).val(1)
+            }else{
+            	if($.trim($(this).val())) {
+            		$(this).val(Math.abs($(this).val()))
+            		game.currentCount();
+            	}
+            }
+            
+        })
+        //倍数不能小于1
         $(".gameo_numi").on('blur', function(){
             if($(this).val()==0){
                 $(this).val(1)
@@ -169,6 +181,11 @@ var game = {
         })
         //添加
         $(".game_add").on('touchend', function(){
+        	if($(this).val()==0){
+                $(this).val(1)
+            }else{
+            	$(this).val(Math.abs($(this).val()))
+            }
             if(!game.currentCount()){
                return false; 
             }else{

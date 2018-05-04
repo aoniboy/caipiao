@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title><?=$this->iff($args[0], $args[0] . '－'). $this->settings['webName']?></title>
+    <title>用户登录</title>
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
     <script src="/wjinc/default/js/jquery.min.js"></script>

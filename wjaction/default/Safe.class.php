@@ -39,23 +39,23 @@ class Safe extends WebLoginBase{
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['SERVER_NAME']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  throw new Exception('数据包被篡改，请重新操作');
+		if($urlcheck<>$urldan)  $this->outputData(1,[],'数据包被篡改，请重新操作');
 
 		$opwd=$_POST['oldpassword'];
-		if(!$opwd) throw new Exception('原密码不能为空');
-		if(strlen($opwd)<6) throw new Exception('原密码至少6位');
-		if(!$npwd=$_POST['newpassword']) throw new Exception('密码不能为空');
-		if(strlen($npwd)<6) throw new Exception('密码至少6位');
+		if(!$opwd) $this->outputData(1,[],'原密码不能为空');
+		if(strlen($opwd)<6) $this->outputData(1,[],'原密码至少6位');
+		if(!$npwd=$_POST['newpassword']) $this->outputData(1,[],'密码不能为空');
+		if(strlen($npwd)<6) $this->outputData(1,[],'密码至少6位');
 		
 		$sql="select password from {$this->prename}members where uid=?";
 		$pwd=$this->getValue($sql, $this->user['uid']);
 		
 		$opwd=md5($opwd);
-		if($opwd!=$pwd) throw new Exception('原密码不正确');
+		if($opwd!=$pwd) $this->outputData(1,[],'原密码不正确');
 		
 		$sql="update {$this->prename}members set password=? where uid={$this->user['uid']}";
-		if($this->update($sql, md5($npwd))) return '修改密码成功';
-		return '修改密码失败';
+		if($this->update($sql, md5($npwd))) $this->outputData(0,[],'修改密码成功');
+		$this->outputData(1,[],'修改密码失败');
 	}
 	
 	/**

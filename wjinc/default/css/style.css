@@ -274,7 +274,7 @@ input:focus,select{outline:0;}
 .dl_gametop .myp_top_l{ margin-left: 2%; }
 .dlg_iname{ width:30%; margin-left: 2%; }
 .dlg_idan{ width:60%; margin-right: 2%; }
-.dlg_idani{ width:48%;border-left:1px solid #eee }
+.dlg_idani{ width:48%;border-left:1px solid #eee;margin-left:3% }
 .dlg_input input{  line-height: 2;text-indent: .2rem; }
 .dl_gametop .dl_gametop_1 .myp_top_l{ width: 30%; margin-left: .2rem;}
 .dlg_input_y{ padding:0 .2rem; }
