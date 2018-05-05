@@ -131,9 +131,9 @@ class Safe extends WebLoginBase{
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  throw new Exception('数据包被篡改，请重新操作');
+		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被篡改，请重新操作');
 
-		if(!$_POST) throw new Exception('参数出错');
+		if(!$_POST) $this->outputData(1,array(),'参数出错');
 
 		$update['account']=wjStrFilter($_POST['account']);
 		$update['countname']=wjStrFilter($_POST['countname']);
@@ -141,35 +141,35 @@ class Safe extends WebLoginBase{
 		$update['bankId']=intval($_POST['bankId']);
 		$update['coinPassword']=$_POST['coinPassword'];
 
-		if(!isset($update['account'])) throw new Exception('请填写银行账号!');
-		if(!isset($update['countname'])) throw new Exception('请填写开户行!');
-		if(!isset($update['username'])) throw new Exception('请填写账户名!');
-		if(!isset($update['bankId'])) throw new Exception('请选择银行类型!');
+		if(!isset($update['account'])) $this->outputData(1,array(),'请填写银行账号!');
+		if(!isset($update['countname'])) $this->outputData(1,array(),'请填写开户行!');
+		if(!isset($update['username'])) $this->outputData(1,array(),'请填写账户名!');
+		if(!isset($update['bankId'])) $this->outputData(1,array(),'请选择银行类型!');
 
 		$x=strlen($update['countname']);$a=strlen($update['username']);
 		$y=mb_strlen($update['countname'],'utf8');$b=mb_strlen($update['username'],'utf8');
-		if(($x!=$y && $x%$y==0)==FALSE) throw new Exception('开户行必须为汉字');
-		if(($a!=$b && $a%$b==0)==FALSE) throw new Exception('用户名必须为汉字');
+		if(($x!=$y && $x%$y==0)==FALSE) $this->outputData(1,array(),'开户行必须为汉字');
+		if(($a!=$b && $a%$b==0)==FALSE) $this->outputData(1,array(),'用户名必须为汉字');
 		unset($x);unset($y);unset($a);unset($b);
 
 		// 更新用户信息缓存
 		$this->freshSession();
-		if(md5($update['coinPassword'])!=$this->user['coinPassword']) throw new Exception('资金密码不正确');
+		if(md5($update['coinPassword'])!=$this->user['coinPassword']) $this->outputData(1,array(),'资金密码不正确');
 		unset($update['coinPassword']);
 		$update['uid']=$this->user['uid'];
 		$update['editEnable']=0;//设置过银行
 		
 		//检查银行账号唯一
-		if($account=$this->getValue("select account FROM {$this->prename}member_bank where account=? LIMIT 1",$update['account'])) throw new Exception('该'.$account.'银行账号已经使用');
+		if($account=$this->getValue("select account FROM {$this->prename}member_bank where account=? LIMIT 1",$update['account'])) $this->outputData(1,array(),'该'.$account.'银行账号已经使用');
 		//检查账户名唯一
-		if($account=$this->getValue("select username FROM {$this->prename}member_bank where account=? LIMIT 1",$update['username'])) throw new Exception('该'.$username.'账户名已经使用');
+		if($account=$this->getValue("select username FROM {$this->prename}member_bank where account=? LIMIT 1",$update['username'])) $this->outputData(1,array(),'该'.$username.'账户名已经使用');
 			
 		if($bank=$this->getRow("select editEnable from {$this->prename}member_bank where uid=? LIMIT 1", $this->user['uid'])){
-			if($bank['editEnable']!=1) throw new Exception('银行信息绑定后不能随便更改，如需更改，请联系在线客服');
+			if($bank['editEnable']!=1) $this->outputData(1,array(),'银行信息绑定后不能随便更改，如需更改，请联系在线客服');
 			if($this->updateRows($this->prename .'member_bank', $update, 'uid='. $this->user['uid'])){
-				return '更改银行信息成功';
+				$this->outputData(0,array(),'更改银行信息成功');
 			}else{
-				throw new Exception( '更改银行信息出错');
+				$this->outputData(1,array(),'更改银行信息出错');
 			}
 		}else{
 			if($this->insertRow($this->prename .'member_bank', $update)){
@@ -192,13 +192,13 @@ class Safe extends WebLoginBase{
 								'extfield0'=>$ip,
 								'extfield1'=>$bankAccount
 							));
-							return sprintf('更改银行信息成功，由于你第一次绑定工行卡，系统赠送%.2f元', $coin);
+							$this->outputData(0,array(),sprintf('更改银行信息成功，由于你第一次绑定工行卡，系统赠送%.2f元', $coin));
 						}
 					}
 				}
-				return '更改银行信息成功';
+				$this->outputData(0,array(),'更改银行信息成功');
 			}else{
-				throw new Exception( '更改银行信息出错');
+				$this->outputData(0,array(), '更改银行信息出错');
 			}
 		}
 	}

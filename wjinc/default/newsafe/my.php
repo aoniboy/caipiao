@@ -24,8 +24,15 @@
                 <div class="f34"><?=$this->user['coin']?></div>
                 <div>可用余额</div>
             </div>
+            <?php 
+            $stime = strtotime(date("Y-m-d 00:00:00"));
+            $stime = strtotime(date("Y-m-d 23:59:59"));
+            $sql = "select u.username, u.coin, u.uid, u.parentId, sum(b.mode * b.beiShu * b.actionNum) betAmount, sum(b.bonus) zjAmount, (select sum(c.amount) from ssc_member_cash c where c.`uid`=u.`uid` and c.state=0 and c.actionTime between $stime and $etime) cashAmount,(select sum(r.amount) from ssc_member_recharge r where r.`uid`=u.`uid` and r.state in(1,2,9) and r.actionTime between 1525449600 and 1525622400) rechargeAmount, (select sum(l.coin) from ssc_coin_log l where l.`uid`=u.`uid` and l.liqType in(50,51,52,53) and l.actionTime between 1525449600 and 1525622400) brokerageAmount from ssc_members u left join ssc_bets b on u.uid=b.uid and b.isDelete=0 and actionTime between 1525449600 and 1525622400 where 1 and u.uid=".$this->user['uid'];
+            $info = $this->getRow($sql);
+            $yingkui = sprintf("%.2f",$info['zjAmount']-$info['betAmount']);
+            ?>
             <div class="fx tc">
-                <div class="f34">0.00</div>
+                <div class="f34"><?=$yingkui?></div>
                 <div>今日盈亏 <i class="iconfont icon-qiehuan"></i></div>
             </div>
         </div>

@@ -48,7 +48,7 @@
             
             $flag=($myBank['editEnable']!=1)&&($myBank);
         ?>
-                <select class="fl col67 i0" <?=$this->iff($flag, 'disabled')?>>
+                <select class="fl col67 i0" name="bankId" <?=$this->iff($flag, 'disabled')?>>
                      <?php foreach($banks as $bank){ ?>
                         <option value="<?=$bank['id']?>" <?=$this->iff($myBank['bankId']==$bank['id'], 'selected')?>>
                         <?=$bank['name']?>
@@ -58,15 +58,15 @@
             </li>
             <li class="clearfix">
                 <div class="fl myw">姓名：</div>
-                <input  class="col67 fl i1" type="text" name="bankId" value="<?=$this->iff($myBank['username'],mb_substr($myBank['username'],0,1,'utf-8').'**')?>" <?=$this->iff($flag, 'readonly')?>>
+                <input  class="col67 fl i1" type="text" name="username" value="<?=$this->iff($myBank['username'],mb_substr($myBank['username'],0,1,'utf-8').'**')?>" <?=$this->iff($flag, 'readonly')?>>
             </li>
             <li class="clearfix">
                 <div class="fl myw">银行账号：</div>
-                <input class="col67 fl i2" type="text col67" name="username" value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $myBank['account'])?>" <?=$this->iff($flag, 'readonly')?>>
+                <input class="col67 fl i2" type="text col67" name="account" value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $myBank['account'])?>" <?=$this->iff($flag, 'readonly')?>>
             </li>
             <li class="clearfix">
                 <div class="fl myw">开户行：</div>
-                <input class="col67 fl i3" type="text" name="account" value="<?=preg_replace('/^(\w{4}).*(\w{4})$/','\1***\2',$myBank['countname'])?>"  <?=$this->iff($flag, 'readonly')?>>
+                <input class="col67 fl i3" type="text" name="countname" value="<?=preg_replace('/^(\w{4}).*(\w{4})$/','\1***\2',$myBank['countname'])?>"  <?=$this->iff($flag, 'readonly')?>>
             </li>
             <li class="clearfix">
                 <div class="fl myw">资金密码：</div>
@@ -96,7 +96,14 @@
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
-    
+    <div class="hint_pop hide hint_pop1">
+        <div class="gameo_mask"></div>
+        <div class="hint_con">
+            <div class="hint_title f32 tc hint_titles">系统提示</div>
+            <div class="hint_cont f24"></div>
+            <div class="tc hint_btn f32">确定</div>
+        </div>
+    </div>
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>

@@ -9,7 +9,9 @@ var my = {
 
         $(".hint_btn").on('click', function(){
             $(".hint_pop").hide();
+            $(".hint_pop1").hide();
         })
+        
         //提现转大写
         $(".my_tixian1").keyup(function(){
             $(".my_tixian2").val(my.convertCurrency($(this).val()));
@@ -70,16 +72,13 @@ var my = {
     },
     myInfo: function(){
         $("#my_info_edit").on('touchend',function(){
-            for(var i=0;i<5;i++){
-                console.log($(".i"+i));
-                if($(".i"+i).val() ==""){
-                    $(".hint_pop").show();
-                    $(".hint_pop .hint_cont").text('不能为空');
-                    return;
+            
+            $.post('/index.php/safe/setCBAccount', $(".myi_form").serialize(), function(res){
+            	$(".hint_pop1").show();
+                $(".hint_pop1 .hint_cont").text(res.msg); 
+                if(!res.code) {
+                	$('.myi_btns').hide();
                 }
-            }
-            $.post('/index.php/', {data:$(".myi_form").serialize()}, function(data){
-                    
             },'json' );
         })
     },
