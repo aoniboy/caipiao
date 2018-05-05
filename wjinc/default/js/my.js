@@ -20,6 +20,25 @@ var my = {
                 $(".hint_pop1 .hint_cont").text(res.msg);
             },'json' );
         })
+        //推广
+        $(document).on('click','#tg_edit', function(){
+            var t1 = $(".t1").val();
+            var t2 = $(".t2").val();
+            if(t1==""){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('请设置返点');
+                return;
+            }
+            if(t2==""){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('请设置不定返点');
+                return;
+            }
+            $.post('/index.php/team/linkUpdateed', $(".edit_form").serialize(), function(res){
+                $(".hint_pop1").show();
+                $(".hint_pop1 .hint_cont").text(res.msg);
+            },'json' );
+        })
 
     },
     myInfo: function(){
