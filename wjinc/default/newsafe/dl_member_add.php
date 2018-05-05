@@ -21,38 +21,38 @@
                     <label><input name="type" type="radio" value="0" title="会员" style="-webkit-appearance:radio; margin-left: .2rem"> 会员</label>
                 </div>
             </li>
-            <li class="clearfix rel">
-                <div class="fl myw">银行类型：</div>
-                <select class="fl col67 i0">
-                    <option>中国邮政银行</option>
-                    <option>中国建设银行</option>
-                </select>
-            </li>
             <li class="clearfix">
                 <div class="fl myw">用户名：</div>
-                <input  class="col67 fl i1" type="text" placeholder="4-16位的字母或数字组成" name="username" value="">
+                <input  class="col67 fl i1" type="text"  placeholder="4-16位的字母或数字组成" name="username" value="">
             </li>
             <li class="clearfix">
                 <div class="fl myw">密码：</div>
-                <input class="col67 fl i2" type="text col67" name="password" value="">
+                <input class="col67 fl i2" type="password" name="password" value="">
             </li>
             <li class="clearfix">
                 <div class="fl myw">确认密码：</div>
-                <input class="col67 fl i3" type="text" name="" value="">
+                <input class="col67 fl i3" type="password" name="" value="">
             </li>
             <li class="clearfix">
                 <div class="fl myw">联系微信：</div>
-                <input class="col67 fl i4" type="password" name="qq" value="">
+                <input class="col67 fl i4" type="text" name="qq" value="">
+            </li>
+            <li class="clearfix rel">
+                <div class="fl myw">提成类型：</div>
+                <div class="fl ol67">
+                    <label><input type="radio" name="tctype" value="1" title="分成" checked="checked" style="-webkit-appearance: radio " checked="checked" > 分成</label>
+                    <label><input name="tctype" type="radio" value="0" title="返点" style="-webkit-appearance:radio; margin-left: .2rem"> 返点</label>
+                </div>
             </li>
             <li class="clearfix">
                 <div class="fl myw">返点：</div>
-                <input class="col67 fl i4" name="fanDian" max="0.0" value="0" fandiandiff="0.1" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">
-                <span class="">0-0%</span>
+                <input class="col67 fl i4" name="fanDian" max="<?=$this->user['fanDian']?>" value="0"  fanDianDiff=<?=$this->settings['fanDianDiff']?> onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">
+                <span class="">0-<?=$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])?>%</span>
             </li>
             <li class="clearfix">
                 <div class="fl myw">不定位返点：</div>
-                <input class="col67 fl i4" name="fanDianBdw" max="0.0" value="" ōnkeyup="if(isNaN(value))execCommand(''undo'')" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">
-                <span class="fl">0-0%</span>
+                <input class="col67 fl i4" name="fanDianBdw" max="<?=$this->user['fanDianBdw']?>" value=""  ōnkeyup="if(isNaN(value))execCommand(''undo'')" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">
+                <span class="fl">0-<?=$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])?>%</span>
             </li>
         </ul>
         <div class="myi_btns flex">
