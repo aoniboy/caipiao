@@ -37,12 +37,12 @@
             </li>
             <li class="clearfix">
                 <div class="fl myw">返点：</div>
-                <input class="col67 fl i4" name="fanDian" value="<?=$userData['fanDian']?>" max="<?=$parentData['fanDian']?>" max="<?=$parentData['fanDian']?>" min="0" fanDianDiff=<?=$this->settings['fanDianDiff']?> val="<?=$userData['fanDian']?>" >
+                <input class="col67 fl i4" name="fanDian" readonly value="<?=$userData['fanDian']?>" max="<?=$parentData['fanDian']?>" max="<?=$parentData['fanDian']?>" min="0" fanDianDiff=<?=$this->settings['fanDianDiff']?> val="<?=$userData['fanDian']?>" >
                 <span class="fl">0—<?=$this->iff($parentData['fanDian']-$this->settings['fanDianDiff']<=0,0,$parentData['fanDian']-$this->settings['fanDianDiff'])?>%</span>
             </li>
             <li class="clearfix">
                 <div class="fl myw">不定位返点：</div>
-                <input class="col67 fl i4" name="fanDianBdw" value="<?=$userData['fanDianBdw']?>" max="<?=$parentData['fanDianBdw']?>" min="0" val="<?=$userData['fanDianBdw']?>">
+                <input class="col67 fl i4" name="fanDianBdw" readonly value="<?=$userData['fanDianBdw']?>" max="<?=$parentData['fanDianBdw']?>" min="0" val="<?=$userData['fanDianBdw']?>">
                 <span class="fl">0—<?=$this->iff($parentData['fanDianBdw']-$this->settings['fanDianDiff']<=0,0,$parentData['fanDianBdw']-$this->settings['fanDianDiff'])?>%</span>
             </li>
             <li class="clearfix">
