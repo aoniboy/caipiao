@@ -15,6 +15,14 @@ class Safe extends WebLoginBase{
 	 */
 	public final function info(){
 	    $this->my = 'active';
+	    $sql="select password, coinPassword from {$this->prename}members where uid=?";
+	    $pwd=$this->getRow($sql, $this->user['uid']);
+	    if(!$pwd['coinPassword']){
+	        $coinPassword=false;
+	    }else{
+	        $coinPassword=true;
+	    }
+	    $this->coinPassword =  $coinPassword;
 		$this->display('newsafe/my_info.php');
 	}
 	/**

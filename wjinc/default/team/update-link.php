@@ -13,7 +13,7 @@
 ?>
 <div>
 <form class="edit_form">
-	<input type="hidden" name="lid" value="<?=$args[0]?>"/>
+	<input type="hidden" name="lid" value="<?=$this->id?>"/>
     <ul class="myi_list dla_list dtg_list">
         <li class="clearfix">
             <div class="fl myw f24 " style="width:40%">返点：</div>

@@ -12,7 +12,7 @@
 ?>
 <div>
 <form action="/index.php/team/linkDeleteed" target="ajax" method="post" call="linkDataSubmitDelete" onajax="linkDataBeforeSubmitDelete" dataType="html">
-	<input type="hidden" name="lid" value="<?=$args[0]?>"/>
+	<input type="hidden" name="lid" value="<?=$this->id?>"/>
 
 	<table cellpadding="2" cellspacing="2" class="popupModal">
 		

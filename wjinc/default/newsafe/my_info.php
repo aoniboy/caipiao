@@ -35,7 +35,7 @@
         </li>
     </ul>
     <div class="myi_title">个人银行信息</div>
-    <?php if($this->user['coinPassword']){ ?>
+    <?php if($this->coinPassword){ ?>
     
     <form class="myi_form">
         <ul class="myi_list">
@@ -74,10 +74,12 @@
             </li>
         </ul>
     </form>
+    <?php if(!$myBank['countname']){?>
     <div class="myi_btns flex">
         <div class="tc fx myi_btns1" id="my_info_edit">设置银行</div>
         <div class="tc fx myi_btns2">重置</div>
     </div>
+    <?php }?>
     <?php }else{?>
     <ul class="myi_list">
     	<li class="clearfix" style="height:1.2rem;" >
