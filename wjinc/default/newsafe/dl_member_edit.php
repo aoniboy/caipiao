@@ -35,6 +35,18 @@
                 <div class="fl myw">用户名：</div>
                 <input class="col67 fl" type="text col67" readonly value="<?=$userData['username']?>">
             </li>
+            <li class="clearfix rel">
+                <div class="fl myw">账号类型：</div>
+                <div class="fl ol67">
+                    <label><input type="radio" name="type" value="1" checked="checked" style="-webkit-appearance: radio " <?php if($userData['tctype']==1) echo 'checked="checked"'?>> 分成</label>
+                    <label><input name="type" type="radio" value="0"  style="-webkit-appearance:radio; margin-left: .2rem" <?php if($userData['tctype']==0) echo 'checked="checked"'?>> 返点</label>
+                </div>
+            </li>
+            <li class="clearfix">
+                <div class="fl myw">分成：</div>
+                <input class="col67 fl i1" name="fanDian" name="tcpoint" value="<?=$userData['tcpoint']?>" max="<?=$parentData['tcpoint']?>" min="0" tcpointDiff=<?=$this->settings['tcpointDiff']?> val="<?=$userData['tcpoint']?>">
+                <span class="fl">0—<?=$this->iff($parentData['fanDian']-$this->settings['fanDianDiff']<=0,0,$parentData['fanDian']-$this->settings['fanDianDiff'])?>%</span>
+            </li>
             <li class="clearfix">
                 <div class="fl myw">返点：</div>
                 <input class="col67 fl i1" name="fanDian" value="<?=$userData['fanDian']?>" max="<?=$parentData['fanDian']?>" max="<?=$parentData['fanDian']?>" min="0" fanDianDiff=<?=$this->settings['fanDianDiff']?> val="<?=$userData['fanDian']?>" >
