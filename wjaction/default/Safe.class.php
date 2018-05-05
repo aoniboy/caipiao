@@ -37,7 +37,7 @@ class Safe extends WebLoginBase{
 	 */
 	public final function setPasswd(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被篡改，请重新操作');
 
@@ -63,7 +63,7 @@ class Safe extends WebLoginBase{
 	 */
 	public final function setCoinPwd(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被篡改，请重新操作');
 
@@ -90,7 +90,7 @@ class Safe extends WebLoginBase{
 	
 	public final function setCoinPwd2(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被篡改，请重新操作');
 		$opwd=$_POST['oldpassword'];
@@ -121,7 +121,7 @@ class Safe extends WebLoginBase{
 	 */
 	public final function setCBAccount(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  throw new Exception('数据包被篡改，请重新操作');
 
@@ -198,7 +198,7 @@ class Safe extends WebLoginBase{
 //设置登陆问候语
 public final function care(){
         $urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  throw new Exception('数据包被非法篡改，请重新操作');
 
@@ -222,7 +222,7 @@ public final function care(){
  //设置昵称
 public final function nickname(){
         $urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  throw new Exception('数据包被非法篡改，请重新操作');
 

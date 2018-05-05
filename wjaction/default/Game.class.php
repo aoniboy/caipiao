@@ -13,7 +13,7 @@ class Game extends WebLoginBase{
 	
 	public final function postCode(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck!=$urldan)  $this->outputData(1,array(),'请勿站外投注，谢谢合作');
 
