@@ -100,7 +100,7 @@ var my = {
                 $(".hint_pop .hint_cont").text('不定返点不能大于或等于0.0');
                 return;
             }
-            $.post('index.php/team/userUpdateed', $(".myi_form").serialize(), function(res){
+            $.post('/index.php/team/userUpdateed', $(".myi_form").serialize(), function(res){
                 $(".hint_pop1").show();
                 $(".hint_pop1 .hint_cont").text(res.msg);
             },'json' );
