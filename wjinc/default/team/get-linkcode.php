@@ -18,31 +18,30 @@
 	$key=str_replace(array('+','/','='), array('-','*',''), $key);
 	
 ?><div>
-
-	<table cellpadding="2" cellspacing="2" class="popupModal">
-		
-         <tr>
-        	<td class="title">上级会员：</td>
-			<td><?=$parentData['username']?></td>
-        </tr>
-		<tr>
-			<td class="title">返点：</td>
-			<td><input type="text" name="fanDian" value="<?=$linkData['fanDian']?>" max="<?=$parentData['fanDian']?>" min="0" fanDianDiff=<?=$this->settings['fanDianDiff']?> >%&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#999">0—<?=$parentData['fanDian']?>%</span></td>
-		</tr>
-		<tr>
-			<td class="title">不定返点：</td>
-			<td><input type="text" name="fanDianBdw" value="<?=$linkData['fanDianBdw']?>" max="<?=$parentData['fanDianBdw']?>" min="0"/>%&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#999">0—<?=$parentData['fanDianBdw']?>%</span></td>
-		</tr>
-
-        <tr>
-        	<td class="title">注册推广链接：</td>
-			<td><input class="t-c t-c-w1" id="adv-url" readonly="readonly" value="http://<?=$_SERVER['HTTP_HOST']?>/index.php/user/r/<?=$key?>"  /></td>
-        </tr>
-        <tr>
-        	<td class="title">&nbsp;</td>
-			<td><div class="btn-a copy1"><span style="font-size:0.6rem;font-weight: bold; cursor: pointer;background: #fff;border: 1px solid blue;" id="clip_button" onClick="copyNum()">点击复制</span></div></td>
-        </tr>
-        
-	</table>
+	<ul class="myi_list dla_list">
+		<li class="clearfix">
+            <div class="fl myw " style="width:40%">上级会员：</div>
+            <input  class="col67 fl f22" style="width:55%" readonly value="<?=$parentData['username']?>">
+        </li>
+        <li class="clearfix">
+            <div class="fl myw " style="width:40%">返点：</div>
+            <input class="col67 fl i5" style="width:20%"  type="text" name="fanDian" value="<?=$linkData['fanDian']?>" max="<?=$parentData['fanDian']?>" min="0" fanDianDiff=<?=$this->settings['fanDianDiff']?> >
+            <span class="fl">0—<?=$parentData['fanDian']?>%</span>
+        </li>
+        <li class="clearfix">
+            <div class="fl myw " style="width:40%">不定位返点：</div>
+            <input class="col67 fl i6" style="width:20%" name="fanDianBdw" value="<?=$linkData['fanDianBdw']?>" max="<?=$parentData['fanDianBdw']?>" min="0">
+            <span class="fl">0—<?=$parentData['fanDianBdw']?>%</span>
+        </li>
+        <li class="clearfix">
+            <div class="fl myw " style="width:40%">注册推广链接：</div>
+            <input  class="col67 fl f22" style="width:55%" readonly id="adv-url" readonly="readonly" value="http://<?=$_SERVER['HTTP_HOST']?>/index.php/user/r/<?=$key?>" >
+        </li>
+        <li class="clearfix">
+            <div class="fl myw " style="width:40%"></div>
+            <input  class="col67 fl f22" style="width:55%;border: 1px solid blue; font-weight: 700" readonly id="clip_button" onClick="copyNum()" value="点击复制">
+        </li>
+    </ul>
+	
 
 </div>
