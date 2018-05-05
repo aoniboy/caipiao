@@ -252,6 +252,7 @@ class Team extends WebLoginBase{
 	}
 	
 	public final function insertMember(){
+		print_r(123);exit;
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['SERVER_NAME']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
