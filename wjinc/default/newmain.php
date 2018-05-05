@@ -246,7 +246,7 @@
 <input type="hidden" class="playedtype" value="<?=$this->type?>"/>
 <audio class="kaijiang" loop src="/wjinc/default/sound/kaijiang.wav"></audio>
 <script src="/wjinc/default/js/game.js?a=2"></script>
-<script src="/wjinc/default/js/common.js"></script>
+<script src="/wjinc/default/js/common.js?a=3"></script>
 <script type="text/javascript">
 $( "#slider" ).slider();
 </script>
