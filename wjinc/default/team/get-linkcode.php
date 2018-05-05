@@ -13,7 +13,7 @@
 
 
 	include_once $_SERVER['DOCUMENT_ROOT'].'/lib/classes/Xxtea.class';
-	$key=Xxtea::encrypt($args[0].",".$args[1], $args[2]);
+	$key=Xxtea::encrypt($this->id.",".$this->user['uid'], $this->urlPasswordKey);
 	$key=base64_encode($key);
 	$key=str_replace(array('+','/','='), array('-','*',''), $key);
 	
@@ -39,7 +39,7 @@
         </li>
         <li class="clearfix">
             <div class="fl myw f24" style="width:40%"> &nbsp</div>
-            <input  class="col67 fl f30" style="width:55%;border: 1px solid blue; text-align: center; font-weight: 700" readonly id="clip_button" onClick="copyNum()" value="点击复制">
+            <input  class="col67 fl f30" style="width:59%;border: 1px solid #eee; text-align: center; font-weight: 700" readonly id="clip_button" onClick="copyNum()" value="点击复制">
         </li>
     </ul>
 	
