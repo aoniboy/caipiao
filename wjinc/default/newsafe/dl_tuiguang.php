@@ -35,7 +35,7 @@
 	<tbody class="table_b_tr">
 	<?php if($data['data']) foreach($data['data'] as $var){ ?>
 		<tr>
-			<td><?=$var['lid']?></td>
+			<td width="10px"><?=$var['lid']?></td>
 			<td><?php if($var['type']){echo'代理';}else{echo '会员';}?></td>
 			<td><?=$var['fanDian']?>%</td>
             <td><?=$var['fanDianBdw']?>%</td>
