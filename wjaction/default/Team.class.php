@@ -103,7 +103,7 @@ class Team extends WebLoginBase{
 		$this->display('newsafe/dl_member_add.php');
 	}
 	public final function userUpdate($id){
-		$this->display('team/update-menber.php', 0, intval($id));
+		$this->display('newsafe/dl_member_edit.php', 0, intval($id));
 	}
 	public final function userUpdate2($id){
 		$this->display('team/menber-recharge.php', 0, intval($id));
