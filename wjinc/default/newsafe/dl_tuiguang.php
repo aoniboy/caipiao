@@ -80,6 +80,7 @@
         </div>
     </div>
 <script src="/wjinc/default/js/common.js"></script>
+<script src="/wjinc/default/js/my.js"></script>
 <script type="text/javascript">
 //查看详情
 $(document).on('click', '.caozuo', function(){
