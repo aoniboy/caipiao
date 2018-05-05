@@ -15,7 +15,7 @@
             <div class="myp_btn tc dl_dglink"><a class="fff" href="">添加链接</a></div> 
     </div>
     <div class="table_scroll">
-    <div class="myp_table" style="width:800px;">
+    <div class="myp_table" style="width:470px;">
         <?php
 	$sql="select * from {$this->prename}links where uid={$this->user['uid']}";
 	
@@ -25,17 +25,17 @@
 	<table width="100%" class='table_b'>
 	<thead>
 		<tr class="table_b_th">
-			<td>编号</td>
-            <td>类型</td>
-			<td>返点</td>
-            <td>不定位返点</td>
+			<td width="70">编号</td>
+            <td width="70">类型</td>
+			<td width="70">返点</td>
+            <td width="100">不定位返点</td>
 			<td>操作</td>
 		</tr>
 	</thead>
 	<tbody class="table_b_tr">
 	<?php if($data['data']) foreach($data['data'] as $var){ ?>
 		<tr>
-			<td width="10px"><?=$var['lid']?></td>
+			<td><?=$var['lid']?></td>
 			<td><?php if($var['type']){echo'代理';}else{echo '会员';}?></td>
 			<td><?=$var['fanDian']?>%</td>
             <td><?=$var['fanDianBdw']?>%</td>
