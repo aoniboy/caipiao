@@ -40,7 +40,7 @@
 			<td><?=$var['fanDian']?>%</td>
             <td><?=$var['fanDianBdw']?>%</td>
            
-			<td><a href="javascript:void(0)" class="caozuo" data-href="/index.php/team/linkUpdate/<?=$var['lid']?>" style="color:#333;" target="modal"  width="350" title="修改注册链接" modal="true" button="确定:dataAddCode|取消:defaultCloseModal">修改</a> | <a href="javascript:void(0)" class="caozuo" data-href="/index.php/team/getLinkCode/<?=$var['lid']?>" button="取消:defaultCloseModal" modal="true" title="获取链接" width="350" target="modal"  style="color:#333;">获取链接</a> | <a  href="javascript:void(0)" class="caozuo" data-href="/index.php/team/linkDelete/<?=$var['lid']?>" button="确定删除:dataAddCode" modal="true" title="删除注册链接" width="350" target="modal"  style="color:#333;">删除</a> </td>
+			<td><a href="javascript:void(0)" class="caozuo" data-href="/index.php/team/linkUpdate/<?=$var['lid']?>" style="color:#333;" target="modal"  width="350" title="修改注册链接" modal="true" button="确定:dataAddCode|取消:defaultCloseModal">修改</a> | <a href="javascript:void(0)" class="caozuo" data-href="/index.php/team/getLinkCode/<?=$var['lid']?>" button="取消:defaultCloseModal" modal="true" title="获取链接" width="350" target="modal"  style="color:#333;">获取链接</a> | <a  href="javascript:void(0)" class="td_delete" data-href="/index.php/team/linkDelete/<?=$var['lid']?>" button="确定删除:dataAddCode" modal="true" title="删除注册链接" width="350" target="modal"  style="color:#333;">删除</a> </td>
            
 		</tr>
 	<?php } ?>

@@ -39,6 +39,16 @@ var my = {
                 $(".hint_pop1 .hint_cont").text(res.msg);
             },'json' );
         })
+        $(document).on('click','.td_delete', function(){
+            var url = $(this).attr("data-href");
+            if(confirm("确认删除吗")){
+                $.post(url, function(res){
+                    $(".hint_pop1").show();
+                    $(".hint_pop1 .hint_cont").text(res.msg);
+                },'json' );
+            }
+
+        })
 
     },
     myInfo: function(){
