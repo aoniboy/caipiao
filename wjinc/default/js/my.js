@@ -112,7 +112,7 @@ var my = {
 
         })
         //会员添加
-        $(".dl_add_member").click(function(){
+        $("#dl_add_member").click(function(){
             var v1 = $("i1").val();
             var v2 = $("i2").val();
             var v3 = $("i3").val();
