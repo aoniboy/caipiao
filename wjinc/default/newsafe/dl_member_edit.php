@@ -25,8 +25,9 @@
     <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>会员管理</div>
     <div class="myi_title">会员详情</div>
     <form class="myi_form">
+        <input type="hidden" name="type" value="<?=$userData['type']?>"/>
+        <input type="hidden" name="uid" value="<?=$args[0]?>"/>
         <ul class="myi_list dla_list">
-
             <li class="clearfix">
                 <div class="fl myw">上级关系：</div>
                 <input  class="col67 fl" type="text" readonly value="<?=$this->getValue("select username from {$this->prename}members where uid={$userData['parentId']} ")?> > <?=$userData['username']?>">
