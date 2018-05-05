@@ -90,7 +90,7 @@ var my = {
         $("#my_member_edit").click(function(){
             var v1 = $(".i1").val();
             var v2 = $(".i2").val();
-            if(v1 == "" ||){
+            if(v1 == ""){
                 $(".hint_pop").show();
                 $(".hint_pop .hint_cont").text('返点不能大于或等于0.0');
                 return;
