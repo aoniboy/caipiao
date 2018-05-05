@@ -40,7 +40,16 @@ var common = {
     },
     orderdetail: function(){
     	//查看详情
-        $(document).on('click', 'td.orderdetail', function(){
+        $('table').on('click', 'td.orderdetail', function(){
+            var id = $(this).attr('data-id');
+            $.post('/index.php/record/betInfo/'+id,function(data){
+            	$(".detail_pop").show();
+                $('.detail_table').html(data);
+            },'text' );
+            return false;
+        })
+        //查看详情
+        $('.myp_table').on('click', 'td.orderdetail', function(){
             var id = $(this).attr('data-id');
             $.post('/index.php/record/betInfo/'+id,function(data){
             	$(".detail_pop").show();
