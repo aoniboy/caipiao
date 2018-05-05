@@ -111,6 +111,51 @@ var my = {
             },'json' );
 
         })
+        //会员添加
+        $(".dl_add_member").click(function(){
+            var v1 = $("i1").val();
+            var v2 = $("i2").val();
+            var v3 = $("i3").val();
+            var v4 = $("i4").val();
+            var v5 = $("i5").val();
+            var v6 = $("i6").val();
+            var regEx = /^[a-zA-Z0-9_]{4,16}$/;
+            if(!regEx.test(v1)){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('用户名由4-16位的字母或数字组成');
+                return;
+            }
+            if(v2 != v3 || v2 ==""){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('密码不一致');
+                return;
+            }
+            if(v2.length<6){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('密码至少6位');
+                return;
+            }
+            if(v4 == ""){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('分成不能大于或等于0.0');
+                return;
+            }
+            if(v5 == ""){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('返点不能大于或等于0.0');
+                return;
+            }
+            if(v6 == ""){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('不定返点不能大于或等于0.0');
+                return;
+            }
+            $.post('/index.php/team/insertMember', $(".myi_form").serialize(), function(res){
+                $(".hint_pop1").show();
+                $(".hint_pop1 .hint_cont").text(res.msg);
+            },'json' );
+
+        })
     },
     convertCurrency: function(money) {
         //汉字的数字

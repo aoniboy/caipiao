@@ -255,9 +255,9 @@ class Team extends WebLoginBase{
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['SERVER_NAME']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  throw new Exception('数据包被篡改，请重新操作');
+		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被篡改，请重新操作');
 
-		if(!$_POST) throw new Exception('提交数据出错，请重新操作');
+		if(!$_POST) $this->outputData(1,array(),'提交数据出错，请重新操作');
 
         //过滤未知字段
 		$update['username']=wjStrFilter($_POST['username']);
@@ -268,22 +268,22 @@ class Team extends WebLoginBase{
 		$update['type']=intval($_POST['type']);
         
 		//接收参数检查
-		if($update['fanDian']<0) throw new Exception('返点不能小于0');
-		if($update['fanDianBdw']<0) throw new Exception('不定位不能小于0');
+		if($update['fanDian']<0) $this->outputData(1,array(),'返点不能小于0');
+		if($update['fanDianBdw']<0) $this->outputData(1,array(),'不定位不能小于0');
 		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) throw new Exception('返点不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
 		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) throw new Exception('不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
-		if(!$update['username']) throw new Exception('用户名不能为空，请重新操作');
-		if($update['type']!=0 && $update['type']!=1) throw new Exception('类型出错，请重新操作');
+		if(!$update['username']) $this->outputData(1,array(),'用户名不能为空，请重新操作');
+		if($update['type']!=0 && $update['type']!=1) $this->outputData(1,array(),'类型出错，请重新操作');
 
-		if(!ctype_alnum($update['username'])) throw new Exception('用户名包含非法字符,请重新输入');
+		if(!ctype_alnum($update['username'])) $this->outputData(1,array(),'用户名包含非法字符,请重新输入');
 //		if(!ctype_digit($update['qq'])) throw new Exception('QQ包含非法字符');
 
 		$userlen=strlen($update['username']);
 		$passlen=strlen($update['password']);
 		$qqlen=strlen($update['qq']);
 
-		if($userlen<4 || $userlen>16) throw new Exception('用户名长度不正确,请重新输入');
-		if($passlen<6) throw new Exception('密码至少六位,请重新输入');
+		if($userlen<4 || $userlen>16) $this->outputData(1,array(),'用户名长度不正确,请重新输入');
+		if($passlen<6) $this->outputData(1,array(),'密码至少六位,请重新输入');
 //		if($qqlen<4 || $qqlen>13) throw new Exception('QQ号为4-12位,请重新输入');
 
 		$update['parentId']=$this->user['uid'];
@@ -319,7 +319,7 @@ class Team extends WebLoginBase{
 		$this->beginTransaction();
 		try{
 			$sql="select username from {$this->prename}members where username=?";
-			if($this->getValue($sql, $update['username'])) throw new Exception('用户“'.$update['username'].'”已经存在');
+			if($this->getValue($sql, $update['username']))$this->outputData(1,array(),'用户“'.$update['username'].'”已经存在');
 			if($this->insertRow($this->prename .'members', $update)){
 				$id=$this->lastInsertId();
 				$sql="update {$this->prename}members set parents=concat(parents, ',', $id) where `uid`=$id";
@@ -327,9 +327,9 @@ class Team extends WebLoginBase{
 				
 				$this->commit();
 				
-				return '添加会员成功';
+				$this->outputData(0,array(),'添加会员成功');
 			}else{
-				throw new Exception('添加会员失败');
+				$this->outputData(1,array(),'添加会员失败');
 			}
 			
 		}catch(Exception $e){
