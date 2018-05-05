@@ -99,6 +99,7 @@
                     	$(".hint_pop").show();
                     	$(".hint_pop .hint_title").text('系统提示');
                         $(".hint_pop .hint_cont").text(res.msg);
+                        window.location.href="/index.php/user/login/"
                     } else{
                         $(".hint_pop").show();
                         $(".hint_pop .hint_cont").text(res.msg);
