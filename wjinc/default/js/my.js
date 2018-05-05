@@ -49,7 +49,7 @@ var my = {
             }
 
         })
-        $(document).on('click','#dl_tgadd', function(){
+        $('#dl_tgadd').on('click', function(){
             var t1 = $(".t1").val();
             var t2 = $(".t2").val();
             if(t1==""){
