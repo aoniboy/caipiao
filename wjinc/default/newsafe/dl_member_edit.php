@@ -50,10 +50,10 @@
                 <input class="col67 fl i2" type="text col67" readonly value="<?=date("Y-m-d",$userData['regTime'])?>">
             </li>
         </ul>
-        <div class="myi_btns flex">
+<!--         <div class="myi_btns flex">
             <div class="tc fx myi_btns1" id="dl_add">添加</div>
             <input class="tc fx myi_btns2" type="reset" value="重置" />
-        </div>
+        </div> -->
     </form>
    
 </div>
