@@ -16,18 +16,18 @@
 	<input type="hidden" name="lid" value="<?=$args[0]?>"/>
     <ul class="myi_list dla_list dtg_list">
         <li class="clearfix">
-            <div class="fl myw ">返点：</div>
-            <input class="col67 fl i5"  type="text" name="fanDian" value="<?=$linkData['fanDian']?>" max="<?=$parentData['fanDian']?>" min="0" fanDianDiff=<?=$this->settings['fanDianDiff']?> >
+            <div class="fl myw " style="width:40%">返点：</div>
+            <input class="col67 fl i5" style="width:20%"  type="text" name="fanDian" value="<?=$linkData['fanDian']?>" max="<?=$parentData['fanDian']?>" min="0" fanDianDiff=<?=$this->settings['fanDianDiff']?> >
             <span class="fl">0—<?=$parentData['fanDian']?>%</span>
         </li>
         <li class="clearfix">
-            <div class="fl myw ">不定位返点：</div>
-            <input class="col67 fl i6" name="fanDianBdw" value="<?=$linkData['fanDianBdw']?>" max="<?=$parentData['fanDianBdw']?>" min="0">
+            <div class="fl myw " style="width:40%">不定位返点：</div>
+            <input class="col67 fl i6" style="width:20%" name="fanDianBdw" value="<?=$linkData['fanDianBdw']?>" max="<?=$parentData['fanDianBdw']?>" min="0">
             <span class="fl">0—<?=$parentData['fanDianBdw']?>%</span>
         </li>
         <li class="clearfix">
-            <div class="fl myw ">加入时间：</div>
-            <input  class="col67 fl" readonly value="<?=date("Y-m-d H:i:s",$linkData['regTime'])?>">
+            <div class="fl myw " style="width:40%">加入时间：</div>
+            <input  class="col67 fl f22" style="width:55%" readonly value="<?=date("Y-m-d H:i:s",$linkData['regTime'])?>">
         </li>
     </ul>
 </form>
