@@ -8,7 +8,6 @@ var my = {
     bindEvent: function(){
 
         $(".hint_btn").on('click', function(){
-            $(".hint_pop .hint_title").text('错误提示');
             $(".hint_pop").hide();
         })
         //提现转大写
