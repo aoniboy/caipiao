@@ -1,4 +1,3 @@
-alert(999);
 var game = {
     init: function(){
         this.bindEvent();
@@ -99,7 +98,6 @@ var game = {
         //清单双大小全
         var dan_len,dan_money,dan_stake;
     	$('.gameo_cont').on('click', '.g_btn', function(){
-            alert(1111);
             var id = $(this).data("id");
             var parent = $(this).parent(".game_stakes");
             var len = $(parent).find('i.active').length;
@@ -132,7 +130,6 @@ var game = {
   
         //数字选中 
     	$(".gameo_cont").on('click', '.g_qiu', function(){
-            alert(222);
     	    if($(this).hasClass("active")){
                 $(this).removeClass("active");
             }else{
