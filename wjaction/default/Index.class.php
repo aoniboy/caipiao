@@ -65,7 +65,7 @@ class Index extends WebLoginBase{
 	    if(empty($data)) $this->outputData(1,array(),'操作失败');
 	    $sql="select id from {$this->prename}played_group where type=? and enable = 1 order by sort";
 	    $data=$this->getRows($sql, $data['type']);
-	    $result = [];
+	    $result = array();
 	    foreach($data as $key=>$val) {
 	        $sql="select id,name,selectNum,groupId,numinfo,simpleInfo,bonusProp, bonusPropBase,betCountFun from {$this->prename}played where  groupId= ? and enable = 1";
 	        $tmp=$this->getRows($sql, $val['id']);
