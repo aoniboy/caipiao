@@ -102,6 +102,7 @@ var my = {
             }
             $.post('/index.php/team/userUpdateed', $(".myi_form").serialize(), function(res){
                 $(".hint_pop1").show();
+                alert(1);
                 $(".hint_pop1 .hint_cont").text(res.msg);
             },'json' );
 
