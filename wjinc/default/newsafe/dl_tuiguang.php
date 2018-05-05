@@ -40,18 +40,62 @@
 			<td><?=$var['fanDian']?>%</td>
             <td><?=$var['fanDianBdw']?>%</td>
            
-			<td><a href="/index.php/teamy/linkUpdate/<?=$var['lid']?>" style="color:#333;" target="modal"  width="350" title="修改注册链接" modal="true" button="确定:dataAddCode|取消:defaultCloseModal">修改</a> | <a href="/index.php/team/getLinkCode/<?=$var['lid']?>" button="取消:defaultCloseModal" modal="true" title="获取链接" width="350" target="modal"  style="color:#333;">获取链接</a> | <a  href="/index.php/team/linkDelete/<?=$var['lid']?>" button="确定删除:dataAddCode" modal="true" title="删除注册链接" width="350" target="modal"  style="color:#333;">删除</a> </td>
+			<td><a href="javascript:void(0)" class="caozuo" data-href="/index.php/team/linkUpdate/<?=$var['lid']?>" style="color:#333;" target="modal"  width="350" title="修改注册链接" modal="true" button="确定:dataAddCode|取消:defaultCloseModal">修改</a> | <a href="javascript:void(0)" class="caozuo" data-href="/index.php/team/getLinkCode/<?=$var['lid']?>" button="取消:defaultCloseModal" modal="true" title="获取链接" width="350" target="modal"  style="color:#333;">获取链接</a> | <a  href="javascript:void(0)" class="caozuo" data-href="/index.php/team/linkDelete/<?=$var['lid']?>" button="确定删除:dataAddCode" modal="true" title="删除注册链接" width="350" target="modal"  style="color:#333;">删除</a> </td>
            
 		</tr>
 	<?php } ?>
 	</tbody>
     </div>
+        <div class="detail_pop hide">
+        <div class="gameo_mask"></div>
+        <div class="detail_box">
+            <div class="detail_top f33">投注信息 </div>
+            <div class="detail_table tc" style="" scrolltop="0" scrollleft="0">
+                
+            </div>
+            <div class="">
+                <div class="detail_btn tc">
+                    <button type="button" style="border:none; border-radius:5px;padding:.1rem .5rem" class="detail_close f26">关闭</button>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
     </div>
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript">
-    
+//查看详情
+$(document).on('click', '.caozuo', function(){
+    var href = $(this).attr('data-href');
+    $.post(href,function(res){
+    	$(".detail_table").html(res.data);
+    	$(".detail_pop").show();
+    },'json' );
+    return false;
+})
+function copyNum() {
+                var NumClip=document.getElementById("adv-url");
+                var NValue=NumClip.value;
+                var valueLength = NValue.length;
+                selectText(NumClip, 0, valueLength);
+                document.execCommand("Copy","false",null); // 执行浏览器复制命令
+                alert("已复制,可分享给朋友啦，试试看。");
+            }
+//input自带的select()方法在苹果端无法进行选择，所以需要自己去写一个类似的方法
+function selectText(obj, startIndex, stopIndex) {
+    if (obj.setSelectionRange) {
+        obj.setSelectionRange(startIndex, stopIndex);
+    } else if (obj.createTextRange) {
+        var range = obj.createTextRange();
+        range.collapse(true);
+        range.moveStart('character', startIndex);
+        range.moveEnd('character', stopIndex - startIndex);
+        range.select();
+    }
+    obj.focus();
+}
 </script>
 </body>
 </html>

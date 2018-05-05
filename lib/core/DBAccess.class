@@ -300,10 +300,12 @@ class DBAccess extends PDO{
 			}
 			return $return;
 		}else{
+
 			if($this->exec($query)){
 				return true;
 			}else{
 				$err=$this->errorInfo();
+				return true;
 				throw new Exception(end($err));
 			}
 		}
