@@ -59,6 +59,6 @@
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
-<script src="/wjinc/default/js/my.js"></script>
+<script src="/wjinc/default/js/my.js?a=1"></script>
 </body>
 </html>

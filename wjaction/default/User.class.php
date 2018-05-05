@@ -105,27 +105,27 @@ class User extends WebBase{
 	    $username=wjStrFilter($_POST['username']);
         $password=wjStrFilter($_POST['password']);
 
-		if(!ctype_alnum($username)) $this->outputData(1,array(),'用户名包含非法字符,请重新登陆');
+		if(!ctype_alnum($username)) throw new Exception('用户名包含非法字符,请重新登陆');
 		
 		if(!$username){
-			$this->outputData(1,array(),'请输入用户名');
+			 throw new Exception('请输入用户名');
 		}
 		
 		if(!$password){
-			$this->outputData(1,array(),'不允许空密码登录');
+			 throw new Exception('不允许空密码登录');
 		}
 		
 		$sql="select * from {$this->prename}members where isDelete=0 and admin=0 and username=?";
 		if(!$user=$this->getRow($sql, $username)){
-			$this->outputData(1,array(),'用户名或密码不正确');
+			 throw new Exception('用户名或密码不正确');
 		}
 		
 		if(md5($password)!=$user['password']){
-			$this->outputData(1,array(),'密码不正确');
+			 throw new Exception('密码不正确');
 		}
 
 		if(!$user['enable']){
-			$this->outputData(1,array(),'您的帐号被冻结，请联系管理员。');
+			 throw new Exception('您的帐号被冻结，请联系管理员。');
 		}
 
 		$session=array(
