@@ -49,7 +49,7 @@
         <div class="detail_pop hide">
         <div class="gameo_mask"></div>
         <div class="detail_box">
-            <div class="detail_top f33">投注信息 </div>
+            <div class="detail_top f33">链接信息 </div>
             <div class="detail_table tc" style="" scrolltop="0" scrollleft="0">
                 
             </div>
