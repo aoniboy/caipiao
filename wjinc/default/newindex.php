@@ -20,7 +20,7 @@
             <div id="scroll_begin" class="inline">
                 <?php if($this->noticeinfo) foreach($this->noticeinfo as $key=>$var){ 
         
-    ?><span><?=$var['title']?></span>
+    ?><span><?=$var['content']?></span>
     <?php } ?>
             </div>
             <div id="scroll_end" class="inline"></div>

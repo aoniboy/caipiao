@@ -15,20 +15,20 @@
         <form class="dl_form">
             <div class="clearfix">
                 <div class="rel fl myp_top_l ">
-                    <select class="myp_sel1">
-                        <option value="-1">会员类型</option>
-                        <option value="0">会员</option>
-                        <option value="1">代理</option>
-                    </select>
+                    <select name="mtype">
+                <option value="" selected="">会员类型</option>
+                <option value="0">会员</option>
+                <option value="1">代理</option>
+            </select>
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <div class="rel fl myp_top_l ">
-                    <select class="myp_sel2">
-                        <option value="0">所有人</option>
-                        <option value="1">我自己</option>
-                        <option value="2">直属下线</option>
-                        <option value="2">所有下线</option>
-                    </select>
+                    <select name="type">
+            <option value="0">所有人</option>
+            <option value="1">我自己</option>
+            <option value="2" selected>直属下线</option>
+            <option value="3">所有下线</option>
+        </select>
                     <i class="iconfont icon-xialajiantou myp_topicon"></i>
                 </div>
                 <input class="dlm_input fr myp_sel3" type="text" value="" name="username" placeholder="用户名">    
@@ -41,63 +41,36 @@
         </div>
         <!-- <div class="myp_btn fr">查询</div> -->
     </div>
-    <div class="myp_table">
-        <table class="f24 tc">
-            <thead>
-                <tr>
-                    <th>用户名</th>
-                    <th>用户类型</th>
-                    <th>反点</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>会员</td>
-                    <td>0.00%</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="myp_table" style="width:800px">
+        
     </div>
    
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>
 <script type="text/javascript">
-    var page = 10;
-    var s1 = $(".myp_sel1").val();
-    var s2 = $(".myp_sel2").val();
-    var s3 = $(".myp_sel3").val();
+    var page = 1;
+    
     $(window).scroll(function () {
         var scrollTop = $(this).scrollTop()
         var scrollHeight = $(document).height()
         var windowHeight = $(this).height()
         if(windowHeight + scrollTop >= scrollHeight){
+        	page++
             upload();
         }
 
     })
-    $(".myp_btn").on('click',function(){
-        s1 = $(".myp_sel1").val();
-        s2 = $(".myp_sel2").val();
-        upload();
+	upload(false);
+    $(".dlm_btn_js").on('click',function(){
+        page = 1;
+        upload(true);
     })
-    function upload(){
-        $.post('/index.php/team/searchMember/'+page,{data:$(".dl_form").serialize()}, function(res){
-            var list = res.data.result;
-            console.log(list);
-            if(list.length>0){
-                page += 10;
-                var html = '';
-                for(var i=0;i<list.length;i++){
-                    html+='    <tr>'
-                    html+='        <td>001</td>'
-                    html+='        <td>会员</td>'
-                    html+='        <td>0.00%</td>'
-                    html+='    </tr>'
-                }
+    function upload(flag){
+        $.post('/index.php/team/searchMember/?page='+page+"&"+$(".dl_form").serialize(), function(res){
+        	if(res.data){
+          		!flag?(page == 1 ?$(".myp_table").append(res.data):$(".table_b_tr").append(res.data)):page == 1 ?$(".myp_table").html(res.data):$(".table_b_tr").html(res.data);
             }
-            $(".myp_table table tbody").append(html);
         },'json' );
     }
 </script>

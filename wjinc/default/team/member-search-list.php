@@ -37,6 +37,7 @@ $this->getSystemSettings();
 	$params=http_build_query($_GET, '', '&');
 	//echo $params;
 ?>
+<?php if($this->page==1) {?>
 <table width="100%" class='table_b'>
 	<thead>
 		<tr class="table_b_th">
@@ -53,6 +54,7 @@ $this->getSystemSettings();
 		</tr>
 	</thead>
 	<tbody class="table_b_tr">
+	<?php }?>
 	<?php if($data['data']) foreach($data['data'] as $var){ ?>
 	 <?php $login=$this->getRow("select * from {$this->prename}member_session where uid=? order by id desc limit 1", $var['uid']);?>
 		<tr>
@@ -67,18 +69,17 @@ $this->getSystemSettings();
 			<td><?=$this->iff($var['qq'],$var['qq'],'无')?></td>
 			<td><?=date('Y-m-d',$var['regTime'])?></td>
             <?php if($this->user['uid']!=$var['uid'] && $var['parentId']==$this->user['uid']){ ?>
-			<td><a href="/index.php/team/userUpdate/<?=$var['uid']?>" style="color:#333;" target="modal"  width="420" title="修改用户" modal="true" button="确定:dataAddCode|取消:defaultCloseModal">修改</a>&nbsp;&nbsp;
-			<?php if($this->settings['recharge']==1){?>
-			<a href="/index.php/team/userUpdate2/<?=$var['uid']?>" style="color:#333;" target="modal"  width="420" title="给下级充值" modal="true" button="确定:dataAddCode|取消:defaultCloseModal">充值</a>&nbsp;&nbsp;
-            <?}?>
-			<a class="caozuo" href="/index.php/team/searchMember?type=2&uid=<?=$var['uid']?>">查看下级</a></td>
+				<td><a href="/index.php/team/userUpdate/<?=$var['uid']?>" style="color:#333;" target="modal"  width="420" title="修改用户" modal="true" button="确定:dataAddCode|取消:defaultCloseModal">修改</a>&nbsp;&nbsp;
+    			<?php if($this->settings['recharge']==1){?>
+    				<a href="/index.php/team/userUpdate2/<?=$var['uid']?>" style="color:#333;" target="modal"  width="420" title="给下级充值" modal="true" button="确定:dataAddCode|取消:defaultCloseModal">充值</a>&nbsp;&nbsp;
+                <?php }?>
+				<a class="caozuo" href="/index.php/team/searchMember?type=2&uid=<?=$var['uid']?>">查看下级</a></td>
             <?php }else{ ?>
-            <td><a class="caozuo" href="/index.php/team/searchMember?type=2&uid=<?=$var['uid']?>">查看下级</a></td>
+            	<td><a class="caozuo" href="/index.php/team/searchMember?type=2&uid=<?=$var['uid']?>">查看下级</a></td>
             <?php } ?>
 		</tr>
 	<?php } ?>
+<?php if($this->page==1) {?>
 	</tbody>
 </table>
-<?php 
-	$this->display('inc_page.php',0,$data['total'],$this->pageSize, '/index.php/team/searchMember-{page}?'.$params);
-?>
+<?php } ?>
