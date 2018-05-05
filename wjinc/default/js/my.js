@@ -50,6 +50,7 @@ var my = {
 
         })
         $('#dl_tgadd').on('click', function(){
+            alert(111);
             var t1 = $(".t1").val();
             var t2 = $(".t2").val();
             if(t1==""){
