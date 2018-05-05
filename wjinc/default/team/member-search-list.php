@@ -31,7 +31,14 @@ $this->getSystemSettings();
 			break;
 		}
 	}
-	
+	if(is_numeric($_GET['mtype']))
+	{
+	    $sql.=" and type={$_GET['mtype']}";
+	}
+	if(is_numeric($_GET['tctype']))
+	{
+	    $sql.=" and tctype={$_GET['tctype']}";
+	}
 	if($_GET['uid']=$this->user['uid']) unset($_GET['uid']);
 	$data=$this->getPage($sql, $this->page, $this->pageSize);
 	$params=http_build_query($_GET, '', '&');
