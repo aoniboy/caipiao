@@ -172,7 +172,7 @@ class User extends WebBase{
 			$this->display('newsafe/register.php');
 		}else{
 			include_once $_SERVER['DOCUMENT_ROOT'].'/lib/classes/Xxtea.class';
-			$userxxx=str_replace(array('-','*',''), array('+','/','='), $userxxx);
+			$userxxx=str_replace(array('youle','woshi',''), array('+','/','='), $userxxx);
 			$userxxx=base64_decode($userxxx);
 			$LArry=Xxtea::decrypt($userxxx, $this->urlPasswordKey);
 			$LArry=explode(",",$LArry);

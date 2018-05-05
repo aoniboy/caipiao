@@ -15,8 +15,7 @@
 	include_once $_SERVER['DOCUMENT_ROOT'].'/lib/classes/Xxtea.class';
 	$key=Xxtea::encrypt($this->id.",".$this->user['uid'], $this->urlPasswordKey);
 	$key=base64_encode($key);
-	$key=str_replace(array('+','/','='), array('-','*',''), $key);
-	
+	$key=str_replace(array('+','/','='), array('youle','woshi',''), $key);
 ?><div>
 	<ul class="myi_list dla_list">
 		<li class="clearfix">
