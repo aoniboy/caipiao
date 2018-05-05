@@ -17,7 +17,7 @@
     <div class="clearfix myp_top dl_gametop">
         <form class="dl_form">
             <div class="clearfix">
-                <div class="rel fl myp_top_l ">
+                <div class="rel fl myp_top_l myp_top_l1">
                    <select name="liqType">
                     <option value="">所有帐变类型</option>
                     <option value="1">账户充值</option>
