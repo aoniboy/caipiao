@@ -91,10 +91,15 @@ var my = {
             var v2 = $(".i2").val();
             if(v1 == ""){
                 $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('分成不能大于或等于0.0');
+                return;
+            }
+            if(v2 == ""){
+                $(".hint_pop").show();
                 $(".hint_pop .hint_cont").text('返点不能大于或等于0.0');
                 return;
             }
-            if(v1 == ""){
+            if(v3 == ""){
                 $(".hint_pop").show();
                 $(".hint_pop .hint_cont").text('不定返点不能大于或等于0.0');
                 return;
