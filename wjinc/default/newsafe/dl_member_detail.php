@@ -33,16 +33,16 @@
             </li>
             <li class="clearfix">
                 <div class="fl myw">用户名：</div>
-                <input class="col67 fl" type="text col67" readonly value="<?=$userData['username']?>">
+                <input class="col67 fl i2" type="text col67" readonly value="<?=$userData['username']?>">
             </li>
             <li class="clearfix">
                 <div class="fl myw">返点：</div>
-                <input class="col67 fl i1" name="fanDian" value="<?=$userData['fanDian']?>" max="<?=$parentData['fanDian']?>" max="<?=$parentData['fanDian']?>" min="0" fanDianDiff=<?=$this->settings['fanDianDiff']?> val="<?=$userData['fanDian']?>" >
+                <input class="col67 fl i4" name="fanDian" value="<?=$userData['fanDian']?>" max="<?=$parentData['fanDian']?>" max="<?=$parentData['fanDian']?>" min="0" fanDianDiff=<?=$this->settings['fanDianDiff']?> val="<?=$userData['fanDian']?>" >
                 <span class="fl">0—<?=$this->iff($parentData['fanDian']-$this->settings['fanDianDiff']<=0,0,$parentData['fanDian']-$this->settings['fanDianDiff'])?>%</span>
             </li>
             <li class="clearfix">
                 <div class="fl myw">不定位返点：</div>
-                <input class="col67 fl i2" name="fanDianBdw" value="<?=$userData['fanDianBdw']?>" max="<?=$parentData['fanDianBdw']?>" min="0" val="<?=$userData['fanDianBdw']?>">
+                <input class="col67 fl i4" name="fanDianBdw" value="<?=$userData['fanDianBdw']?>" max="<?=$parentData['fanDianBdw']?>" min="0" val="<?=$userData['fanDianBdw']?>">
                 <span class="fl">0—<?=$this->iff($parentData['fanDianBdw']-$this->settings['fanDianDiff']<=0,0,$parentData['fanDianBdw']-$this->settings['fanDianDiff'])?>%</span>
             </li>
             <li class="clearfix">
@@ -50,27 +50,12 @@
                 <input class="col67 fl i2" type="text col67" readonly value="<?=date("Y-m-d",$userData['regTime'])?>">
             </li>
         </ul>
-        <div class="myi_btns flex">
-            <div class="tc fx myi_btns1" id="my_member_edit">添加</div>
+<!--         <div class="myi_btns flex">
+            <div class="tc fx myi_btns1" id="dl_add">添加</div>
             <input class="tc fx myi_btns2" type="reset" value="重置" />
-        </div>
+        </div> -->
     </form>
-    <div class="hint_pop hide">
-        <div class="gameo_mask"></div>
-        <div class="hint_con">
-            <div class="hint_title f32 tc hint_titles">错误提示</div>
-            <div class="hint_cont f24"></div>
-            <div class="tc hint_btn f32">确定</div>
-        </div>
-    </div>
-    <div class="hint_pop hide hint_pop1">
-        <div class="gameo_mask"></div>
-        <div class="hint_con">
-            <div class="hint_title f32 tc hint_titles">系统提示</div>
-            <div class="hint_cont f24"></div>
-            <div class="tc hint_btn f32">确定</div>
-        </div>
-    </div>
+   
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>

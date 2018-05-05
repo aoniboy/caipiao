@@ -3,6 +3,7 @@ var my = {
         this.bindEvent();
         this.passwordEdit();
         this.myInfo();
+        this.member();
     },
     bindEvent: function(){
 
@@ -84,16 +85,27 @@ var my = {
             },'json' );
         })
     },
-    dlEvent: function(){
+    member: function: function(){
         //会员管理
-        $("#dl_add").on('touchend', function(){
-
-            
-            $.post('', {data:$(".myi_form").serialize()}, function(data){
-                    
+        $("#my_member_edit").click(function(){
+            var v1 = $(".i1").val();
+            var v2 = $(".i2").val();
+            if(v1 == "" ||){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('返点不能大于或等于0.0');
+                return;
+            }
+            if(v1 == ""){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('不定返点不能大于或等于0.0');
+                return;
+            }
+            $.post('', $(".myi_form").serialize(), function(res){
+                $(".hint_pop1").show();
+                $(".hint_pop1 .hint_cont").text(res.msg);
             },'json' );
-        })
 
+        })
     },
     convertCurrency: function(money) {
         //汉字的数字
