@@ -22,20 +22,20 @@
                 </div>
             </li>
             <li class="clearfix">
-                <div class="fl myw i1">用户名：</div>
+                <div class="fl myw ">用户名：</div>
                 <input  class="col67 fl i1" type="text"  placeholder="4-16位的字母或数字组成" name="username" value="">
             </li>
             <li class="clearfix">
-                <div class="fl myw i2">密码：</div>
+                <div class="fl myw ">密码：</div>
                 <input class="col67 fl i2" type="password" name="password" value="">
             </li>
             <li class="clearfix">
-                <div class="fl myw i3">确认密码：</div>
+                <div class="fl myw ">确认密码：</div>
                 <input class="col67 fl i3" type="password" name="" value="">
             </li>
             <li class="clearfix">
                 <div class="fl myw">联系微信：</div>
-                <input class="col67 fl i4" type="text" name="qq" value="">
+                <input class="col67 fl " type="text" name="qq" value="">
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">提成类型：</div>
@@ -45,18 +45,18 @@
                 </div>
             </li>
             <li class="clearfix">
-                <div class="fl myw i4">分成：</div>
+                <div class="fl myw ">分成：</div>
                 <input class="col67 fl i4" name="fanDian" max="<?=$this->user['tcpoint']?>" value="0"  tcpointDiff=<?=$this->settings['tcpointDiff']?> onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">
                 <span class="">0-<?=$this->iff($this->user['tcpoint']-$this->settings['tcpointDiff']<=0,0,$this->user['tcpoint']-$this->settings['tcpointDiff'])?>%</span>
             </li>
             <li class="clearfix">
-                <div class="fl myw i5">返点：</div>
-                <input class="col67 fl i4" name="fanDian" max="<?=$this->user['fanDian']?>" value="0"  fanDianDiff=<?=$this->settings['fanDianDiff']?> onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">
+                <div class="fl myw ">返点：</div>
+                <input class="col67 fl i5" name="fanDian" max="<?=$this->user['fanDian']?>" value="0"  fanDianDiff=<?=$this->settings['fanDianDiff']?> onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">
                 <span class="">0-<?=$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])?>%</span>
             </li>
             <li class="clearfix">
-                <div class="fl myw i6">不定位返点：</div>
-                <input class="col67 fl i4" name="fanDianBdw" max="<?=$this->user['fanDianBdw']?>" value=""  ōnkeyup="if(isNaN(value))execCommand(''undo'')" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">
+                <div class="fl myw ">不定位返点：</div>
+                <input class="col67 fl i6" name="fanDianBdw" max="<?=$this->user['fanDianBdw']?>" value=""  ōnkeyup="if(isNaN(value))execCommand(''undo'')" onkeyup="if(isNaN(value))execCommand('undo')" onafterpaste="if(isNaN(value))execCommand('undo')">
                 <span class="fl">0-<?=$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])?>%</span>
             </li>
         </ul>
