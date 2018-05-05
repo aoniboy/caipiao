@@ -11,8 +11,8 @@
 <body>
 <div class="wrap_box w_height">
     <div class="rel">
-        <img src="/wjinc/default/images/login_bg.jpg">
-        <img class="login_logo" src="/wjinc/default/images/logo_new.png">
+        <img src="/wjinc/default/images/login_bg.jpg?a=1">
+        <!-- <img class="login_logo" src="/wjinc/default/images/logo_new.png"> -->
     </div>
     <div class="login_con">
         <form >
