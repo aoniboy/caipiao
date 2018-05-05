@@ -97,7 +97,7 @@ var game = {
         
         //清单双大小全
         var dan_len,dan_money,dan_stake;
-    	$(document).on('click', '.game_stakes > span', function(){
+    	$('.gameo_cont').on('click', '.g_btn', function(){
             var id = $(this).data("id");
             var parent = $(this).parent(".game_stakes");
             var len = $(parent).find('i.active').length;
@@ -129,7 +129,7 @@ var game = {
     	})
   
         //数字选中 
-    	$(document).on('click', '.game_stakes > i', function(){
+    	$(".gameo_cont").on('click', '.g_qiu', function(){
     	    if($(this).hasClass("active")){
                 $(this).removeClass("active");
             }else{
@@ -500,23 +500,23 @@ var game = {
                             var tips = narr[j]
                         }
                         html+='    <li class="game_stakes rel" >'
-                        html+='        <i>0</i>'
-                        html+='        <i>1</i>'
-                        html+='        <i>2</i>'
-                        html+='        <i>3</i>'
-                        html+='        <i>4</i>'
+                        html+='        <i class="g_qiu">0</i>'
+                        html+='        <i class="g_qiu">1</i>'
+                        html+='        <i class="g_qiu">2</i>'
+                        html+='        <i class="g_qiu">3</i>'
+                        html+='        <i class="g_qiu">4</i>'
                         html+='        <a class="game_sposl">'+tips+'</a>'
-                        html+='        <i>5</i>'
-                        html+='        <i>6</i>'
-                        html+='        <i>7</i><br>'
-                        html+='        <i>8</i>'
-                        html+='        <i>9</i>'
-                        html+='        <span data-id="clear">清</span>'
-                        html+='        <span data-id="even">双</span>'
-                        html+='        <span data-id="odd">单</span>'
-                        html+='        <span data-id="small">小</span>'
-                        html+='        <span data-id="big">大</span>'
-                        html+='        <span data-id="all">全</span>'
+                        html+='        <i class="g_qiu">5</i>'
+                        html+='        <i class="g_qiu">6</i>'
+                        html+='        <i class="g_qiu">7</i><br>'
+                        html+='        <i class="g_qiu">8</i>'
+                        html+='        <i class="g_qiu">9</i>'
+                        html+='        <span class="g_btn" data-id="clear">清</span>'
+                        html+='        <span class="g_btn" data-id="even">双</span>'
+                        html+='        <span class="g_btn" data-id="odd">单</span>'
+                        html+='        <span class="g_btn" data-id="small">小</span>'
+                        html+='        <span class="g_btn" data-id="big">大</span>'
+                        html+='        <span class="g_btn" data-id="all">全</span>'
                         html+='    </li>'
                     }
                 }
