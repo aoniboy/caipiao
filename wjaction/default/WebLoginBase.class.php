@@ -100,7 +100,7 @@ class WebLoginBase extends WebBase{
 		return $this->getValue("select fanDian from {$this->prename}members where parentId=?", intval($uid));
 	}
 
-	public function outputData($code=0,$data=[],$message='操作成功') {
+	public function outputData($code=0,$data=array(),$message='操作成功') {
 	   $output = array('code'=>$code,'data'=>$data,'msg'=>$message);
 	    echo json_encode($output);
 	    exit;

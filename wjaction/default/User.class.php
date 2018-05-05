@@ -259,7 +259,7 @@ class User extends WebBase{
 	        $this->outputData(0,1);
 	    }
 	}
-	public function outputData($code=0,$data=[],$message='操作成功') {
+	public function outputData($code=0,$data=array(),$message='操作成功') {
 	    $output = array('code'=>$code,'data'=>$data,'msg'=>$message);
 	    echo json_encode($output);
 	    exit;

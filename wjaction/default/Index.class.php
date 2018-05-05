@@ -3,7 +3,7 @@ class Index extends WebLoginBase{
 	public $pageSize=10;
 	
 	public final function game($type=null, $groupId=null, $played=null){
-	    $tmp = [];
+	    $tmp = array();
 	    foreach ($this->gameinfo as $key=>$val) {
 	        $sql = "select st.id,st.title,st.num,st.enable from ssc_type st where st.id={$val}     ";
 	        $result  = $this->getRow($sql);
