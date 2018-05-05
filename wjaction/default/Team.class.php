@@ -140,7 +140,7 @@ class Team extends WebLoginBase{
 	}
 
 	public final function insertLink(){
-		$urlshang = $_SERVER['HTTP_$this->outputData(1,array(),']; //上一页URL
+		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被非法篡改，请重新操作');
