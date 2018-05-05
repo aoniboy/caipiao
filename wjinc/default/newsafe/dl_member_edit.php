@@ -45,8 +45,8 @@
             </li>
             <li class="clearfix">
                 <div class="fl myw">分成：</div>
-                <input class="col67 fl i1" name="fanDian" name="tcpoint" value="<?=$userData['tcpoint']?>" max="<?=$parentData['tcpoint']?>" min="0" tcpointDiff=<?=$this->settings['tcpointDiff']?> val="<?=$userData['tcpoint']?>">
-                <span class="fl">0—<?=$this->iff($parentData['fanDian']-$this->settings['fanDianDiff']<=0,0,$parentData['fanDian']-$this->settings['fanDianDiff'])?>%</span>
+                <input class="col67 fl i1"  name="tcpoint" value="<?=$userData['tcpoint']?>" max="<?=$parentData['tcpoint']?>" min="0" tcpointDiff=<?=$this->settings['tcpointDiff']?> val="<?=$userData['tcpoint']?>">
+                <span class="fl">0—<?=$this->iff($parentData['tcpoint']-$this->settings['tcpointDiff']<=0,0,$parentData['tcpoint']-$this->settings['tcpointDiff'])?>%</span>
             </li>
             <li class="clearfix">
                 <div class="fl myw">返点：</div>

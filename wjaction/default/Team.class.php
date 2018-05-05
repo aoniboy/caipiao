@@ -353,26 +353,35 @@ class Team extends WebLoginBase{
 		$update['fanDianBdw']=floatval($_POST['fanDianBdw']);
 		$uid=$update['uid'];
 
-        if($update['fanDian']<0) $this->outputData(1,array(),'返点不能小于0');
+        if($update['fanDian']<0) $this->outputData(1,array(),'分成不能小于0');
 		if($update['fanDianBdw']<0) $this->outputData(1,array(),'不定位不能小于0');
 		$fandian=$this->getvalue("select fanDian from {$this->prename}members where uid=?",$update['uid']);
 		$fanDianBdw=$this->getvalue("select fanDianBdw from {$this->prename}members where uid=?",$update['uid']);
 		if($update['fanDian']<$fandian) $this->outputData(1,array(),'返点不能降低!');
 		if($update['fanDianBdw']<$fanDianBdw) $this->outputData(1,array(),'不定位返点不能降低!');
-		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) $this->outputData(1,array(),'返点不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
+		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) $this->outputData(1,array(),'分成不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
 		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) $this->outputData(1,array(),'不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
 		if($update['type']!=0 && $update['type']!=1) $this->outputData(1,array(),'类型出错，请重新操作');
 
 		if($uid==$this->user['uid']) $this->outputData(1,array(),'不能修改自己的返点');
-		if(!$parentId=$this->getvalue("select parentId from {$this->prename}members where uid=?",$uid)) $this->outputData(1,array(),'此会员不存在!');
+		if(!$parentId=$this->getvalue("select parentId from {$this->prename}members where uid=?",$uid))$this->outputData(1,array(),'此会员不存在!');
 		if($parentId!=$this->user['uid']) $this->outputData(1,array(),'此会员不是你的直属下线，无法修改');
 
 		if(!$_POST['fanDian']){unset($_POST['fanDian']);unset($update['fanDian']);}
 		if(!$_POST['fanDianBdw']){unset($_POST['fanDianBdw']);unset($update['fanDianBdw']);}
 		if($update['fanDian']==0) $update['fanDian']=0.0;
 		if($update['fanDianBdw']==0) $update['fanDianBdw']=0.0;
-		
-		if($this->updateRows($this->prename .'members', $update, "uid=$uid")){
+
+		$update['tctype']=intval($_POST['tctype']);
+		$update['tcpoint']=($update['tctype']?floatval($_POST['tcpoint']):0);
+		if($update['tctype']==1) {
+			if($update['tcpoint']<0) $this->outputData(1,array(),'分成不能小于0');
+			$tcpoint=$this->getvalue("select tcpoint from {$this->prename}members where uid=?",$update['uid']);
+			if($update['tcpoint']<$tcpoint) $this->outputData(1,array(),'分成不能降低!');
+			if($update['tcpoint']>$this->iff($this->user['tcpoint']-$this->settings['tcpointDiff']<0,0,$this->user['tcpoint']-$this->settings['tcpointDiff'])) $this->outputData(1,array(),'分成不能大于'.$this->iff($this->user['tcpoint']-$this->settings['tcpointDiff']<0,0,$this->user['tcpoint']-$this->settings['tcpointDiff']));
+		}
+
+		if($this->updateRowss($this->prename .'members', $update, "uid=$uid")){
 			$this->outputData(0,array(),'修改成功');
 		}else{
 			$this->outputData(1,array(),'未知出错');

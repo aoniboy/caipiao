@@ -277,16 +277,23 @@ class DBAccess extends PDO{
 		$sql="update $table set";
 		foreach($data as $key=>$_v) $sql.=" $key=:$key,";
 		$sql=rtrim($sql, ',')." where $where";
+		echo $sql;
 		return $this->update($sql, $data);
 	}
 
+	public function updateRowss($table, $data, $where){
+		$sql="update $table set";
+		foreach($data as $key=>$_v) $sql.=" $key='".$data[$key]."',";
+		$sql=rtrim($sql, ',')." where $where";
+		return $this->update($sql);
+	}
+ 
 	public function insert($query, $params=null){
 		if($params && !is_array($params)) $params=array($params);
 		if($params){
 			if(!$stmt=$this->prepare($query)){
 				throw new Exception('解析查询语句出错，SQL语句：'.$query);
 			}
-
 			if(!$return=$stmt->execute($params)){
 				$err=$stmt->errorInfo();
 				throw new Exception(end($err));
