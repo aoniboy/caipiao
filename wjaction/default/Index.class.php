@@ -153,7 +153,7 @@ class Index extends WebLoginBase{
 	        }
 	        $result[$key]['tnumber'] = $tnumber;
 	    }
-	    $data = ['name'=>$typename,'result'=>$result];
+	    $data = array('name'=>$typename,'result'=>$result);
 	    $this->outputData(0,$data);
 
 	}
