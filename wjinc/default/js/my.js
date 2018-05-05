@@ -89,6 +89,7 @@ var my = {
         $("#my_member_edit").click(function(){
             var v1 = $(".i1").val();
             var v2 = $(".i2").val();
+            var v3 = $(".i3").val();
             if(v1 == ""){
                 $(".hint_pop").show();
                 $(".hint_pop .hint_cont").text('分成不能大于或等于0.0');
