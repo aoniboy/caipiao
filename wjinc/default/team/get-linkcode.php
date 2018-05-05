@@ -35,7 +35,7 @@
         </li>
         <li class="clearfix">
             <div class="fl myw f24" style="width:40%">注册推广链接：</div>
-            <input  class="col67 fl f22" style="width:55%" readonly id="adv-url" readonly="readonly" value="http://<?=$_SERVER['HTTP_HOST']?>/index.php/user/r/<?=$key?>" >
+            <input  class="col67 fl f22" style="width:55%" readonly id="adv-url" readonly="readonly" value="http://<?=$_SERVER['HTTP_X_REAL_HOST']?>/index.php/user/r/<?=$key?>" >
         </li>
         <li class="clearfix">
             <div class="fl myw f24" style="width:40%"> &nbsp</div>
