@@ -140,12 +140,12 @@ class Team extends WebLoginBase{
 	}
 
 	public final function insertLink(){
-		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urlshang = $_SERVER['HTTP_$this->output(1,array(),']; //上一页URL
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  throw new Exception('数据包被非法篡改，请重新操作');
+		if($urlcheck<>$urldan)  $this->output(1,array(),'数据包被非法篡改，请重新操作');
 
-		if(!$_POST)  throw new Exception('提交数据出错，请重新操作');
+		if(!$_POST)  $this->output(1,array(),'提交数据出错，请重新操作');
 
         $update['uid']=intval($_POST['uid']);
 		$update['type']=intval($_POST['type']);
@@ -154,17 +154,17 @@ class Team extends WebLoginBase{
 		$update['regIP']=$this->ip(true);
 		$update['regTime']=$this->time;
 
-        if($update['fanDian']<0) throw new Exception('返点不能小于0');
-		if($update['fanDianBdw']<0) throw new Exception('不定位返点不能小于0');
-		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) throw new Exception('返点不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
-		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) throw new Exception('不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
-		if($update['type']!=0 && $update['type']!=1) throw new Exception('类型出错，请重新操作');
-		if($update['uid']!=$this->user['uid']) throw new Exception('只能增加自己的推广链接!');
+        if($update['fanDian']<0) $this->output(1,array(),'返点不能小于0');
+		if($update['fanDianBdw']<0) $this->output(1,array(),'不定位返点不能小于0');
+		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) $this->output(1,array(),'返点不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
+		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) $this->output(1,array(),'不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
+		if($update['type']!=0 && $update['type']!=1) $this->output(1,array(),'类型出错，请重新操作');
+		if($update['uid']!=$this->user['uid']) $this->output(1,array(),'只能增加自己的推广链接!');
 
 		// 查检返点设置
 		if($update['fanDian']){
 			$this->getSystemSettings();
-			if($update['fanDian'] % $this->settings['fanDianDiff']) throw new Exception(sprintf('返点只能是%.1f%的倍数', $this->settings['fanDianDiff']));
+			if($update['fanDian'] % $this->settings['fanDianDiff']) $this->output(1,array(),sprintf('返点只能是%.1f%的倍数', $this->settings['fanDianDiff']));
 			
 		}else{
 			$update['fanDian']=0.0;
@@ -174,13 +174,13 @@ class Team extends WebLoginBase{
 		try{
 			$sql="select fanDian from {$this->prename}links where uid={$update['uid']} and fanDian=? ";
 			
-			if($this->getValue($sql, $update['fanDian'])) throw new Exception('此链接已经存在');
+			if($this->getValue($sql, $update['fanDian'])) $this->output(1,array(),'此链接已经存在');
 			if($this->insertRow($this->prename .'links', $update)){
 				$id=$this->lastInsertId();	
 				$this->commit();
-				return '添加链接成功';
+				$this->output(0,array(), '添加链接成功');
 			}else{
-				throw new Exception('添加链接失败');
+				$this->output(1,array(),'添加链接失败');
 			}
 			
 		}catch(Exception $e){
@@ -198,25 +198,25 @@ class Team extends WebLoginBase{
 	
 	public final function linkUpdateed(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  throw new Exception('数据包被非法篡改，请重新操作');
+		if($urlcheck<>$urldan)  $this->output(1,array(),'数据包被非法篡改，请重新操作');
 
-		if(!$_POST)  throw new Exception('提交数据出错，请重新操作');
+		if(!$_POST)  $this->output(1,array(),'提交数据出错，请重新操作');
 
 		$update['lid']=intval($_POST['lid']);
         $update['fanDian']=floatval($_POST['fanDian']);
 		$update['fanDianBdw']=floatval($_POST['fanDianBdw']);
 		$lid=$update['lid'];
 
-		if($update['fanDian']<0) throw new Exception('返点不能小于0');
-		if($update['fanDianBdw']<0) throw new Exception('不定位返点不能小于0');
-		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) throw new Exception('返点不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
-		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) throw new Exception('不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
+		if($update['fanDian']<0) $this->output(1,array(),'返点不能小于0');
+		if($update['fanDianBdw']<0) $this->output(1,array(),'不定位返点不能小于0');
+		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) $this->output(1,array(),'返点不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
+		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) $this->output(1,array(),'不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
         if($uid=$this->getvalue("select uid from {$this->prename}links where lid=?",$lid)){
-		     if($uid!=$this->user['uid']) throw new Exception('只能修改自己的推广链接!');
+		     if($uid!=$this->user['uid']) $this->output(1,array(),'只能修改自己的推广链接!');
 		}else{
-			throw new Exception('此注册链接不存在');
+			$this->output(1,array(),'此注册链接不存在');
 			}
 		
 		if(!$_POST['fanDian']){unset($_POST['fanDian']);unset($update['fanDian']);}
@@ -224,10 +224,10 @@ class Team extends WebLoginBase{
 		if($update['fanDian']==0) $update['fanDian']=0.0;
 		if($update['fanDianBdw']==0) $update['fanDianBdw']=0.0;
 
-		if($this->updateRows($this->prename .'links', $update, "lid=$lid")){
-			echo '修改成功';
+		if($this->updateRowss($this->prename .'links', $update, "lid=$lid")){
+			$this->output(0,array(), '修改成功');
 		}else{
-			throw new Exception('未知出错');
+			$this->output(1,array(),'未知出错');
 		}
 		
 	}
@@ -236,15 +236,15 @@ class Team extends WebLoginBase{
 	public final function linkDeleteed(){
 		$lid=intval($_POST['lid']);
 		if($uid=$this->getvalue("select uid from {$this->prename}links where lid=?",$lid)){
-		     if($uid!=$this->user['uid']) throw new Exception('只能删除自己的推广链接!');
+		     if($uid!=$this->user['uid']) $this->output(1,array(),'只能删除自己的推广链接!');
 		}else{
-			throw new Exception('此注册链接不存在');
+			$this->output(1,array(),'此注册链接不存在');
 			}
 		$sql="delete from {$this->prename}links where lid=?";
 		if($this->delete($sql, $lid)){
-			echo '删除成功';
+			$this->output(0,array(), '删除成功');
 		}else{
-			throw new Exception('未知出错');
+			$this->output(1,array(),'未知出错');
 		}
 	}
 
@@ -259,7 +259,7 @@ class Team extends WebLoginBase{
 	
 	public final function insertMember(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被篡改，请重新操作');
 
@@ -276,13 +276,13 @@ class Team extends WebLoginBase{
 		//接收参数检查
 		if($update['fanDian']<0) $this->outputData(1,array(),'返点不能小于0');
 		if($update['fanDianBdw']<0) $this->outputData(1,array(),'不定位不能小于0');
-		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) throw new Exception('返点不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
-		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) throw new Exception('不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
+		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) $this->output(1,array(),'返点不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
+		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) $this->output(1,array(),'不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
 		if(!$update['username']) $this->outputData(1,array(),'用户名不能为空，请重新操作');
 		if($update['type']!=0 && $update['type']!=1) $this->outputData(1,array(),'类型出错，请重新操作');
 
 		if(!ctype_alnum($update['username'])) $this->outputData(1,array(),'用户名包含非法字符,请重新输入');
-//		if(!ctype_digit($update['qq'])) throw new Exception('QQ包含非法字符');
+//		if(!ctype_digit($update['qq'])) $this->output(1,array(),'QQ包含非法字符');
 
 		$userlen=strlen($update['username']);
 		$passlen=strlen($update['password']);
@@ -290,7 +290,7 @@ class Team extends WebLoginBase{
 
 		if($userlen<4 || $userlen>16) $this->outputData(1,array(),'用户名长度不正确,请重新输入');
 		if($passlen<6) $this->outputData(1,array(),'密码至少六位,请重新输入');
-//		if($qqlen<4 || $qqlen>13) throw new Exception('QQ号为4-12位,请重新输入');
+//		if($qqlen<4 || $qqlen>13) $this->output(1,array(),'QQ号为4-12位,请重新输入');
 
 		$update['parentId']=$this->user['uid'];
 		$update['parents']=$this->user['parents'];
@@ -303,21 +303,21 @@ class Team extends WebLoginBase{
 		if(!$_POST['name']) $update['name']=$update['username'];
 		
 		//$subCount=$this->getValue("select count(*) from {$this->prename}members where parentId=?", $this->user['uid']);
-		//throw new Exception($subCount);
-		//if($subCount>=$this->user['subCount']) throw new Exception('您的会员人数已经达到上限');
+		//$this->output(1,array(),$subCount);
+		//if($subCount>=$this->user['subCount']) $this->output(1,array(),'您的会员人数已经达到上限');
 		
 		// 查检返点设置
 		if($update['fanDian']){
 			$this->getSystemSettings();
-			if($update['fanDian'] % $this->settings['fanDianDiff']) throw new Exception(sprintf('返点只能是%.1f%的倍数', $this->settings['fanDianDiff']));
+			if($update['fanDian'] % $this->settings['fanDianDiff']) $this->output(1,array(),sprintf('返点只能是%.1f%的倍数', $this->settings['fanDianDiff']));
 			
 			$count=$this->getMyUserCount();
 			$sql="select userCount, (select count(*) from {$this->prename}members m where m.parentId={$this->user['uid']} and m.fanDian=s.fanDian) registerCount from {$this->prename}params_fandianset s where s.fanDian={$update['fanDian']}";
 			$count=$this->getRow($sql);
-			//throw new Exception($sql);
-			//throw new Exception(sprintf('注册人数：%d，总人数：%d', $count['registerCount'], $count['userCount']));
+			//$this->output(1,array(),$sql);
+			//$this->output(1,array(),sprintf('注册人数：%d，总人数：%d', $count['registerCount'], $count['userCount']));
 			
-			if($count && $count['registerCount']>=$count['userCount']) throw new Exception(sprintf('对不起返点为%.1f的下级人数已经达到上限', $update['fanDian']));
+			if($count && $count['registerCount']>=$count['userCount']) $this->output(1,array(),sprintf('对不起返点为%.1f的下级人数已经达到上限', $update['fanDian']));
 		}else{
 			$update['fanDian']=0.0;
 		}
@@ -346,7 +346,7 @@ class Team extends WebLoginBase{
 	
 	public final function userUpdateed(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被非法篡改，请重新操作');
 
@@ -398,29 +398,29 @@ class Team extends WebLoginBase{
  /*额度转移*/
 	public final function userUpdateed2(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  throw new Exception('数据包被非法篡改，请重新操作');
+		if($urlcheck<>$urldan)  $this->output(1,array(),'数据包被非法篡改，请重新操作');
 
-		if(!$para=$_POST) throw new Exception('提交数据出错，请重新操作');
+		if(!$para=$_POST) $this->output(1,array(),'提交数据出错，请重新操作');
 
         if($this->settings['recharge']==1){
 		$uid=intval($para['uid']);
 		$uid2=$this->user['uid'];
 		$para['coin']=floatval($para['coin']);
-		if($para['coin']<1 || $para['coin']>10000) throw new Exception('只能充值1-10000元');
+		if($para['coin']<1 || $para['coin']>10000) $this->output(1,array(),'只能充值1-10000元');
 		if(!$para['coin']) unset($para['coin']);
 
 		$this->beginTransaction();
 		try{
 		$sql="select * from {$this->prename}members where uid=?";
 		$userData=$this->getRow($sql, $uid2);
-        if(!$userData2=$this->getRow($sql, $uid)) throw new Exception('此会员不存在!');
+        if(!$userData2=$this->getRow($sql, $uid)) $this->output(1,array(),'此会员不存在!');
 
-		if($userData2['parentId']!=$uid2) throw new Exception('此会员不是的你的直属会员，请重新选择！');
-		if(!$userData2['enable']) throw new Exception('此会员已被冻结，无法转移！');
-		if($userData['coin']<=0) throw new Exception('余额不足，请先充值！');
-		if($userData['coin']<$para['coin']) throw new Exception('可用余额小于充值金额，请先充值！');
+		if($userData2['parentId']!=$uid2) $this->output(1,array(),'此会员不是的你的直属会员，请重新选择！');
+		if(!$userData2['enable']) $this->output(1,array(),'此会员已被冻结，无法转移！');
+		if($userData['coin']<=0) $this->output(1,array(),'余额不足，请先充值！');
+		if($userData['coin']<$para['coin']) $this->output(1,array(),'可用余额小于充值金额，请先充值！');
 		$abc['coin']=$userData['coin']-$para['coin'];
         $def['coin']=$userData2['coin']+$para['coin'];
 		
@@ -444,12 +444,12 @@ class Team extends WebLoginBase{
 					));	//上级充值结束
 
 		$this->commit();
-		echo '充值成功';
+		$this->output(0,array(), '充值成功');
 		unset($uid2);unset($uid);unset($abc['coin']);unset($def['coin']);unset($userData);unset($userData2);
 		}catch(Exception $e){
 			$this->rollBack();
 			throw $e;
 		}
-	  }else{ throw new Exception('上级充值功能已经关闭！');}
+	  }else{ $this->output(1,array(),'上级充值功能已经关闭！');}
 	}
 }
