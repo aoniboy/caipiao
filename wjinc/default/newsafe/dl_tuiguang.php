@@ -12,7 +12,7 @@
 <div class="wrap_box">
     <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>推广链接</div>
     <div class="clearfix myp_top dlm_top">
-            <div class="myp_btn tc dl_dglink"><a class="fff" href="">添加链接</a></div> 
+            <div class="myp_btn tc dl_dglink"><a class="fff" href="/index.php/team/addlink">添加链接</a></div> 
     </div>
     <div class="table_scroll">
     <div class="myp_table" style="width:550px;">
