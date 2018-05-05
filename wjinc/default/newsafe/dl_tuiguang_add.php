@@ -46,7 +46,7 @@
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
-    <div class="hint_pop hide hint_pop1">
+    <div class=" hide hint_pop1">
         <div class="gameo_mask"></div>
         <div class="hint_con">
             <div class="hint_title f32 tc hint_titles">系统提示</div>
