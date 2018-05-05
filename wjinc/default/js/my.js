@@ -85,7 +85,7 @@ var my = {
             },'json' );
         })
     },
-    member: function: function(){
+    member: function(){
         //会员管理
         $("#my_member_edit").click(function(){
             var v1 = $(".i1").val();
