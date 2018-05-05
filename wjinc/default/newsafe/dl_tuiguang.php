@@ -15,7 +15,7 @@
             <div class="myp_btn tc dl_dglink"><a class="fff" href="">添加链接</a></div> 
     </div>
     <div class="table_scroll">
-    <div class="myp_table" style="width:470px;">
+    <div class="myp_table" style="width:480px;">
         <?php
 	$sql="select * from {$this->prename}links where uid={$this->user['uid']}";
 	
