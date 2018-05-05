@@ -56,7 +56,7 @@
             </li>
         </ul>
         <div class="myi_btns flex">
-            <div class="tc fx myi_btns1" id="dl_add">添加</div>
+            <div class="tc fx myi_btns1" id="dl_add_member">添加</div>
             <input class="tc fx myi_btns2" type="reset" value="重置" />
         </div>
     </form>
