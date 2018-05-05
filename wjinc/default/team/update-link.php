@@ -30,5 +30,6 @@
             <input  class="col67 fl f22" style="width:55%" readonly value="<?=date("Y-m-d H:i:s",$linkData['regTime'])?>">
         </li>
     </ul>
+    <div id="tg_edit" style="width:2rem; padding:.1rem;border-radius: .1rem; color:#fff;text-align: center;margin:.2rem auto; background: #fc7166;">修改</div>
 </form>
 </div>
