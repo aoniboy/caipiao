@@ -70,25 +70,25 @@ class User extends WebBase{
 		$username=wjStrFilter($_POST['username']);
 		$vcode=$_POST['vcode'];
 
-        if(!ctype_alnum($username)) throw new Exception('用户名包含非法字符,请重新输入');
+        if(!ctype_alnum($username)) $this->outputData(1,array(),'用户名包含非法字符,请重新输入');
 
 		if(!isset($username)){
-			throw new Exception('请输入用户名');
+			$this->outputData(1,array(),'请输入用户名');
 		}
 		if(!isset($vcode)){
-			throw new Exception('请输入验证码');
+			$this->outputData(1,array(),'请输入验证码');
 		}
 		
 		if($vcode!=$_SESSION[$this->vcodeSessionName]){
-			throw new Exception('验证码不正确。');
+			$this->outputData(1,array(),'验证码不正确。');
 		}
 		
 		$sql="select * from {$this->prename}members where isDelete=0 and admin=0 and username=?";
 		if(!$user=$this->getRow($sql, $username)){
-			throw new Exception('用户名不正确');
+			$this->outputData(1,array(),'用户名不正确');
 		}
 		if(!$user['enable']){
-			throw new Exception('您的帐号被冻结，请联系管理员。');
+			$this->outputData(1,array(),'您的帐号被冻结，请联系管理员。');
 		}
 		setcookie('username',$user['username']);
 		if($user['care']){
@@ -105,27 +105,27 @@ class User extends WebBase{
 	    $username=wjStrFilter($_POST['username']);
         $password=wjStrFilter($_POST['password']);
 
-		if(!ctype_alnum($username)) throw new Exception('用户名包含非法字符,请重新登陆');
+		if(!ctype_alnum($username)) $this->outputData(1,array(),'用户名包含非法字符,请重新登陆');
 		
 		if(!$username){
-			throw new Exception('请输入用户名');
+			$this->outputData(1,array(),'请输入用户名');
 		}
 		
 		if(!$password){
-			throw new Exception('不允许空密码登录');
+			$this->outputData(1,array(),'不允许空密码登录');
 		}
 		
 		$sql="select * from {$this->prename}members where isDelete=0 and admin=0 and username=?";
 		if(!$user=$this->getRow($sql, $username)){
-			throw new Exception('用户名或密码不正确');
+			$this->outputData(1,array(),'用户名或密码不正确');
 		}
 		
 		if(md5($password)!=$user['password']){
-			throw new Exception('密码不正确');
+			$this->outputData(1,array(),'密码不正确');
 		}
 
 		if(!$user['enable']){
-			throw new Exception('您的帐号被冻结，请联系管理员。');
+			$this->outputData(1,array(),'您的帐号被冻结，请联系管理员。');
 		}
 
 		$session=array(
@@ -168,7 +168,7 @@ class User extends WebBase{
 	 */
 	public final function r($userxxx){
 		if(!$userxxx){
-			//throw new Exception('链接错误！');
+			//$this->outputData(1,array(),'链接错误！');
 			$this->display('newsafe/register.php');
 		}else{
 			include_once $_SERVER['DOCUMENT_ROOT'].'/lib/classes/Xxtea.class';
@@ -180,7 +180,7 @@ class User extends WebBase{
 			$uid=$LArry[1];
 
 			if(!$this->getRow("select uid from {$this->prename}members where uid=?",$uid)){
-				//throw new Exception('链接失效！');
+				//$this->outputData(1,array(),'链接失效！');
 				$this->display('newsafe/register.php');
 			}else{
 				$this->display('newsafe/register.php',0,$uid,$lid);
@@ -189,11 +189,11 @@ class User extends WebBase{
 	}
 	public final function registered(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  throw new Exception('数据包被篡改，请重新操作');
+		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被篡改，请重新操作');
 
-		if(!$_POST)  throw new Exception('提交数据出错，请重新操作');
+		if(!$_POST)  $this->outputData(1,array(),'提交数据出错，请重新操作');
 
 		//表单过滤
 		$lid=intval($_POST['lid']);
@@ -203,19 +203,19 @@ class User extends WebBase{
 		$vcode=wjStrFilter($_POST['vcode']);
 		$password=md5($_POST['password']);
 
-		if($vcode!=$_SESSION[$this->vcodeSessionName]) throw new Exception('验证码不正确。');
+		if($vcode!=$_SESSION[$this->vcodeSessionName]) $this->outputData(1,array(),'验证码不正确。');
 
 		//清空验证码session
 	    $_SESSION[$this->vcodeSessionName]="";
 
-		if(!ctype_alnum($user)) throw new Exception('用户名包含非法字符');
-		if(!ctype_digit($qq)) throw new Exception('QQ包含非法字符');
+		if(!ctype_alnum($user)) $this->outputData(1,array(),'用户名包含非法字符');
+		if(!ctype_digit($qq)) $this->outputData(1,array(),'QQ包含非法字符');
 		
 		$sql="select * from {$this->prename}links where lid=?";
 		$linkData=$this->getRow($sql, $lid);
 		if(!$_POST['lid']) $para['lid']=$lid;
-		if(!$linkData) throw new Exception('不存在此注册链接。');
-		if(!$parentId) throw new Exception('链接错误');
+		if(!$linkData) $this->outputData(1,array(),'不存在此注册链接。');
+		if(!$parentId) $this->outputData(1,array(),'链接错误');
 		$para=array(
 			'username'=>$user,
 			'type'=>$linkData['type'],
@@ -230,22 +230,22 @@ class User extends WebBase{
 			);
         //$regtime=$this->getrow("select * from {$this->prename}members where regIP=? order by regTime DESC limit 1",ip2long($this->ip(true)));
 		//$time=strtotime($this->time)-$this->iff($regtime['regTime'],$regtime['regTime'],strtotime($this->time)-400);
-		//if($time<300) throw new Exception('同一IP 5 分钟内只能注册一次');
+		//if($time<300) $this->outputData(1,array(),'同一IP 5 分钟内只能注册一次');
 
 		if(!$para['nickname']) $para['nickname']='未设昵称';
 		if(!$para['name']) $para['name']=$para['username'];
 		$this->beginTransaction();
 		try{
 			$sql="select username from {$this->prename}members where username=?";
-			if($this->getValue($sql, $para['username'])) throw new Exception('用户"'.$para['username'].'"已经存在');
+			if($this->getValue($sql, $para['username'])) $this->outputData(1,array(),'用户"'.$para['username'].'"已经存在');
 			if($this->insertRow($this->prename .'members', $para)){
 				$id=$this->lastInsertId();
 				$sql="update {$this->prename}members set parents=concat(parents, ',', $id) where `uid`=$id";
 				$this->update($sql);
 				$this->commit();
-				return '注册成功';
+				$this->outputData(0,array(),'注册成功');
 			}else{
-				throw new Exception('注册失败');
+				$this->outputData(1,array(),'注册失败');
 			}	
 		}catch(Exception $e){
 			$this->rollBack();
