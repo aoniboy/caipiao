@@ -49,7 +49,7 @@
     <form class="myt_form">
     <input name="CANKIF_BOK" type="hidden" value="<?=$timess?>" />
     <input name="TOLKEASF_ASH" type="hidden" value="<?=$token?>" />
-    <ul class="myi_list myt_list">
+    <ul class="myi_list myt_list myt_list1">
         <li class="clearfix rel">
             <div class="fl myw">银行类型：</div>
             <img class="fl col67" src="/<?=$bank['logo']?>" title="<?=$bank['bankName']?>" style="    width: auto;margin: .05rem 0;height: .6rem;">
@@ -60,7 +60,7 @@
         </li>
         <li class="clearfix">
             <div class="fl myw">账户名：</div>
-            <input class="col67 fl" type="text" readonly name="address" value="<?=preg_replace('/^(\w).*$/', '\1**', $bank['username'])?>">
+            <input class="col67 fl" type="text" readonly value="<?=preg_replace('/^(\w).*$/', '\1**', $bank['username'])?>">
         </li>
         <li class="clearfix">
             <div class="fl myw">提款金额：</div>
