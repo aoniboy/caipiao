@@ -1,7 +1,7 @@
 <?php 
 
 	$sql="select * from {$this->prename}links where lid=?";
-	$linkData=$this->getRow($sql, $args[0]);
+	$linkData=$this->getRow($sql, $this->id);
 	
 	if($linkData['uid']){
 		$parentData=$this->getRow("select fanDian, fanDianBdw, username from {$this->prename}members where uid=?", $linkData['uid']);
