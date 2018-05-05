@@ -318,3 +318,5 @@ table {table-layout: fixed;}
 .inline{ display: inline; }
 .lot_left .lot_num span{background: linear-gradient(#fb7b5c, #fb3b38); display: inline-block;width:.46rem ;height: .46rem; border-radius: 100px; line-height: .46rem; text-align: center; color: #fff; margin-right: .1rem; }
 .myt_list1{  padding-bottom: 1rem; }
+.dtg_list li .col67 {width:1.5rem;}
+.dtg_list li .myw{width:1.5rem;}

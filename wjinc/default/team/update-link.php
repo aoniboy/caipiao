@@ -14,11 +14,11 @@
 <div>
 <form action="/index.php/team/linkUpdateed" target="ajax" method="post" call="linkDataSubmitCode" onajax="linkDataBeforeSubmitCode" dataType="html">
 	<input type="hidden" name="lid" value="<?=$args[0]?>"/>
-    <ul class="myi_list dla_list">
+    <ul class="myi_list dla_list dtg_list">
         <li class="clearfix">
             <div class="fl myw ">返点：</div>
             <input class="col67 fl i5"  type="text" name="fanDian" value="<?=$linkData['fanDian']?>" max="<?=$parentData['fanDian']?>" min="0" fanDianDiff=<?=$this->settings['fanDianDiff']?> >
-            <span class="">0—<?=$parentData['fanDian']?>%</span>
+            <span class="fl">0—<?=$parentData['fanDian']?>%</span>
         </li>
         <li class="clearfix">
             <div class="fl myw ">不定位返点：</div>
@@ -26,7 +26,7 @@
             <span class="fl">0—<?=$parentData['fanDianBdw']?>%</span>
         </li>
         <li class="clearfix">
-            <div class="fl myw ">加入时间</div>
+            <div class="fl myw ">加入时间：</div>
             <input  class="col67 fl" readonly value="<?=date("Y-m-d H:i:s",$linkData['regTime'])?>">
         </li>
     </ul>
