@@ -37,10 +37,10 @@
                 <input class="col67 fl" type="text col67" readonly value="<?=$userData['username']?>">
             </li>
             <li class="clearfix rel">
-                <div class="fl myw">账号类型：</div>
+                <div class="fl myw">提成类型：</div>
                 <div class="fl ol67">
-                    <label><input type="radio" name="type" value="1" checked="checked" style="-webkit-appearance: radio " <?php if($userData['tctype']==1) echo 'checked="checked"'?>> 分成</label>
-                    <label><input name="type" type="radio" value="0"  style="-webkit-appearance:radio; margin-left: .2rem" <?php if($userData['tctype']==0) echo 'checked="checked"'?>> 返点</label>
+                    <label><input type="radio" name="tctype" value="1" checked="checked" style="-webkit-appearance: radio " <?php if($userData['tctype']==1) echo 'checked="checked"'?>> 分成</label>
+                    <label><input name="tctype" type="radio" value="0"  style="-webkit-appearance:radio; margin-left: .2rem" <?php if($userData['tctype']==0) echo 'checked="checked"'?>> 返点</label>
                 </div>
             </li>
             <li class="clearfix">
@@ -60,7 +60,7 @@
             </li>
             <li class="clearfix">
                 <div class="fl myw">注册时间：</div>
-                <input class="col67 fl i2" type="text col67" readonly value="<?=date("Y-m-d",$userData['regTime'])?>">
+                <input class="col67 fl i2" type="text" readonly value="<?=date("Y-m-d",$userData['regTime'])?>">
             </li>
         </ul>
         <div class="myi_btns flex">
