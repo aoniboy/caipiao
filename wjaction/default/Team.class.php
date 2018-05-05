@@ -234,7 +234,7 @@ class Team extends WebLoginBase{
 	
 	/*删除注册链接*/
 	public final function linkDeleteed(){
-		$lid=intval($_POST['lid']);
+		$lid=intval($_GET['lid']);
 		if($uid=$this->getvalue("select uid from {$this->prename}links where lid=?",$lid)){
 		     if($uid!=$this->user['uid']) $this->outputData(1,array(),'只能删除自己的推广链接!');
 		}else{
