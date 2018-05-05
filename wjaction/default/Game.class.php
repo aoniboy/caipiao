@@ -347,7 +347,7 @@ class Game extends WebLoginBase{
 			$this->update($sql, $id);
 
 			$this->commit();
-			$this->outputData(0,[]);
+			$this->outputData(0,array());
 		}catch(Exception $e){
 			$this->rollBack();
 			throw $e;
