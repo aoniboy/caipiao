@@ -123,6 +123,7 @@ class Team extends WebLoginBase{
 		$this->display('newsafe/dl_tuiguang_add.php');
 	}
 	public final function linkDelete($lid){
+	    $this->id = intval($lid);
 		$data = $this->fetch('team/delete-link.php',0,intval($lid));
 		$this->outputData(0,$data);
 	}
@@ -130,6 +131,7 @@ class Team extends WebLoginBase{
 		$this->display('newsafe/dl_tuiguang.php');
 	}
 	public final function getLinkCode($id){
+	    $this->id = intval($id);
 		$data = $this->fetch('team/get-linkcode.php', 0, intval($id), $this->user['uid'], $this->urlPasswordKey);
 		$this->outputData(0,$data);
 	}
@@ -189,6 +191,7 @@ class Team extends WebLoginBase{
 	
 	/*编辑注册链接*/
 	public final function linkUpdate($id){
+	    $this->id = intval($id);
 		$data = $this->fetch('team/update-link.php', 0, intval($id));
 		$this->outputData(0,$data);
 	}
