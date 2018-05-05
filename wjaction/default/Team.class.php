@@ -62,7 +62,7 @@ class Team extends WebLoginBase{
 		$this->getPlayeds();
 		$this->page = empty($_GET['page'])?1:$_GET['page'];
 	    $data = $this->fetch('team/record-list.php');
-	    $this->outputDataData(0,$data);
+	    $this->outputData(0,$data);
 	}
 	/*游戏记录 结束*/
 	
@@ -76,7 +76,7 @@ class Team extends WebLoginBase{
 	public final function searchReport(){
 		
 		$data = $this->fetch('team/report-list.php');
-		$this->outputDataData(0,$data);
+		$this->outputData(0,$data);
 	}
 	/*团队报表 结束*/
 	
@@ -89,7 +89,7 @@ class Team extends WebLoginBase{
 	public final function searchCoin(){
 	    $this->page = empty($_GET['page'])?1:$_GET['page'];
 		$data = $this->fetch('team/coin-log.php');
-		$this->outputDataData(0,$data);
+		$this->outputData(0,$data);
 	}
 	/*帐变列表 结束*/
 	
@@ -125,7 +125,7 @@ class Team extends WebLoginBase{
 	public final function linkDelete($lid){
 	    $this->id = intval($lid);
 		$data = $this->fetch('team/delete-link.php',0,intval($lid));
-		$this->outputDataData(0,$data);
+		$this->outputData(0,$data);
 	}
 	public final function linkList(){
 		$this->display('newsafe/dl_tuiguang.php');
@@ -133,7 +133,7 @@ class Team extends WebLoginBase{
 	public final function getLinkCode($id){
 	    $this->id = intval($id);
 		$data = $this->fetch('team/get-linkcode.php', 0, intval($id), $this->user['uid'], $this->urlPasswordKey);
-		$this->outputDataData(0,$data);
+		$this->outputData(0,$data);
 	}
 	public final function advLink(){
 		$this->display('team/link-list.php');
@@ -193,7 +193,7 @@ class Team extends WebLoginBase{
 	public final function linkUpdate($id){
 	    $this->id = intval($id);
 		$data = $this->fetch('team/update-link.php', 0, intval($id));
-		$this->outputDataData(0,$data);
+		$this->outputData(0,$data);
 	}
 	
 	public final function linkUpdateed(){
@@ -251,7 +251,7 @@ class Team extends WebLoginBase{
 	public final function searchMember(){
 		$this->page = empty($_GET['page'])?1:$_GET['page'];
 		$data = $this->fetch('team/member-search-list.php');
-		$this->outputDataData(0,$data);
+		$this->outputData(0,$data);
 	}
 	public final function searchMemberDetail(){
 	    $this->display('newsafe/dl_member_detail.php', 0, intval($id));
@@ -261,9 +261,9 @@ class Team extends WebLoginBase{
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  $this->outputDataData(1,array(),'数据包被篡改，请重新操作');
+		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被篡改，请重新操作');
 
-		if(!$_POST) $this->outputDataData(1,array(),'提交数据出错，请重新操作');
+		if(!$_POST) $this->outputData(1,array(),'提交数据出错，请重新操作');
 
         //过滤未知字段
 		$update['username']=wjStrFilter($_POST['username']);
@@ -274,22 +274,22 @@ class Team extends WebLoginBase{
 		$update['type']=intval($_POST['type']);
         
 		//接收参数检查
-		if($update['fanDian']<0) $this->outputDataData(1,array(),'返点不能小于0');
-		if($update['fanDianBdw']<0) $this->outputDataData(1,array(),'不定位不能小于0');
+		if($update['fanDian']<0) $this->outputData(1,array(),'返点不能小于0');
+		if($update['fanDianBdw']<0) $this->outputData(1,array(),'不定位不能小于0');
 		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) $this->outputData(1,array(),'返点不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
 		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<=0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) $this->outputData(1,array(),'不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
-		if(!$update['username']) $this->outputDataData(1,array(),'用户名不能为空，请重新操作');
-		if($update['type']!=0 && $update['type']!=1) $this->outputDataData(1,array(),'类型出错，请重新操作');
+		if(!$update['username']) $this->outputData(1,array(),'用户名不能为空，请重新操作');
+		if($update['type']!=0 && $update['type']!=1) $this->outputData(1,array(),'类型出错，请重新操作');
 
-		if(!ctype_alnum($update['username'])) $this->outputDataData(1,array(),'用户名包含非法字符,请重新输入');
+		if(!ctype_alnum($update['username'])) $this->outputData(1,array(),'用户名包含非法字符,请重新输入');
 //		if(!ctype_digit($update['qq'])) $this->outputData(1,array(),'QQ包含非法字符');
 
 		$userlen=strlen($update['username']);
 		$passlen=strlen($update['password']);
 		$qqlen=strlen($update['qq']);
 
-		if($userlen<4 || $userlen>16) $this->outputDataData(1,array(),'用户名长度不正确,请重新输入');
-		if($passlen<6) $this->outputDataData(1,array(),'密码至少六位,请重新输入');
+		if($userlen<4 || $userlen>16) $this->outputData(1,array(),'用户名长度不正确,请重新输入');
+		if($passlen<6) $this->outputData(1,array(),'密码至少六位,请重新输入');
 //		if($qqlen<4 || $qqlen>13) $this->outputData(1,array(),'QQ号为4-12位,请重新输入');
 
 		$update['parentId']=$this->user['uid'];
@@ -325,7 +325,7 @@ class Team extends WebLoginBase{
 		$this->beginTransaction();
 		try{
 			$sql="select username from {$this->prename}members where username=?";
-			if($this->getValue($sql, $update['username']))$this->outputDataData(1,array(),'用户“'.$update['username'].'”已经存在');
+			if($this->getValue($sql, $update['username']))$this->outputData(1,array(),'用户“'.$update['username'].'”已经存在');
 			if($this->insertRow($this->prename .'members', $update)){
 				$id=$this->lastInsertId();
 				$sql="update {$this->prename}members set parents=concat(parents, ',', $id) where `uid`=$id";
@@ -333,9 +333,9 @@ class Team extends WebLoginBase{
 				
 				$this->commit();
 				
-				$this->outputDataData(0,array(),'添加会员成功');
+				$this->outputData(0,array(),'添加会员成功');
 			}else{
-				$this->outputDataData(1,array(),'添加会员失败');
+				$this->outputData(1,array(),'添加会员失败');
 			}
 			
 		}catch(Exception $e){
@@ -348,9 +348,9 @@ class Team extends WebLoginBase{
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
 		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
-		if($urlcheck<>$urldan)  $this->outputDataData(1,array(),'数据包被非法篡改，请重新操作');
+		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据包被非法篡改，请重新操作');
 
-		if(!$_POST) $this->outputDataData(1,array(),'提交数据出错，请重新操作');
+		if(!$_POST) $this->outputData(1,array(),'提交数据出错，请重新操作');
         
 		//过滤未知字段
 		$update['type']=intval($_POST['type']);
@@ -359,19 +359,19 @@ class Team extends WebLoginBase{
 		$update['fanDianBdw']=floatval($_POST['fanDianBdw']);
 		$uid=$update['uid'];
 
-        if($update['fanDian']<0) $this->outputDataData(1,array(),'分成不能小于0');
-		if($update['fanDianBdw']<0) $this->outputDataData(1,array(),'不定位不能小于0');
+        if($update['fanDian']<0) $this->outputData(1,array(),'分成不能小于0');
+		if($update['fanDianBdw']<0) $this->outputData(1,array(),'不定位不能小于0');
 		$fandian=$this->getvalue("select fanDian from {$this->prename}members where uid=?",$update['uid']);
 		$fanDianBdw=$this->getvalue("select fanDianBdw from {$this->prename}members where uid=?",$update['uid']);
-		if($update['fanDian']<$fandian) $this->outputDataData(1,array(),'返点不能降低!');
-		if($update['fanDianBdw']<$fanDianBdw) $this->outputDataData(1,array(),'不定位返点不能降低!');
-		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) $this->outputDataData(1,array(),'分成不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
-		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) $this->outputDataData(1,array(),'不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
-		if($update['type']!=0 && $update['type']!=1) $this->outputDataData(1,array(),'类型出错，请重新操作');
+		if($update['fanDian']<$fandian) $this->outputData(1,array(),'返点不能降低!');
+		if($update['fanDianBdw']<$fanDianBdw) $this->outputData(1,array(),'不定位返点不能降低!');
+		if($update['fanDian']>$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff'])) $this->outputData(1,array(),'分成不能大于'.$this->iff($this->user['fanDian']-$this->settings['fanDianDiff']<0,0,$this->user['fanDian']-$this->settings['fanDianDiff']));
+		if($update['fanDianBdw']>$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff'])) $this->outputData(1,array(),'不定位返点不能大于'.$this->iff($this->user['fanDianBdw']-$this->settings['fanDianDiff']<0,0,$this->user['fanDianBdw']-$this->settings['fanDianDiff']));
+		if($update['type']!=0 && $update['type']!=1) $this->outputData(1,array(),'类型出错，请重新操作');
 
-		if($uid==$this->user['uid']) $this->outputDataData(1,array(),'不能修改自己的返点');
-		if(!$parentId=$this->getvalue("select parentId from {$this->prename}members where uid=?",$uid))$this->outputDataData(1,array(),'此会员不存在!');
-		if($parentId!=$this->user['uid']) $this->outputDataData(1,array(),'此会员不是你的直属下线，无法修改');
+		if($uid==$this->user['uid']) $this->outputData(1,array(),'不能修改自己的返点');
+		if(!$parentId=$this->getvalue("select parentId from {$this->prename}members where uid=?",$uid))$this->outputData(1,array(),'此会员不存在!');
+		if($parentId!=$this->user['uid']) $this->outputData(1,array(),'此会员不是你的直属下线，无法修改');
 
 		if(!$_POST['fanDian']){unset($_POST['fanDian']);unset($update['fanDian']);}
 		if(!$_POST['fanDianBdw']){unset($_POST['fanDianBdw']);unset($update['fanDianBdw']);}
@@ -381,16 +381,16 @@ class Team extends WebLoginBase{
 		$update['tctype']=intval($_POST['tctype']);
 		$update['tcpoint']=($update['tctype']?floatval($_POST['tcpoint']):0);
 		if($update['tctype']==1) {
-			if($update['tcpoint']<0) $this->outputDataData(1,array(),'分成不能小于0');
+			if($update['tcpoint']<0) $this->outputData(1,array(),'分成不能小于0');
 			$tcpoint=$this->getvalue("select tcpoint from {$this->prename}members where uid=?",$update['uid']);
-			if($update['tcpoint']<$tcpoint) $this->outputDataData(1,array(),'分成不能降低!');
-			if($update['tcpoint']>$this->iff($this->user['tcpoint']-$this->settings['tcpointDiff']<0,0,$this->user['tcpoint']-$this->settings['tcpointDiff'])) $this->outputDataData(1,array(),'分成不能大于'.$this->iff($this->user['tcpoint']-$this->settings['tcpointDiff']<0,0,$this->user['tcpoint']-$this->settings['tcpointDiff']));
+			if($update['tcpoint']<$tcpoint) $this->outputData(1,array(),'分成不能降低!');
+			if($update['tcpoint']>$this->iff($this->user['tcpoint']-$this->settings['tcpointDiff']<0,0,$this->user['tcpoint']-$this->settings['tcpointDiff'])) $this->outputData(1,array(),'分成不能大于'.$this->iff($this->user['tcpoint']-$this->settings['tcpointDiff']<0,0,$this->user['tcpoint']-$this->settings['tcpointDiff']));
 		}
 
 		if($this->updateRowss($this->prename .'members', $update, "uid=$uid")){
-			$this->outputDataData(0,array(),'修改成功');
+			$this->outputData(0,array(),'修改成功');
 		}else{
-			$this->outputDataData(1,array(),'未知出错');
+			$this->outputData(1,array(),'未知出错');
 		}
 		
 	}
