@@ -41,8 +41,10 @@
         </div>
         <!-- <div class="myp_btn fr">查询</div> -->
     </div>
-    <div class="myp_table" style="width:800px">
-        
+    <div class="table_scroll">
+        <div class="myp_table" style="width:1000px">
+            
+        </div>
     </div>
    
 </div>
