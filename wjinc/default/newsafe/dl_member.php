@@ -75,6 +75,14 @@
             }
         },'json' );
     }
+    //查看详情
+    $(document).on('click', '.caozuo', function(){
+        var href = $(this).attr('data-href');
+        $.post(href,function(res){
+        	$(".myp_table").html(res.data);
+        },'json' );
+        return false;
+    })
 </script>
 </body>
 </html>

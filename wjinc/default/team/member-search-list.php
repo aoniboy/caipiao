@@ -73,9 +73,9 @@ $this->getSystemSettings();
     			<?php if($this->settings['recharge']==1){?>
     				<a href="/index.php/team/userUpdate2/<?=$var['uid']?>" style="color:#333;" target="modal"  width="420" title="给下级充值" modal="true" button="确定:dataAddCode|取消:defaultCloseModal">充值</a>&nbsp;&nbsp;
                 <?php }?>
-				<a class="caozuo" href="/index.php/team/searchMember?type=2&uid=<?=$var['uid']?>">查看下级</a></td>
+				<a class="caozuo" href="javascript:void(0)" data-href="/index.php/team/searchMember/?type=2&uid=<?=$var['uid']?>">查看下级</a></td>
             <?php }else{ ?>
-            	<td><a class="caozuo" href="/index.php/team/searchMember?type=2&uid=<?=$var['uid']?>">查看下级</a></td>
+            	<td><a class="caozuo" href="javascript:void(0)" data-href="/index.php/team/searchMember/?type=2&uid=<?=$var['uid']?>">查看下级</a></td>
             <?php } ?>
 		</tr>
 	<?php } ?>
