@@ -243,9 +243,7 @@ class Team extends WebLoginBase{
 	}
 
 	public final function searchMember(){
-		$this->page = empty($_GET['page'])?1:$_GET['page'];
-		$data = $this->fetch('newsafe/dl_member_detail.php');
-		$this->outputData(0,$data);
+		$this->display('newsafe/dl_member_detail.php', 0, intval($id));
 	}
 	
 	public final function insertMember(){
