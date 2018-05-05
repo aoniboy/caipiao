@@ -62,7 +62,7 @@
             </div>
         </div>
 </div>
-
+<input id="denglu" type="hidden" value="1">
 <script src="/wjinc/default/js/common.js"></script>
 <script src="/wjinc/default/js/my.js"></script>
 <script>
@@ -87,14 +87,28 @@
             $(".hint_pop .hint_cont").text('验证码不能为空');
             return;
         }
-        $.post('/index.php/user/registered',{data:$(".dl_form").serialize()}, function(res){
-            if(!data.code){
 
-            } else{
-                $(".hint_pop").show();
-                $(".hint_pop .hint_cont").text(msg);
-            }
-        },'json' );
+        $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/index.php/user/registered" ,//url
+                data: $(".dl_form").serialize(),
+                success: function (res) {
+                	if(!res.code){
+                    	$(".hint_pop").show();
+                    	$(".hint_pop .hint_title").text('系统提示');
+                        $(".hint_pop .hint_cont").text(res.msg);
+                    } else{
+                        $(".hint_pop").show();
+                        $(".hint_pop .hint_cont").text(res.msg);
+                    }
+                    
+                },
+                error : function() {
+                    alert("异常！");
+                }
+            });
     })
     $(".hint_btn").click(function(){
         $(".hint_pop").hide();
