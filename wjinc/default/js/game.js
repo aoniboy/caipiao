@@ -3,6 +3,7 @@ var game = {
         this.bindEvent();
         this.windowInit();
         this.dealh5inback();
+        this.timing();
     },
     code:[],
     allCont:{
