@@ -665,6 +665,12 @@ var game = {
 	                        game.global.kjtimer = false;
 	                        clearInterval(kjtimer);
 	                        game.getOrder();
+                            $.post( '/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo ,function(res){
+                                if(res.data.flag){
+                                    $(".hint_pop1 .hint_cont").text(res.msg);
+                                    $(".hint_pop1").show();
+                                }
+                            },'json' );
 	                    }else{
 	                    	if(!game.is_false){
 	                            game.global.gametimer =setInterval(function(){
@@ -938,6 +944,18 @@ var game = {
             }
         });
     	
+    },
+    timing: function(){
+        var time_d1 = setInterval(function(){
+            $.post('/index.php/Tip/getCZTip',function(res){
+                if(res.data.flag){
+                    $(".hint_pop1 .hint_cont").text(res.msg);
+                    $(".hint_pop1").show();
+                }else{
+
+                }
+            },'json' );
+        },10000) 
     }
 
 }
