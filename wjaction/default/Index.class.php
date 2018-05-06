@@ -178,6 +178,18 @@ class Index extends WebLoginBase{
 	public final function userInfo(){
 		$this->display('index/inc_user.php');
 	}
+	// 加载人员信息框
+	public final function userAjaxInfo(){
+	    $stime = strtotime(date("Y-m-d 00:00:00"));
+	    $etime = strtotime(date("Y-m-d 23:59:59"));
+	    $sql = "select u.username, u.coin, u.uid, u.parentId, sum(b.mode * b.beiShu * b.actionNum) betAmount, sum(b.bonus) zjAmount, (select sum(c.amount) from ssc_member_cash c where c.`uid`=u.`uid` and c.state=0 and c.actionTime between $stime and $etime) cashAmount,(select sum(r.amount) from ssc_member_recharge r where r.`uid`=u.`uid` and r.state in(1,2,9) and r.actionTime between $stime and $etime) rechargeAmount, (select sum(l.coin) from ssc_coin_log l where l.`uid`=u.`uid` and l.liqType in(50,51,52,53) and l.actionTime between $stime and $etime) brokerageAmount from ssc_members u left join ssc_bets b on u.uid=b.uid and b.isDelete=0 and actionTime between $stime and $etime where 1 and u.uid=".$this->user['uid'];
+	    $info = $this->getRow($sql);
+	    $yingkui = sprintf("%.2f",$info['zjAmount']-$info['betAmount']);
+	    $this->freshSession();
+	    $data['money'] = $this->user['coin'];
+	    $data['yingkui'] = $yingkui;
+	    $this->outputData(0,$data);
+	}
 
 	// 加载历史开奖数据
 	public final function getHistoryDataLeft($type){

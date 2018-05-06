@@ -28,16 +28,18 @@ class Tip extends WebLoginBase{
 			if(intval($state)==4){
 				$info =  array(
 					'flag'=>true,
-					'message'=>'提款失败！<br/>原因：'.$info
+					'message'=>'提款失败！原因：'.$info
 				);
 			}else{
 				$info = array(
 					'flag'=>true,
-					'message'=>'提款成功！<br/>金额：'.$amount.'元'
+					'message'=>'提款成功！金额：'.$amount.'元'
 				);	
 			}
 			$this->outputData(0,$info);
 		}
+		$info =  array('flag'=>false);
+		$this->outputData(0,$info);
 	}
 	
 	/**
@@ -46,7 +48,6 @@ class Tip extends WebLoginBase{
 	public final function getCZTip(){
 		$sql="select id from {$this->prename}member_recharge where (state=1 or state=9) and isDelete=0 and flag=0 and uid=".$this->user['uid']." order by id desc";
 		if($data=$this->getCol($sql)){
-			print_r($data);
 			if($cookie=$_COOKIE['cash-CZtip']){
 				$cookie=explode(',',$cookie);
 			    if(!array_diff($data, $cookie)) {
@@ -75,7 +76,6 @@ class Tip extends WebLoginBase{
 		   $this->outputData(0,$info);
 		}
 		$info =  array('flag'=>false);
-		
 		$this->outputData(0,$info);
 		
 	}
@@ -92,15 +92,13 @@ class Tip extends WebLoginBase{
     		$czName=$this->getValue("select title from {$this->prename}type where id={$this->type}");
     		
     		$whereStr=" where type={$this->type} and uid={$this->user['uid']} and actionNo='{$ctionNo}' and isDelete=0 and flag=0 and length(lotteryNo)>0";
-    		echo "select id from {$this->prename}bets ".$whereStr;
     		if($this->getCol("select id from {$this->prename}bets ".$whereStr)){
     			$ykMoney=$this->getValue("select IFNULL(sum(bonus-(mode*beiShu*actionNum*(fpEnable+1)*(1-fanDian/100))),'0') tMoney from {$this->prename}bets ".$whereStr."");
-    			
     			if($ykMoney>0){
-    				$messager=$czName." 第".$ctionNo."期：<br />盈亏 <font style='color:#F00;font-weight:bold;font-size:14px;'>".round($ykMoney,2)."</font> 元";
+    				$messager=$czName." 第".$ctionNo."期：盈亏 <font style='color:#F00;font-weight:bold;font-size:14px;'>".round($ykMoney,2)."</font> 元";
     			
     			}else{
-    				$messager=$czName." 第".$ctionNo."期：<br />盈亏 <font style='color:#060;font-weight:bold;font-size:14px;'>".round($ykMoney,2)."</font> 元";
+    				$messager=$czName." 第".$ctionNo."期：盈亏 <font style='color:#060;font-weight:bold;font-size:14px;'>".round($ykMoney,2)."</font> 元";
     			
     			}
     			$this->query("update {$this->prename}bets set flag=1 ".$whereStr."");

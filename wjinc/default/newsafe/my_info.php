@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>会员中心－个人资料</title>
-    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
-    <script src="/wjinc/default/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css<?=$this->sversion?>">
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css<?=$this->sversion?>">
+    <script src="/wjinc/default/js/jquery.min.js<?=$this->sversion?>"></script>
 </head>
 <body class="bgf5">
 <div class="wrap_box">
@@ -106,7 +106,7 @@
     </div>
 </div>
 
-<script src="/wjinc/default/js/common.js"></script>
-<script src="/wjinc/default/js/my.js?a=1"></script>
+<script src="/wjinc/default/js/common.js<?=$this->sversion?>"></script>
+<script src="/wjinc/default/js/my.js<?=$this->sversion?>"></script>
 </body>
 </html>

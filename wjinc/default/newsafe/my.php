@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>会员中心</title>
-    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
-    <script src="/wjinc/default/js/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css<?=$this->sversion?>">
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css<?=$this->sversion?>">
+    <script src="/wjinc/default/js/jquery.min.js<?=$this->sversion?>"></script>
 </head>
 <body>
 
@@ -21,7 +21,7 @@
         </div>
         <div class="flex fff my_toptitle">
             <div class="fx tc">
-                <div class="f34"><?=$this->user['coin']?></div>
+                <div class="f34 yyue"><?=$this->user['coin']?></div>
                 <div>可用余额</div>
             </div>
             <?php 
@@ -32,7 +32,7 @@
             $yingkui = sprintf("%.2f",$info['zjAmount']-$info['betAmount']);
             ?>
             <div class="fx tc">
-                <div class="f34"><?=$yingkui?></div>
+                <div class="f34 yyingkui"><?=$yingkui?></div>
                 <div>今日盈亏 <i class="iconfont icon-qiehuan"></i></div>
             </div>
         </div>
@@ -105,14 +105,22 @@
         </li>
     </ul> 
      <?php } ?>   
+             <div class="hint_pop hide">
+        <div class="gameo_mask"></div>
+        <div class="hint_con">
+            <div class="hint_title f32 tc hint_titles">错误提示</div>
+            <div class="hint_cont f24"></div>
+            <div class="tc hint_btn f32">确定</div>
+        </div>
+    </div>
      <div class="myi_btns flex myt_btns ">
         <div class="tc fx myi_btns1 logout " > 退出</div>
         
     </div>
     	<?php $this->display('newinc_footer.php'); ?>
 </div>
-
-<script src="/wjinc/default/js/common.js"></script>
+<input id="ymy" type="hidden" value="1">
+<script src="/wjinc/default/js/common.js<?=$this->sversion?>"></script>
 
 </body>
 </html>

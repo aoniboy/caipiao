@@ -30,6 +30,7 @@ var game = {
     	cid:0,
     	gametimer:null,
     	kjtimer:false,
+    	kjtimeryk:false,
     	fengpantimer:null,
     	counttimer:null,
         datainfo:{
@@ -669,15 +670,7 @@ var game = {
 	                        game.global.kjtimer = false;
 	                        clearInterval(kjtimer);
 	                        game.getOrder();
-                            $.post( '/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo ,function(res){
-                                if(res.data.flag){
-                                    console.log(1);
-                                    //$(".hint_pop1 .hint_cont").text(res.data.message);
-                                    //$(".hint_pop1").show();
-                                }else{
-                                    console.log(2)
-                                }
-                            },'json' );
+	                        game.getYk();
 	                    }else{
 	                    	if(!game.is_false){
 	                            game.global.gametimer =setInterval(function(){
@@ -695,7 +688,7 @@ var game = {
 	                }
 	            },'json' );
 	            
-	        },1000);
+	        },3000);
 	        game.global.kjtimer = true;
     	}
     },
@@ -725,15 +718,6 @@ var game = {
 
                     }
                 }else{ 
-                	$.post( '/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo ,function(res){
-                        if(res.data.flag){
-                            console.log(1);
-                            //$(".hint_pop1 .hint_cont").text(res.data.message);
-                            //$(".hint_pop1").show();
-                        }else{
-                            console.log(2)
-                        }
-                    },'json' );
                     $(".gameo_num").html(data.data.kjNo);
                 }
             }else{
@@ -959,6 +943,22 @@ var game = {
         });
     	
     },
+    getYk: function() {
+    	var kjtimery=null;
+    	if(!game.global.kjtimeryk) {
+	        kjtimery=setInterval(function(){
+		    	$.post( '/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo ,function(res){
+		            if(res.data.flag){
+		                clearInterval(kjtimery);
+		                game.global.kjtimeryk =false;
+		                $(".hint_pop .hint_cont").html(res.data.message);
+		                $(".hint_pop").show();
+		            }
+		        },'json' );
+	        },1000);
+	        game.global.kjtimeryk = true;
+    	}
+    }
 
 }
 game.init();

@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>游戏</title>
-    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css">
-    <script src="/wjinc/default/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/skin/js/jqueryui/jquery-ui-1.8.23.custom.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="/skin/js/jqueryui/skin/smoothness/jquery-ui-1.8.21.custom.css" />
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css<?=$this->sversion?>">
+    <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css<?=$this->sversion?>">
+    <script src="/wjinc/default/js/jquery.min.js<?=$this->sversion?>"></script>
+    <script type="text/javascript" src="/skin/js/jqueryui/jquery-ui-1.8.23.custom.min.js<?=$this->sversion?>"></script>
+    <link type="text/css" rel="stylesheet" href="/skin/js/jqueryui/skin/smoothness/jquery-ui-1.8.21.custom.css<?=$this->sversion?>" />
 </head>
 <body>
 <style>
@@ -131,6 +131,7 @@
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
+    
     <div class="hint_pop1 hide">
         <div class="gameo_mask"></div>
         <div class="hint_con">
@@ -244,9 +245,9 @@
 	<?php $this->display('newinc_footer.php'); ?>
 </div>
 <input type="hidden" class="playedtype" value="<?=$this->type?>"/>
-<audio class="kaijiang" loop src="/wjinc/default/sound/kaijiang.wav"></audio>
-<script src="/wjinc/default/js/game.js?a=2"></script>
-<script src="/wjinc/default/js/common.js?a=3"></script>
+<audio class="kaijiang" loop src="/wjinc/default/sound/kaijiang.wav<?=$this->sversion?>"></audio>
+<script src="/wjinc/default/js/game.js<?=$this->sversion?>"></script>
+<script src="/wjinc/default/js/common.js<?=$this->sversion?>"></script>
 <script type="text/javascript">
 $( "#slider" ).slider();
 </script>

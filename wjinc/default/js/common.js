@@ -71,15 +71,38 @@ var common = {
     	if($('#denglu').val() !=1) {
     		var time_d1 = setInterval(function(){
                 $.post('/index.php/Tip/getCZTip',function(res){
-                	console.log(res)
                     if(res.data.flag){
-                        $(".hint_pop1 .hint_cont").text(res.data.message);
-                        $(".hint_pop1").show();
-                    }else{
-
+                        $(".hint_pop .hint_cont").text(res.data.message);
+                        $(".hint_pop .hint_title").text("系统提示");
+                        $(".hint_pop").show();
                     }
                 },'json' );
             },10000) 
+            $(".hint_btn").on('touchend', function(){
+                $(".hint_pop .hint_title").text('错误提示');
+                $(".hint_pop").hide();
+                return false;
+            })
+            if($('#ymy').val() ==1){
+	            var time_d2 = setInterval(function(){
+	                $.post('/index.php/index/userajaxinfo',function(res){
+	                    if(!res.code){
+	                        $('.yyue').text(res.data.money);
+	                        $('.yyingkui').text(res.data.yingkui);
+	                    }
+	                },'json' );
+	            },10000) 
+            }
+    		var time_d3 = setInterval(function(){
+                $.post('/index.php/Tip/getTKTip',function(res){
+                    if(res.data.flag){
+                        $(".hint_pop .hint_cont").html(res.data.message);
+                        $(".hint_pop .hint_title").text("系统提示");
+                        $(".hint_pop").show();
+                    }
+                },'json' );
+            },10000)
+
     	}
     },
 }
