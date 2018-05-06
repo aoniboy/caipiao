@@ -81,6 +81,7 @@ var common = {
             $(".hint_btn").on('touchend', function(){
                 $(".hint_pop .hint_title").text('错误提示');
                 $(".hint_pop").hide();
+                $(".hint_pop1").hide();
                 return false;
             })
             if($('#ymy').val() ==1){

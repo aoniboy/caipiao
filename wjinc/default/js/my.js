@@ -7,10 +7,7 @@ var my = {
     },
     bindEvent: function(){
 
-        $(".hint_btn").on('click', function(){
-            $(".hint_pop").hide();
-            $(".hint_pop1").hide();
-        })
+
         
         //提现转大写
         $(".my_tixian1").keyup(function(){
