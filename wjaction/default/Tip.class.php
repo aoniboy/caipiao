@@ -97,10 +97,11 @@ class Tip extends WebBase{
 			
 			}
 			$this->query("update {$this->prename}bets set flag=1 ".$whereStr."");
-			return array(
-				'flag'=>true,
-				'message'=>$messager
-			);
+			// return array(
+			// 	'flag'=>true,
+			// 	'message'=>$messager
+			// );
+			$this->outputData(1,array(),'添加链接失败');
 		 }
 	}}
 }
