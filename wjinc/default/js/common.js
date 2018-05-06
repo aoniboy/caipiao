@@ -5,6 +5,7 @@ var common = {
         this.checklogin();
         this.orderdetail();
         this.logout();
+        this.dealInfo();
     },
     bindEvent: function(){
         $(".w_heiht").height($(window).height());
@@ -65,6 +66,21 @@ var common = {
     	$(document).on('click', '.logout', function(){
     		window.location.href = "/index.php/user/logout";
     	});
-    }
+    },
+    dealInfo: function() {//每10秒检查用户信息
+    	if($('#denglu').val() !=1) {
+    		var time_d1 = setInterval(function(){
+                $.post('/index.php/Tip/getCZTip',function(res){
+                	console.log(res)
+                    if(res.data.flag){
+                        $(".hint_pop1 .hint_cont").text(res.data.message);
+                        $(".hint_pop1").show();
+                    }else{
+
+                    }
+                },'json' );
+            },10000) 
+    	}
+    },
 }
 common.init();

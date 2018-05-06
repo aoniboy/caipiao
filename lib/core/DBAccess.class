@@ -277,7 +277,6 @@ class DBAccess extends PDO{
 		$sql="update $table set";
 		foreach($data as $key=>$_v) $sql.=" $key=:$key,";
 		$sql=rtrim($sql, ',')." where $where";
-		echo $sql;
 		return $this->update($sql, $data);
 	}
 

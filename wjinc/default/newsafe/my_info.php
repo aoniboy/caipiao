@@ -58,7 +58,7 @@
             </li>
             <li class="clearfix">
                 <div class="fl myw">姓名：</div>
-                <input  class="col67 fl i1" type="text" name="username" value="<?=$this->iff($myBank['username'],mb_substr($myBank['username'],0,1,'utf-8').'**')?>" <?=$this->iff($flag, 'readonly')?>>
+                <input  class="col67 fl i1" type="text" name="username" value="<?=$this->iff($myBank['username'],mb_substr($myBank['username'],0,1,'utf-8').'**')?>" <?=$this->iff($myBank, 'readonly')?>>
             </li>
             <li class="clearfix">
                 <div class="fl myw">银行账号：</div>
@@ -74,7 +74,7 @@
             </li>
         </ul>
     </form>
-    <?php if(!$myBank['countname']){?>
+    <?php if(!$myBank['countname'] || !$flag){?>
     <div class="myi_btns flex">
         <div class="tc fx myi_btns1" id="my_info_edit">设置银行</div>
         <div class="tc fx myi_btns2">重置</div>

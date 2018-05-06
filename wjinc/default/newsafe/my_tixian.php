@@ -37,6 +37,7 @@
     $timess=md5(time());
     $token=md5($key.$timess);
 ?>
+
 <div class="wrap_box">
     <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>提现申请</div>
     <div class="f24 myt_text">每天提现<span class="mcol f32"><?=$this->getValue("select maxToCashCount from {$this->prename}member_level where level=?", $this->user['grade'])?></span>次，今天您已经成功发起了<span class="f34 mlv"><?=$times?></span>次提现申请<br>
@@ -46,6 +47,7 @@
             财务通/支付宝用户，最小提现100元，最大提现1000000元。
         </span>
     </div>
+    <?php if($bank['bankId']){?>
     <form class="myt_form">
     <input name="CANKIF_BOK" type="hidden" value="<?=$timess?>" />
     <input name="TOLKEASF_ASH" type="hidden" value="<?=$token?>" />
@@ -93,6 +95,9 @@
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
+    <?php }else{?>
+            <div style=" margin-top:30px; text-align:center;">尚未设置您的银行账户！&nbsp;&nbsp;<a href="/index.php/safe/info" style="color:#F00; text-decoration:none;">马上设置>></a></div>
+        <?php }?>
 </div>
 
 <script src="/wjinc/default/js/common.js"></script>

@@ -149,7 +149,7 @@ class Safe extends WebLoginBase{
 		$x=strlen($update['countname']);$a=strlen($update['username']);
 		$y=mb_strlen($update['countname'],'utf8');$b=mb_strlen($update['username'],'utf8');
 		if(($x!=$y && $x%$y==0)==FALSE) $this->outputData(1,array(),'开户行必须为汉字');
-		if(($a!=$b && $a%$b==0)==FALSE) $this->outputData(1,array(),'用户名必须为汉字');
+		
 		unset($x);unset($y);unset($a);unset($b);
 
 		// 更新用户信息缓存
@@ -172,6 +172,7 @@ class Safe extends WebLoginBase{
 				$this->outputData(1,array(),'更改银行信息出错');
 			}
 		}else{
+		    if(($a!=$b && $a%$b==0)==FALSE) $this->outputData(1,array(),'用户名必须为汉字');
 			if($this->insertRow($this->prename .'member_bank', $update)){
 				// 如果是工行，参与工行卡首次绑定活动
 				if($update['bankId']==1){

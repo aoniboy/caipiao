@@ -3,7 +3,6 @@ var game = {
         this.bindEvent();
         this.windowInit();
         this.dealh5inback();
-        this.timing();
     },
     code:[],
     allCont:{
@@ -95,16 +94,6 @@ var game = {
             game.renderHtml(game.allCont.playid);
             return false;
         })
-        $.post( '/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo ,function(res){
-            console.log(res,333);
-            if(res.data.flag){
-                console.log(1);
-                $(".hint_pop1 .hint_cont").text(res.data.message);
-                $(".hint_pop1").show();
-            }else{
-                console.log(2)
-            }
-        },'json' );
         //清单双大小全
         var dan_len,dan_money,dan_stake;
     	$('.gameo_cont').on('click', '.g_btn', function(){
@@ -683,8 +672,8 @@ var game = {
                             $.post( '/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo ,function(res){
                                 if(res.data.flag){
                                     console.log(1);
-                                    $(".hint_pop1 .hint_cont").text(res.data.message);
-                                    $(".hint_pop1").show();
+                                    //$(".hint_pop1 .hint_cont").text(res.data.message);
+                                    //$(".hint_pop1").show();
                                 }else{
                                     console.log(2)
                                 }
@@ -736,7 +725,15 @@ var game = {
 
                     }
                 }else{ 
-                	
+                	$.post( '/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo ,function(res){
+                        if(res.data.flag){
+                            console.log(1);
+                            //$(".hint_pop1 .hint_cont").text(res.data.message);
+                            //$(".hint_pop1").show();
+                        }else{
+                            console.log(2)
+                        }
+                    },'json' );
                     $(".gameo_num").html(data.data.kjNo);
                 }
             }else{
@@ -953,7 +950,6 @@ var game = {
                 }
             });
             game.zhuihao = d.join(";");
-            console.log(game.zhuihao)
             $(".zhui_qs").text(n);
             if(s){ 
             	$(".zhui_amount").text(parseFloat(s).toFixed(2));
@@ -963,18 +959,6 @@ var game = {
         });
     	
     },
-    timing: function(){
-        var time_d1 = setInterval(function(){
-            $.post('/index.php/Tip/getCZTip',function(res){
-                if(res.data.flag){
-                    $(".hint_pop1 .hint_cont").text(res.msg);
-                    $(".hint_pop1").show();
-                }else{
-
-                }
-            },'json' );
-        },10000) 
-    }
 
 }
 game.init();
