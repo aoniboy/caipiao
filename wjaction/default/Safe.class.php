@@ -151,7 +151,8 @@ class Safe extends WebLoginBase{
 		$y=mb_strlen($update['countname'],'utf8');$b=mb_strlen($update['username'],'utf8');
 		if(($x!=$y && $x%$y==0)==FALSE) $this->outputData(1,array(),'开户行必须为汉字');
 		
-		unset($x);unset($y);unset($a);unset($b);
+		unset($x);unset($y);
+		
 
 		// 更新用户信息缓存
 		$this->freshSession();
@@ -174,6 +175,7 @@ class Safe extends WebLoginBase{
 			}
 		}else{
 		    if(($a!=$b && $a%$b==0)==FALSE) $this->outputData(1,array(),'用户名必须为汉字');
+		    unset($a);unset($b);
 			if($this->insertRow($this->prename .'member_bank', $update)){
 				// 如果是工行，参与工行卡首次绑定活动
 				if($update['bankId']==1){
