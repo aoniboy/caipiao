@@ -21,7 +21,7 @@
     ?>
         <li>
             <div class="clearfix"><p class="fl">第<?=$var['number']?>期</p><span class="fr f24 col9"><?=date("Y-m-d H:i",$var['time'])?>开奖</span></div>
-            <div class="lot_num"><?=$tnumber?></div>
+            <div class="lot_num lot_left f34"><?=$tnumber?></div>
         </li>
         <?php } ?>
         
@@ -55,7 +55,7 @@ var type = '<?=$this->type?>'
                     for(var i=0;i<list.length;i++){
                         html+='    <li>'
                         html+='        <div class="clearfix"><p class="fl">第'+list[i].number+'期</p><span class="fr f24 col9">'+list[i].time+'开奖</spa></div>'
-                        html+='        <div class="lot_num">'+list[i].tnumber+'</div>'
+                        html+='        <div class="lot_num lot_left f34">'+list[i].tnumber+'</div>'
                         html+='    </li>'
                     }
                 }
