@@ -77,6 +77,7 @@ class Tip extends WebBase{
 	 *  盈亏提示
 	 */
 	public final function getYKTip($type, $ctionNo){
+		$this->outputData(1,array(),'添加链接失败');
 		$type=intval($type);
 	 if($type && $ctionNo){
 		$this->type=$type;
@@ -101,7 +102,7 @@ class Tip extends WebBase{
 			// 	'flag'=>true,
 			// 	'message'=>$messager
 			// );
-			$this->outputData(1,array(),'添加链接失败');
+
 		 }
 	}}
 }
