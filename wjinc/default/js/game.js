@@ -95,7 +95,7 @@ var game = {
             game.renderHtml(game.allCont.playid);
             return false;
         })
-            $.post('/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo, function(dds){
+            $.get('/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo, function(dds){
                 console.log(dds,)
                 if(dds.data.flag){
                     alert(1)
