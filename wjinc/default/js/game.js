@@ -95,7 +95,16 @@ var game = {
             game.renderHtml(game.allCont.playid);
             return false;
         })
-
+        $.post( '/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo ,function(res){
+            console.log(res,333);
+            if(res.data.flag){
+                console.log(1);
+                $(".hint_pop1 .hint_cont").text(res.data.message);
+                $(".hint_pop1").show();
+            }else{
+                console.log(2)
+            }
+        },'json' );
         //清单双大小全
         var dan_len,dan_money,dan_stake;
     	$('.gameo_cont').on('click', '.g_btn', function(){
