@@ -436,6 +436,11 @@ var game = {
                             $(".hint_pop .hint_title").text('系统提示');
                             $(".hint_pop .hint_cont").text(res.msg);
                             $(".hint_pop").show();
+                            //清除追号；
+                            game.zhuihao = '';
+                            game.allCont.zhuiHaoMode = '';
+                            $("zhui_qs").text('0');
+                            $(".zhui_amount").text('0');
                         }else{
                                 $(".hint_pop .hint_cont").text(res.msg);
                             $(".hint_pop").show();
