@@ -577,6 +577,11 @@ var game = {
             if(times ==5 ){
                 $(".kaijiang")[0].play();
             }
+            if($('.gameo_num').is(":hidden")){
+            	console.log(2)
+	            $('.gameo_ftips').hide();
+	            $('.gameo_num').show();
+            }
             if(times<0){
                 clearInterval(game.global.counttimer);
                 $(".kaijiang")[0].pause();
@@ -952,6 +957,7 @@ var game = {
 		                clearInterval(kjtimery);
 		                game.global.kjtimeryk =false;
 		                $(".hint_pop .hint_cont").html(res.data.message);
+		                $(".hint_pop .hint_title").text("系统提示");
 		                $(".hint_pop").show();
 		            }
 		        },'json' );
