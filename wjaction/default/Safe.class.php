@@ -8,6 +8,7 @@ class Safe extends WebLoginBase{
 	 */
 	public final function my(){
 	    $this->my = 'active';
+	    $this->freshSession();
 		$this->display('newsafe/my.php');
 	}
 	/**
