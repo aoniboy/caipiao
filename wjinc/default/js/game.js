@@ -672,8 +672,10 @@ var game = {
 	                        clearInterval(kjtimer);
 	                        game.getOrder();
                             $.post( '/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo ,function(res){
+                                console.log(res,res.data.flag)
                                 if(res.data.flag){
-                                    $(".hint_pop1 .hint_cont").text(res.msg);
+                                    alert(1)
+                                    $(".hint_pop1 .hint_cont").text(res.data.message);
                                     $(".hint_pop1").show();
                                 }
                             },'json' );
