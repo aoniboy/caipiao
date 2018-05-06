@@ -41,7 +41,7 @@
 <div class="wrap_box">
     <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>提现申请</div>
     <div class="f24 myt_text">每天提现<span class="mcol f32"><?=$this->getValue("select maxToCashCount from {$this->prename}member_level where level=?", $this->user['grade'])?></span>次，今天您已经成功发起了<span class="f34 mlv"><?=$times?></span>次提现申请<br>
-        每天的提现时间处理时间为：<br><span class="mcol f32">下午<?=$this->settings['cashFromTime']?>至晚上<?=$this->settings['cashToTime']?></span>
+        每天的提现时间处理时间为：<br><span class="mcol f32">下午<?=$this->settings['cashFromTime']?>至下午<?=$this->settings['cashToTime']?></span>
         提现10分钟内到账。（如遇高峰期，可能需要延迟到三十分钟内到账）<br>
         <span class="mlan">银行卡用户每天最小提现<?=$this->settings['cashMin']?>元，最大体现<?=$this->settings['cashMax']?>元。<br>
             财务通/支付宝用户，最小提现100元，最大提现1000000元。
