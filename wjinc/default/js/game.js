@@ -95,12 +95,14 @@ var game = {
             game.renderHtml(game.allCont.playid);
             return false;
         })
-            $.post('/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo, function(res){
-                console.log(res,res.data.flag)
-                if(res.data.flag){
+            $.post('/index.php/Tip/getYKTip/'+game.allCont.type+'/'+game.global.lastactionNo, function(dds){
+                console.log(dds,)
+                if(dds.data.flag){
                     alert(1)
-                    $(".hint_pop1 .hint_cont").text(res.data.message);
+                    $(".hint_pop1 .hint_cont").text(dds.data.message);
                     $(".hint_pop1").show();
+                }else{
+                    alert(2);
                 }
             },'json' );
         //清单双大小全
