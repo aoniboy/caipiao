@@ -37,7 +37,7 @@ class Cash extends WebLoginBase{
 	 */
 	public final function ajaxToCash(){
 		$urlshang = $_SERVER['HTTP_REFERER']; //上一页URL
-		$urldan = $_SERVER['SERVER_NAME']; //本站域名
+		$urldan = $_SERVER['HTTP_X_REAL_HOST']; //本站域名
 		$urlcheck=substr($urlshang,7,strlen($urldan));
 		if($urlcheck<>$urldan)  $this->outputData(1,array(),'数据被篡改，请重新操作');
 		if(!$_POST) $this->outputData(1,array(),'参数出错');
