@@ -578,7 +578,7 @@ var game = {
                 $(".kaijiang")[0].play();
             }
             if($('.gameo_num').is(":hidden")){
-            	console.log(2)
+            	game.global.fengpan = false;
 	            $('.gameo_ftips').hide();
 	            $('.gameo_num').show();
             }

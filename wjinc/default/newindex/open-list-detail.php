@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>开奖详情页</title>
+    <title>开奖详情</title>
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/style.css<?=$this->sversion?>">
     <link rel="stylesheet" type="text/css" href="/wjinc/default/css/font.css<?=$this->sversion?>">
     <script src="/wjinc/default/js/jquery.min.js<?=$this->sversion?>"></script>
@@ -45,9 +45,10 @@ var type = '<?=$this->type?>'
         var scrollTop = $(this).scrollTop()
         var scrollHeight = $(document).height()
         var windowHeight = $(this).height()
-        if(windowHeight + scrollTop >= scrollHeight){
+        if(windowHeight + scrollTop >= scrollHeight-80){
             $.post('/index.php/index/getOpenHistoryData/'+type+'/'+page, function(res){
                 var list = res.data.result;
+                
                 if(list.length>0){
                     page += 10;
          

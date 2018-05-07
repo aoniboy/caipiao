@@ -106,7 +106,7 @@
         var scrollTop = $(this).scrollTop()
         var scrollHeight = $(document).height()
         var windowHeight = $(this).height()
-        if(windowHeight + scrollTop >= scrollHeight){
+        if(windowHeight + scrollTop >= scrollHeight-80){
         	page++
             upload();
         }
