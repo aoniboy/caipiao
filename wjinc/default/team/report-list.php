@@ -1,6 +1,7 @@
 <?php
 	$para=$_GET;
 	$st=time();
+	set_time_limit(0);
 	// 时间限制
 	if($para['fromTime'] && $para['toTime']){
 		$fromTime=strtotime($para['fromTime']);
