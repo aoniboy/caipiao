@@ -98,6 +98,7 @@
     //查看详情
     $(document).on('click', '.qzbtn', function(){
         var href = $(this).attr('data-href');
+    	$(".myp_table").html("<span class='f40 tc' style='position:fixed;left:40%;top:30%;'>加载中.....</span>");
         $.post(href,function(res){
         	$(".myp_table").html(res.data);
         },'json' );
