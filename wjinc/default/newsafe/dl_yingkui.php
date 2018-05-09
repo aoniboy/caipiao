@@ -90,6 +90,7 @@
         upload();
     })
     function upload(){
+    	$(".myp_table").html("<span class='f40 tc' style='position:fixed;left:40%;top:30%;'>加载中.....</span>");
         $.post('/index.php/team/searchReport/?'+$(".dl_form").serialize(), function(res){
             $(".myp_table").html(res.data);
         },'json' );
