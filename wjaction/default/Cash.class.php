@@ -166,23 +166,23 @@ class Cash extends WebLoginBase{
 	/* 进入充值，生产充值订单 */
 	public final function inRecharge(){
 
-		if(!$_POST) throw new Exception('参数出错');
+		if(!$_POST) $this->outputData(1,array(),'参数出错');
 		$para['mBankId']=intval($_POST['mBankId']);
 		$para['amount']=floatval($_POST['amount']);
 
-		if($para['amount']<=0) throw new Exception('充值金额错误，请重新操作');
+		if($para['amount']<=0) $this->outputData(1,array(),'充值金额错误，请重新操作');
 		if($id=$this->getRow("select bankId from {$this->prename}sysadmin_bank where id=?",$para['mBankId'])){
 			if($id['id']==2 || $id['id']==3){
-				if($para['amount']<$this->settings['rechargeMin1'] || $para['amount']>$this->settings['rechargeMax1']) throw new Exception('支付宝/财付通充值最低'.$this->settings['rechargeMin1'].'元，最高'.$this->settings['rechargeMax1'].'元');
+				if($para['amount']<$this->settings['rechargeMin1'] || $para['amount']>$this->settings['rechargeMax1']) $this->outputData(1,array(),'支付宝/财付通充值最低'.$this->settings['rechargeMin1'].'元，最高'.$this->settings['rechargeMax1'].'元');
 			}else{
-				if($para['amount']<$this->settings['rechargeMin'] || $para['amount']>$this->settings['rechargeMax']) throw new Exception('银行卡充值最低'.$this->settings['rechargeMin1'].'元，最高'.$this->settings['rechargeMax1'].'元');
+				if($para['amount']<$this->settings['rechargeMin'] || $para['amount']>$this->settings['rechargeMax']) $this->outputData(1,array(),'银行卡充值最低'.$this->settings['rechargeMin1'].'元，最高'.$this->settings['rechargeMax1'].'元');
 			}
 		}else{
-				throw new Exception('充值银行不存在，请重新选择');
+				$this->outputData(1,array(),'充值银行不存在，请重新选择');
 			}
 
 		if(strtolower($_POST['vcode'])!=$_SESSION[$this->vcodeSessionName]){
-			throw new Exception('验证码不正确。'.$_SESSION[$this->vcodeSessionName]);
+			$this->outputData(1,array(),'验证码不正确。'.$_SESSION[$this->vcodeSessionName]);
 		}else{
 			// 插入提现请求表
 			unset($para['coinpwd']);
@@ -197,7 +197,7 @@ class Cash extends WebLoginBase{
 			if($this->insertRow($this->prename .'member_recharge', $para)){
 				$this->display('cash/recharge-copy.php',0,$para);
 			}else{
-				throw new Exception('充值订单生产请求出错');
+				$this->outputData(1,array(),'充值订单生产请求出错');
 			}
 		}
 		//清空验证码session
