@@ -50,6 +50,18 @@ $set=$this->getSystemSettings();
                 </div>
             </li>
             <li class="clearfix rel">
+                
+                <div class="col67 pay_fs flex">
+                    <?php
+                        if($banks) foreach($banks as $bank){
+                    ?>
+                    <div class="fx">
+                        <label><input class="pay_checked" value="<?=$bank['id']?>" type="radio" bankid="<?=$bank['bankId']?>" name="mBankId" data-bank='<?=json_encode($bank)?>' style="width:auto;" /><img src="/<?=$bank['logo']?>"></label>
+                    </div>
+                    <?php } ?>
+                </div>
+            </li>
+            <li class="clearfix rel">
                 <div class="fl myw">充值金额：</div>
                 <input class="col67 fl n2" type="tel" style="width:1rem;" name="amount"  value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $bank['account'])?>">
                 <span class="f20 cz_pos" style="pointer-events:none" id="rechargemsg">(单笔限额 最低： <b style="color:#ff2525"><?=$set['rechargeMin']?></b>  元，最高：  <b style="color:#ff2525"><?=$set['rechargeMax']?></b>  元)</span>
