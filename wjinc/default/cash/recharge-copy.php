@@ -32,7 +32,7 @@ $set=$this->getSystemSettings();
             <li class="clearfix rel f22" style="padding:.1rem 0 .2rem .2rem; color:#666; line-height: 1.4;height: auto;">
                *网银充值请务必将此编号填写到汇款“附言”里，每个充值编号仅用于一笔充值！
             </li>
-            <li class="clearfix rel tc" style="background:#eee;">
+            <li class="clearfix rel " style="background:#eee;padding-left: .2rem;">
                <a style="display: block;" href="/index/help/<?=$memberBank['bankId']==2?2:1?>">支付帮助</a>
             </li>
         </ul>
