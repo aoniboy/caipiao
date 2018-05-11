@@ -73,6 +73,7 @@ $set=$this->getSystemSettings();
         </div>
         <?php }?>
     </form>
+    <div class="cz_html"></div>
         <div class="hint_pop hide">
         <div class="gameo_mask"></div>
         <div class="hint_con">
@@ -120,10 +121,10 @@ $set=$this->getSystemSettings();
             return
         }
         $.post('/index.php/cash/inRecharge',$('.myt_form').serialize(), function(res){
+            consoe.log(res.code);
             if(!res.code){
-                var url = res.data;
-                var html = '<img style="display:block;width:90%;margin:0 auto;" src='+url+'>';
-                $(".hint_pop2 .hint_cont").html(html); 
+                $(".cz_html").html(res.data); 
+       
             }else{
                 $(".hint_pop1").show();
                 $(".hint_pop .hint_cont").text(res.msg);
