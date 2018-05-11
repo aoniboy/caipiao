@@ -30,6 +30,11 @@ $set=$this->getSystemSettings();
     </div>
 
     <form class="myt_form">
+        <?php
+            $sql="select * from {$this->prename}bank_list b, {$this->prename}sysadmin_bank m where m.admin=1 and m.enable=1 and b.isDelete=0 and b.id=m.bankId";
+            $banks=$this->getRows($sql);
+                    
+        if($banks){?>
         <ul class="myi_list myt_list myt_list1">
             <li class="clearfix rel">
                 <div class="fl myw">充值方式：</div>
@@ -56,6 +61,11 @@ $set=$this->getSystemSettings();
             </li>
         </ul>
         <input class="myt_btn tc chongzhi_btn" type="button" value="下一步">
+        <?php }else{ ?>
+        <div style=" margin-top:30px; text-align:center;color:#F00;">
+            充值暂停！
+        </div>
+        <?php }?>
     </form>
         <div class="hint_pop hide">
         <div class="gameo_mask"></div>
