@@ -182,7 +182,7 @@ class Cash extends WebLoginBase{
 			}
 
 		if(strtolower($_POST['vcode'])!=$_SESSION[$this->vcodeSessionName]){
-			$this->outputData(1,array(),'验证码不正确。'.$_SESSION[$this->vcodeSessionName]);
+			$this->outputData(1,array(),'验证码不正确。');
 		}else{
 			// 插入提现请求表
 			unset($para['coinpwd']);
