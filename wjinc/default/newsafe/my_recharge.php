@@ -26,18 +26,19 @@ $set=$this->getSystemSettings();
 <div class="wrap_box">
     <div class="pay_box1">
         <div class="title_top tc"><a href="javascript:history.back(-1)" class="iconfont icon-xiangzuojiantou iconback"></a>充值</div>
-        <div class="f24 myt_text">1、<b style="display:inline;color:#ff2525;">在线网银充值</b>则为<b style="display:inline;color:#ff2525;">24小时不间断</b>；<br>
-                  2、<b style="display:inline;color:#ff2525;">微信、支付宝</b>每天的充值处理时间为：<b style="display:inline;color:#ff2525;">10:00-17：00，19：00-24：00</b>，填写充值金额，点击[下一步]后，将有详细的文字说明 ；<br>
-                  3、充值后，<b style="display:inline;color:#ff2525;">请手动刷新&nbsp&nbsp</b>  你的余额及查看相关账变信息，若超过5分钟未加金额，请与在线客服联系。
+        <div class="f24 myt_text">
+                  1、<b style="display:inline;color:#ff2525;">微信、支付宝</b>每天的充值处理时间为：<b style="display:inline;color:#ff2525;">10:00-17：00，19：00-24：00</b>，填写充值金额，点击[下一步]后，将有详细的文字说明 ；<br>
+                  2、充值后，<b style="display:inline;color:#ff2525;">请手动刷新&nbsp&nbsp</b>  你的余额及查看相关账变信息，若超过5分钟未加金额，请与在线客服联系。
         </div>
 
         <form class="myt_form">
             <?php
-                $sql="select * from {$this->prename}bank_list b, {$this->prename}sysadmin_bank m where m.admin=1 and m.enable=1 and b.isDelete=0 and b.id=m.bankId";
+                $sql="select * from {$this->prename}bank_list b, {$this->prename}sysadmin_bank m where m.admin=1 and m.enable=1 and b.isDelete=0 and b.id=m.bankId and m.id <>289";
                 $banks=$this->getRows($sql);
                         
             if($banks){?>
             <ul class="myi_list myt_list myt_list1">
+                         
                 <li class="clearfix rel">
                     <div class="fl myw">充值方式：</div>
 
@@ -67,11 +68,12 @@ $set=$this->getSystemSettings();
                     <input class="col67 fl n3" type="text"  name="vcode" value="<?=preg_replace('/^(\w).*$/', '\1**', $bank['username'])?>">
                     <b class="yzmNum"><img width="80" height="30" border="0" style="cursor:pointer;margin-bottom:0px;" id="vcode" alt="看不清？点击更换" align="absmiddle" src="/index.php/user/vcode/<?=$this->time?>" title="看不清楚，换一张图片" onclick="this.src='/index.php/user/vcode/'+(new Date()).getTime()"/></b>
                 </li>
+                
             </ul>
             <input class="myt_btn tc chongzhi_btn" type="button" value="下一步">
             <?php }else{ ?>
             <div style=" margin-top:30px; text-align:center;color:#F00;">
-                充值暂停！
+                	 充值暂停！
             </div>
             <?php }?>
         </form>
