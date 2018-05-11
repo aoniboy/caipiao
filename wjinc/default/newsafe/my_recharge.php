@@ -29,19 +29,19 @@ $(function(){
     });
     
     // var bankId=$.cookie('rechargeBank')||$(':radio').attr('value');
-    $(':radio[value='+bankId+']').click();
+    // $(':radio[value='+bankId+']').click();
     
-    $('.copy').click(function(){
-        var text=document.getElementById($(this).attr('for')).value;
-        if(!CopyToClipboard(text, function(){
-            alert('复制成功');
-        }));
-    });
+    // $('.copy').click(function(){
+    //     var text=document.getElementById($(this).attr('for')).value;
+    //     if(!CopyToClipboard(text, function(){
+    //         alert('复制成功');
+    //     }));
+    // });
     
-    $('.example2').click(function(){
-        var src='/'+$(this).attr('rel');
-        if(src) $('<div>').append($('<img>',{src:src,width:'640px',height:'480px'})).dialog({width:630,height:500,title:'充值演示'});
-    });
+    // $('.example2').click(function(){
+    //     var src='/'+$(this).attr('rel');
+    //     if(src) $('<div>').append($('<img>',{src:src,width:'640px',height:'480px'})).dialog({width:630,height:500,title:'充值演示'});
+    // });
 });
 
 function checkRecharge(){
