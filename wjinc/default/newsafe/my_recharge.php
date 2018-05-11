@@ -49,7 +49,7 @@ $set=$this->getSystemSettings();
                     <?php } ?>
                 </div>
             </li>
-            <li class="clearfix rel">
+            <li class="clearfix rel flex">
                 
         
                     <?php
