@@ -20,6 +20,7 @@ $set=$this->getSystemSettings();
 .myt_list li .myw{ width:1.65rem; }
 .yzmNum{position: absolute;right:.2rem; top:0;}
 .cz_pos{ position: absolute;right:.1rem;top:0; }
+.cz_online> .fx:nth-child(1){display: none;}
 </style>
 
 <div class="wrap_box">
@@ -43,7 +44,7 @@ $set=$this->getSystemSettings();
 
                 </div>
             </li>
-            <li class="clearfix rel flex">
+            <li class="clearfix rel flex cz_online">
                 
         
                     <?php
