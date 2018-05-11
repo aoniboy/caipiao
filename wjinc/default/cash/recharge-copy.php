@@ -27,12 +27,12 @@ height:15px; width:15px
     </tr>
      <tr height=25 class='table_b_tr_b'>
       <td align="right" class="copyss">充值金额：</td>
-      <td align="left" ><input id="recharg-amount" readonly value="<?=$args[0]['amount']?>" />
+      <td align="left" ><input id="recharg-amount" readonly value="<?=$_POST['amount']?>" />
      </td>
     </tr>
      <tr height=25 class='table_b_tr_b'>
       <td align="right" class="copyss"> 充值编号 ：</td>
-      <td align="left"><input id="username" readonly value="<?=$args[0]['rechargeId']?>" />
+      <td align="left"><input id="username" readonly value="<?=$_POST['rechargeId']?>" />
         </td> 
     </tr>
 	<tr height=25 class='table_b_tr_h'>
@@ -43,8 +43,8 @@ height:15px; width:15px
 
 
 
-         <input name="order_no" type="hidden" value="<?=$args[0]['rechargeId']?>" />
-    <input name="amount" type="hidden" value="<?=$args[0]['amount']?>" />
+         <input name="order_no" type="hidden" value="<?=$_POST['rechargeId']?>" />
+    <input name="amount" type="hidden" value="<?=$_POST['amount']?>" />
     <input name="username" type="hidden" value="<?=$this->user['username']?>" />
 
 <table   border="0" cellspacing="1" cellpadding="4" class='table_b' width="100%">
@@ -150,14 +150,14 @@ height:15px; width:15px
 
      <tr height=25 class='table_b_tr_b'>
       <td align="right" class="copys">充值金额：</td>
-      <td align="left" ><input id="recharg-amount" readonly value="<?=$args[0]['amount']?>" />
+      <td align="left" ><input id="recharg-amount" readonly value="<?=$_POST['amount']?>" />
       <div class="btn-a copy" for="recharg-amount">
 	 </div>&nbsp;&nbsp;&nbsp;<div class="spn12" style="display:inline;">*充值金额必须与网站填写金额一致方能到账！</div>
       </td>
     </tr>
      <tr height=25 class='table_b_tr_b'>
       <td align="right" class="copys">充值编号：</td>
-      <td align="left"><input id="username" readonly value="<?=$args[0]['rechargeId']?>" />
+      <td align="left"><input id="username" readonly value="<?=$_POST['rechargeId']?>" />
          <div class="btn-a copy" for="username">
         </div>&nbsp;&nbsp;&nbsp;<div class="spn12"  style="display:inline;">*网银充值请务必将此编号填写到汇款“附言”里，每个充值编号仅用于一笔充值！</div>
 	   </td> 
@@ -226,7 +226,7 @@ height:15px; width:15px
 	  </td> 
      <tr height=25 class='table_b_tr_b'>
       <td align="right" class="copys">充值金额：</td>
-      <td align="left" ><input id="recharg-amount" readonly value="<?=$args[0]['amount']?>" />
+      <td align="left" ><input id="recharg-amount" readonly value="<?=$_POST['amount']?>" />
       <div class="btn-a copy" for="recharg-amount"><object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="62" height="23" id="copy-recharg" align="top">
                 <param name="allowScriptAccess" value="always" />
                 <param name="movie" value="/skin/js/copy.swf?movieID=copy-recharg&inputID=recharg-amount" />
@@ -241,7 +241,7 @@ height:15px; width:15px
     </tr>
      <tr height=25 class='table_b_tr_b'>
       <td align="right" class="copys">充值编号：</td>
-      <td align="left"><input id="username" readonly value="<?=$args[0]['rechargeId']?>" />
+      <td align="left"><input id="username" readonly value="<?=$_POST['rechargeId']?>" />
          <div class="btn-a copy" for="username">
             <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="62" height="23" id="copy-username" align="top">
                 <param name="allowScriptAccess" value="always" />
