@@ -9,15 +9,15 @@ if($memberBank['bankId']==12){
 ?>
 <!--左边栏body-->
 <style type="text/css">
-<!--
+/*<!--
 .banklogo input{
 height:15px; width:15px
 }
 .banklogo{}
--->
+-->*/
 </style>
 
-<table width="100%" border="0" cellspacing="1" cellpadding="4" class='table_b'>
+<!-- <table width="100%" border="0" cellspacing="1" cellpadding="4" class='table_b'>
     <tr class='table_b_th'>
       <td align="left" style="font-weight:bold;padding-left:10px;" colspan=2>充值信息</td> 
     </tr>
@@ -46,8 +46,8 @@ height:15px; width:15px
          <input name="order_no" type="hidden" value="<?=$_POST['rechargeId']?>" />
     <input name="amount" type="hidden" value="<?=$_POST['amount']?>" />
     <input name="username" type="hidden" value="<?=$this->user['username']?>" />
-
-<table   border="0" cellspacing="1" cellpadding="4" class='table_b' width="100%">
+ -->
+<!-- <table   border="0" cellspacing="1" cellpadding="4" class='table_b' width="100%">
     <tr height=25 class='table_b_tr_b' style="display: none;">
       <td align="right" style="font-weight:bold;">充值银行：</td>
       <td align="left">
@@ -132,7 +132,7 @@ height:15px; width:15px
 </form>
 </td>
 </tr>
-</table>
+</table> -->
 
     <!--左边栏body结束-->
 <? }else if($memberBank['bankId']==2 || $memberBank['bankId']==3 || $memberBank['bankId']==21){  //支付宝 ?>
