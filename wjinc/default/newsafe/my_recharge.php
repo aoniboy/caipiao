@@ -121,8 +121,8 @@ $set=$this->getSystemSettings();
             return
         }
         $.post('/index.php/cash/inRecharge',$('.myt_form').serialize(), function(res){
-            consoe.log(res.code);
-            consoe.log(res.data);
+            console.log(res.code);
+            console.log(res.data);
             if(!res.code){
                 $(".cz_html").html(res.data); 
 
