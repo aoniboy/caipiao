@@ -36,7 +36,7 @@ $set=$this->getSystemSettings();
                <a style="display: block;" href="/index/help/<?=$memberBank['bankId']==2?2:1?>">支付帮助</a>
             </li>
         </ul>
-        <img style="width:80%;display: block;margin:.1rem auto;" src="http://www.g19u.com/<?=$memberBank['qrcode']?>">
+        <img style="width:80%;display: block;margin:.1rem auto; padding-bottom: .3rem" src="http://www.g19u.com/<?=$memberBank['qrcode']?>">
 <!-- <table width="100%" border="0" cellspacing="1" cellpadding="3" class='table_b'>
     <tr class='table_b_th'>
       <td align="left" style="font-weight:bold;padding-left:10px;" colspan=2>充值信息</td> 
