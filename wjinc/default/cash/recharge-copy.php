@@ -3,7 +3,7 @@ $mBankId=$args[0]['mBankId'];
 $sql="select mb.*, b.name bankName, b.logo bankLogo, b.home bankHome,mb.qrcode from {$this->prename}sysadmin_bank mb, {$this->prename}bank_list b where mb.id=$mBankId and b.isDelete=0 and mb.bankId=b.id";
 
 $memberBank=$this->getRow($sql);
-print_r($memberBank);exit;
+print_r($sql);exit;
 $set=$this->getSystemSettings();
 if($memberBank['bankId']==12){
 ?>
