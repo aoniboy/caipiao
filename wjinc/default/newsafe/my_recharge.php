@@ -56,7 +56,7 @@ $set=$this->getSystemSettings();
                         if($banks) foreach($banks as $bank){
                     ?>
                     <div class="fx">
-                        <label><input class="pay_checked" value="<?=$bank['id']?>" type="radio" bankid="<?=$bank['bankId']?>" name="mBankId" data-bank='<?=json_encode($bank)?>' style="width:auto;-webkit-appearance:radio;" /><img src="/<?=$bank['logo']?>"></label>
+                        <label><input class="pay_checked" value="<?=$bank['id']?>" type="radio" bankid="<?=$bank['bankId']?>" name="mBankId" data-bank='<?=json_encode($bank)?>' style="width:auto;-webkit-appearance:radio;" /><img style="display: inline; width:80%" src="/<?=$bank['logo']?>"></label>
                     </div>
                     <?php } ?>
            
