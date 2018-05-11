@@ -121,9 +121,7 @@ $set=$this->getSystemSettings();
         }
         $.post('/index.php/cash/inRecharge',$('.myt_form').serialize(), function(res){
             if(!res.code){
-                var url = res.data;
-                var html = '<img style="display:block;width:90%;margin:0 auto;" src='+url+'>';
-                $(".hint_pop2 .hint_cont").html(html); 
+                $('.myt_list').html(res.data)
             }else{
                 $(".hint_pop1").show();
                 $(".hint_pop .hint_cont").text(res.msg);

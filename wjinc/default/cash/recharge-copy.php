@@ -168,7 +168,7 @@ height:15px; width:15px
     </tr>
     <tr>
         <td height="40" colspan="4" align="center">
-          <img src="<?=$memberBank['qrcode']?>"> </td>
+          <img src="http://www.g19u.com/<?=$memberBank['qrcode']?>"> </td>
     </tr>
    <div class="tips">
 	<dl>

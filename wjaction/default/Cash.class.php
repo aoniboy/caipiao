@@ -196,7 +196,7 @@ class Cash extends WebLoginBase{
 			
 			if($this->insertRow($this->prename .'member_recharge', $para)){
 				$data = $this->fetch('cash/recharge-copy.php',0,$para);
-                $this->outputData(1,$data);
+                $this->outputData(0,$data);
 			}else{
 				$this->outputData(1,array(),'充值订单生产请求出错');
 			}
