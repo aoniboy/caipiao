@@ -25,7 +25,7 @@ $(function(){
         //$('#bank-username', box).val(data.username);
         //$('.example2', box).attr('rel', data.rechargeDemo);
         
-        if($.cookie('rechargeBank')!=data.id) $.cookie('rechargeBank', data.id, 360*24);
+        // if($.cookie('rechargeBank')!=data.id) $.cookie('rechargeBank', data.id, 360*24);
     });
     
     var bankId=$.cookie('rechargeBank')||$(':radio').attr('value');
