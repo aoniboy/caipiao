@@ -145,6 +145,7 @@ $(function(){
 .myi_list li .col67{ min-width: 3.5rem; }
 .myt_list li .myw{ width:2rem; }
 .yzmNum{position: absolute;right:.2rem; top:0;}
+.cz_pos{ position: absolute;right:.1rem;top:0; }
 </style>
 
 <div class="wrap_box">
@@ -162,10 +163,10 @@ $(function(){
                 <div class="fl myw">银行类型：</div>
                 <img class="fl col67" src="/<?=$bank['logo']?>" title="<?=$bank['bankName']?>" style="    width: auto;margin: .05rem 0;height: .6rem;">
             </li>
-            <li class="clearfix">
+            <li class="clearfix rel">
                 <div class="fl myw">充值金额：</div>
                 <input class="col67 fl" type="text col67" style="width:1rem;" name="amount" readonly value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $bank['account'])?>">
-                <span class="f20 fl" id="rechargemsg">(单笔限额 最低： <b style="color:#ff2525"><?=$set['rechargeMin']?></b>  元，最高：  <b style="color:#ff2525"><?=$set['rechargeMax']?></b>  元)</span>
+                <span class="f20 cz_pos" style="pointer-events:none" id="rechargemsg">(单笔限额 最低： <b style="color:#ff2525"><?=$set['rechargeMin']?></b>  元，最高：  <b style="color:#ff2525"><?=$set['rechargeMax']?></b>  元)</span>
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">验证码：</div>
