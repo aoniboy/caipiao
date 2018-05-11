@@ -131,7 +131,7 @@ $set=$this->getSystemSettings();
                 $(".hint_pop .hint_cont").text(res.msg);
             }
 
-        })
+        },'json')
     })
 </script>
 </body>
