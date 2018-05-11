@@ -142,6 +142,7 @@ $(function(){
 
 <style>
 .myi_list li .col67{ min-width: 3.5rem; }
+.myt_list li .myw{ width:2rem; }
 .yzmNum{position: absolute;right:.2rem; top:0;}
 </style>
 
@@ -163,7 +164,7 @@ $(function(){
             <li class="clearfix">
                 <div class="fl myw">充值金额：</div>
                 <input class="col67 fl" type="text col67" style="width:1rem;" name="amount" readonly value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $bank['account'])?>">
-                <span  style="display:inline;" class="f22 fl" id="rechargemsg">(  单笔充值限额   最低： <b style="color:#ff2525"><?=$set['rechargeMin']?></b>  元，最高：  <b style="color:#ff2525"><?=$set['rechargeMax']?></b>  元 )</span>
+                <span class="f20 fl" id="rechargemsg">(单笔限额 最低： <b style="color:#ff2525"><?=$set['rechargeMin']?></b>  元，最高：  <b style="color:#ff2525"><?=$set['rechargeMax']?></b>  元)</span>
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">验证码：</div>
