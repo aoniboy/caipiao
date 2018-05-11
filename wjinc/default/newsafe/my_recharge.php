@@ -142,6 +142,7 @@ $(function(){
 
 <style>
 .myi_list li .col67{ min-width: 3.5rem; }
+.yzmNum{position: absolute;right:.2rem; top:0;}
 </style>
 
 <div class="wrap_box">
@@ -161,13 +162,13 @@ $(function(){
             </li>
             <li class="clearfix">
                 <div class="fl myw">充值金额：</div>
-                <input class="col67 fl" type="text col67" name="amount" readonly value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $bank['account'])?>">
-                <span  style="display:inline;" class="f24 fl" id="rechargemsg">(  单笔充值限额   最低： <b style="color:#ff2525"><?=$set['rechargeMin']?></b>  元，最高：  <b style="color:#ff2525"><?=$set['rechargeMax']?></b>  元 )</span>
+                <input class="col67 fl" type="text col67" style="width:1rem;" name="amount" readonly value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $bank['account'])?>">
+                <span  style="display:inline;" class="f22 fl" id="rechargemsg">(  单笔充值限额   最低： <b style="color:#ff2525"><?=$set['rechargeMin']?></b>  元，最高：  <b style="color:#ff2525"><?=$set['rechargeMax']?></b>  元 )</span>
             </li>
-            <li class="clearfix">
+            <li class="clearfix rel">
                 <div class="fl myw">验证码：</div>
                 <input class="col67 fl" type="text" readonly name="vcode" value="<?=preg_replace('/^(\w).*$/', '\1**', $bank['username'])?>">
-                <b class="yzmNum fl"><img width="80" height="30" border="0" style="cursor:pointer;margin-bottom:0px;" id="vcode" alt="看不清？点击更换" align="absmiddle" src="/index.php/user/vcode/<?=$this->time?>" title="看不清楚，换一张图片" onclick="this.src='/index.php/user/vcode/'+(new Date()).getTime()"/></b>
+                <b class="yzmNum"><img width="80" height="30" border="0" style="cursor:pointer;margin-bottom:0px;" id="vcode" alt="看不清？点击更换" align="absmiddle" src="/index.php/user/vcode/<?=$this->time?>" title="看不清楚，换一张图片" onclick="this.src='/index.php/user/vcode/'+(new Date()).getTime()"/></b>
             </li>
         </ul>
         <input class="myt_btn  tixian_btn tc" type="button" value="下一步">
