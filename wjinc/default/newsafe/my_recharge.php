@@ -183,7 +183,7 @@ $(function(){
                 <b class="yzmNum"><img width="80" height="30" border="0" style="cursor:pointer;margin-bottom:0px;" id="vcode" alt="看不清？点击更换" align="absmiddle" src="/index.php/user/vcode/<?=$this->time?>" title="看不清楚，换一张图片" onclick="this.src='/index.php/user/vcode/'+(new Date()).getTime()"/></b>
             </li>
         </ul>
-        <input class="myt_btn  tixian_btn tc chongzhi_btn" type="button" value="下一步">
+        <input class="myt_btn tc chongzhi_btn" type="button" value="下一步">
     </form>
         <div class="hint_pop hide">
         <div class="gameo_mask"></div>
