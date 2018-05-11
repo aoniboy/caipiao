@@ -126,7 +126,7 @@ $set=$this->getSystemSettings();
 
             }else{
                 $(".hint_pop1").show();
-                $(".hint_pop .hint_cont").text(res.msg);
+                $(".hint_pop1 .hint_cont").text(res.msg);
             }
 
         },'json')
