@@ -1,9 +1,9 @@
 <?php
-$mBankId=$GET[0]['mBankId'];
+$mBankId=$GET['mBankId'];
 $sql="select mb.*, b.name bankName, b.logo bankLogo, b.home bankHome,mb.qrcode from {$this->prename}sysadmin_bank mb, {$this->prename}bank_list b where mb.id=$mBankId and b.isDelete=0 and mb.bankId=b.id";
-
+print_r($mBankId);exit;
 $memberBank=$this->getRow($sql);
-print_r($memberBank);exit;
+
 $set=$this->getSystemSettings();
 if($memberBank['bankId']==12){
 ?>
