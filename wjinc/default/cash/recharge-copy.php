@@ -16,20 +16,20 @@ $set=$this->getSystemSettings();
         <ul class="myi_list myt_list myt_list1" style="padding-bottom: 0;">
             <li class="clearfix rel">
                 <div class="fl myw">充值方式：</div>
-                <img class="col67 fl" style="min-width: auto;" src="/<?=$memberBank['bankLogo']?>" title="<?=$memberBank['bankName']?>">
+                <img class="col67 fl" style="min-width: auto;width: auto;" src="/<?=$memberBank['bankLogo']?>" title="<?=$memberBank['bankName']?>">
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">充值金额：</div>
                 <p class="col67 fl"><?=$_POST['amount']?></p>
             </li>
-            <li class="clearfix rel f22" style="padding:0 0 .2rem .2rem; color:#666; line-height: 1.4;height: auto;">
+            <li class="clearfix rel f22" style="padding:.1rem 0 .2rem .2rem; color:#666; line-height: 1.4;height: auto;">
                 *充值金额必须与网站填写金额一致方能到账！
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">充值编号：</div>
                 <p class="col67 fl"><?=$_POST['rechargeId']?></p>
             </li>
-            <li class="clearfix rel f22" style="padding:0 0 .2rem .2rem; color:#666; line-height: 1.4;height: auto;">
+            <li class="clearfix rel f22" style="padding:.1rem 0 .2rem .2rem; color:#666; line-height: 1.4;height: auto;">
                *网银充值请务必将此编号填写到汇款“附言”里，每个充值编号仅用于一笔充值！
             </li>
             <li class="clearfix rel tc" style="background:#eee;">
