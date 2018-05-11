@@ -10,6 +10,7 @@
 
 </head>
 <body class="bgf5">
+<?php
 $set=$this->getSystemSettings(); ?>
 <script type="text/javascript">
 $(function(){
@@ -139,7 +140,7 @@ $(function(){
     //});
 });
 </script>
-
+?>
 <style>
 .myi_list li .col67{ min-width: 3.5rem; }
 .myt_list li .myw{ width:2rem; }
