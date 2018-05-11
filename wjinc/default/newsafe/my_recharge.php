@@ -28,7 +28,7 @@ $(function(){
         // if($.cookie('rechargeBank')!=data.id) $.cookie('rechargeBank', data.id, 360*24);
     });
     
-    var bankId=$.cookie('rechargeBank')||$(':radio').attr('value');
+    // var bankId=$.cookie('rechargeBank')||$(':radio').attr('value');
     $(':radio[value='+bankId+']').click();
     
     $('.copy').click(function(){
@@ -156,8 +156,6 @@ $(function(){
     </div>
 
     <form class="myt_form">
-        <input name="CANKIF_BOK" type="hidden" value="<?=$timess?>" />
-        <input name="TOLKEASF_ASH" type="hidden" value="<?=$token?>" />
         <ul class="myi_list myt_list myt_list1">
             <li class="clearfix rel">
                 <div class="fl myw">充值方式：</div>
@@ -174,7 +172,7 @@ $(function(){
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">充值金额：</div>
-                <input class="col67 fl n2" type="text col67" style="width:1rem;" name="amount"  value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $bank['account'])?>">
+                <input class="col67 fl n2" type="tel" style="width:1rem;" name="amount"  value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $bank['account'])?>">
                 <span class="f20 cz_pos" style="pointer-events:none" id="rechargemsg">(单笔限额 最低： <b style="color:#ff2525"><?=$set['rechargeMin']?></b>  元，最高：  <b style="color:#ff2525"><?=$set['rechargeMax']?></b>  元)</span>
             </li>
             <li class="clearfix rel">
