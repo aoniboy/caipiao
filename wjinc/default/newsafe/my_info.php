@@ -70,7 +70,7 @@
             </li>
             <li class="clearfix">
                 <div class="fl myw">资金密码：</div>
-                <input class="col67 fl i4" type="password" name="coinPassword" <?=$this->iff($flag, 'readonly')?>
+                <input class="col67 fl i4" type="password" name="coinPassword" <?=$this->iff($flag, 'readonly')?> >
             </li>
         </ul>
     </form>
