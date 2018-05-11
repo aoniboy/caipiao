@@ -16,7 +16,7 @@ $set=$this->getSystemSettings();
         <ul class="myi_list myt_list myt_list1" style="padding-bottom: 0;">
             <li class="clearfix rel">
                 <div class="fl myw">充值方式：</div>
-                <img class="col67 fl" src="/<?=$memberBank['bankLogo']?>" title="<?=$memberBank['bankName']?>">
+                <img class="col67 fl" style="min-width: auto;" src="/<?=$memberBank['bankLogo']?>" title="<?=$memberBank['bankName']?>">
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">充值金额：</div>
