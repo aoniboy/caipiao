@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="flex tc my_titl">
-        <a href="/index.php/cash/recharge" class="fx f32 kf"><i class="iconfont  icon-qiapian my_titl_icon1 f34"></i> 充值</a>
+        <a href="/index.php/cash/recharge" class="fx f32"><i class="iconfont  icon-qiapian my_titl_icon1 f34"></i> 充值</a>
         <a href="/index.php/cash/toCash" class="fx f32"><i class="iconfont icon-qian my_titl_icon2 f34"></i> 提现</a>
     </div>
     <div class="my_line"></div>
