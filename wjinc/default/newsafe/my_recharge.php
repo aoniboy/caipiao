@@ -51,15 +51,15 @@ $set=$this->getSystemSettings();
             </li>
             <li class="clearfix rel">
                 
-                <div class="col67 pay_fs flex">
+        
                     <?php
                         if($banks) foreach($banks as $bank){
                     ?>
                     <div class="fx">
-                        <label><input class="pay_checked" value="<?=$bank['id']?>" type="radio" bankid="<?=$bank['bankId']?>" name="mBankId" data-bank='<?=json_encode($bank)?>' style="width:auto;" /><img src="/<?=$bank['logo']?>"></label>
+                        <label><input class="pay_checked" value="<?=$bank['id']?>" type="radio" bankid="<?=$bank['bankId']?>" name="mBankId" data-bank='<?=json_encode($bank)?>' style="width:auto;-webkit-appearance:radio;" /><img src="/<?=$bank['logo']?>"></label>
                     </div>
                     <?php } ?>
-                </div>
+           
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">充值金额：</div>
