@@ -1,5 +1,5 @@
 <?php
-$mBankId=$get[0]['mBankId'];
+$mBankId=$GET[0]['mBankId'];
 $sql="select mb.*, b.name bankName, b.logo bankLogo, b.home bankHome,mb.qrcode from {$this->prename}sysadmin_bank mb, {$this->prename}bank_list b where mb.id=$mBankId and b.isDelete=0 and mb.bankId=b.id";
 
 $memberBank=$this->getRow($sql);
