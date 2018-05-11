@@ -162,28 +162,28 @@ $(function(){
             <li class="clearfix rel">
                 <div class="fl myw">充值方式：</div>
 
-                <div class="fl ol67">
+                <div class="fl ol67 pay_fs">
                     <?php
                         if($banks) foreach($banks as $bank){
                     ?>
                     <div class="bankchoice">
-                        <label><input value="<?=$bank['id']?>" type="radio" bankid="<?=$bank['bankId']?>" name="mBankId" data-bank='<?=json_encode($bank)?>' style="width:auto;" /><span style="background:url(/<?=$bank['logo']?>);" ></span></label>
+                        <label><input class="pay_checked" value="<?=$bank['id']?>" type="radio" bankid="<?=$bank['bankId']?>" name="mBankId" data-bank='<?=json_encode($bank)?>' style="width:auto;" /><span style="background:url(/<?=$bank['logo']?>);" ></span></label>
                     </div>
                     <?php } ?>
                 </div>
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">充值金额：</div>
-                <input class="col67 fl" type="text col67" style="width:1rem;" name="amount"  value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $bank['account'])?>">
+                <input class="col67 fl n2" type="text col67" style="width:1rem;" name="amount"  value="<?=preg_replace('/^.*(\w{4})$/', '***\1', $bank['account'])?>">
                 <span class="f20 cz_pos" style="pointer-events:none" id="rechargemsg">(单笔限额 最低： <b style="color:#ff2525"><?=$set['rechargeMin']?></b>  元，最高：  <b style="color:#ff2525"><?=$set['rechargeMax']?></b>  元)</span>
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">验证码：</div>
-                <input class="col67 fl" type="text"  name="vcode" value="<?=preg_replace('/^(\w).*$/', '\1**', $bank['username'])?>">
+                <input class="col67 fl n3" type="text"  name="vcode" value="<?=preg_replace('/^(\w).*$/', '\1**', $bank['username'])?>">
                 <b class="yzmNum"><img width="80" height="30" border="0" style="cursor:pointer;margin-bottom:0px;" id="vcode" alt="看不清？点击更换" align="absmiddle" src="/index.php/user/vcode/<?=$this->time?>" title="看不清楚，换一张图片" onclick="this.src='/index.php/user/vcode/'+(new Date()).getTime()"/></b>
             </li>
         </ul>
-        <input class="myt_btn  tixian_btn tc" type="button" value="下一步">
+        <input class="myt_btn  tixian_btn tc chongzhi_btn" type="button" value="下一步">
     </form>
         <div class="hint_pop hide">
         <div class="gameo_mask"></div>
@@ -201,10 +201,48 @@ $(function(){
             <div class="tc hint_btn f32">确定</div>
         </div>
     </div>
-
+    <div class=" hide hint_pop2">
+        <div class="gameo_mask"></div>
+        <div class="hint_con">
+            <div class="hint_title f32 tc hint_titles">充值二维码</div>
+            <div class="hint_cont f24"></div>
+            <div class="tc hint_btn f32">确定</div>
+        </div>
+    </div>
 </div>
 
 <script src="/wjinc/default/js/common.js<?=$this->sversion?>"></script>
 <script src="/wjinc/default/js/my.js<?=$this->sversion?>"></script>
+<script type="text/javascript">
+    $(".chongzhi_btn").click(function(){
+
+        if($('.pay_checked:checked').val()){
+            $(".hint_pop").show();
+            $(".hint_pop .hint_cont").text('请选择充值方式');
+            return
+        }
+        if($(".n2").val()==""){
+            $(".hint_pop").show();
+            $(".hint_pop .hint_cont").text('请输入充值金额');
+            return
+        }
+        if($(".n3").val()==""){
+            $(".hint_pop").show();
+            $(".hint_pop .hint_cont").text('请输入验证码');
+            return
+        }
+        $.post('/index.php/cash/inRecharge',$('.myt_form').serialize(), function(res){
+            if(!res.code){
+                var url = res.data;
+                var html = '<img style="display:block;width:90%;margin:0 auto;" src='+url+'>';
+                $(".hint_pop2 .hint_cont").html(html); 
+            }else{
+                $(".hint_pop1").show();
+                $(".hint_pop .hint_cont").text(res.msg);
+            }
+
+        })
+    })
+</script>
 </body>
 </html>
