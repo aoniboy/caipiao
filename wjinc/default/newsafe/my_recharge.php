@@ -104,7 +104,7 @@ $set=$this->getSystemSettings();
 <script type="text/javascript">
     $(".chongzhi_btn").click(function(){
 
-        if($('.pay_checked:checked').val()){
+        if($('.pay_checked:checked').val()==""){
             $(".hint_pop").show();
             $(".hint_pop .hint_cont").text('请选择充值方式');
             return
