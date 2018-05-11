@@ -123,7 +123,8 @@ $set=$this->getSystemSettings();
         $.post('/index.php/cash/inRecharge',$('.myt_form').serialize(), function(res){
             consoe.log(res.code);
             if(!res.code){
-                $('.myt_list').html(res.data)
+                $(".cz_html").html(res.data); 
+
             }else{
                 $(".hint_pop1").show();
                 $(".hint_pop .hint_cont").text(res.msg);
