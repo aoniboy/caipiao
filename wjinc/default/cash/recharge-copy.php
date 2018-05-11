@@ -13,7 +13,7 @@ $set=$this->getSystemSettings();
         2.转账后如<b style="display:inline;color:#ff2525;">5分钟</b>未到账，请联系客服，告知您的充值编号和您的充值金额及你的充值账号。<br>
         3.充值有效金额：<b style="display:inline;color:#ff2525;"><?=$set['rechargeMin1']?>元-<?=$set['rechargeMax1']?>元</b>。充值金额请输入非整数，以便平台更快速为您进行充值，谢谢！例如：充值<b style="display:inline;color:#ff2525;">2000.01</b>元。
     </div>
-        <ul class="myi_list myt_list myt_list1">
+        <ul class="myi_list myt_list myt_list1" style="padding-bottom: 0;">
             <li class="clearfix rel">
                 <div class="fl myw">充值方式：</div>
                 <img class="col67 fl" src="/<?=$memberBank['bankLogo']?>" title="<?=$memberBank['bankName']?>">
@@ -22,18 +22,18 @@ $set=$this->getSystemSettings();
                 <div class="fl myw">充值金额：</div>
                 <p class="col67 fl"><?=$_POST['amount']?></p>
             </li>
-            <li class="clearfix rel" style="">
-                <span class="f20">*充值金额必须与网站填写金额一致方能到账！</span>
+            <li class="clearfix rel f22" style="padding:0 0 .2rem .2rem; color:#666; line-height: 1.4;height: auto;">
+                *充值金额必须与网站填写金额一致方能到账！
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">充值编号：</div>
                 <p class="col67 fl"><?=$_POST['rechargeId']?></p>
             </li>
-            <li class="clearfix rel">
+            <li class="clearfix rel f22" style="padding:0 0 .2rem .2rem; color:#666; line-height: 1.4;height: auto;">
                *网银充值请务必将此编号填写到汇款“附言”里，每个充值编号仅用于一笔充值！
             </li>
             <li class="clearfix rel tc" style="background:#eee;">
-               <a style="display: block;"> href="/index/help/<?=$memberBank['bankId']==2?2:1?>">支付帮助</a>
+               <a style="display: block;" href="/index/help/<?=$memberBank['bankId']==2?2:1?>">支付帮助</a>
             </li>
         </ul>
         <img style="width:80%;display: block;margin:.1rem auto;" src="http://www.g19u.com/<?=$memberBank['qrcode']?>">
