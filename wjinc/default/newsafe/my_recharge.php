@@ -143,7 +143,7 @@ $(function(){
 ?>
 <style>
 .myi_list li .col67{ min-width: 3.5rem; }
-.myt_list li .myw{ width:2rem; }
+.myt_list li .myw{ width:1.65rem; }
 .yzmNum{position: absolute;right:.2rem; top:0;}
 .cz_pos{ position: absolute;right:.1rem;top:0; }
 </style>
@@ -160,8 +160,17 @@ $(function(){
         <input name="TOLKEASF_ASH" type="hidden" value="<?=$token?>" />
         <ul class="myi_list myt_list myt_list1">
             <li class="clearfix rel">
-                <div class="fl myw">银行类型：</div>
-                <img class="fl col67" src="/<?=$bank['logo']?>" title="<?=$bank['bankName']?>" style="    width: auto;margin: .05rem 0;height: .6rem;">
+                <div class="fl myw">充值方式：</div>
+
+                <div class="fl ol67">
+                    <?php
+                        if($banks) foreach($banks as $bank){
+                    ?>
+                    <div class="bankchoice">
+                        <label><input value="<?=$bank['id']?>" type="radio" bankid="<?=$bank['bankId']?>" name="mBankId" data-bank='<?=json_encode($bank)?>' style="width:auto;" /><span style="background:url(/<?=$bank['logo']?>);" ></span></label>
+                    </div>
+                    <?php } ?>
+                </div>
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">充值金额：</div>
