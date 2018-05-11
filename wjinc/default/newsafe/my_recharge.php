@@ -40,13 +40,7 @@ $set=$this->getSystemSettings();
                 <div class="fl myw">充值方式：</div>
 
                 <div class="fl ol67 pay_fs">
-                    <?php
-                        if($banks) foreach($banks as $bank){
-                    ?>
-                    <div class="bankchoice">
-                        <label><input class="pay_checked" value="<?=$bank['id']?>" type="radio" bankid="<?=$bank['bankId']?>" name="mBankId" data-bank='<?=json_encode($bank)?>' style="width:auto;" /><span style="background:url(/<?=$bank['logo']?>);" ></span></label>
-                    </div>
-                    <?php } ?>
+
                 </div>
             </li>
             <li class="clearfix rel flex">
