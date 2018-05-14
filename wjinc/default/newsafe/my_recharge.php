@@ -20,7 +20,6 @@ $set=$this->getSystemSettings();
 .myt_list li .myw{ width:1.65rem; }
 .yzmNum{position: absolute;right:.2rem; top:0;}
 .cz_pos{ position: absolute;right:.1rem;top:0; }
-.cz_online> .fx:nth-child(1){display: none;}
 </style>
 
 <div class="wrap_box">
@@ -36,7 +35,7 @@ $set=$this->getSystemSettings();
                 $sql="select * from {$this->prename}bank_list b, {$this->prename}sysadmin_bank m where m.admin=1 and m.enable=1 and b.isDelete=0 and b.id=m.bankId and m.id <>289";
                 $banks=$this->getRows($sql);
                         
-            if($banks){?>
+            if($banks&&((date("H")>=10 && date("H")<=16)||(date("H")>=19 && date("H")<=23))){?>
             <ul class="myi_list myt_list myt_list1">
                          
                 <li class="clearfix rel">
@@ -139,6 +138,7 @@ $set=$this->getSystemSettings();
 
         },'json')
     })
+
 </script>
 </body>
 </html>
