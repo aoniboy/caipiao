@@ -82,7 +82,7 @@ var common = {
         })
     },
     logout: function() {
-    	$(document).on('click', '.logout', function(){
+    	$('div').on('click', '.logout', function(){
     		window.location.href = "/index.php/user/logout";
     	});
     },
