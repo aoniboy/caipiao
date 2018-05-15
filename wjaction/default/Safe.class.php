@@ -167,6 +167,7 @@ class Safe extends WebLoginBase{
 		if($account=$this->getValue("select username FROM {$this->prename}member_bank where account=? LIMIT 1",$update['username'])) $this->outputData(1,array(),'该'.$username.'账户名已经使用');
 			
 		if($bank=$this->getRow("select editEnable from {$this->prename}member_bank where uid=? LIMIT 1", $this->user['uid'])){
+		    unset($update['username']);
 			if($bank['editEnable']!=1) $this->outputData(1,array(),'银行信息绑定后不能随便更改，如需更改，请联系在线客服');
 			if($this->updateRows($this->prename .'member_bank', $update, 'uid='. $this->user['uid'])){
 				$this->outputData(0,array(),'更改银行信息成功');
