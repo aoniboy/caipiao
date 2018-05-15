@@ -118,7 +118,7 @@
             <?php if($var['lotteryNo'] || $var['isDelete']==1 || $var['kjTime']<$this->time || $var['qz_uid']){ ?>
 				--
 			<?php }else{ ?>
-				<a href="/index.php/game/deleteCode/<?=$var['id']?>" dataType="json" call="deleteBet" title="是否确定撤单" target="ajax">撤单</a>
+				<a class="chedan" id="<?=$var['id']?>" href="javascript:void(0)" data-href="/index.php/game/deleteCode/<?=$var['id']?>" dataType="json" call="deleteBet" title="是否确定撤单" target="ajax">撤单</a>
 			<?php } ?>
             </td>
 		</tr>

@@ -58,6 +58,22 @@ var common = {
             },'text' );
             return false;
         })
+        //撤单
+        $('.myp_table').on('click', '.chedan', function(){
+            var id = $(this).attr('id');
+            $.post('/index.php/game/deleteCode/'+id,function(data){
+                if(!data.code){
+                    $(".hint_pop .hint_title").text('提示');
+                    $(".hint_pop .hint_cont").text('撤单成功');
+                    $(".hint_pop").show();
+                }else{
+                    $(".hint_pop .hint_cont").text(data.msg);
+                    $(".hint_pop").show();
+                }
+                
+            },'json' );
+            return false;
+        })
          $(".detail_close").on('touchend', function(){
             $(".detail_pop").hide();
         })

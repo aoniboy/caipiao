@@ -457,7 +457,7 @@ var game = {
             return false;
         })
         //撤单
-        $(document).on('touchend', 'td.prize_col', function(){
+        $('table').on('click', 'td.prize_col', function(){
             var id = $(this).attr('id');
             $.post('/index.php/game/deleteCode/'+id,function(data){
                 if(!data.code){
@@ -914,7 +914,8 @@ var game = {
 
     	    if (!document[hiddenProperty]) {
     	    	//window.location.href = location.href;
-
+    	    	if(game.global.fengpantimer) clearInterval(game.global.fengpantimer);
+    	    	if(game.global.counttimer) clearInterval(game.global.counttimer);
     	        game.qhinfo();
     	    }else{
     	    	if(game.global.fengpantimer) clearInterval(game.global.fengpantimer);
