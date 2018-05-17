@@ -132,7 +132,7 @@ $list=$this->getPage($sql."  " , $this->page, $this->pageSize);
 	</colgroup>
 	<thead>
 		<tr class="table_b_th">
-			<td>用户名</td>
+			<td class="tdover">用户名</td>
             <td>充值总额</td>
             <td>提现总额</td>
 			<td>投注总额</td>
