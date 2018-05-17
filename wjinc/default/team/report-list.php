@@ -118,15 +118,15 @@ $list=$this->getPage($sql."  " , $this->page, $this->pageSize);
 	$rel="/index.php/{$this->controller}/{$this->action}";
 
 ?>
-<table width="125%" class='table_b'>
+<table width="100%" class='table_b'>
 	<colgroup>
     	<col width="13%">
     	<col width="20%">
-    	<col width="20%">
-    	<col width="15%">
-    	<col width="15%">
+    	<col width="10%">
     	<col width="15%">
     	<col width="10%">
+    	<col width="10%">
+    	<col width="5%">
     	<col width="12%">
     	<col width="5%">
 	</colgroup>
