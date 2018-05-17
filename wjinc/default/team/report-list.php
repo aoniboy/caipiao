@@ -119,6 +119,16 @@ $list=$this->getPage($sql."  " , $this->page, $this->pageSize);
 
 ?>
 <table width="100%" class='table_b'>
+	<colgroup>
+    	<col width="10%">
+    	<col width="20%">
+    	<col width="20%">
+    	<col width="20%">
+    	<col width="20%">
+    	<col width="10%">
+    	<col width="10%">
+    	<col width="10%">
+	</colgroup>
 	<thead>
 		<tr class="table_b_th">
 			<td>用户名</td>
