@@ -60,7 +60,7 @@
         </div>
         </div>
         <div class="table_scroll">
-            <div class="myp_table" style="width:620px">
+            <div class="myp_table" style="width:1200px">
                 
             </div>
         </div>
