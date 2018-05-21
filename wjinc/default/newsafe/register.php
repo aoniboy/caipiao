@@ -73,6 +73,7 @@
         var m4 = $(".m_re4").val();
         var m5 = $(".m_re5").val();
         var regEx = /^[a-zA-Z0-9_]{4,16}$/;
+        var regExQQ = /^[a-zA-Z0-9_]{1,16}$/;
     
         if(!regEx.test(m1)){
             $(".hint_pop").show();
@@ -85,6 +86,11 @@
         }else if(m5==""){
             $(".hint_pop").show();
             $(".hint_pop .hint_cont").text('验证码不能为空');
+            return;
+        }
+        if(!regExQQ .test(m4)){
+            $(".hint_pop").show();
+            $(".hint_pop .hint_cont").text('微信只能由字母或数字组成');
             return;
         }
 

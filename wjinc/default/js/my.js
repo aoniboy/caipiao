@@ -161,7 +161,9 @@ var my = {
             var v4 = $(".i4").val();
             var v5 = $(".i5").val();
             var v6 = $(".i6").val();
+            var v7 = $(".i7").val();
             var regEx = /^[a-zA-Z0-9_]{4,16}$/;
+            var regExQQ = /^[a-zA-Z0-9_]{1,16}$/;
             if(!regEx.test(v1)){
                 $(".hint_pop").show();
                 $(".hint_pop .hint_cont").text('用户名由4-16位的字母或数字组成');
@@ -175,6 +177,11 @@ var my = {
             if(v2.length<6){
                 $(".hint_pop").show();
                 $(".hint_pop .hint_cont").text('密码至少6位');
+                return;
+            }
+            if(!regExQQ .test(v7)){
+                $(".hint_pop").show();
+                $(".hint_pop .hint_cont").text('微信只能由字母或数字组成');
                 return;
             }
             if(v4 == ""){

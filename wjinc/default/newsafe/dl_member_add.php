@@ -35,7 +35,7 @@
             </li>
             <li class="clearfix">
                 <div class="fl myw">联系微信：</div>
-                <input class="col67 fl " type="text" name="qq" value="">
+                <input class="col67 fl i7" type="text" name="qq" value="">
             </li>
             <li class="clearfix rel">
                 <div class="fl myw">提成类型：</div>
