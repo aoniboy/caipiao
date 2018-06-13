@@ -44,7 +44,7 @@
         每天的提现时间处理时间为：<br><span class="mcol f32">下午<?=$this->settings['cashFromTime']?>至下午<?=$this->settings['cashToTime']?></span>
         提现10分钟内到账。（如遇高峰期，可能需要延迟到三十分钟内到账）<br>
         <span class="mlan">银行卡用户每天最小提现<?=$this->settings['cashMin']?>元，最大提现<?=$this->settings['cashMax']?>元。<br>
-            财务通/支付宝用户，最小提现100元，最大提现1000000元。
+            财务通/支付宝用户，最小提现<?=$this->settings['cashMin']?>元，最大提现<?=$this->settings['cashMax']?>元。
         </span>
     </div>
     <?php if($bank['bankId']){?>
@@ -66,7 +66,7 @@
         </li>
         <li class="clearfix">
             <div class="fl myw">提款金额：</div>
-            <input class="col67 fl my_tixian1" type="tel" name="amount" placeholder="单笔体现限额为:最低100元，最高1000000元"  value="">
+            <input class="col67 fl my_tixian1" type="tel" name="amount" placeholder="单笔体现限额为:最低<?=$this->settings['cashMin']?>元，最高<?=$this->settings['cashMax']?>元"  value="">
         </li>
         <li class="clearfix">
             <div class="fl myw">提现金额(大写)：</div>
